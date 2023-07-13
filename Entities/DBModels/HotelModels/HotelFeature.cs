@@ -1,3 +1,5 @@
+using Entities.EnumData;
+
 namespace Entities.DBModels.HotelModels;
 
 public class HotelFeature : AuditLookUpEntity
@@ -15,4 +17,15 @@ public class HotelFeature : AuditLookUpEntity
 
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }
+    
+    public List<HotelFeatureLang> HotelFeatureLangs { get; set; }
+}
+
+public class HotelFeatureLang : AuditLangEntity<HotelFeature>
+{
+    [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+    public string Name { get; set; }
+
+    [DisplayName(nameof(Language))]
+    public DBModelsEnum.LanguageEnum Language { get; set; }
 }

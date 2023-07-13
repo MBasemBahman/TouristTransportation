@@ -1,3 +1,5 @@
+using Entities.EnumData;
+
 namespace Entities.DBModels.MainDataModels;
 
 public class Currency : AuditLookUpEntity
@@ -8,4 +10,15 @@ public class Currency : AuditLookUpEntity
     
     [DisplayName(nameof(RateInPounds))]
     public double RateInPounds { get; set; }
+    
+    public List<CurrencyLang> CurrencyLangs { get; set; }
+}
+
+public class CurrencyLang : AuditLangEntity<Currency>
+{
+    [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+    public string Name { get; set; }
+
+    [DisplayName(nameof(Language))]
+    public DBModelsEnum.LanguageEnum Language { get; set; }
 }

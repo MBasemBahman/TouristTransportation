@@ -1,3 +1,5 @@
+using Entities.EnumData;
+
 namespace Entities.DBModels.CompanyTripModels;
 
 public class CompanyTripState : AuditLookUpEntity
@@ -8,4 +10,15 @@ public class CompanyTripState : AuditLookUpEntity
 
     [DisplayName(nameof(CompanyTrips))]
     public List<CompanyTrip> CompanyTrips { get; set; }
+    
+    public List<CompanyTripStateLang> CompanyTripStateLangs { get; set; }
+}
+
+public class CompanyTripStateLang : AuditLangEntity<CompanyTripState>
+{
+    [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+    public string Name { get; set; }
+
+    [DisplayName(nameof(Language))]
+    public DBModelsEnum.LanguageEnum Language { get; set; }
 }

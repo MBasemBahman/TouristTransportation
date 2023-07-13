@@ -1,4 +1,5 @@
 using Entities.DBModels.MainDataModels;
+using Entities.EnumData;
 
 namespace Entities.DBModels.HotelModels;
 
@@ -36,4 +37,15 @@ public class Hotel : AuditImageEntity
     
     [DisplayName(nameof(HotelAttachments))]
     public List<HotelAttachment> HotelAttachments { get; set; }
+    
+    public List<HotelLang> HotelLangs { get; set; }
+}
+
+public class HotelLang : AuditLangEntity<Hotel>
+{
+    [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+    public string Name { get; set; }
+
+    [DisplayName(nameof(Language))]
+    public DBModelsEnum.LanguageEnum Language { get; set; }
 }

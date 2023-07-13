@@ -55,5 +55,11 @@
             Dislike = 2,
             Love = 3
         }
+
+        public enum LanguageEnum
+        {
+            en,
+            fr
+        }
     }
 }
