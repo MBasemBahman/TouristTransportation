@@ -225,5 +225,75 @@ namespace CoreServices.Logic
         }
 
         #endregion
+        
+        #region Supplier Services
+
+        public IQueryable<SupplierModel> GetSuppliers(
+            SupplierParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return _repository.Supplier
+                              .FindAll(parameters, trackChanges: false)
+                              .Select(a => new SupplierModel
+                              {
+                                  Id = a.Id,
+                                  Name = language != null ? a.SupplierLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  CreatedAt = a.CreatedAt,
+                                  CreatedBy = a.CreatedBy,
+                                  LastModifiedAt = a.LastModifiedAt,
+                                  LastModifiedBy = a.LastModifiedBy
+                              })
+                              .Search(parameters.SearchColumns, parameters.SearchTerm)
+                              .Sort(parameters.OrderBy);
+        }
+
+        public async Task<PagedList<SupplierModel>> GetSuppliersPaged(
+            SupplierParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return await PagedList<SupplierModel>.ToPagedList(GetSuppliers(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<PagedList<SupplierModel>> GetSuppliersPaged(
+          IQueryable<SupplierModel> data,
+         SupplierParameters parameters)
+        {
+            return await PagedList<SupplierModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<Supplier> FindSupplierById(int id, bool trackChanges)
+        {
+            return await _repository.Supplier.FindById(id, trackChanges);
+        }
+
+        public Dictionary<string, string> GetSuppliersLookUp(SupplierParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetSuppliers(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+
+        public SupplierModel GetSupplierById(int id, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetSuppliers(new SupplierParameters { Id = id }, language).SingleOrDefault();
+        }
+        
+
+        public void CreateSupplier(Supplier entity)
+        {
+            _repository.Supplier.Create(entity);
+        }
+
+        public int GetSuppliersCount()
+        {
+            return _repository.Supplier.Count();
+        }
+
+        public async Task DeleteSupplier(int id)
+        {
+            Supplier row = await _repository.Supplier.FindById(id, trackChanges: false);
+
+            _repository.Supplier.Delete(row);
+        }
+
+        #endregion
     }
 }

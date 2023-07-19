@@ -1,11 +1,6 @@
 ﻿using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.PostModels;
-using Entities.CoreServicesModels.MainDataModels;
 using Entities.DBModels.CompanyTripModels;
-using Entities.DBModels.PostModels;
-using Entities.DBModels.MainDataModels;
 using Entities.EnumData;
-using Microsoft.AspNetCore.Http;
 
 namespace CoreServices.Logic
 {

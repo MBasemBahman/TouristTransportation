@@ -1,5 +1,6 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
+using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -94,6 +95,132 @@ namespace CoreServices.Logic
             Account account = await _repository.Account.FindById(id, trackChanges: false);
 
             _repository.Account.Delete(account);
+        }
+
+        #endregion
+        
+        #region AccountType Services
+
+        public IQueryable<AccountTypeModel> GetAccountTypes(
+            AccountTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return _repository.AccountType
+                              .FindAll(parameters, trackChanges: false)
+                              .Select(a => new AccountTypeModel
+                              {
+                                  Id = a.Id,
+                                  Name = language != null ? a.AccountTypeLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  ColorCode = a.ColorCode,
+                                  CreatedAt = a.CreatedAt,
+                              })
+                              .Search(parameters.SearchColumns, parameters.SearchTerm)
+                              .Sort(parameters.OrderBy);
+        }
+
+        public async Task<PagedList<AccountTypeModel>> GetAccountTypesPaged(
+            AccountTypeParameters parameters , DBModelsEnum.LanguageEnum? language)
+        {
+            return await PagedList<AccountTypeModel>.ToPagedList(GetAccountTypes(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<PagedList<AccountTypeModel>> GetAccountTypesPaged(
+          IQueryable<AccountTypeModel> data,
+         AccountTypeParameters parameters)
+        {
+            return await PagedList<AccountTypeModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<AccountType> FindAccountTypeById(int id, bool trackChanges)
+        {
+            return await _repository.AccountType.FindById(id, trackChanges);
+        }
+
+        public AccountTypeModel GetAccountTypeById(int id, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetAccountTypes(new AccountTypeParameters { Id = id }, language).SingleOrDefault();
+        }
+        
+
+        public void CreateAccountType(AccountType entity)
+        {
+            _repository.AccountType.Create(entity);
+        }
+
+        public int GetAccountTypesCount()
+        {
+            return _repository.AccountType.Count();
+        }
+
+        public async Task DeleteAccountType(int id)
+        {
+            AccountType account = await _repository.AccountType.FindById(id, trackChanges: false);
+
+            _repository.AccountType.Delete(account);
+        }
+
+        #endregion
+        
+        #region AccountState Services
+
+        public IQueryable<AccountStateModel> GetAccountStates(
+            AccountStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return _repository.AccountState
+                              .FindAll(parameters, trackChanges: false)
+                              .Select(a => new AccountStateModel
+                              {
+                                  Id = a.Id,
+                                  Name = language != null ? a.AccountStateLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  ColorCode = a.ColorCode,
+                                  CreatedAt = a.CreatedAt,
+                              })
+                              .Search(parameters.SearchColumns, parameters.SearchTerm)
+                              .Sort(parameters.OrderBy);
+        }
+
+        public async Task<PagedList<AccountStateModel>> GetAccountStatesPaged(
+            AccountStateParameters parameters , DBModelsEnum.LanguageEnum? language)
+        {
+            return await PagedList<AccountStateModel>.ToPagedList(GetAccountStates(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<PagedList<AccountStateModel>> GetAccountStatesPaged(
+          IQueryable<AccountStateModel> data,
+         AccountStateParameters parameters)
+        {
+            return await PagedList<AccountStateModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<AccountState> FindAccountStateById(int id, bool trackChanges)
+        {
+            return await _repository.AccountState.FindById(id, trackChanges);
+        }
+
+        public AccountStateModel GetAccountStateById(int id, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetAccountStates(new AccountStateParameters { Id = id }, language).SingleOrDefault();
+        }
+        
+
+        public void CreateAccountState(AccountState entity)
+        {
+            _repository.AccountState.Create(entity);
+        }
+
+        public int GetAccountStatesCount()
+        {
+            return _repository.AccountState.Count();
+        }
+
+        public async Task DeleteAccountState(int id)
+        {
+            AccountState account = await _repository.AccountState.FindById(id, trackChanges: false);
+
+            _repository.AccountState.Delete(account);
         }
 
         #endregion

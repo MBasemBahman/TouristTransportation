@@ -13,6 +13,20 @@ public class Account : AuditImageEntity
     [Phone]
     public string Phone { get; set; }
 
+    [DisplayName(nameof(AccountType))]
+    [ForeignKey(nameof(AccountType))]
+    public int Fk_AccountType { get; set; }
+
+    [DisplayName(nameof(AccountType))]
+    public AccountType AccountType { get; set; }
+
+    [DisplayName(nameof(AccountState))]
+    [ForeignKey(nameof(AccountState))]
+    public int Fk_AccountState { get; set; }
+
+    [DisplayName(nameof(AccountState))]
+    public AccountState AccountState { get; set; }
+    
     [DisplayName(nameof(EmailAddress))]
     [EmailAddress]
     public string EmailAddress { get; set; }

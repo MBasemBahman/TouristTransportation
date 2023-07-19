@@ -1,12 +1,14 @@
 ﻿using Entities.DBModels.PostModels;
 using Repository.DBModels.AccountModels;
 using Repository.DBModels.AuditModels;
+using Repository.DBModels.CarModels;
 using Repository.DBModels.CompanyTripModels;
 using Repository.DBModels.DashboardAdministrationModels;
 using Repository.DBModels.HotelModels;
 using Repository.DBModels.LogModels;
 using Repository.DBModels.MainDataModels;
 using Repository.DBModels.PostModels;
+using Repository.DBModels.TripModels;
 
 namespace Repository
 {
@@ -44,6 +46,8 @@ namespace Repository
         #region Account
         
         private AccountRepository _accountRepository;
+        private AccountStateRepository _accountStateRepository;
+        private AccountTypeRepository _accountTypeRepository;
         
         #endregion
         
@@ -52,6 +56,7 @@ namespace Repository
         private CountryRepository _countryRepository;
         private CurrencyRepository _currencyRepository;
         private AreaRepository _areaRepository;
+        private SupplierRepository _supplierRepository;
         
         #endregion
         
@@ -81,6 +86,22 @@ namespace Repository
         private CompanyTripBookingStateRepository _companyTripBookingStateRepository;
         private CompanyTripRepository _companyTripRepository;
         private CompanyTripStateRepository _companyTripStateRepository;
+
+        #endregion
+
+        #region Car Models
+
+        private CarCategoryRepository _carCategoryRepository;
+        private CarClassRepository _carClassRepository;
+
+        #endregion
+
+        #region Trip Models
+
+        private TripStateRepository _tripStateRepository;
+        private TripRepository _tripRepository;
+        private TripPointRepository _tripPointRepository;
+        private TripHistoryRepository _tripHistoryRepository;
 
         #endregion
         
@@ -220,6 +241,24 @@ namespace Repository
                 return _accountRepository;
             }
         }
+        
+        public AccountStateRepository AccountState
+        {
+            get
+            {
+                _accountStateRepository ??= new AccountStateRepository(_dBContext);
+                return _accountStateRepository;
+            }
+        }
+        
+        public AccountTypeRepository AccountType
+        {
+            get
+            {
+                _accountTypeRepository ??= new AccountTypeRepository(_dBContext);
+                return _accountTypeRepository;
+            }
+        }
         #endregion
 
         #region MainData Models
@@ -248,6 +287,15 @@ namespace Repository
             {
                 _areaRepository ??= new AreaRepository(_dBContext);
                 return _areaRepository;
+            }
+        }
+        
+        public SupplierRepository Supplier
+        {
+            get
+            {
+                _supplierRepository ??= new SupplierRepository(_dBContext);
+                return _supplierRepository;
             }
         }
         
@@ -389,6 +437,68 @@ namespace Repository
             }
         }
         
+        #endregion
+        
+        #region Car Models
+
+        public CarCategoryRepository CarCategory
+        {
+            get
+            {
+                _carCategoryRepository ??= new CarCategoryRepository(_dBContext);
+                return _carCategoryRepository;
+            }
+        }
+        
+        public CarClassRepository CarClass
+        {
+            get
+            {
+                _carClassRepository ??= new CarClassRepository(_dBContext);
+                return _carClassRepository;
+            }
+        }
+        
+        #endregion
+        
+        #region Trip Models
+
+        public TripStateRepository TripState
+        {
+            get
+            {
+                _tripStateRepository ??= new TripStateRepository(_dBContext);
+                return _tripStateRepository;
+            }
+        }
+        
+        public TripRepository Trip
+        {
+            get
+            {
+                _tripRepository ??= new TripRepository(_dBContext);
+                return _tripRepository;
+            }
+        }
+        
+        public TripPointRepository TripPoint
+        {
+            get
+            {
+                _tripPointRepository ??= new TripPointRepository(_dBContext);
+                return _tripPointRepository;
+            }
+        }
+        
+        public TripHistoryRepository TripHistory
+        {
+            get
+            {
+                _tripHistoryRepository ??= new TripHistoryRepository(_dBContext);
+                return _tripHistoryRepository;
+            }
+        }
+
         #endregion
         
         #endregion
