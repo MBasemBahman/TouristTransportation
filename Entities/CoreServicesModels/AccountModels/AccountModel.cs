@@ -11,10 +11,6 @@ namespace Entities.CoreServicesModels.AccountModels
 
     public class AccountModel : AuditImageEntity
     {
-        [DisplayName(nameof(Name))]
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
-
         [DisplayName(nameof(ImageUrl))]
         public new string ImageUrl { get; set; }
 

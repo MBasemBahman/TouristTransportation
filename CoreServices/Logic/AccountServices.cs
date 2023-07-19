@@ -27,7 +27,6 @@ namespace CoreServices.Logic
                               .Select(a => new AccountModel
                               {
                                   Id = a.Id,
-                                  Name = a.Name,
                                   Phone = a.Phone,
                                   EmailAddress = a.EmailAddress,
                                   ImageUrl = a.StorageUrl + a.ImageUrl,
@@ -64,10 +63,10 @@ namespace CoreServices.Logic
             return await uploader.UploadFile(file, "Upload/Account");
         }
 
-        public Dictionary<string, string> GetAccountsLookUp(AccountParameters parameters)
-        {
-            return GetAccounts(parameters).ToDictionary(a => a.Id.ToString(), a => a.Name);
-        }
+        // public Dictionary<string, string> GetAccountsLookUp(AccountParameters parameters)
+        // {
+        //     return GetAccounts(parameters).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        // }
 
         public AccountModel GetAccountById(int id)
         {
