@@ -19,7 +19,7 @@ namespace Services
             }
         }
 
-        public async Task<string> UploudFile(IFormFile file, string storagePath)
+        public async Task<string> UploadFile(IFormFile file, string storagePath)
         {
             string fileName = file.FileName + DateTime.UtcNow.ToString("ddMMyyyyhhmmssfffffffK");
             fileName += Path.GetExtension(file.FileName);

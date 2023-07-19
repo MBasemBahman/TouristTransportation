@@ -1,7 +1,11 @@
-﻿using Repository.DBModels.AccountModels;
+﻿using Entities.DBModels.PostModels;
+using Repository.DBModels.AccountModels;
 using Repository.DBModels.AuditModels;
 using Repository.DBModels.DashboardAdministrationModels;
+using Repository.DBModels.HotelModels;
 using Repository.DBModels.LogModels;
+using Repository.DBModels.MainDataModels;
+using Repository.DBModels.PostModels;
 
 namespace Repository
 {
@@ -37,7 +41,35 @@ namespace Repository
         #endregion
 
         #region Account
+        
         private AccountRepository _accountRepository;
+        
+        #endregion
+        
+        #region MainData Models
+        
+        private CountryRepository _countryRepository;
+        private CurrencyRepository _currencyRepository;
+        private AreaRepository _areaRepository;
+        
+        #endregion
+        
+        #region Hotel Models
+        
+        private HotelRepository _hotelRepository;
+        private HotelAttachmentRepository _hotelAttachmentRepository;
+        private HotelFeatureRepository _hotelFeatureRepository;
+        private HotelFeatureCategoryRepository _hotelFeatureCategoryRepository;
+        private HotelSelectedFeaturesRepository _hotelSelectedFeaturesRepository;
+        
+        #endregion
+        
+        #region Post Models
+        
+        private PostRepository _postRepository;
+        private PostAttachmentRepository _postAttachmentRepository;
+        private PostReactionRepository _postReactionRepository;
+        
         #endregion
 
         #endregion
@@ -178,6 +210,117 @@ namespace Repository
         }
         #endregion
 
+        #region MainData Models
+        
+        public CountryRepository Country
+        {
+            get
+            {
+                _countryRepository ??= new CountryRepository(_dBContext);
+                return _countryRepository;
+            }
+        }
+        
+        public CurrencyRepository Currency
+        {
+            get
+            {
+                _currencyRepository ??= new CurrencyRepository(_dBContext);
+                return _currencyRepository;
+            }
+        }
+        
+        public AreaRepository Area
+        {
+            get
+            {
+                _areaRepository ??= new AreaRepository(_dBContext);
+                return _areaRepository;
+            }
+        }
+        
+        #endregion
+
+        #region Hotel Models
+
+        public HotelRepository Hotel
+        {
+            get
+            {
+                _hotelRepository ??= new HotelRepository(_dBContext);
+                return _hotelRepository;
+            }
+        }
+        
+        public HotelAttachmentRepository HotelAttachment
+        {
+            get
+            {
+                _hotelAttachmentRepository ??= new HotelAttachmentRepository(_dBContext);
+                return _hotelAttachmentRepository;
+            }
+        }
+        
+        public HotelFeatureRepository HotelFeature
+        {
+            get
+            {
+                _hotelFeatureRepository ??= new HotelFeatureRepository(_dBContext);
+                return _hotelFeatureRepository;
+            }
+        }
+        
+        public HotelFeatureCategoryRepository HotelFeatureCategory
+        {
+            get
+            {
+                _hotelFeatureCategoryRepository ??= new HotelFeatureCategoryRepository(_dBContext);
+                return _hotelFeatureCategoryRepository;
+            }
+        }
+        
+        public HotelSelectedFeaturesRepository HotelSelectedFeatures
+        {
+            get
+            {
+                _hotelSelectedFeaturesRepository ??= new HotelSelectedFeaturesRepository(_dBContext);
+                return _hotelSelectedFeaturesRepository;
+            }
+        }
+        
+        #endregion
+
+        #region Post Models
+
+        public PostRepository Post
+        {
+            get
+            {
+                _postRepository ??= new PostRepository(_dBContext);
+                return _postRepository;
+            }
+        }
+        
+        public PostAttachmentRepository PostAttachment
+        {
+            get
+            {
+                _postAttachmentRepository ??= new PostAttachmentRepository(_dBContext);
+                return _postAttachmentRepository;
+            }
+        }
+        
+        public PostReactionRepository PostReaction
+        {
+            get
+            {
+                _postReactionRepository ??= new PostReactionRepository(_dBContext);
+                return _postReactionRepository;
+            }
+        }
+        
+        #endregion
+        
         #endregion
     }
 }

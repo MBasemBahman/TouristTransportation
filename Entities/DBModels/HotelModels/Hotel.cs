@@ -29,8 +29,8 @@ public class Hotel : AuditImageEntity
     [DataType(DataType.MultilineText)]
     public string Description { get; set; }
 
-    [DisplayName(nameof(Rate))]
-    public double Rate { get; set; }
+    [DisplayName(nameof(Rate))] 
+    public double Rate { get; set; } = 5;
 
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }

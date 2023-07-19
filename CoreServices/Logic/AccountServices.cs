@@ -60,7 +60,7 @@ namespace CoreServices.Logic
         public async Task<string> UploadAccountImage(string rootPath, IFormFile file)
         {
             FileUploader uploader = new(rootPath);
-            return await uploader.UploudFile(file, "Upload/Account");
+            return await uploader.UploadFile(file, "Upload/Account");
         }
 
         public Dictionary<string, string> GetAccountsLookUp(AccountParameters parameters)
