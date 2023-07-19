@@ -7,21 +7,21 @@ public class Hotel : AuditImageEntity
 {
     [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
     [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-    public new string Name { get; set; }
+    public string Name { get; set; }
 
     [DisplayName(nameof(BookingUrl))]
     public string BookingUrl { get; set; }
-    
+
     [DisplayName(nameof(LocationUrl))]
     public string LocationUrl { get; set; }
-    
+
     [DisplayName(nameof(Address))]
     public string Address { get; set; }
-    
+
     [DisplayName(nameof(Area))]
     [ForeignKey(nameof(Area))]
     public int? Fk_Area { get; set; }
-    
+
     [DisplayName(nameof(Area))]
     public Area Area { get; set; }
 
@@ -29,15 +29,15 @@ public class Hotel : AuditImageEntity
     [DataType(DataType.MultilineText)]
     public string Description { get; set; }
 
-    [DisplayName(nameof(Rate))] 
+    [DisplayName(nameof(Rate))]
     public double Rate { get; set; } = 5;
 
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }
-    
+
     [DisplayName(nameof(HotelAttachments))]
     public List<HotelAttachment> HotelAttachments { get; set; }
-    
+
     public List<HotelLang> HotelLangs { get; set; }
 }
 

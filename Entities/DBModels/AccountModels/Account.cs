@@ -1,13 +1,14 @@
 ﻿using Entities.DBModels.MainDataModels;
 using Entities.DBModels.PostModels;
+using Entities.DBModels.UserModels;
 
 namespace Entities.DBModels.AccountModels;
 
 public class Account : AuditImageEntity
 {
-    [DisplayName(nameof(Name))]
-    [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-    public string Name { get; set; }
+    [DisplayName(nameof(User))]
+    [ForeignKey(nameof(User))]
+    public int? Fk_User { get; set; }
 
     [DisplayName(nameof(Phone))]
     [Phone]
@@ -30,6 +31,9 @@ public class Account : AuditImageEntity
     [DisplayName(nameof(EmailAddress))]
     [EmailAddress]
     public string EmailAddress { get; set; }
+
+    [DisplayName(nameof(User))]
+    public User User { get; set; }
 
     [DisplayName(nameof(Supplier))]
     [ForeignKey(nameof(Supplier))]
