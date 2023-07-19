@@ -1,6 +1,7 @@
 ﻿using Entities.DBModels.PostModels;
 using Repository.DBModels.AccountModels;
 using Repository.DBModels.AuditModels;
+using Repository.DBModels.CompanyTripModels;
 using Repository.DBModels.DashboardAdministrationModels;
 using Repository.DBModels.HotelModels;
 using Repository.DBModels.LogModels;
@@ -72,6 +73,17 @@ namespace Repository
         
         #endregion
 
+        #region CompanyTrip Models
+
+        private CompanyTripAttachmentRepository _companyTripAttachmentRepository;
+        private CompanyTripBookingHistoryRepository _companyTripBookingHistoryRepository;
+        private CompanyTripBookingRepository _companyTripBookingRepository;
+        private CompanyTripBookingStateRepository _companyTripBookingStateRepository;
+        private CompanyTripRepository _companyTripRepository;
+        private CompanyTripStateRepository _companyTripStateRepository;
+
+        #endregion
+        
         #endregion
 
         public RepositoryManager(BaseContext dBContext)
@@ -316,6 +328,64 @@ namespace Repository
             {
                 _postReactionRepository ??= new PostReactionRepository(_dBContext);
                 return _postReactionRepository;
+            }
+        }
+        
+        #endregion
+        
+        #region CompanyTrip Models
+
+        public CompanyTripAttachmentRepository CompanyTripAttachment
+        {
+            get
+            {
+                _companyTripAttachmentRepository ??= new CompanyTripAttachmentRepository(_dBContext);
+                return _companyTripAttachmentRepository;
+            }
+        }
+        
+        public CompanyTripBookingHistoryRepository CompanyTripBookingHistory
+        {
+            get
+            {
+                _companyTripBookingHistoryRepository ??= new CompanyTripBookingHistoryRepository(_dBContext);
+                return _companyTripBookingHistoryRepository;
+            }
+        }
+        
+        public CompanyTripBookingRepository CompanyTripBooking
+        {
+            get
+            {
+                _companyTripBookingRepository ??= new CompanyTripBookingRepository(_dBContext);
+                return _companyTripBookingRepository;
+            }
+        }
+        
+        public CompanyTripBookingStateRepository CompanyTripBookingState
+        {
+            get
+            {
+                _companyTripBookingStateRepository ??= new CompanyTripBookingStateRepository(_dBContext);
+                return _companyTripBookingStateRepository;
+            }
+        }
+        
+        public CompanyTripRepository CompanyTrip
+        {
+            get
+            {
+                _companyTripRepository ??= new CompanyTripRepository(_dBContext);
+                return _companyTripRepository;
+            }
+        }
+        
+        public CompanyTripStateRepository CompanyTripState
+        {
+            get
+            {
+                _companyTripStateRepository ??= new CompanyTripStateRepository(_dBContext);
+                return _companyTripStateRepository;
             }
         }
         

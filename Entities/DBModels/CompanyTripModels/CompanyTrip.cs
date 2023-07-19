@@ -35,7 +35,7 @@ public class CompanyTrip : AuditImageEntity
 public class CompanyTripLang : AuditLangEntity<CompanyTrip>
 {
     [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-    public string Name { get; set; }
+    public string Title { get; set; }
 
     [DisplayName(nameof(Language))]
     public DBModelsEnum.LanguageEnum Language { get; set; }
