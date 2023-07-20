@@ -1,0 +1,14 @@
+﻿@using Dashboard;
+@using Contracts;
+@using Microsoft.AspNetCore.Http;
+@using System.Globalization;
+@using Contracts.Constants;
+@using Entities.Constants;
+@using Dashboard.Areas.AccountEntity.Models;
+@using Entities.CoreServicesModels.DashboardAdministrationModels;
+@using Entities.CoreServicesModels.AccountModels;
+@inject IHttpContextAccessor ContextAccessor
+@inject ILocalizationManager Localizer
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

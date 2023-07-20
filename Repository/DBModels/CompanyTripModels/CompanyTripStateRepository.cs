@@ -17,7 +17,9 @@ namespace Repository.DBModels.CompanyTripModels
 
         public async Task<CompanyTripState> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.CompanyTripStateLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(CompanyTripState entity)

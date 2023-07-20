@@ -1,0 +1,130 @@
+﻿@model AuditDto
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.emptyLayout = true;
+    Model.KeyValues = Model.KeyValues.Substring(1, Model.KeyValues.Length - 2);
+    List<string> NewValues =!string.IsNullOrEmpty(Model.NewValues) ? Model.NewValues.Substring(1, Model.NewValues.Length - 2).Split(',').ToList() : null;
+    List<string> OldValues = !string.IsNullOrEmpty(Model.OldValues) ? Model.OldValues.Substring(1, Model.OldValues.Length - 2).Split(',').ToList() : null;
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("Audit")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TableName):</dt>
+                <dd class="col-sm-8 mb-1">@Model.TableName</dd>
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.AuditType):</dt>
+                <dd class="col-sm-8 mb-1">
+                    <span class="badge px-2 text-center" style="background-color:@Model.AuditType.ColorCode;color:white">@Model.AuditType.Name</span>
+
+                </dd>
+            </dl>
+        </div>
+        <div class="col-xl-5 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.KeyValues):</dt>
+                <dd class="col-sm-8 mb-1">
+                    @Model.KeyValues
+                </dd>
+            </dl>
+        </div>
+    </div>
+   
+    <hr />
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <button type="button" class="btn btn-primary">@Html.DisplayNameFor(model => model.OldValues) </button>
+        </div>
+        <br />
+        @if (OldValues != null && OldValues.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in OldValues)
+                    {
+                        <tr>
+                            <td>@item.Split(':')[0]</td>
+                            <td>@item.Split(':')[1]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>@Localizer.Get("Not Found")</p>
+        }
+
+    </div>
+
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <button type="button" class="btn btn-primary">@Html.DisplayNameFor(model => model.NewValues) </button>
+        </div>
+        <br />
+        @if (NewValues != null && NewValues.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in NewValues)
+                    {
+                        <tr>
+                            <td>@item.Split(':')[0]</td>
+                            <td>@item.Split(':')[1]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>@Localizer.Get("Not Found")</p>
+        }
+
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+
+
+            </dl>
+        </div>
+
+        <div class="col-xl-5 col-12">
+            <dl class="row mb-0">
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedBy):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CreatedBy</dd>
+
+
+            </dl>
+        </div>
+
+    </div>
+
+
+</div>
+

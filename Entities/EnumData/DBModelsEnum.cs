@@ -29,6 +29,7 @@
             DBLogs = 10,
             Audit = 11,
             Account = 12,
+            CompanyTripState = 13
         }
 
         public enum AccountProfileItems
@@ -58,9 +59,9 @@
 
         public enum LanguageEnum
         {
-            ar,
             en,
-            fr
+            fr,
+            de
         }
     }
 }

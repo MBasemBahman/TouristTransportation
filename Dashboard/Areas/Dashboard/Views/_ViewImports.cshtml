@@ -1,0 +1,13 @@
+﻿@using Dashboard;
+@using Contracts;
+@using Microsoft.AspNetCore.Http;
+@using System.Globalization;
+@using Contracts.Constants;
+@using Dashboard.Areas.Dashboard.Models;
+@using static Entities.EnumData.DBModelsEnum;
+@using static Entities.EnumData.DashboardModelsEnum;
+
+@inject IHttpContextAccessor ContextAccessor
+@inject ILocalizationManager Localizer
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

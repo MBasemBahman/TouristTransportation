@@ -1,4 +1,5 @@
-﻿using Entities.DBModels.AccountModels;
+﻿using Entities.CoreServicesModels.UserModels;
+using Entities.DBModels.AccountModels;
 
 namespace Entities.CoreServicesModels.AccountModels
 {
@@ -35,6 +36,12 @@ namespace Entities.CoreServicesModels.AccountModels
         [DisplayName(nameof(EmailAddress))]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        [DisplayName(nameof(User))] 
+        public int? Fk_User { get; set; }
+        
+        [DisplayName(nameof(User))]
+        public UserModel User { get; set; }
     }
 
     public class AccountCreateOrEditModel

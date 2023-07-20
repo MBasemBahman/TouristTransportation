@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayers", "DataAcc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{CACF3BA8-660F-446F-BFD8-692F5268A767}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard", "Dashboard\Dashboard.csproj", "{43DD850F-FF17-4B91-86B9-43605FECF5E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{AD7C4760-87A7-4656-A579-89397155F82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7C4760-87A7-4656-A579-89397155F82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7C4760-87A7-4656-A579-89397155F82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DD850F-FF17-4B91-86B9-43605FECF5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DD850F-FF17-4B91-86B9-43605FECF5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DD850F-FF17-4B91-86B9-43605FECF5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DD850F-FF17-4B91-86B9-43605FECF5E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 using Entities.AuthenticationModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.AuditModels;
+using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.LogModels;
 using Entities.DBModels.SharedModels;
@@ -49,6 +50,11 @@ namespace BaseDB
 
         #region Account
         public DbSet<Account> Accounts { get; set; }
+        #endregion
+        
+        #region CompanyTrip
+        public DbSet<CompanyTrip> CompanyTrips { get; set; }
+        public DbSet<CompanyTripBooking> CompanyTripBookings { get; set; }
         #endregion
 
         #region Audit Models

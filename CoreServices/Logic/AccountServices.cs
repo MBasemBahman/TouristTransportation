@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
 using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,11 @@ namespace CoreServices.Logic
                               .Select(a => new AccountModel
                               {
                                   Id = a.Id,
+                                  Fk_User = a.Fk_User,
+                                  User = a.Fk_User != null ? new UserModel
+                                  {
+                                      Name = a.User.Name
+                                  } : null,
                                   Phone = a.Phone,
                                   EmailAddress = a.EmailAddress,
                                   ImageUrl = a.StorageUrl + a.ImageUrl,

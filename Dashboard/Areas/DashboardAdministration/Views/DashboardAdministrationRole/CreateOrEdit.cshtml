@@ -1,0 +1,124 @@
+﻿@model DashboardAdministrationRoleCreateOrEditViewModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAdministrationRole")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.useForm = true;
+}
+
+
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/DashboardAdministration/DashboardAdministrationRole/Index">@Localizer.Get("DashboardAdministrationRoles")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section id="multiple-column-form">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form" asp-action="CreateOrEdit">
+
+                                    <div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Role.Name" class="form-label"></label>
+                                                <input asp-for="Role.Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get($"Name{PropertyAttributeConstants.ArLang}"))" />
+                                                <span asp-validation-for="Role.Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-label"></label>
+                                                <input asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
+                                                <span asp-validation-for="Role.DashboardAdministrationRoleLang.Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        @for(int i = 0; i< Model.Permissions.Count();i++)
+                                        {
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@Model.Permissions[i].AccessLevelName</label>
+                                                    <input type="hidden" asp-for="Permissions[i].Fk_AccessLevel">
+                                                    <input type="hidden" asp-for="Permissions[i].AccessLevelName">
+                                                    <select asp-for="Permissions[i].Fk_Views" class="select2 form-select fk_Views_selectboxes" multiple asp-items="@(new MultiSelectList(ViewData["SystemViews"] as Dictionary<string,string>,"Key","Value"))">
+                                                    </select>
+                                                    <span asp-validation-for="Permissions[i].Fk_Views" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <hr />
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary me-1">@Localizer.Get("Submit")</button>
+                                            <button type="reset" class="btn btn-outline-secondary me-1">@Localizer.Get("Reset")</button>
+                                            <a asp-action="Index" class="btn btn-warning"> @Localizer.Get("Back") </a>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+    </div>
+</div>
+<!-- END: Content-->
+
+@section scripts
+{
+    <script>
+        $(document).on("change", "#Permissions_0__Fk_Views", function() {
+            let permission = $(this).val();
+            let list_of_selectors = $(".fk_Views_selectboxes").length;
+            
+            // we start from 1 instead of 0 to change all selectors except first one :)
+            for(let i = 1; i < list_of_selectors; i++) {
+                $(`#Permissions_${i}__Fk_Views > option`).each(function() {
+                    permission.includes(this.value.toString()) ? this.remove() : '';
+                });
+            }
+        });
+        
+        $(document).on("select2:unselecting", "#Permissions_0__Fk_Views", function (e) {
+            let optTxt = e.params.args.data.text;
+            let optVal = e.params.args.data.id;
+            
+            let list_of_selectors = $(".fk_Views_selectboxes").length;
+                        
+            // we start from 1 instead of 0 to change all selectors except first one :)
+            for(let i = 1; i < list_of_selectors; i++) {
+                $(`#Permissions_${i}__Fk_Views`).prepend(`<option value="${optVal}">${optTxt}</option>`);
+            }
+        });
+    </script>
+}

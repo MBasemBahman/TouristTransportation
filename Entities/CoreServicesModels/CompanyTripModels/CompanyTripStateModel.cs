@@ -19,7 +19,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
     public class CompanyTripStateCreateOrEditModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+        [DisplayName(nameof(Name))]
         public new string Name { get; set; }
 
         public List<CompanyTripStateLangModel> CompanyTripStateLangs { get; set; }
@@ -28,7 +28,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
     public class CompanyTripStateLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
+        [DisplayName(nameof(Name))]
         public string Name { get; set; }
         
         [DisplayName(nameof(Language))]
