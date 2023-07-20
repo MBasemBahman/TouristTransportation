@@ -101,7 +101,14 @@ namespace CoreServices.Logic
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
-                                  LastModifiedBy = a.LastModifiedBy
+                                  LastModifiedBy = a.LastModifiedBy,
+                                  Country = new CountryModel
+                                  {
+                                      Name = language != null ? a.Country.CountryLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Country.Name
+                                  },
+                                  Fk_Country = a.Fk_Country
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

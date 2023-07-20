@@ -15,7 +15,8 @@ namespace Repository.DBModels.AccountModels
                    .Filter(parameters.Id,
                        parameters.EmailAddress,
                        parameters.Fk_AccountState,
-                       parameters.Fk_AccountType);
+                       parameters.Fk_AccountType,
+                       parameters.Fk_Supplier);
 
         }
 
@@ -37,11 +38,13 @@ namespace Repository.DBModels.AccountModels
             int id,
             string emailAddress,
             int fk_AccountState,
-            int fk_AccountType)
+            int fk_AccountType,
+            int fk_Supplier)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
                                        (string.IsNullOrEmpty(emailAddress) || a.EmailAddress == emailAddress) &&
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
+                                       (fk_Supplier == 0 || a.Fk_Supplier == fk_Supplier) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) );
         }
     }

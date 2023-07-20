@@ -1,8 +1,8 @@
 ﻿@using Entities.EnumData
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model CompanyTripStateCreateOrEditModel
+@model AreaCreateOrEditModel
 @{
-    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("CompanyTripState")}";
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("Area")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.useForm = true;
     ViewBag.useImageUploud = true;
@@ -24,7 +24,7 @@
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/CompanyTripEntity/CompanyTripState/Index">@Localizer.Get("CompanyTripStates")</a>
+                                    <a href="/MainDataEntity/Area/Index">@Localizer.Get("Areas")</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     @ViewData["Title"]
@@ -53,7 +53,14 @@
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-
+                                         <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Fk_Country" class="form-label"></label>
+                                                <select asp-for="Fk_Country" class="select2 form-select" asp-items="@(new SelectList(ViewData["Country"] as Dictionary<string,string>,"Key","Value"))">
+                                                </select>
+                                                <span asp-validation-for="Fk_Country" class="text-danger"></span>
+                                            </div>
+                                        </div>
                                         @{ int i = 0;}
                                         @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                                         {
@@ -61,10 +68,10 @@
                                                 <div class="mb-1">
                                                     <label class="form-label">@Localizer.Get($"Name {language}")</label>
                                                     
-                                                    <input asp-for="CompanyTripStateLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
-                                                    <span asp-validation-for="CompanyTripStateLangs[i].Name" class="text-danger"></span>
+                                                    <input asp-for="AreaLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
+                                                    <span asp-validation-for="AreaLangs[i].Name" class="text-danger"></span>
                                                     
-                                                    <input type="hidden" asp-for="CompanyTripStateLangs[i].Language" value="@language" />
+                                                    <input type="hidden" asp-for="AreaLangs[i].Language" value="@language" />
                                                 </div>
                                             </div>
                                             i++;

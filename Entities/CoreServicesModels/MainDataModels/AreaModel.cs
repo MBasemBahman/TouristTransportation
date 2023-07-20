@@ -16,6 +16,9 @@ namespace Entities.CoreServicesModels.MainDataModels
 
         [DisplayName(nameof(Country))]
         public int Fk_Country { get; set; }
+
+        [DisplayName(nameof(Country))]
+        public CountryModel Country { get; set; }
     }
 
     public class AreaCreateOrEditModel

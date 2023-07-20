@@ -29,7 +29,13 @@
             DBLogs = 10,
             Audit = 11,
             Account = 12,
-            CompanyTripState = 13
+            CompanyTripState = 13,
+            AccountState = 14,
+            AccountType = 15,
+            Area = 16,
+            Country = 17,
+            Currency = 18,
+            Supplier = 19
         }
 
         public enum AccountProfileItems
