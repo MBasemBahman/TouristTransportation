@@ -17,10 +17,13 @@ using Entities.DBModels.DashboardAdministrationModels;
 
 using Dashboard.Areas.AccountEntity.Models;
 using Dashboard.Areas.CompanyTripEntity.Models;
+using Dashboard.Areas.PostEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CompanyTripModels;
+using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.CompanyTripModels;
+using Entities.DBModels.PostModels;
 using Entities.RequestFeatures;
 
 namespace Dashboard.MappingProfileCls
@@ -143,7 +146,7 @@ namespace Dashboard.MappingProfileCls
 
             #region CompanyTrip
 
-            #region CompanyTripState
+            #region CompanyTripState Models
             
             _ = CreateMap<CompanyTripState, CompanyTripStateCreateOrEditModel>();
 
@@ -161,7 +164,35 @@ namespace Dashboard.MappingProfileCls
             
             #endregion
 
-            #region Account
+            #region Post Models
+
+            #region Post
+            
+            _ = CreateMap<Post, PostCreateOrEditModel>();
+
+            _ = CreateMap<PostCreateOrEditModel, Post>();
+
+            _ = CreateMap<PostModel, PostDto>();
+
+            _ = CreateMap<PostFilter, PostParameters>();
+
+            #endregion
+            
+            #region PostAttachment
+            
+            _ = CreateMap<PostAttachment, PostAttachmentCreateOrEditModel>();
+
+            _ = CreateMap<PostAttachmentCreateOrEditModel, PostAttachment>();
+
+            _ = CreateMap<PostAttachmentModel, PostAttachmentDto>();
+
+            _ = CreateMap<PostAttachmentFilter, PostAttachmentParameters>();
+
+            #endregion
+            
+            #endregion
+            
+            #region Account Models
             _ = CreateMap<Account, AccountCreateOrEditModel>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => $"{src.StorageUrl}{src.ImageUrl}"));
 

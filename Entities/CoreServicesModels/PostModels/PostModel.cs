@@ -32,6 +32,7 @@ namespace Entities.CoreServicesModels.PostModels
 
         [DisplayName(nameof(Content))]
         [DataType(DataType.MultilineText)]
+        [Required]
         public string Content { get; set; }
     }
 }

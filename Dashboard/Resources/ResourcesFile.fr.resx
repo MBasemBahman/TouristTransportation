@@ -946,4 +946,31 @@
   <data name="fr" xml:space="preserve">
     <value>French</value>
   </data>
+  <data name="Post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="Post Information" xml:space="preserve">
+    <value>Post Information</value>
+  </data>
+  <data name="Post Information Description" xml:space="preserve">
+    <value>Post Information Description</value>
+  </data>
+  <data name="Post Attachments Information" xml:space="preserve">
+    <value>Post Attachments Information</value>
+  </data>
+  <data name="Post Attachments Information Description" xml:space="preserve">
+    <value>Post Attachments Information Description</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>Posts</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
 </root>

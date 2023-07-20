@@ -29,7 +29,9 @@
             DBLogs = 10,
             Audit = 11,
             Account = 12,
-            CompanyTripState = 13
+            CompanyTripState = 13,
+            Post = 14,
+            PostAttachment = 15
         }
 
         public enum AccountProfileItems
@@ -61,7 +63,7 @@
         {
             en,
             fr,
-            de
+            de,
         }
     }
 }

@@ -72,7 +72,7 @@
     <script src="~/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 
 }
-@if (ViewBag.useDropzone != null && ViewBag.useDropzone)
+@if ((ViewBag.useDropzone != null && ViewBag.useDropzone) || (ViewBag.useCustomDropzone != null && ViewBag.useCustomDropzone) )
 {
     <script src="~/app-assets/vendors/js/file-uploaders/dropzone.min.js"></script>
 }
@@ -88,7 +88,9 @@
     <script src="~/app-assets/vendors/js/charts/apexcharts.min.js"></script>
     
 }
-<!-- END: Page Vendor JS-->
+    
+    
+    <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
 
 @if (ViewBag.emptyLayout == null || !ViewBag.emptyLayout)
@@ -190,6 +192,11 @@
 
     </script>
 }
+    
+@if (ViewBag.useWizard != null && ViewBag.useWizard)
+{
+    <script src="~/app-assets/vendors/js/forms/wizard/bs-stepper.min.js"></script>
+}    
     
 @if (ViewBag.useExport != null && ViewBag.useExport)
 {

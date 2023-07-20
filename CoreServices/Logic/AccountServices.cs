@@ -69,10 +69,10 @@ namespace CoreServices.Logic
             return await uploader.UploadFile(file, "Upload/Account");
         }
 
-        // public Dictionary<string, string> GetAccountsLookUp(AccountParameters parameters)
-        // {
-        //     return GetAccounts(parameters).ToDictionary(a => a.Id.ToString(), a => a.Name);
-        // }
+        public Dictionary<string, string> GetAccountsLookUp(AccountParameters parameters)
+        {
+            return GetAccounts(parameters).ToDictionary(a => a.Id.ToString(), a => a.User?.Name);
+        }
 
         public AccountModel GetAccountById(int id)
         {
@@ -141,6 +141,11 @@ namespace CoreServices.Logic
         {
             return await _repository.AccountType.FindById(id, trackChanges);
         }
+        
+        public Dictionary<string, string> GetAccountTypesLookUp(AccountTypeParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        {
+            return GetAccountTypes(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
 
         public AccountTypeModel GetAccountTypeById(int id, DBModelsEnum.LanguageEnum? language)
         {
@@ -205,6 +210,11 @@ namespace CoreServices.Logic
             return await _repository.AccountState.FindById(id, trackChanges);
         }
 
+        public Dictionary<string, string> GetAccountStatesLookUp(AccountStateParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        {
+            return GetAccountStates(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+        
         public AccountStateModel GetAccountStateById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetAccountStates(new AccountStateParameters { Id = id }, language).SingleOrDefault();

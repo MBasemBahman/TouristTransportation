@@ -1,0 +1,113 @@
+﻿@model PostCreateOrEditModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("Post")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.useForm = true;
+    ViewBag.useFormRepeater = true;
+    ViewBag.useImageUploud = true;
+    ViewBag.useWizard = true;
+    ViewBag.useLoader = true;
+    ViewBag.useModels = true;
+    ViewBag.useSummernote = true;
+    ViewBag.useCustomDropzone = true;
+
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/PostEntity/Post/Index">@Localizer.Get("Posts")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+                    <section class="horizontal-wizard">
+                        <div class="bs-stepper horizontal-wizard-example">
+                            <div class="bs-stepper-header" role="tablist">
+                                <div class="step" data-target="#post-details" role="tab" id="post-details-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">1</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("Post Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("Post Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="line">
+                                    <i data-feather="chevron-right" class="font-medium-2"></i>
+                                </div>
+                                
+                                <div class="step" data-target="#post-attachments" role="tab" id="post-attachments-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">2</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("Post Attachments Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("Post Attachments Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+                           
+                                
+                            </div>
+                            <div class="bs-stepper-content">
+                                <div id="post-details" class="content" role="tabpanel" aria-labelledby="post-details-trigger">
+                                    @await Html.PartialAsync("PostForm/PostDetails", Model)
+                                </div>
+                                
+                                <div id="post-attachments" class="content" role="tabpanel" aria-labelledby="post-attachments-trigger">
+                                    @await Html.PartialAsync("PostForm/PostAttachments", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+    </div>
+</div>
+<!-- END: Content-->
+
+@section scripts
+{
+    <script src="~/apis/post.js"></script>
+    
+    <script>
+        // First Step
+        $(document).on("click", ".post_submit_btn", function(e) {
+          e.preventDefault();
+          
+          let postForm = $('.post_form')[0];
+          let postFormData = new FormData(postForm);
+          
+          savePost(postFormData, $(".post_error_div"));
+        });
+        
+        // Second Step
+        $(document).on("click", ".post_attachment_submit_btn", function(e) {
+          e.preventDefault();
+        
+          window.location.href = "@Url.ActionLink("Index", "Post", new { area = "PostEntity" })";
+        });
+        
+        
+        
+    </script>
+}

@@ -11,7 +11,7 @@ namespace Entities.CoreServicesModels.PostModels
         public int Fk_Post { get; set; }
     }
 
-    public class PostAttachmentModel : AuditEntity
+    public class PostAttachmentModel : AuditAttachmentEntity
     {
         [DisplayName(nameof(Post))]
         [ForeignKey(nameof(Post))]
@@ -19,9 +19,6 @@ namespace Entities.CoreServicesModels.PostModels
     
         [DisplayName(nameof(Post))]
         public PostModel Post { get; set; }
-    
-        [DisplayName(nameof(AttachmentUrl))]
-        public string AttachmentUrl { get; set; }
     }
 
     public class PostAttachmentCreateOrEditModel

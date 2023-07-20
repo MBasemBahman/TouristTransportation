@@ -62,6 +62,24 @@
                                     </div>
                                     <br />
                                     <div class="row">
+                                       
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Fk_AccountType" class="form-label"></label>
+                                                <select asp-for="Fk_AccountType" class="select2 form-select"
+                                                        asp-items="@(new SelectList(ViewData["AccountTypes"] as Dictionary<string,string>,"Key","Value"))"></select>
+                                                <span asp-validation-for="Fk_AccountType" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Fk_AccountState" class="form-label"></label>
+                                                <select asp-for="Fk_AccountState" class="select2 form-select"
+                                                        asp-items="@(new SelectList(ViewData["AccountStates"] as Dictionary<string,string>,"Key","Value"))"></select>
+                                                <span asp-validation-for="Fk_AccountState" class="text-danger"></span>
+                                            </div>
+                                        </div>
                                         
                                         <div class="col-md-12 col-12">
                                             <div class="mb-1">

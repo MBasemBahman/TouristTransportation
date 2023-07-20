@@ -4,6 +4,7 @@ using Entities.DBModels.AuditModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.LogModels;
+using Entities.DBModels.PostModels;
 using Entities.DBModels.SharedModels;
 using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,12 @@ namespace BaseDB
         public DbSet<CompanyTripBooking> CompanyTripBookings { get; set; }
         #endregion
 
+        #region Post Models
+
+        public DbSet<Post> Posts { get; set; }
+
+        #endregion
+        
         #region Audit Models
         public DbSet<Audit> Audits { get; set; }
         #endregion

@@ -47,7 +47,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] AccountFilter dtParameters)
         {
-            _ = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
@@ -71,7 +71,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            _ = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(id));
 
@@ -80,7 +80,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
 
         public IActionResult Profile(int id, int returnItem = (int)AccountProfileItems.Details)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account
                 .GetAccountById(id));
@@ -115,7 +115,6 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         [Authorize(DashboardViewEnum.Account, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id, AccountCreateOrEditModel model, bool isProfile = false)
         {
-
             if (!ModelState.IsValid)
             {
                 SetViewData(id, isProfile);
@@ -194,8 +193,13 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         //helper method
         private void SetViewData(int id, bool isProfile = false)
         {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
             ViewData["id"] = id;
             ViewData["isProfile"] = isProfile;
+
+            ViewData["AccountStates"] = _unitOfWork.Account.GetAccountStatesLookUp(new AccountStateParameters(), otherLang);
+            ViewData["AccountTypes"] = _unitOfWork.Account.GetAccountTypesLookUp(new AccountTypeParameters(), otherLang);
         }
 
     }

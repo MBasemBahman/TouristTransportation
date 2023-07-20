@@ -58,6 +58,9 @@ namespace Entities.CoreServicesModels.AccountModels
         [ForeignKey(nameof(AccountState))]
         public int Fk_AccountState { get; set; }
 
+        [DisplayName(nameof(User))]
+        public UserCreateModel User { get; set; }
+        
         [DisplayName(nameof(ImageUrl))]
         public string ImageUrl { get; set; }
 

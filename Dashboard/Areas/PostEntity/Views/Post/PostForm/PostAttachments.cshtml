@@ -1,0 +1,25 @@
+﻿@model PostCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Post Attachments Information")</h5>
+    <small>@Localizer.Get("Post Attachments Information Description")</small>
+</div>
+
+<form asp-action="Upload" asp-controller="PostAttachment" asp-area="PostEntity" enctype="multipart/form-data" class="dropzone dropzone-area" id="dpz-multiple-files">
+    <input type="hidden" name="fk_Post" value="@id" />
+    <div class="dz-message">@Localizer.Get("Drop files here or click to upload.")</div>
+</form>
+<div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-primary btn-prev">
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button class="btn btn-success btn-next post_attachment_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Submit")</span>
+    </button>
+</div>

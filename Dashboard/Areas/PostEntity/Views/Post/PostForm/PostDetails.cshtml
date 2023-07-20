@@ -1,0 +1,47 @@
+﻿@model PostCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Post Information")</h5>
+    <small class="text-muted">@Localizer.Get("Post Information Description")</small>
+</div>
+
+<form class="post_form" asp-action="CreateOrEditWizard" asp-controller="Post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="text-danger post_error_div"></div>
+        <input type="hidden" asp-for="@id" />
+        <hr />
+
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_Account" class="form-label"></label>
+                <select asp-for="Fk_Account" class="select2 form-select"
+                        asp-items="@(new SelectList(ViewData["Accounts"] as Dictionary<string,string>,"Key","Value"))"></select>
+                <span asp-validation-for="Fk_Account" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control summernote">@Localizer.Get("Enter") @Localizer.Get("Content")</textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+    </div>
+</form>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-outline-secondary btn-prev" disabled>
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button type="button" class="btn btn-primary btn-next post_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Next")</span>
+        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+    </button>
+</div>

@@ -2,7 +2,7 @@ using Entities.DBModels.AccountModels;
 
 namespace Entities.DBModels.PostModels;
 
-public class PostAttachment : AuditEntity
+public class PostAttachment : AuditAttachmentEntity
 {
     [DisplayName(nameof(Post))]
     [ForeignKey(nameof(Post))]
@@ -10,7 +10,4 @@ public class PostAttachment : AuditEntity
     
     [DisplayName(nameof(Post))]
     public Post Post { get; set; }
-    
-    [DisplayName(nameof(AttachmentUrl))]
-    public string AttachmentUrl { get; set; }
 }

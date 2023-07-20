@@ -15,6 +15,7 @@
     ViewBag.useDatePicker = (ViewBag.useDatePicker != null && ViewBag.useDatePicker == true);
     ViewBag.useFormRepeater = (ViewBag.useFormRepeater != null && ViewBag.useFormRepeater == true);
     ViewBag.useExport = (ViewBag.useExport != null && ViewBag.useExport == true);
+    ViewBag.useLoader = true;
 }
 <!DOCTYPE html>
 <html lang="en" data-textdirection="@(ViewBag.ltr?"ltr":"rtl")" class="loading @(ViewBag.light?"light":"dark")-layout">
@@ -24,6 +25,13 @@
     @RenderSection("styles", false)
 </head>
 <body class="@(ViewBag.horizontal ? "horizontal-layout horizontal-menu footer-static" : "vertical-layout vertical-menu-modern footer-fixed")  navbar-floating" data-open="hover" data-menu="@(ViewBag.horizontal ? "horizontal-menu" : "vertical-menu-modern")" data-col="">
+
+    @if (ViewBag.useLoader)
+    {
+        <div id="cover-spin">
+            <img class="loading-image" src="~/dashboard.png" alt="loading..">
+        </div>
+    }
 
     @if (!ViewBag.emptyLayout)
     {

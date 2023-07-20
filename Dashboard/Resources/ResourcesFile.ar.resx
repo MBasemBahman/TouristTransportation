@@ -984,4 +984,31 @@
   <data name="fr" xml:space="preserve">
     <value>الفرنسية</value>
   </data>
+  <data name="Post" xml:space="preserve">
+    <value>منشور</value>
+  </data>
+  <data name="Post Information" xml:space="preserve">
+    <value>بيانات المنشور</value>
+  </data>
+  <data name="Post Information Description" xml:space="preserve">
+    <value>بيانات المنشور الاساسية</value>
+  </data>
+  <data name="Post Attachments Information" xml:space="preserve">
+    <value>مرفقات المنشور</value>
+  </data>
+  <data name="Post Attachments Information Description" xml:space="preserve">
+    <value>المرفقات الخاصة بالمنشور</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>المنشورات</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>المحتوى</value>
+  </data>
 </root>

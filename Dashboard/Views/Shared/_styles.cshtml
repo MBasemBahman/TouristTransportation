@@ -7,6 +7,7 @@
 
 <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/vendors@(rtl).min.css">
+<link rel="stylesheet" type="text/css" href="~/app-assets/fonts/font-awesome/css/font-awesome.min.css">
 
 @if (ViewBag.useDatatable != null && ViewBag.useDatatable)
 {
@@ -22,11 +23,13 @@
 {
     <link href="~/assets/vendors/summernote/summernote-lite.css" rel="stylesheet">
 }
-@if (ViewBag.useDropzone != null && ViewBag.useDropzone)
+
+@if ((ViewBag.useDropzone != null && ViewBag.useDropzone) || (ViewBag.useCustomDropzone != null && ViewBag.useCustomDropzone))
 {
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/file-uploaders/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/form-file-uploader.min.css">
 }
+
 @if (ViewBag.useForm != null && ViewBag.useForm)
 {
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/forms/select/select2.min.css">
@@ -73,15 +76,72 @@ else
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/form-validation.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css">
 }
+
 @if (ViewBag.useDatePicker != null && ViewBag.useDatePicker)
 {
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/pickers/form-pickadate.css">
 
 }
+
 @if (ViewBag.useCharts != null && ViewBag.useCharts)
 {
     <link rel="stylesheet" type="text/css" href="~/assets/css/apexcharts.css">
 
+}
+
+@if (ViewBag.useWizard != null && ViewBag.useWizard)
+{
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/forms/wizard/bs-stepper.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css-rtl/plugins/forms/form-wizard.css">
+
+    <style>
+        .dz-image img{
+            width: 130px;
+            height:112px;
+            object-fit: contain;
+        }
+    </style>
+}
+
+@if (ViewBag.useLoader != null && ViewBag.useLoader)
+{
+    <style>
+        #cover-spin {
+            position:fixed;
+            width:100%;
+            left:0;right:0;top:0;bottom:0;
+            background-color: rgba(255,255,255,0.7);
+            z-index:9999;
+            display:none;
+        }
+        
+        @@-webkit-keyframes spin {
+             from {-webkit-transform:rotate(0deg);}
+             to {-webkit-transform:rotate(360deg);}
+         }
+        
+        @@keyframes spin {
+             from {transform:rotate(0deg);}
+             to {transform:rotate(360deg);}
+         }
+        
+        .loading-image {
+            ontent: '';
+            display: block;
+            position: absolute;
+            left: 45%;
+            top: 40%;
+            width: 100px;
+            height: 100px;
+            border-style: solid;
+            border-color: black;
+            border-top-color: transparent;
+            border-width: 4px;
+            border-radius: 50%;
+            -webkit-animation: spin .8s linear infinite;
+            animation: spin .8s none infinite;
+        }
+    </style>
 }
 
 @if (ViewBag.useTag != null && ViewBag.useTag)

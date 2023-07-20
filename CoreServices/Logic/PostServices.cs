@@ -1,5 +1,7 @@
-﻿using Entities.CoreServicesModels.PostModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.PostModels;
 using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.PostModels;
 using Entities.DBModels.MainDataModels;
 using Entities.EnumData;
@@ -27,6 +29,14 @@ namespace CoreServices.Logic
                               {
                                   Id = a.Id,
                                   Fk_Account = a.Fk_Account,
+                                  Account = new AccountModel
+                                  {
+                                      ImageUrl = a.Account.StorageUrl + a.Account.ImageUrl,
+                                      User  = new UserModel
+                                      {
+                                          Name = a.Account.User.Name
+                                      }
+                                  },
                                   Content = a.Content,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
@@ -48,6 +58,12 @@ namespace CoreServices.Logic
          PostParameters parameters)
         {
             return await PagedList<PostModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+        }
+        
+        public async Task<string> UploadPostAttachment(string rootPath, IFormFile file)
+        {
+            FileUploader uploader = new(rootPath);
+            return await uploader.UploadFile(file, "Upload/PostAttachment");
         }
 
         public async Task<Post> FindPostById(int id, bool trackChanges)
@@ -95,11 +111,14 @@ namespace CoreServices.Logic
                                   {
                                       Content = a.Post.Content,
                                   },
-                                  AttachmentUrl = a.AttachmentUrl,
+                                  FileUrl = a.StorageUrl + a.FileUrl,
+                                  FileLength = a.FileLength,
+                                  FileName = a.FileName,
+                                  FileType = a.FileType,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
-                                  LastModifiedBy = a.LastModifiedBy
+                                  LastModifiedBy = a.LastModifiedBy,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
