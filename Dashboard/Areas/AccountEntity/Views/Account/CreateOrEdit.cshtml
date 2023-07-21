@@ -81,11 +81,19 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-12 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label asp-for="Name" class="form-label"></label>
-                                                <input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
-                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                                <label asp-for="User.Name" class="form-label"></label>
+                                                <input asp-for="User.Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
+                                                <span asp-validation-for="User.Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="User.UserName" class="form-label"></label>
+                                                <input asp-for="User.UserName" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("UserName"))"/>
+                                                <span asp-validation-for="User.UserName" class="text-danger"></span>
                                             </div>
                                         </div>
 
@@ -102,6 +110,14 @@
                                                 <label asp-for="EmailAddress" class="form-label"></label>
                                                 <input asp-for="EmailAddress" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("EmailAddress"))"/>
                                                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="User.Password" class="form-label"></label>
+                                                <input asp-for="User.Password" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Password"))"/>
+                                                <span asp-validation-for="User.Password" class="text-danger"></span>
                                             </div>
                                         </div>
 

@@ -199,7 +199,7 @@ else
                     columns: [
                         { data: "id" },
                         {
-                            data: "name",
+                            data: "user",
                             render: function (data, type, row) {
                                 if (row.imageUrl != null) {
                                     return '<a href="/AccountEntity/Account/Profile/' + row.id +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
@@ -207,7 +207,7 @@ else
                                         
                                         + '</div></div>'
                                         + ' <div class= "d-flex flex-column">'
-                                        + '<span class= "fw-bolder">' + data + '</span> '
+                                        + '<span class= "fw-bolder">' + data.name + '</span> '
                                         + '<small class= "emp_post text-muted" ></small ></div></div></a>';
                                 }
                                 else {
@@ -215,7 +215,7 @@ else
                                         + '<div class="avatar  bg-light-dark  me-1"><span class="avatar-content"></span></div>'
                                         + '</div>'
                                         + ' <div class= "d-flex flex-column">'
-                                        + '<span class= "fw-bolder">' + data + '</span> '
+                                        + '<span class= "fw-bolder">' + data.name + '</span> '
                                         + '<small class= "emp_post text-muted" ></small ></div></div></a>';
                                 }
                             },

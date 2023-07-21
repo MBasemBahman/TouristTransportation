@@ -4,6 +4,7 @@ using Entities.DBModels.AuditModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.LogModels;
+using Entities.DBModels.MainDataModels;
 using Entities.DBModels.PostModels;
 using Entities.DBModels.SharedModels;
 using Entities.DBModels.UserModels;
@@ -61,6 +62,15 @@ namespace BaseDB
         #region Post Models
 
         public DbSet<Post> Posts { get; set; }
+
+        #endregion
+
+        #region MainData Models
+
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         #endregion
         

@@ -22,7 +22,9 @@ namespace Repository.DBModels.AccountModels
 
         public async Task<Account> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.User)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(Account entity)

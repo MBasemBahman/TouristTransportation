@@ -1,12 +1,12 @@
-﻿@model PostFilter
+﻿@model PostReactionFilter
 @{
-    ViewData["Title"] = Localizer.Get("Posts");
+    ViewData["Title"] = Localizer.Get("PostReactions");
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.useDatatable = true;
 
     var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
 
-    var row = new PostDto();
+    var row = new PostReactionDto();
     ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null && (bool)ViewData["ProfileLayOut"];
 
     if (!ViewBag.emptyLayout)
@@ -61,18 +61,7 @@
                                                     <a id="details" asp-action="Details">
                                                     </a>
                                                 }
-
-                                                @if (accessLevel.CreateAccess)
-                                                {
-                                                    <a id="create" asp-action="CreateOrEdit">
-                                                    </a>
-                                                }
-
-                                                @if (accessLevel.EditAccess)
-                                                {
-                                                    <a id="edit" asp-action="CreateOrEdit">
-                                                    </a>
-                                                }
+                                                
                                                 @if (accessLevel.DeleteAccess)
                                                 {
                                                     <a id="delete" asp-action="Delete">
@@ -81,7 +70,7 @@
 
                                             </th>
                                             <th>@Html.DisplayNameFor(model => row.Account.User)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Content)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Post)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>@Html.DisplayNameFor(model => row.Id)</th>
                                         </tr>
@@ -150,7 +139,7 @@
 
                             }
                         },
-                        { data: "content" },
+                        { data: "post.content" },
                         { data: "createdAt" },
                         { data: "id" },
                     ]

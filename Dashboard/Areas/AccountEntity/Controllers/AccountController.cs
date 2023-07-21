@@ -1,6 +1,7 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.AccountEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
 using Entities.RequestFeatures;
 
@@ -100,6 +101,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             {
                 Account countryDB = await _unitOfWork.Account.FindAccountById(id, trackChanges: false);
                 model = _mapper.Map<AccountCreateOrEditModel>(countryDB);
+                model.User = _mapper.Map<UserCreateModel>(countryDB.User);
 
                 model.ImageUrl = countryDB.StorageUrl + countryDB.ImageUrl;
             }
@@ -129,6 +131,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
                 if (id == 0)
                 {
                     dataDB = _mapper.Map<Account>(model);
+                    dataDB.User = _mapper.Map<User>(model.User);
 
                     dataDB.CreatedBy = auth.UserName;
 

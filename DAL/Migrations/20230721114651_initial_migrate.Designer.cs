@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevelopmentDAL.Migrations
 {
     [DbContext(typeof(DevelopmentContext))]
-    [Migration("20230720102345_initial_migrate")]
+    [Migration("20230721114651_initial_migrate")]
     partial class initialmigrate
     {
         /// <inheritdoc />
@@ -805,6 +805,70 @@ namespace DevelopmentDAL.Migrations
                             FkDashboardAccessLevel = 1,
                             FkDashboardAdministrationRole = 1,
                             FkDashboardView = 13
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 14
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 15
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 16
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 17
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 18
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 19
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 20
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 21
                         });
                 });
 
@@ -1191,6 +1255,62 @@ namespace DevelopmentDAL.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "CompanyTripState",
                             ViewPath = "CompanyTripState"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountState",
+                            ViewPath = "AccountState"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountType",
+                            ViewPath = "AccountType"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Area",
+                            ViewPath = "Area"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Country",
+                            ViewPath = "Country"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Currency",
+                            ViewPath = "Currency"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Supplier",
+                            ViewPath = "Supplier"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Post",
+                            ViewPath = "Post"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PostAttachment",
+                            ViewPath = "PostAttachment"
                         });
                 });
 
@@ -1312,6 +1432,62 @@ namespace DevelopmentDAL.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FkSource = 13,
                             Name = "CompanyTripState"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 14,
+                            Name = "AccountState"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 15,
+                            Name = "AccountType"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 16,
+                            Name = "Area"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 17,
+                            Name = "Country"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 18,
+                            Name = "Currency"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 19,
+                            Name = "Supplier"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 20,
+                            Name = "Post"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 21,
+                            Name = "PostAttachment"
                         });
                 });
 
@@ -1541,7 +1717,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasIndex("Fk_Account");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Entities.DBModels.PostModels.PostAttachment", b =>
@@ -1552,9 +1728,6 @@ namespace DevelopmentDAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -1562,6 +1735,18 @@ namespace DevelopmentDAL.Migrations
 
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("FileLength")
+                        .HasColumnType("float");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Fk_Post")
@@ -1573,6 +1758,9 @@ namespace DevelopmentDAL.Migrations
                         .HasDefaultValueSql("getutcdate()");
 
                     b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StorageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -1764,7 +1952,7 @@ namespace DevelopmentDAL.Migrations
                             EmailAddress = "user@mail.com",
                             LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Developer",
-                            Password = "$2a$11$uMnuoXn7fqrPSY5DhilQ1OPvvKb9HLalz6lN8GufFgGK6/PPRvUWS",
+                            Password = "$2a$11$uR4Pjqvzi7yJz7MQQ9ILke1IeBQA8K6TRkJ3SfzJ/cmT6sr5S6LOu",
                             UserName = "Developer"
                         });
                 });

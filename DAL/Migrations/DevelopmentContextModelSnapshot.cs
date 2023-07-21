@@ -818,6 +818,54 @@ namespace DevelopmentDAL.Migrations
                             FkDashboardAccessLevel = 1,
                             FkDashboardAdministrationRole = 1,
                             FkDashboardView = 15
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 16
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 17
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 18
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 19
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 20
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 21
                         });
                 });
 
@@ -1209,12 +1257,54 @@ namespace DevelopmentDAL.Migrations
                         {
                             Id = 14,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountState",
+                            ViewPath = "AccountState"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountType",
+                            ViewPath = "AccountType"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Area",
+                            ViewPath = "Area"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Country",
+                            ViewPath = "Country"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Currency",
+                            ViewPath = "Currency"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Supplier",
+                            ViewPath = "Supplier"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Post",
                             ViewPath = "Post"
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 21,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "PostAttachment",
                             ViewPath = "PostAttachment"
@@ -1345,13 +1435,55 @@ namespace DevelopmentDAL.Migrations
                             Id = 14,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FkSource = 14,
-                            Name = "Post"
+                            Name = "AccountState"
                         },
                         new
                         {
                             Id = 15,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FkSource = 15,
+                            Name = "AccountType"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 16,
+                            Name = "Area"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 17,
+                            Name = "Country"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 18,
+                            Name = "Currency"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 19,
+                            Name = "Supplier"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 20,
+                            Name = "Post"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkSource = 21,
                             Name = "PostAttachment"
                         });
                 });
@@ -1384,6 +1516,175 @@ namespace DevelopmentDAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Country")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Country");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Areas");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.AreaLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("AreaLang");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.CountryLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("CountryLang");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Currency", b =>
@@ -1426,7 +1727,7 @@ namespace DevelopmentDAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Currency");
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.CurrencyLang", b =>
@@ -1502,7 +1803,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.SupplierLang", b =>
@@ -1817,7 +2118,7 @@ namespace DevelopmentDAL.Migrations
                             EmailAddress = "user@mail.com",
                             LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Developer",
-                            Password = "$2a$11$0VbKkpZC7SvITYeIoZNqpeFbl8TZXmz8YJ7TLdNx5cqUSSAlW/wB2",
+                            Password = "$2a$11$j1lrA.frJsNi9aQAqB/m6.c5XFtlbWe1AvOaTcDfysQ9Pdrlxx0t.",
                             UserName = "Developer"
                         });
                 });
@@ -2103,6 +2404,39 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("Source");
                 });
 
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
+                {
+                    b.HasOne("Entities.DBModels.MainDataModels.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("Fk_Country")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.AreaLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.MainDataModels.Area", "Source")
+                        .WithMany("AreaLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.CountryLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.MainDataModels.Country", "Source")
+                        .WithMany("CountryLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
             modelBuilder.Entity("Entities.DBModels.MainDataModels.CurrencyLang", b =>
                 {
                     b.HasOne("Entities.DBModels.MainDataModels.Currency", "Source")
@@ -2265,6 +2599,16 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("DashboardViewLang");
 
                     b.Navigation("Premissions");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
+                {
+                    b.Navigation("AreaLangs");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.MainDataModels.Country", b =>
+                {
+                    b.Navigation("CountryLangs");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Currency", b =>

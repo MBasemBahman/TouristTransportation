@@ -37,7 +37,8 @@
             Currency = 18,
             Supplier = 19,
             Post = 20,
-            PostAttachment = 21
+            PostAttachment = 21,
+            PostReaction = 22
         }
 
         public enum AccountProfileItems

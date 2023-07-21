@@ -751,7 +751,7 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "Posts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -765,9 +765,9 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Post", x => x.Id);
+                    table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Post_Accounts_Fk_Account",
+                        name: "FK_Posts_Accounts_Fk_Account",
                         column: x => x.FkAccount,
                         principalTable: "Accounts",
                         principalColumn: "Id",
@@ -812,21 +812,25 @@ namespace DevelopmentDAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FkPost = table.Column<int>(name: "Fk_Post", type: "int", nullable: false),
-                    AttachmentUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileLength = table.Column<double>(type: "float", nullable: false),
+                    FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StorageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PostAttachment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PostAttachment_Post_Fk_Post",
+                        name: "FK_PostAttachment_Posts_Fk_Post",
                         column: x => x.FkPost,
-                        principalTable: "Post",
+                        principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -850,9 +854,9 @@ namespace DevelopmentDAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_PostReaction_Post_Fk_Post",
+                        name: "FK_PostReaction_Posts_Fk_Post",
                         column: x => x.FkPost,
-                        principalTable: "Post",
+                        principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -889,13 +893,21 @@ namespace DevelopmentDAL.Migrations
                     { 10, null, "DBLogs", "DBLogs" },
                     { 11, null, "Audit", "Audit" },
                     { 12, null, "Account", "Account" },
-                    { 13, null, "CompanyTripState", "CompanyTripState" }
+                    { 13, null, "CompanyTripState", "CompanyTripState" },
+                    { 14, null, "AccountState", "AccountState" },
+                    { 15, null, "AccountType", "AccountType" },
+                    { 16, null, "Area", "Area" },
+                    { 17, null, "Country", "Country" },
+                    { 18, null, "Currency", "Currency" },
+                    { 19, null, "Supplier", "Supplier" },
+                    { 20, null, "Post", "Post" },
+                    { 21, null, "PostAttachment", "PostAttachment" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Culture", "EmailAddress", "LastModifiedBy", "Name", "Password", "PhoneNumber", "UserName" },
-                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$uMnuoXn7fqrPSY5DhilQ1OPvvKb9HLalz6lN8GufFgGK6/PPRvUWS", null, "Developer" });
+                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$uR4Pjqvzi7yJz7MQQ9ILke1IeBQA8K6TRkJ3SfzJ/cmT6sr5S6LOu", null, "Developer" });
 
             migrationBuilder.InsertData(
                 table: "AdministrationRolePremissions",
@@ -914,7 +926,15 @@ namespace DevelopmentDAL.Migrations
                     { 10, 1, 1, 10 },
                     { 11, 1, 1, 11 },
                     { 12, 1, 1, 12 },
-                    { 13, 1, 1, 13 }
+                    { 13, 1, 1, 13 },
+                    { 14, 1, 1, 14 },
+                    { 15, 1, 1, 15 },
+                    { 16, 1, 1, 16 },
+                    { 17, 1, 1, 17 },
+                    { 18, 1, 1, 18 },
+                    { 19, 1, 1, 19 },
+                    { 20, 1, 1, 20 },
+                    { 21, 1, 1, 21 }
                 });
 
             migrationBuilder.InsertData(
@@ -954,7 +974,15 @@ namespace DevelopmentDAL.Migrations
                     { 10, 10, "DBLogs" },
                     { 11, 11, "Audit" },
                     { 12, 12, "Account" },
-                    { 13, 13, "CompanyTripState" }
+                    { 13, 13, "CompanyTripState" },
+                    { 14, 14, "AccountState" },
+                    { 15, 15, "AccountType" },
+                    { 16, 16, "Area" },
+                    { 17, 17, "Country" },
+                    { 18, 18, "Currency" },
+                    { 19, 19, "Supplier" },
+                    { 20, 20, "Post" },
+                    { 21, 21, "PostAttachment" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1160,11 +1188,6 @@ namespace DevelopmentDAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Post_Fk_Account",
-                table: "Post",
-                column: "Fk_Account");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PostAttachment_Fk_Post",
                 table: "PostAttachment",
                 column: "Fk_Post");
@@ -1178,6 +1201,11 @@ namespace DevelopmentDAL.Migrations
                 name: "IX_PostReaction_Fk_Post",
                 table: "PostReaction",
                 column: "Fk_Post");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_Fk_Account",
+                table: "Posts",
+                column: "Fk_Account");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshTokens_Fk_User",
@@ -1292,7 +1320,7 @@ namespace DevelopmentDAL.Migrations
                 name: "DashboardViews");
 
             migrationBuilder.DropTable(
-                name: "Post");
+                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "CompanyTripBookingState");
