@@ -1,15 +1,16 @@
 ﻿using Contracts.Logger;
-using Dashboard.Areas.MainDataEntity.Models;
+using Dashboard.Areas.HotelEntity.Models;
+using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.MainDataModels;
+using Entities.DBModels.HotelModels;
 using Entities.DBModels.MainDataModels;
-using Entities.EnumData;
 using Entities.RequestFeatures;
 
-namespace Dashboard.Areas.MainDataEntity.Controllers
+namespace Dashboard.Areas.HotelEntity.Controllers
 {
-    [Area("MainDataEntity")]
-    [Authorize(DashboardViewEnum.Area, AccessLevelEnum.View)]
-    public class AreaController : Controller
+    [Area("HotelEntity")]
+    [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.View)]
+    public class HotelController : Controller
     {
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
@@ -18,7 +19,7 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
         private readonly IWebHostEnvironment _environment;
 
 
-        public AreaController(ILoggerManager logger, IMapper mapper,
+        public HotelController(ILoggerManager logger, IMapper mapper,
                 UnitOfWork unitOfWork, LinkGenerator linkGenerator,
                 IWebHostEnvironment environment)
         {
@@ -32,7 +33,7 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
         public IActionResult Index(int id, bool ProfileLayOut = false)
         {
 
-            AreaFilter filter = new()
+            HotelFilter filter = new()
             {
                 Id = id
             };
@@ -45,24 +46,24 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody] AreaFilter dtParameters)
+        public async Task<IActionResult> LoadTable([FromBody] HotelFilter dtParameters)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            AreaParameters parameters = new()
+            HotelParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
             };
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<AreaModel> data = await _unitOfWork.MainData.GetAreasPaged(parameters, otherLang);
+            PagedList<HotelModel> data = await _unitOfWork.Hotel.GetHotelsPaged(parameters, otherLang);
 
-            List<AreaDto> resultDto = _mapper.Map<List<AreaDto>>(data);
+            List<HotelDto> resultDto = _mapper.Map<List<HotelDto>>(data);
 
-            DataTable<AreaDto> dataTableManager = new();
+            DataTable<HotelDto> dataTableManager = new();
 
-            DataTableResult<AreaDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.MainData.GetAreasCount());
+            DataTableResult<HotelDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelsCount());
 
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
@@ -71,30 +72,30 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            AreaDto data = _mapper.Map<AreaDto>(_unitOfWork.MainData.GetAreaById(id, otherLang));
+            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotelById(id, otherLang));
 
             return View(data);
         }
 
-        [Authorize(DashboardViewEnum.Area, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            AreaCreateOrEditModel model = new();
+            HotelCreateOrEditModel model = new();
 
             if (id > 0)
             {
-                Area dataDB = await _unitOfWork.MainData.FindAreaById(id, trackChanges: false);
-                model = _mapper.Map<AreaCreateOrEditModel>(dataDB);
+                Hotel dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: false);
+                model = _mapper.Map<HotelCreateOrEditModel>(dataDB);
 
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
                 {
-                    model.AreaLangs ??= new List<AreaLangModel>();
-
-                    if (model.AreaLangs.All(a => a.Language != language))
+                    model.HotelLangs ??= new List<HotelLangModel>();
+                
+                    if (model.HotelLangs.All(a => a.Language != language))
                     {
-                        model.AreaLangs.Add(new AreaLangModel
+                        model.HotelLangs.Add(new HotelLangModel
                         {
                             Language = language
                         });
@@ -111,32 +112,31 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(DashboardViewEnum.Area, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id, AreaCreateOrEditModel model)
+        [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.CreateOrEdit)]
+        public async Task<IActionResult> CreateOrEditWizard(int id, HotelCreateOrEditModel model)
         {
-
             if (!ModelState.IsValid)
             {
-                SetViewData(id);
+                List<string> errorMessages = ModelState.Values.SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage).ToList();
 
-                return View(model);
+                return BadRequest(errorMessages);
             }
             try
             {
-
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-                Area dataDB = new();
+                Hotel dataDB = new();
                 if (id == 0)
                 {
-                    dataDB = _mapper.Map<Area>(model);
+                    dataDB = _mapper.Map<Hotel>(model);
 
                     dataDB.CreatedBy = auth.UserName;
 
-                    _unitOfWork.MainData.CreateArea(dataDB);
+                    _unitOfWork.Hotel.CreateHotel(dataDB);
                 }
                 else
                 {
-                    dataDB = await _unitOfWork.MainData.FindAreaById(id, trackChanges: true);
+                    dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: true);
 
                     _ = _mapper.Map(model, dataDB);
 
@@ -145,29 +145,32 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
 
                 await _unitOfWork.Save();
 
-                return RedirectToAction(nameof(Index));
+                return Ok(new HotelModel
+                {
+                    Id = dataDB.Id
+                });
             }
             catch (Exception ex)
             {
                 ViewData[ViewDataConstants.Error] = _logger.LogError(HttpContext.Request, ex).ErrorMessage;
             }
-            SetViewData(id);
-            return View(model);
+
+            return BadRequest(new List<string>() { ViewData[ViewDataConstants.Error].ToString() });
         }
 
-        [Authorize(DashboardViewEnum.Area, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
-            Area data = await _unitOfWork.MainData.FindAreaById(id, trackChanges: false);
+            Hotel data = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: false);
 
             return View(data != null);
         }
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(DashboardViewEnum.Area, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.Delete)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _unitOfWork.MainData.DeleteArea(id);
+            await _unitOfWork.Hotel.DeleteHotel(id);
             await _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
@@ -177,9 +180,10 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
         private void SetViewData(int id)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
+            
             ViewData["id"] = id;
-            ViewData["Country"] = _unitOfWork.MainData.GetCountriesLookUp(new CountryParameters(), otherLang);
+            ViewData["Areas"] = _unitOfWork.MainData.GetAreasLookUp(new AreaParameters(), otherLang);
+            ViewData["Countries"] = _unitOfWork.MainData.GetCountriesLookUp(new CountryParameters(), otherLang);
         }
 
     }

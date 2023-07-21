@@ -116,7 +116,10 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.Hotel.Name, 
                                   },
-                                  AttachmentUrl = a.AttachmentUrl,
+                                  FileUrl = a.StorageUrl + a.FileUrl,
+                                  FileLength = a.FileLength,
+                                  FileName = a.FileName,
+                                  FileType = a.FileType,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

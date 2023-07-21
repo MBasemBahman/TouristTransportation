@@ -22,7 +22,6 @@ namespace DevelopmentDAL
             #region DashboardAdministrationModels
 
             _ = modelBuilder.ApplyConfiguration(new DashboardViewConfiguration(config.DashboardViews));
-            _ = modelBuilder.ApplyConfiguration(new DashboardViewLangConfiguration(config.DashboardViews));
 
             #endregion
         }

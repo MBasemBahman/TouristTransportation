@@ -19,7 +19,9 @@ namespace Repository.DBModels.HotelModels
 
         public async Task<Hotel> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.HotelLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(Hotel entity)

@@ -19,16 +19,11 @@ namespace Repository.DBModels.DashboardAdministrationModels
         public async Task<DashboardAccessLevel> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                        .Include(a => a.DashboardAccessLevelLang)
                         .SingleOrDefaultAsync();
         }
 
         public new void Create(DashboardAccessLevel entity)
         {
-            entity.DashboardAccessLevelLang ??= new DashboardAccessLevelLang
-            {
-                Name = entity.Name
-            };
             base.Create(entity);
         }
     }

@@ -1,0 +1,109 @@
+﻿@using Entities.EnumData
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model HotelCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Hotel Information")</h5>
+    <small class="text-muted">@Localizer.Get("Hotel Information Description")</small>
+</div>
+
+<form class="hotel_form" asp-action="CreateOrEditWizard" asp-controller="Hotel" enctype="multipart/form-data">
+    <div class="row">
+        <div class="text-danger hotel_error_div"></div>
+        <input type="hidden" asp-for="@id" />
+        <hr />
+
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Name" class="form-label"></label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="@Localizer.Get("Name")" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        
+        @{ int i = 0;}
+        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+        {
+            <div class="col-md-6 col-12">
+                <div class="mb-1">
+                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+                    
+                    <input asp-for="HotelLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
+                    <span asp-validation-for="HotelLangs[i].Name" class="text-danger"></span>
+                    
+                    <input type="hidden" asp-for="HotelLangs[i].Language" value="@language" />
+                </div>
+            </div>
+            i++;
+        }
+
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="BookingUrl" class="form-label"></label>
+                <input type="text" asp-for="BookingUrl" class="form-control" placeholder="@Localizer.Get("BookingUrl")" />
+                <span asp-validation-for="BookingUrl" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="LocationUrl" class="form-label"></label>
+                <input type="text" asp-for="LocationUrl" class="form-control" placeholder="@Localizer.Get("LocationUrl")" />
+                <span asp-validation-for="LocationUrl" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Address" class="form-label"></label>
+                <input type="text" asp-for="Address" class="form-control" placeholder="@Localizer.Get("Address")" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label class="form-label">@Localizer.Get("Country")</label>
+                <select name="Fk_Country" class="select2 form-select"
+                        asp-items="@(new SelectList(ViewData["Countries"] as Dictionary<string, string>, "Key", "Value"))">
+                        <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_Area" class="form-label"></label>
+                <select asp-for="Fk_Area" class="select2 form-select"
+                        asp-items="@(new SelectList(ViewData["Areas"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_Area" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control summernote">@Localizer.Get("Enter") @Localizer.Get("Content")</textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+    </div>
+</form>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-outline-secondary btn-prev" disabled>
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button type="button" class="btn btn-primary btn-next hotel_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Next")</span>
+        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+    </button>
+</div>

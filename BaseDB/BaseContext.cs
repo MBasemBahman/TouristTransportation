@@ -3,6 +3,7 @@ using Entities.DBModels.AccountModels;
 using Entities.DBModels.AuditModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.DBModels.HotelModels;
 using Entities.DBModels.LogModels;
 using Entities.DBModels.MainDataModels;
 using Entities.DBModels.PostModels;
@@ -73,7 +74,13 @@ namespace BaseDB
         public DbSet<Supplier> Suppliers { get; set; }
 
         #endregion
-        
+
+        #region Hotel Models
+
+        public DbSet<Hotel> Hotels { get; set; }
+
+        #endregion
+
         #region Audit Models
         public DbSet<Audit> Audits { get; set; }
         #endregion
@@ -111,7 +118,6 @@ namespace BaseDB
             #region DashboardAdministrationModels
 
             _ = modelBuilder.ApplyConfiguration(new DashboardAccessLevelConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new DashboardAccessLevelLangConfiguration());
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleConfiguration());
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleLangConfiguration());
             _ = modelBuilder.ApplyConfiguration(new AdministrationRolePremissionConfiguration());

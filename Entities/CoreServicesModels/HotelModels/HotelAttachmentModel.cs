@@ -10,7 +10,7 @@ namespace Entities.CoreServicesModels.HotelModels
         public int Fk_Hotel { get; set; }
     }
 
-    public class HotelAttachmentModel : AuditEntity
+    public class HotelAttachmentModel : AuditAttachmentEntity
     {
         [DisplayName(nameof(Hotel))]
         [ForeignKey(nameof(Hotel))]
@@ -18,9 +18,6 @@ namespace Entities.CoreServicesModels.HotelModels
     
         [DisplayName(nameof(Hotel))]
         public HotelModel Hotel { get; set; }
-
-        [DisplayName(nameof(AttachmentUrl))]
-        public string AttachmentUrl { get; set; }
     }
 
     public class HotelAttachmentCreateOrEditModel

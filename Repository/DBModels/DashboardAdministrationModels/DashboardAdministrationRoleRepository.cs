@@ -19,16 +19,25 @@ namespace Repository.DBModels.DashboardAdministrationModels
         public async Task<DashboardAdministrationRole> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                        .Include(a => a.DashboardAdministrationRoleLang)
+                        .Include(a => a.DashboardAdministrationRoleLangs)
                         .SingleOrDefaultAsync();
         }
 
         public new void Create(DashboardAdministrationRole entity)
         {
-            entity.DashboardAdministrationRoleLang ??= new DashboardAdministrationRoleLang
+            entity.DashboardAdministrationRoleLangs ??= new List<DashboardAdministrationRoleLang>();
+            
+            foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
-                Name = entity.Name
-            };
+                if (entity.DashboardAdministrationRoleLangs.All(b => b.Language != language))
+                {
+                    entity.DashboardAdministrationRoleLangs.Add(new DashboardAdministrationRoleLang
+                    {
+                        Name = entity.Name,
+                        Language = language
+                    });
+                }
+            }
             base.Create(entity);
         }
     }

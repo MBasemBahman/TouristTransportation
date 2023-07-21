@@ -2,7 +2,7 @@
 {
     public class DashboardAccessLevel : LookUpEntity
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+        [DisplayName(nameof(Name))]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public new string Name { get; set; }
 
@@ -23,14 +23,5 @@
 
         [DisplayName(nameof(Premissions))]
         public IList<AdministrationRolePremission> Premissions { get; set; }
-
-        public DashboardAccessLevelLang DashboardAccessLevelLang { get; set; }
-    }
-
-    public class DashboardAccessLevelLang : LangEntity<DashboardAccessLevel>
-    {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Entities.DBModels.DashboardAdministrationModels
+﻿using Entities.EnumData;
+
+namespace Entities.DBModels.DashboardAdministrationModels
 {
     public class DashboardAdministrationRole : LookUpEntity
     {
@@ -12,7 +14,7 @@
         [DisplayName(nameof(Administrators))]
         public IList<DashboardAdministrator> Administrators { get; set; }
 
-        public DashboardAdministrationRoleLang DashboardAdministrationRoleLang { get; set; }
+        public List<DashboardAdministrationRoleLang> DashboardAdministrationRoleLangs { get; set; }
     }
 
     public class DashboardAdministrationRoleLang : LangEntity<DashboardAdministrationRole>
@@ -20,5 +22,8 @@
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
+        
+        [DisplayName(nameof(Language))]
+        public DBModelsEnum.LanguageEnum Language { get; set; }
     }
 }

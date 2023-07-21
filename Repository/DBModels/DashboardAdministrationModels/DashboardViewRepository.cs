@@ -18,16 +18,11 @@ namespace Repository.DBModels.DashboardAdministrationModels
         public async Task<DashboardView> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                        .Include(a => a.DashboardViewLang)
                         .SingleOrDefaultAsync();
         }
 
         public new void Create(DashboardView entity)
         {
-            entity.DashboardViewLang ??= new DashboardViewLang
-            {
-                Name = entity.Name
-            };
             base.Create(entity);
         }
     }

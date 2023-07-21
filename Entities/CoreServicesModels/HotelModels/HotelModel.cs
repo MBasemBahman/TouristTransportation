@@ -71,7 +71,7 @@ namespace Entities.CoreServicesModels.HotelModels
     public class HotelLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
+        [DisplayName(nameof(Name))]
         public string Name { get; set; }
         
         [DisplayName(nameof(Language))]

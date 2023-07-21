@@ -168,3 +168,141 @@
    --- End of inner exception stack trace ---
 2023-07-21 15:28:35.6346 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
 2023-07-21 15:28:35.6491 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 16:40:34.2585 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 16:40:34.2688 Info LogFactory has been closed.
+2023-07-21 16:40:49.3691 Info Message Template Auto Format enabled
+2023-07-21 16:40:49.4311 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 16:40:49.4434 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 16:40:49.4629 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 16:55:03.0505 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 16:55:03.0608 Info LogFactory has been closed.
+2023-07-21 16:55:33.3885 Info Message Template Auto Format enabled
+2023-07-21 16:55:33.4216 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 16:55:33.4299 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 16:55:33.4412 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 16:55:36.2745 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 16:55:36.2745 Info LogFactory has been closed.
+2023-07-21 16:56:21.2918 Info Message Template Auto Format enabled
+2023-07-21 16:56:21.3253 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 16:56:21.3330 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 16:56:21.3441 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 16:56:24.1994 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 16:56:24.2039 Info LogFactory has been closed.
+2023-07-21 16:56:33.6115 Info Message Template Auto Format enabled
+2023-07-21 16:56:33.6478 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 16:56:33.6578 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 16:56:33.6709 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:29:22.1507 Info Message Template Auto Format enabled
+2023-07-21 19:29:22.2074 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:29:22.2208 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:29:22.2451 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:30:38.4791 Info Message Template Auto Format enabled
+2023-07-21 19:30:38.5159 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:30:38.5264 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:30:38.5400 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:33:25.6226 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 19:33:25.6266 Info LogFactory has been closed.
+2023-07-21 19:48:58.3300 Info Message Template Auto Format enabled
+2023-07-21 19:48:58.4090 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:48:58.4248 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:48:58.4407 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:55:19.8247 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 19:55:19.8381 Info LogFactory has been closed.
+2023-07-21 19:55:35.3489 Info Message Template Auto Format enabled
+2023-07-21 19:55:35.3821 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:55:35.3900 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:55:35.4018 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:55:38.1256 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 19:55:38.1281 Info LogFactory has been closed.
+2023-07-21 19:56:25.2740 Info Message Template Auto Format enabled
+2023-07-21 19:56:25.3042 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:56:25.3116 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:56:25.3224 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:56:28.0396 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 19:56:28.0426 Info LogFactory has been closed.
+2023-07-21 19:57:40.8413 Info Message Template Auto Format enabled
+2023-07-21 19:57:40.8725 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:57:40.8803 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:57:40.8915 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 19:57:43.2851 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 19:57:43.2869 Info LogFactory has been closed.
+2023-07-21 19:58:00.9920 Info Message Template Auto Format enabled
+2023-07-21 19:58:01.0319 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 19:58:01.0429 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 19:58:01.0589 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 20:00:28.1605 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 20:00:28.1636 Info LogFactory has been closed.
+2023-07-21 20:00:37.4151 Info Message Template Auto Format enabled
+2023-07-21 20:00:37.4522 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 20:00:37.4630 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 20:00:37.4767 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 20:08:39.8191 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 20:08:39.8281 Info LogFactory has been closed.
+2023-07-21 20:08:51.5676 Info Message Template Auto Format enabled
+2023-07-21 20:08:51.6072 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 20:08:51.6198 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 20:08:51.6346 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 20:11:02.3433 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 20:11:02.3474 Info LogFactory has been closed.
+2023-07-21 20:11:26.6794 Info Message Template Auto Format enabled
+2023-07-21 20:11:26.7179 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: Database
+ ---> System.ArgumentException: Target type-alias is unknown: 'Database'. Extension NLog.Database not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2023-07-21 20:11:26.7288 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
+2023-07-21 20:11:26.7441 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-21 20:14:22.7855 Info AppDomain Shutting down. LogFactory closing...
+2023-07-21 20:14:22.7900 Info LogFactory has been closed.

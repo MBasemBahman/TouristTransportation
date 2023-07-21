@@ -17,21 +17,12 @@
 
     public class DashboardViewCreateOrEditModel
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+        [DisplayName(nameof(Name))]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(ViewPath))]
         public string ViewPath { get; set; }
-
-        public DashboardViewLangModel DashboardViewLang { get; set; }
-    }
-
-    public class DashboardViewLangModel
-    {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
     }
 }

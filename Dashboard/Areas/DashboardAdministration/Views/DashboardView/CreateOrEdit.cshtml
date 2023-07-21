@@ -45,21 +45,14 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="Name" class="form-label"></label>
-                                                <input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get($"Name{PropertyAttributeConstants.ArLang}"))" />
+                                                <input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))" />
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label asp-for="DashboardViewLang.Name" class="form-label"></label>
-                                                <input asp-for="DashboardViewLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="DashboardViewLang.Name" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                      <div class="col-md-6 col-12">
-                                            <div class="mb-1">
                                                 <label asp-for="ViewPath" class="form-label"></label>
-                                                <input asp-for="ViewPath" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get($"ViewPath"))" />
+                                                <input asp-for="ViewPath" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ViewPath"))" />
                                                 <span asp-validation-for="ViewPath" class="text-danger"></span>
                                             </div>
                                         </div>

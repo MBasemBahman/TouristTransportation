@@ -34,8 +34,6 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardViewFilter dtParameters)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
             DashboardViewParameters parameters = new()
             {
                 SearchColumns = "Id,Name,ViewPath"
@@ -43,7 +41,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<DashboardViewModel> data = await _unitOfWork.DashboardAdministration.GetViewsPaged(parameters, otherLang);
+            PagedList<DashboardViewModel> data = await _unitOfWork.DashboardAdministration.GetViewsPaged(parameters);
 
             List<DashboardViewDto> resultDto = _mapper.Map<List<DashboardViewDto>>(data);
 
@@ -57,10 +55,8 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
             DashboardViewDto data = _mapper.Map<DashboardViewDto>(_unitOfWork.DashboardAdministration
-                                                            .GetViewbyId(id, otherLang));
+                                                            .GetViewbyId(id));
 
             return View(data);
         }
@@ -68,10 +64,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardView, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            DashboardViewCreateOrEditModel model = new()
-            {
-                DashboardViewLang = new()
-            };
+            DashboardViewCreateOrEditModel model = new();
 
             if (id > 0)
             {
@@ -123,7 +116,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         {
             DashboardView data = await _unitOfWork.DashboardAdministration.FindViewById(id, trackChanges: false);
 
-            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardView = id }, otherLang: false).Any());
+            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardView = id }, language: null).Any());
         }
 
         [HttpPost, ActionName("Delete")]

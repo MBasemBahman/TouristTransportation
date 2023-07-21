@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Export" />
     <Folder Include="wwwroot\Upload" />
   </ItemGroup>
 
@@ -308,6 +307,17 @@
     <_ContentIncludedByDefault Remove="Areas\CompanyEntity\Views\Company\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\CompanyEntity\Views\Company\Profile.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\CompanyEntity\Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\HotelEntity\Views\Hotel\CreateOrEdit.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\HotelEntity\Views\Hotel\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\HotelEntity\Views\Hotel\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\HotelEntity\Views\Hotel\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\CreateOrEdit.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Delete.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Details.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Index.cshtml" />
   </ItemGroup>
 
 </Project>

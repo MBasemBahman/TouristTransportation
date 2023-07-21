@@ -1,6 +1,6 @@
 namespace Entities.DBModels.HotelModels;
 
-public class HotelAttachment : AuditEntity
+public class HotelAttachment : AuditAttachmentEntity
 {
     [DisplayName(nameof(Hotel))]
     [ForeignKey(nameof(Hotel))]
@@ -8,7 +8,4 @@ public class HotelAttachment : AuditEntity
     
     [DisplayName(nameof(Hotel))]
     public Hotel Hotel { get; set; }
-
-    [DisplayName(nameof(AttachmentUrl))]
-    public string AttachmentUrl { get; set; }
 }

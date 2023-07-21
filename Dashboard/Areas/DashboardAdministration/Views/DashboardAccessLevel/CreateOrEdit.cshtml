@@ -51,13 +51,6 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label asp-for="DashboardAccessLevelLang.Name" class="form-label"></label>
-                                                <input asp-for="DashboardAccessLevelLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="DashboardAccessLevelLang.Name" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
                                                 <label asp-for="CreateAccess" class="form-check-label" for="IsActive"></label>
                                                 <input asp-for="CreateAccess" class="form-check-input" />
                                                 <span asp-validation-for="CreateAccess" class="text-danger"></span>

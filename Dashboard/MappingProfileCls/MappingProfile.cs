@@ -20,12 +20,15 @@ using Entities.DBModels.MainDataModels;
 
 using Dashboard.Areas.AccountEntity.Models;
 using Dashboard.Areas.CompanyTripEntity.Models;
+using Dashboard.Areas.HotelEntity.Models;
 using Dashboard.Areas.PostEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CompanyTripModels;
+using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.CompanyTripModels;
+using Entities.DBModels.HotelModels;
 using Entities.DBModels.PostModels;
 using Entities.RequestFeatures;
 
@@ -99,15 +102,13 @@ namespace Dashboard.MappingProfileCls
             #region Dashboard Administration Models
 
             #region Dashboard View
+            
             _ = CreateMap<DashboardViewModel, DashboardViewDto>();
 
             _ = CreateMap<DashboardView, DashboardViewCreateOrEditModel>();
-
-            _ = CreateMap<DashboardViewLang, DashboardViewLangModel>();
-
+            
             _ = CreateMap<DashboardViewCreateOrEditModel, DashboardView>();
 
-            _ = CreateMap<DashboardViewLangModel, DashboardViewLang>();
             #endregion
 
             #region Dashboard Administration Role
@@ -125,15 +126,13 @@ namespace Dashboard.MappingProfileCls
             #endregion
 
             #region Dashboard Access Level
+            
             _ = CreateMap<DashboardAccessLevelModel, DashboardAccessLevelDto>();
 
             _ = CreateMap<DashboardAccessLevel, DashboardAccessLevelCreateOrEditModel>();
-
-            _ = CreateMap<DashboardAccessLevelLang, DashboardAccessLevelLangModel>();
-
+            
             _ = CreateMap<DashboardAccessLevelCreateOrEditModel, DashboardAccessLevel>();
-
-            _ = CreateMap<DashboardAccessLevelLangModel, DashboardAccessLevelLang>();
+            
             #endregion
 
             #region Dashboard Administrator
@@ -240,6 +239,26 @@ namespace Dashboard.MappingProfileCls
 
             #endregion
 
+            #region Hotel
+
+            #region Hotel Models
+            
+            _ = CreateMap<Hotel, HotelCreateOrEditModel>();
+
+            _ = CreateMap<HotelCreateOrEditModel, Hotel>();
+
+            _ = CreateMap<HotelModel, HotelDto>();
+
+            _ = CreateMap<HotelFilter, HotelParameters>();
+
+            _ = CreateMap<HotelLang, HotelLangModel>();
+
+            _ = CreateMap<HotelLangModel, HotelLang>();
+
+            #endregion
+
+            #endregion
+            
             #region Audit Models
 
             #region Audit

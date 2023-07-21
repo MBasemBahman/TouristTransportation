@@ -23,26 +23,4 @@ namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
             }
         }
     }
-
-    public class DashboardViewLangConfiguration : IEntityTypeConfiguration<DashboardViewLang>
-    {
-        private readonly List<DashboardViewEnum> _dashboardViews;
-        public DashboardViewLangConfiguration(List<DashboardViewEnum> dashboardViews)
-        {
-            _dashboardViews = dashboardViews;
-        }
-
-        public void Configure(EntityTypeBuilder<DashboardViewLang> builder)
-        {
-            foreach (DashboardViewEnum value in _dashboardViews)
-            {
-                _ = builder.HasData(new DashboardViewLang
-                {
-                    Id = (int)value,
-                    Fk_Source = (int)value,
-                    Name = value.ToString()
-                });
-            }
-        }
-    }
 }

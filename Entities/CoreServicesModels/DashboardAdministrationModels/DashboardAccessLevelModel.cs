@@ -49,14 +49,5 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
 
         [DisplayName(nameof(ExportAccess))]
         public bool ExportAccess { get; set; }
-
-        public DashboardAccessLevelLangModel DashboardAccessLevelLang { get; set; }
-    }
-
-    public class DashboardAccessLevelLangModel
-    {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
     }
 }

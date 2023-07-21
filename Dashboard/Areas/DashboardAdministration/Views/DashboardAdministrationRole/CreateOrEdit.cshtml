@@ -1,4 +1,6 @@
-﻿@model DashboardAdministrationRoleCreateOrEditViewModel
+﻿@using Entities.EnumData
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model DashboardAdministrationRoleCreateOrEditViewModel
 @{
     ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAdministrationRole")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -50,13 +52,21 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-label"></label>
-                                                <input asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="Role.DashboardAdministrationRoleLang.Name" class="text-danger"></span>
+                                        @{ int j = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+                                                    
+                                                    <input asp-for="Role.DashboardAdministrationRoleLangs[j].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
+                                                    <span asp-validation-for="Role.DashboardAdministrationRoleLangs[j].Name" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="Role.DashboardAdministrationRoleLangs[j].Language" value="@language" />
+                                                </div>
                                             </div>
-                                        </div>
+                                            j++;
+                                        }
                                         
                                         @for(int i = 0; i< Model.Permissions.Count();i++)
                                         {

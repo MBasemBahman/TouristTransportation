@@ -19,7 +19,9 @@ namespace Repository.DBModels.MainDataModels
 
         public async Task<Area> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.AreaLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(Area entity)

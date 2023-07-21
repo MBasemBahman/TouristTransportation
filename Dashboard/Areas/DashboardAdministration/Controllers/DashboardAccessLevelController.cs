@@ -35,8 +35,6 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardAccessLevelFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
-
             DashboardAccessLevelParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
@@ -44,7 +42,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<DashboardAccessLevelModel> data = await _unitOfWork.DashboardAdministration.GetAccessLevelsPaged(parameters, otherLang);
+            PagedList<DashboardAccessLevelModel> data = await _unitOfWork.DashboardAdministration.GetAccessLevelsPaged(parameters);
 
             List<DashboardAccessLevelDto> resultDto = _mapper.Map<List<DashboardAccessLevelDto>>(data);
 
@@ -58,10 +56,8 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
-
             DashboardAccessLevelDto data = _mapper.Map<DashboardAccessLevelDto>(_unitOfWork.DashboardAdministration
-                                                            .GetAccessLevelbyId(id, otherLang));
+                                                            .GetAccessLevelbyId(id));
 
             return View(data);
         }
@@ -69,10 +65,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            DashboardAccessLevelCreateOrEditModel model = new()
-            {
-                DashboardAccessLevelLang = new()
-            };
+            DashboardAccessLevelCreateOrEditModel model = new();
 
             if (id > 0)
             {
@@ -124,7 +117,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         {
             DashboardAccessLevel data = await _unitOfWork.DashboardAdministration.FindAccessLevelById(id, trackChanges: false);
 
-            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardAccessLevel = id }, otherLang: false).Any());
+            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardAccessLevel = id }, language: null).Any());
         }
 
         [HttpPost, ActionName("Delete")]
