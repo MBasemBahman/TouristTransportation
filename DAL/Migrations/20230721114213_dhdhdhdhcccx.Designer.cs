@@ -4,6 +4,7 @@ using DevelopmentDAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevelopmentDAL.Migrations
 {
     [DbContext(typeof(DevelopmentContext))]
-    partial class DevelopmentContextModelSnapshot : ModelSnapshot
+    [Migration("20230721114213_dhdhdhdhcccx")]
+    partial class dhdhdhdhcccx
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1547,175 +1550,6 @@ namespace DevelopmentDAL.Migrations
                     b.ToTable("Logs");
                 });
 
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ColorCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Fk_Country")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Fk_Country");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Areas");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.AreaLang", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Fk_Source")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Language")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Fk_Source");
-
-                    b.ToTable("AreaLang");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ColorCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Countries");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.CountryLang", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Fk_Source")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Language")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Fk_Source");
-
-                    b.ToTable("CountryLang");
-                });
-
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Currency", b =>
                 {
                     b.Property<int>("Id")
@@ -1756,7 +1590,7 @@ namespace DevelopmentDAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Currencies");
+                    b.ToTable("Currency");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.CurrencyLang", b =>
@@ -1832,7 +1666,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.SupplierLang", b =>
@@ -2135,7 +1969,7 @@ namespace DevelopmentDAL.Migrations
                             EmailAddress = "user@mail.com",
                             LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Developer",
-                            Password = "$2a$11$68UvaLnMq/9JjQ2NkWm7aeYph.erZEZRY9lIoliTCnC3gIcIlXdU2",
+                            Password = "$2a$11$aHYUepufkfj1ZEsDv2TTtOZZ43dlk1rmL7Bu9jPavI4Wsu6/kxcwm",
                             UserName = "Developer"
                         });
                 });
@@ -2421,39 +2255,6 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("Source");
                 });
 
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
-                {
-                    b.HasOne("Entities.DBModels.MainDataModels.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("Fk_Country")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.AreaLang", b =>
-                {
-                    b.HasOne("Entities.DBModels.MainDataModels.Area", "Source")
-                        .WithMany("AreaLangs")
-                        .HasForeignKey("Fk_Source")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Source");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.CountryLang", b =>
-                {
-                    b.HasOne("Entities.DBModels.MainDataModels.Country", "Source")
-                        .WithMany("CountryLangs")
-                        .HasForeignKey("Fk_Source")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Source");
-                });
-
             modelBuilder.Entity("Entities.DBModels.MainDataModels.CurrencyLang", b =>
                 {
                     b.HasOne("Entities.DBModels.MainDataModels.Currency", "Source")
@@ -2616,16 +2417,6 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("DashboardViewLangs");
 
                     b.Navigation("Premissions");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
-                {
-                    b.Navigation("AreaLangs");
-                });
-
-            modelBuilder.Entity("Entities.DBModels.MainDataModels.Country", b =>
-                {
-                    b.Navigation("CountryLangs");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Currency", b =>

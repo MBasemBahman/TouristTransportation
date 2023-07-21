@@ -984,4 +984,37 @@
   <data name="fr" xml:space="preserve">
     <value>الفرنسية</value>
   </data>
+  <data name="AccountState" xml:space="preserve">
+    <value>حالة الحساب</value>
+  </data>
+  <data name="AccountStates" xml:space="preserve">
+    <value>حالات الحسابات</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>نوع الحساب</value>
+  </data>
+  <data name="AccountTypes" xml:space="preserve">
+    <value>انواع الحسابات</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="Areas" xml:space="preserve">
+    <value>المناطق</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>العملات</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>العمله</value>
+  </data>
+  <data name="Main Data" xml:space="preserve">
+    <value>البيانات الاساسية</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>المورد</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>الموردين</value>
+  </data>
 </root>

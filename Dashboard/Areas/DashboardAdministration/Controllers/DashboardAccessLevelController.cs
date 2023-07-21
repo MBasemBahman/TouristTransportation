@@ -1,5 +1,6 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.DashboardAdministration.Models;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.RequestFeatures;
 namespace Dashboard.Areas.DashboardAdministration.Controllers
@@ -35,7 +36,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardAccessLevelFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAccessLevelParameters parameters = new()
             {
@@ -58,7 +59,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAccessLevelDto data = _mapper.Map<DashboardAccessLevelDto>(_unitOfWork.DashboardAdministration
                                                             .GetAccessLevelbyId(id, otherLang));
@@ -69,15 +70,30 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            DashboardAccessLevelCreateOrEditModel model = new()
-            {
-                DashboardAccessLevelLang = new()
-            };
+            DashboardAccessLevelCreateOrEditModel model = new();
 
             if (id > 0)
             {
                 model = _mapper.Map<DashboardAccessLevelCreateOrEditModel>(
                     await _unitOfWork.DashboardAdministration.FindAccessLevelById(id, trackChanges: false));
+
+                #region Check for new Languages
+
+                foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
+                {
+                    model.DashboardAccessLevelLangs ??= new List<DashboardAccessLevelLangModel>();
+
+                    if (model.DashboardAccessLevelLangs.All(a => a.Language != language))
+                    {
+                        model.DashboardAccessLevelLangs.Add(new DashboardAccessLevelLangModel
+                        {
+                            Language = language
+                        });
+                    }
+                }
+
+                #endregion
+
             }
 
             return View(model);
@@ -124,7 +140,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         {
             DashboardAccessLevel data = await _unitOfWork.DashboardAdministration.FindAccessLevelById(id, trackChanges: false);
 
-            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardAccessLevel = id }, otherLang: false).Any());
+            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardAccessLevel = id }, language: null).Any());
         }
 
         [HttpPost, ActionName("Delete")]

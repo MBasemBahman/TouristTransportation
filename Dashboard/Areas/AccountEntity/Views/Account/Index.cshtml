@@ -94,6 +94,8 @@
                                                 <th>@Html.DisplayNameFor(model => row.User.Name)</th>
                                                 <th>@Html.DisplayNameFor(model => row.Phone)</th>
                                                 <th>@Html.DisplayNameFor(model => row.EmailAddress)</th>
+                                                <th>@Html.DisplayNameFor(model => row.AccountType)</th>
+                                                <th>@Html.DisplayNameFor(model => row.AccountState)</th>
                                                 <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                                 <th>
                                                     @Html.DisplayNameFor(model => row.Id)
@@ -162,6 +164,8 @@ else
                                     <th>@Html.DisplayNameFor(model => row.User.Name)</th>
                                     <th>@Html.DisplayNameFor(model => row.Phone)</th>
                                     <th>@Html.DisplayNameFor(model => row.EmailAddress)</th>
+                                    <th>@Html.DisplayNameFor(model => row.AccountType)</th>
+                                    <th>@Html.DisplayNameFor(model => row.AccountState)</th>
                                     <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                     <th>
                                         @Html.DisplayNameFor(model => row.Id)
@@ -223,6 +227,37 @@ else
                         },
                         { data: "phone" },
                         { data: "emailAddress" },
+                        {
+                            data: "accountType",
+                            orderable: false,
+                            render: function (data) {
+                                if (data.colorCode == "#fff"
+                                    || data.colorCode == "#ffff"
+                                    || data.colorCode == ""
+                                    || data.colorCode == null) {
+                                    return data.name;
+                                }
+                                else {
+                                    return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                                }
+                            }
+                        },
+                        {
+                            data: "accountState",
+                            orderable: false,
+                            render: function (data) {
+                                if (data.colorCode == "#fff"
+                                    || data.colorCode == "#ffff"
+                                    || data.colorCode == ""
+                                    || data.colorCode == null) {
+                                    return data.name;
+                                }
+                                else {
+                                    return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                                }
+                            }
+                        },
+
                         { data: "createdAt" },
                         { data: "id" },
                     ]

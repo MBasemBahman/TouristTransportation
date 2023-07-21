@@ -34,7 +34,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardViewFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardViewParameters parameters = new()
             {
@@ -57,7 +57,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardViewDto data = _mapper.Map<DashboardViewDto>(_unitOfWork.DashboardAdministration
                                                             .GetViewbyId(id, otherLang));
@@ -68,16 +68,31 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardView, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            DashboardViewCreateOrEditModel model = new()
-            {
-                DashboardViewLang = new()
-            };
+            DashboardViewCreateOrEditModel model = new();
 
             if (id > 0)
             {
                 model = _mapper.Map<DashboardViewCreateOrEditModel>(
                                                 await _unitOfWork.DashboardAdministration.FindViewById(id, trackChanges: false));
+
+                #region Check for new Languages
+
+                foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
+                {
+                    model.DashboardViewLangs ??= new List<DashboardViewLangModel>();
+
+                    if (model.DashboardViewLangs.All(a => a.Language != language))
+                    {
+                        model.DashboardViewLangs.Add(new DashboardViewLangModel
+                        {
+                            Language = language
+                        });
+                    }
+                }
+
+                #endregion
             }
+
 
             return View(model);
         }
@@ -123,7 +138,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         {
             DashboardView data = await _unitOfWork.DashboardAdministration.FindViewById(id, trackChanges: false);
 
-            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardView = id }, otherLang: false).Any());
+            return View(data != null && !_unitOfWork.DashboardAdministration.GetPremissions(new AdministrationRolePremissionParameters { Fk_DashboardView = id }, language: null).Any());
         }
 
         [HttpPost, ActionName("Delete")]

@@ -46,8 +46,6 @@ namespace Dashboard.Areas.AuditEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] AuditFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
-
             AuditParameters parameters = new()
             {
                 SearchColumns = "Id,TableName"
@@ -60,7 +58,7 @@ namespace Dashboard.Areas.AuditEntity.Controllers
 
             parameters.TableNames = Enum.GetValues(typeof(AuditTableNameEnum)).Cast<AuditTableNameEnum>()
                                                                           .Select(v => v.ToString()).ToList();
-            PagedList<AuditModel> data = await _unitOfWork.Audit.GetAuditsPaged(parameters, otherLang);
+            PagedList<AuditModel> data = await _unitOfWork.Audit.GetAuditsPaged(parameters);
 
             List<AuditDto> resultDto = _mapper.Map<List<AuditDto>>(data);
 
@@ -73,10 +71,8 @@ namespace Dashboard.Areas.AuditEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
-
             AuditDto data = _mapper.Map<AuditDto>(_unitOfWork.Audit
-                                                           .GetAuditbyId(id, otherLang));
+                                                           .GetAuditbyId(id));
 
             return View(data);
         }

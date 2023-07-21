@@ -1,4 +1,6 @@
-﻿@model DashboardAdministrationRoleCreateOrEditViewModel
+﻿@using Entities.EnumData
+
+@model DashboardAdministrationRoleCreateOrEditViewModel
 @{
     ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAdministrationRole")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -50,24 +52,34 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-label"></label>
-                                                <input asp-for="Role.DashboardAdministrationRoleLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="Role.DashboardAdministrationRoleLang.Name" class="text-danger"></span>
+                                      @{
+                                            int i = 0;
+                                        }
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+
+                                                    <input asp-for="Role.DashboardAdministrationRoleLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))" />
+                                                    <span asp-validation-for="Role.DashboardAdministrationRoleLangs[i].Name" class="text-danger"></span>
+
+                                                    <input type="hidden" asp-for="Role.DashboardAdministrationRoleLangs[i].Language" value="@language" />
+                                                </div>
                                             </div>
-                                        </div>
+                                            i++;
+                                        }
                                         
-                                        @for(int i = 0; i< Model.Permissions.Count();i++)
+                                        @for(int j = 0; j< Model.Permissions.Count();j++)
                                         {
                                             <div class="col-md-12 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label">@Model.Permissions[i].AccessLevelName</label>
-                                                    <input type="hidden" asp-for="Permissions[i].Fk_AccessLevel">
-                                                    <input type="hidden" asp-for="Permissions[i].AccessLevelName">
-                                                    <select asp-for="Permissions[i].Fk_Views" class="select2 form-select fk_Views_selectboxes" multiple asp-items="@(new MultiSelectList(ViewData["SystemViews"] as Dictionary<string,string>,"Key","Value"))">
+                                                    <label class="form-label">@Model.Permissions[j].AccessLevelName</label>
+                                                    <input type="hidden" asp-for="Permissions[j].Fk_AccessLevel">
+                                                    <input type="hidden" asp-for="Permissions[j].AccessLevelName">
+                                                    <select asp-for="Permissions[j].Fk_Views" class="select2 form-select fk_Views_selectboxes" multiple asp-items="@(new MultiSelectList(ViewData["SystemViews"] as Dictionary<string,string>,"Key","Value"))">
                                                     </select>
-                                                    <span asp-validation-for="Permissions[i].Fk_Views" class="text-danger"></span>
+                                                    <span asp-validation-for="Permissions[j].Fk_Views" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         }

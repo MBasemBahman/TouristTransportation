@@ -1,4 +1,5 @@
-﻿@model DashboardAccessLevelCreateOrEditModel
+﻿@using Entities.EnumData
+@model DashboardAccessLevelCreateOrEditModel
 @{
     ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAccessLevel")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,13 +50,24 @@
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="DashboardAccessLevelLang.Name" class="form-label"></label>
-                                                <input asp-for="DashboardAccessLevelLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="DashboardAccessLevelLang.Name" class="text-danger"></span>
+                                        @{
+                                            int i = 0;
+                                        }
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+
+                                                    <input asp-for="DashboardAccessLevelLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))" />
+                                                    <span asp-validation-for="DashboardAccessLevelLangs[i].Name" class="text-danger"></span>
+
+                                                    <input type="hidden" asp-for="DashboardAccessLevelLangs[i].Language" value="@language" />
+                                                </div>
                                             </div>
-                                        </div>
+                                            i++;
+                                        }
+
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="CreateAccess" class="form-check-label" for="IsActive"></label>

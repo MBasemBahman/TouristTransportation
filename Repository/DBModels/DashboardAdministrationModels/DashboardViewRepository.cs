@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.DashboardAdministrationModels;
+using Entities.DBModels.AccountModels;
 using Entities.DBModels.DashboardAdministrationModels;
 
 namespace Repository.DBModels.DashboardAdministrationModels
@@ -18,16 +19,25 @@ namespace Repository.DBModels.DashboardAdministrationModels
         public async Task<DashboardView> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                        .Include(a => a.DashboardViewLang)
+                        .Include(a => a.DashboardViewLangs)
                         .SingleOrDefaultAsync();
         }
 
         public new void Create(DashboardView entity)
         {
-            entity.DashboardViewLang ??= new DashboardViewLang
+            entity.DashboardViewLangs ??= new List<DashboardViewLang>();
+
+            foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
-                Name = entity.Name
-            };
+                if (entity.DashboardViewLangs.All(b => b.Language != language))
+                {
+                    entity.DashboardViewLangs.Add(new DashboardViewLang
+                    {
+                        Name = entity.Name,
+                        Language = language
+                    });
+                }
+            }
             base.Create(entity);
         }
     }

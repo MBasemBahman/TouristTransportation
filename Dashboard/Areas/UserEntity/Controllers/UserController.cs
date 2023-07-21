@@ -37,7 +37,7 @@ namespace Dashboard.Areas.UserEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] UserFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             UserParameters parameters = new()
             {
@@ -46,7 +46,7 @@ namespace Dashboard.Areas.UserEntity.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<UserModel> data = await _unitOfWork.User.GetUsersPaged(parameters, otherLang);
+            PagedList<UserModel> data = await _unitOfWork.User.GetUsersPaged(parameters, trackChanges:false);
 
             List<UserDto> resultDto = _mapper.Map<List<UserDto>>(data);
 

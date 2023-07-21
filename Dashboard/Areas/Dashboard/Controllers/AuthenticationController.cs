@@ -229,7 +229,7 @@ namespace Dashboard.Areas.Dashboard.Controllers
         private void SetAdminData(int fk_admin, string expires)
         {
             DashboardAdministratorModel Admin = _unitOfWork.DashboardAdministration
-                                                    .GetAdministratorbyId(fk_admin, otherLang: false);
+                                                    .GetAdministratorbyId(fk_admin, language: null);
 
 
             CookieOptions option = new()

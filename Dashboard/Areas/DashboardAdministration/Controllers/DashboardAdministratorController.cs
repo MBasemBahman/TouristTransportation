@@ -2,6 +2,7 @@
 using Dashboard.Areas.DashboardAdministration.Models;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.EnumData;
 using Entities.RequestFeatures;
 namespace Dashboard.Areas.DashboardAdministration.Controllers
 {
@@ -37,7 +38,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardAdministratorFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAdministratorParameters parameters = new()
             {
@@ -61,7 +62,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAdministratorDto data = _mapper.Map<DashboardAdministratorDto>(_unitOfWork.DashboardAdministration
                                                            .GetAdministratorbyId(id, otherLang));
@@ -72,7 +73,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardAdministrator, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAdministratorCreateOrEditModelDto model = new();
 
@@ -93,7 +94,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardAdministrator, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id, DashboardAdministratorCreateOrEditModelDto model)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             if (!ModelState.IsValid)
             {
@@ -169,7 +170,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         }
 
         // helper methods
-        private void SetViewData(bool otherLang)
+        private void SetViewData(DBModelsEnum.LanguageEnum? otherLang)
         {
             ViewData["Roles"] = _unitOfWork.DashboardAdministration.GetRolesLookUp(new DashboardAdministrationRoleRequestParameters()
             { GetDeveloperRole = false }, otherLang);

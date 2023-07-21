@@ -1,6 +1,7 @@
 ﻿using Entities.CoreServicesModels.DashboardAdministrationModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.EnumData;
 
 namespace CoreServices.Logic
 {
@@ -15,13 +16,15 @@ namespace CoreServices.Logic
 
         #region  Dashboard View Services
         public IQueryable<DashboardViewModel> GetViews(DashboardViewParameters parameters,
-                bool otherLang)
+                DBModelsEnum.LanguageEnum? language)
         {
             return _repository.DashboardView
                        .FindAll(parameters, trackChanges: false)
                        .Select(a => new DashboardViewModel
                        {
-                           Name = otherLang ? a.DashboardViewLang.Name : a.Name,
+                           Name = language != null ? a.DashboardViewLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
                            Id = a.Id,
                            CreatedAt = a.CreatedAt,
                            ViewPath = a.ViewPath,
@@ -34,9 +37,9 @@ namespace CoreServices.Logic
 
         public async Task<PagedList<DashboardViewModel>> GetViewsPaged(
                   DashboardViewParameters parameters,
-                  bool otherLang)
+                  DBModelsEnum.LanguageEnum? language)
         {
-            return await PagedList<DashboardViewModel>.ToPagedList(GetViews(parameters, otherLang), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<DashboardViewModel>.ToPagedList(GetViews(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<DashboardView> FindViewById(int id, bool trackChanges)
@@ -44,9 +47,9 @@ namespace CoreServices.Logic
             return await _repository.DashboardView.FindById(id, trackChanges);
         }
 
-        public DashboardViewModel GetViewbyId(int id, bool otherLang)
+        public DashboardViewModel GetViewbyId(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetViews(new DashboardViewParameters { Id = id }, otherLang).SingleOrDefault();
+            return GetViews(new DashboardViewParameters { Id = id }, language).SingleOrDefault();
         }
 
         public List<int> GetViewsByRoleId(int fk_role)
@@ -68,9 +71,9 @@ namespace CoreServices.Logic
             _repository.DashboardView.Delete(dashboardView);
         }
 
-        public Dictionary<string, string> GetViewsLookUp(DashboardViewParameters parameters, bool otherLang)
+        public Dictionary<string, string> GetViewsLookUp(DashboardViewParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
-            return GetViews(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
+            return GetViews(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
         public int GetViewsCount()
@@ -81,13 +84,15 @@ namespace CoreServices.Logic
 
         #region Dashboard Access Level Services
         public IQueryable<DashboardAccessLevelModel> GetAccessLevels(DashboardAccessLevelParameters parameters,
-               bool otherLang)
+               DBModelsEnum.LanguageEnum? language)
         {
             return _repository.DashboardAccessLevel
                        .FindAll(parameters, trackChanges: false)
                        .Select(a => new DashboardAccessLevelModel
                        {
-                           Name = otherLang ? a.DashboardAccessLevelLang.Name : a.Name,
+                           Name = language != null ? a.DashboardAccessLevelLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
                            Id = a.Id,
                            CreatedAt = a.CreatedAt,
                            CreateAccess = a.CreateAccess,
@@ -103,9 +108,9 @@ namespace CoreServices.Logic
 
         public async Task<PagedList<DashboardAccessLevelModel>> GetAccessLevelsPaged(
                   DashboardAccessLevelParameters parameters,
-                  bool otherLang)
+                  DBModelsEnum.LanguageEnum? language)
         {
-            return await PagedList<DashboardAccessLevelModel>.ToPagedList(GetAccessLevels(parameters, otherLang), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<DashboardAccessLevelModel>.ToPagedList(GetAccessLevels(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<DashboardAccessLevel> FindAccessLevelById(int id, bool trackChanges)
@@ -113,14 +118,14 @@ namespace CoreServices.Logic
             return await _repository.DashboardAccessLevel.FindById(id, trackChanges);
         }
 
-        public DashboardAccessLevelModel GetAccessLevelbyId(int id, bool otherLang)
+        public DashboardAccessLevelModel GetAccessLevelbyId(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetAccessLevels(new DashboardAccessLevelParameters { Id = id }, otherLang).SingleOrDefault();
+            return GetAccessLevels(new DashboardAccessLevelParameters { Id = id }, language).SingleOrDefault();
         }
 
         public DashboardAccessLevelModel GetAccessLevelByPremission(DashboardAccessLevelParameters parameters)
         {
-            return GetAccessLevels(parameters, otherLang: false).FirstOrDefault();
+            return GetAccessLevels(parameters, language: null).FirstOrDefault();
         }
 
         public void CreateAccessLevel(DashboardAccessLevel dashboardAccessLevel)
@@ -134,9 +139,9 @@ namespace CoreServices.Logic
             _repository.DashboardAccessLevel.Delete(dashboardAccessLevel);
         }
 
-        public Dictionary<string, string> GetAccessLevelsLookUp(DashboardAccessLevelParameters parameters, bool otherLang)
+        public Dictionary<string, string> GetAccessLevelsLookUp(DashboardAccessLevelParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
-            return GetAccessLevels(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
+            return GetAccessLevels(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
         public int GetAccessLevelsCount()
@@ -147,13 +152,15 @@ namespace CoreServices.Logic
 
         #region Dashboard Administration Role Services
         public IQueryable<DashboardAdministrationRoleModel> GetRoles(DashboardAdministrationRoleRequestParameters parameters,
-               bool otherLang)
+               DBModelsEnum.LanguageEnum? language)
         {
             return _repository.DashboardAdministrationRole
                        .FindAll(parameters, trackChanges: false)
                        .Select(a => new DashboardAdministrationRoleModel
                        {
-                           Name = otherLang ? a.DashboardAdministrationRoleLang.Name : a.Name,
+                           Name = language != null ? a.DashboardAdministrationRoleLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Name,
                            Id = a.Id,
                            CreatedAt = a.CreatedAt,
                            PremissionsCount = a.Premissions.Count,
@@ -166,9 +173,9 @@ namespace CoreServices.Logic
 
         public async Task<PagedList<DashboardAdministrationRoleModel>> GetRolesPaged(
                   DashboardAdministrationRoleRequestParameters parameters,
-                  bool otherLang)
+                  DBModelsEnum.LanguageEnum? language)
         {
-            return await PagedList<DashboardAdministrationRoleModel>.ToPagedList(GetRoles(parameters, otherLang), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<DashboardAdministrationRoleModel>.ToPagedList(GetRoles(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<DashboardAdministrationRole> FindRoleById(int id, bool trackChanges)
@@ -176,9 +183,9 @@ namespace CoreServices.Logic
             return await _repository.DashboardAdministrationRole.FindById(id, trackChanges);
         }
 
-        public DashboardAdministrationRoleModel GetRolebyId(int id, bool otherLang)
+        public DashboardAdministrationRoleModel GetRolebyId(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetRoles(new DashboardAdministrationRoleRequestParameters { Id = id }, otherLang).SingleOrDefault();
+            return GetRoles(new DashboardAdministrationRoleRequestParameters { Id = id }, language).SingleOrDefault();
         }
 
         public void CreateRole(DashboardAdministrationRole dashboardAdministrationRole)
@@ -223,7 +230,7 @@ namespace CoreServices.Logic
 
                 List<int> oldViews = GetPremissions(new AdministrationRolePremissionParameters
                 { Fk_DashboardAccessLevel = permission.Fk_AccessLevel, Fk_DashboardAdministrationRole = fk_role }
-                       , otherLang: false).Select(a => a.Fk_DashboardView).ToList();
+                       , language: null).Select(a => a.Fk_DashboardView).ToList();
 
                 List<int> addedViews = permission.Fk_Views.Except(oldViews).ToList();
                 List<int> removedViews = oldViews.Except(permission.Fk_Views).ToList();
@@ -272,9 +279,9 @@ namespace CoreServices.Logic
             _repository.DashboardAdministrationRole.Delete(dashboardAdministrationRole);
         }
 
-        public Dictionary<string, string> GetRolesLookUp(DashboardAdministrationRoleRequestParameters parameters, bool otherLang)
+        public Dictionary<string, string> GetRolesLookUp(DashboardAdministrationRoleRequestParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
-            return GetRoles(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
+            return GetRoles(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
         public int GetRolesCount()
@@ -285,7 +292,7 @@ namespace CoreServices.Logic
         public DashboardAdministrationRoleCreateOrEditViewModel GetRoleCreateOrEditViewModel(
             DashboardAdministrationRoleCreateOrEditModel role,
             List<RolePermissionCreateOrEditViewModel> permissions,
-            bool otherLang,
+            DBModelsEnum.LanguageEnum? language,
             int id = 0)
         {
             DashboardAdministrationRoleCreateOrEditViewModel model = new()
@@ -296,7 +303,7 @@ namespace CoreServices.Logic
 
             if (permissions == null)
             {
-                foreach (DashboardAccessLevelModel accesslevel in GetAccessLevels(new DashboardAccessLevelParameters(), otherLang).ToList())
+                foreach (DashboardAccessLevelModel accesslevel in GetAccessLevels(new DashboardAccessLevelParameters(), language).ToList())
                 {
                     model.Permissions.Add(new RolePermissionCreateOrEditViewModel
                     {
@@ -307,7 +314,7 @@ namespace CoreServices.Logic
                             {
                                 Fk_DashboardAccessLevel = accesslevel.Id,
                                 Fk_DashboardAdministrationRole = id
-                            }, otherLang: false)
+                            }, language: null)
                         .Select(b => b.Fk_DashboardView).ToList()
                         : new List<int>()
                     });
@@ -324,7 +331,7 @@ namespace CoreServices.Logic
 
         #region Dashboard Administrator Services
         public IQueryable<DashboardAdministratorModel> GetAdministrators(DashboardAdministratorParameters parameters,
-               bool otherLang)
+              DBModelsEnum.LanguageEnum? language)
         {
             return _repository.DashboardAdministrator
                        .FindAll(parameters, trackChanges: false)
@@ -346,7 +353,9 @@ namespace CoreServices.Logic
                            },
                            DashboardAdministrationRole = new DashboardAdministrationRoleModel
                            {
-                               Name = otherLang ? a.DashboardAdministrationRole.DashboardAdministrationRoleLang.Name : a.DashboardAdministrationRole.Name
+                               Name = language != null ? a.DashboardAdministrationRole.DashboardAdministrationRoleLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.DashboardAdministrationRole.Name,
                            },
                            JobTitle = a.JobTitle,
                        })
@@ -357,9 +366,9 @@ namespace CoreServices.Logic
 
         public async Task<PagedList<DashboardAdministratorModel>> GetAdministratorsPaged(
                   DashboardAdministratorParameters parameters,
-                  bool otherLang)
+                 DBModelsEnum.LanguageEnum? language)
         {
-            return await PagedList<DashboardAdministratorModel>.ToPagedList(GetAdministrators(parameters, otherLang), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<DashboardAdministratorModel>.ToPagedList(GetAdministrators(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<DashboardAdministrator> FindAdministratorById(int id, bool trackChanges)
@@ -372,9 +381,9 @@ namespace CoreServices.Logic
             return await _repository.DashboardAdministrator.FindByUserId(id, trackChanges);
         }
 
-        public DashboardAdministratorModel GetAdministratorbyId(int id, bool otherLang)
+        public DashboardAdministratorModel GetAdministratorbyId(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetAdministrators(new DashboardAdministratorParameters { Id = id, GetDevelopers = true }, otherLang).SingleOrDefault();
+            return GetAdministrators(new DashboardAdministratorParameters { Id = id, GetDevelopers = true }, language).SingleOrDefault();
         }
 
         public void CreateAdministrator(DashboardAdministrator dashboardAdministrator)
@@ -400,7 +409,7 @@ namespace CoreServices.Logic
 
         #region Administration Role Premission Services
         public IQueryable<AdministrationRolePremissionModel> GetPremissions(AdministrationRolePremissionParameters parameters,
-               bool otherLang)
+             DBModelsEnum.LanguageEnum? language)
         {
             return _repository.AdministrationRolePremission
                        .FindAll(parameters, trackChanges: false)
@@ -413,15 +422,21 @@ namespace CoreServices.Logic
                            CreatedAt = a.CreatedAt,
                            DashboardAdministrationRole = new DashboardAdministrationRoleModel
                            {
-                               Name = otherLang ? a.DashboardAdministrationRole.DashboardAdministrationRoleLang.Name : a.DashboardAdministrationRole.Name
+                               Name = language != null ? a.DashboardAdministrationRole.DashboardAdministrationRoleLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.DashboardAdministrationRole.Name,
                            },
                            DashboardAccessLevel = new DashboardAccessLevelModel
                            {
-                               Name = otherLang ? a.DashboardAccessLevel.DashboardAccessLevelLang.Name : a.DashboardAccessLevel.Name
+                               Name = language != null ? a.DashboardAccessLevel.DashboardAccessLevelLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.DashboardAccessLevel.Name,
                            },
                            DashboardView = new DashboardViewModel
                            {
-                               Name = otherLang ? a.DashboardView.DashboardViewLang.Name : a.DashboardView.Name
+                               Name = language != null ? a.DashboardView.DashboardViewLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.DashboardView.Name,
                            },
                        })
                        .Search(parameters.SearchColumns, parameters.SearchTerm)

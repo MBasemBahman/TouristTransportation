@@ -18,7 +18,8 @@ namespace Repository.DBModels.MainDataModels
 
         public async Task<Country> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a=>a.CountryLangs).SingleOrDefaultAsync();
         }
 
         public new void Create(Country entity)

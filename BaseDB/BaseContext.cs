@@ -4,6 +4,7 @@ using Entities.DBModels.AuditModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.LogModels;
+using Entities.DBModels.MainDataModels;
 using Entities.DBModels.SharedModels;
 using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,13 @@ namespace BaseDB
 
         #region Audit Models
         public DbSet<Audit> Audits { get; set; }
+        #endregion
+
+        #region Main Data Models
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

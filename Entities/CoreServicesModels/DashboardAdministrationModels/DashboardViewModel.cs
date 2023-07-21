@@ -1,4 +1,6 @@
-﻿namespace Entities.CoreServicesModels.DashboardAdministrationModels
+﻿using Entities.EnumData;
+
+namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
     public class DashboardViewParameters : RequestParameters
     {
@@ -25,13 +27,16 @@
         [DisplayName(nameof(ViewPath))]
         public string ViewPath { get; set; }
 
-        public DashboardViewLangModel DashboardViewLang { get; set; }
+        public List<DashboardViewLangModel> DashboardViewLangs { get; set; }
     }
 
     public class DashboardViewLangModel
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
+
+        [DisplayName(nameof(Language))]
+        public DBModelsEnum.LanguageEnum Language { get; set; }
     }
 }

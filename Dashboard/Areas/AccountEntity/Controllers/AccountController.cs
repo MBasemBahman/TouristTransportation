@@ -1,6 +1,7 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.AccountEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.MainDataModels;
 using Entities.DBModels.AccountModels;
 using Entities.RequestFeatures;
 
@@ -47,8 +48,8 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] AccountFilter dtParameters)
         {
-            _ = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
-            
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             AccountParameters parameters = new()
@@ -58,7 +59,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<AccountModel> data = await _unitOfWork.Account.GetAccountsPaged(parameters);
+            PagedList<AccountModel> data = await _unitOfWork.Account.GetAccountsPaged(parameters,otherLang);
 
             List<AccountDto> resultDto = _mapper.Map<List<AccountDto>>(data);
 
@@ -71,9 +72,9 @@ namespace Dashboard.Areas.AccountEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            _ = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(id));
+            AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(id,otherLang));
 
             return View(data);
         }
@@ -83,7 +84,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
 
             AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account
-                .GetAccountById(id));
+                .GetAccountById(id,otherLang));
 
             ViewData["returnItem"] = returnItem;
             ViewData["otherLang"] = otherLang;
@@ -98,10 +99,10 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             
             if (id > 0)
             {
-                Account countryDB = await _unitOfWork.Account.FindAccountById(id, trackChanges: false);
-                model = _mapper.Map<AccountCreateOrEditModel>(countryDB);
+                Account accountDB = await _unitOfWork.Account.FindAccountById(id, trackChanges: false);
+                model = _mapper.Map<AccountCreateOrEditModel>(accountDB);
 
-                model.ImageUrl = countryDB.StorageUrl + countryDB.ImageUrl;
+                model.ImageUrl = accountDB.StorageUrl + accountDB.ImageUrl;
             }
 
 
@@ -124,6 +125,8 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             }
             try
             {
+                model.Fk_Supplier = model.Fk_Supplier > 0 ? model.Fk_Supplier : null;
+
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
                 
                 Account dataDB = new();
@@ -194,8 +197,14 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         //helper method
         private void SetViewData(int id, bool isProfile = false)
         {
+            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+
             ViewData["id"] = id;
             ViewData["isProfile"] = isProfile;
+            ViewData["AccountType"] = _unitOfWork.Account.GetAccountTypesLookUp(new AccountTypeParameters(), otherLang);
+            ViewData["AccountState"] = _unitOfWork.Account.GetAccountStatesLookUp(new AccountStateParameters(), otherLang);
+            ViewData["Supplier"] = _unitOfWork.MainData.GetSuppliersLookUp(new SupplierParameters(), otherLang);
+
         }
 
     }

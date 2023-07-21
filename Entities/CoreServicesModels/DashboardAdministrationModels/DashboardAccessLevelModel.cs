@@ -1,5 +1,7 @@
 ﻿
 
+using Entities.EnumData;
+
 namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
     public class DashboardAccessLevelParameters : RequestParameters
@@ -50,13 +52,16 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
         [DisplayName(nameof(ExportAccess))]
         public bool ExportAccess { get; set; }
 
-        public DashboardAccessLevelLangModel DashboardAccessLevelLang { get; set; }
+        public List<DashboardAccessLevelLangModel> DashboardAccessLevelLangs { get; set; }
     }
 
     public class DashboardAccessLevelLangModel
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
+
+        [DisplayName(nameof(Language))]
+        public DBModelsEnum.LanguageEnum Language { get; set; }
     }
 }

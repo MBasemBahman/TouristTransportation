@@ -1,6 +1,8 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.DashboardAdministration.Models;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.EnumData;
 using Entities.RequestFeatures;
 namespace Dashboard.Areas.DashboardAdministration.Controllers
 {
@@ -35,7 +37,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] DashboardAdministrationRoleFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             DashboardAdministrationRoleRequestParameters parameters = new()
             {
@@ -60,7 +62,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         public IActionResult Details(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
 
             DashboardAdministrationRoleDetailsViewModel model = new()
@@ -79,7 +81,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
                         {
                             Fk_DashboardAccessLevel = accesslevel.Id,
                             Fk_DashboardAdministrationRole = id
-                        }, otherLang: false)
+                        }, language: null)
                     .Select(b => b.DashboardView.Name).ToList());
             }
 
@@ -89,17 +91,33 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            DashboardAdministrationRoleCreateOrEditModel model = new()
-            {
-                DashboardAdministrationRoleLang = new()
-            };
+            DashboardAdministrationRoleCreateOrEditModel model = new();
 
             if (id > 0)
             {
                 model = _mapper.Map<DashboardAdministrationRoleCreateOrEditModel>(
                                                 await _unitOfWork.DashboardAdministration.FindRoleById(id, trackChanges: false));
+
+
+                #region Check for new Languages
+
+                foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
+                {
+                    model.DashboardAdministrationRoleLangs ??= new List<DashboardAdministrationRoleLangModel>();
+
+                    if (model.DashboardAdministrationRoleLangs.All(a => a.Language != language))
+                    {
+                        model.DashboardAdministrationRoleLangs.Add(new DashboardAdministrationRoleLangModel
+                        {
+                            Language = language
+                        });
+                    }
+                }
+
+                #endregion
+
             }
 
             SetViewData(otherLang);
@@ -114,7 +132,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             DashboardAdministrationRoleCreateOrEditModel Role,
             List<RolePermissionCreateOrEditViewModel> permissions = null)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             if (!ModelState.IsValid)
             {
@@ -160,7 +178,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             return View(data != null &&
                 !_unitOfWork.DashboardAdministration
                 .GetAdministrators(new DashboardAdministratorParameters
-                { Fk_DashboardAdministrationRole = id }, otherLang: false).Any());
+                { Fk_DashboardAdministrationRole = id }, language: null).Any());
         }
 
         [HttpPost, ActionName("Delete")]
@@ -173,7 +191,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private void SetViewData(bool otherLang)
+        private void SetViewData(DBModelsEnum.LanguageEnum? otherLang)
         {
             ViewData["SystemViews"] = _unitOfWork.DashboardAdministration.GetViewsLookUp(new DashboardViewParameters(), otherLang);
         }

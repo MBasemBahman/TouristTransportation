@@ -1,4 +1,6 @@
-﻿@model DashboardViewCreateOrEditModel
+﻿@using Entities.EnumData
+
+@model DashboardViewCreateOrEditModel
 @{
     ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardView")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,13 +51,23 @@
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="DashboardViewLang.Name" class="form-label"></label>
-                                                <input asp-for="DashboardViewLang.Name" class="form-control" placeholder="@Localizer.Get("Enter")  @(Localizer.Get($"Name{PropertyAttributeConstants.EnLang}"))" />
-                                                <span asp-validation-for="DashboardViewLang.Name" class="text-danger"></span>
+                                        @{
+                                            int i = 0;
+                                        }
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+
+                                                    <input asp-for="DashboardViewLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))" />
+                                                    <span asp-validation-for="DashboardViewLangs[i].Name" class="text-danger"></span>
+
+                                                    <input type="hidden" asp-for="DashboardViewLangs[i].Language" value="@language" />
+                                                </div>
                                             </div>
-                                        </div>
+                                            i++;
+                                        }
                                       <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="ViewPath" class="form-label"></label>

@@ -14,7 +14,7 @@ namespace CoreServices.Logic
 
         #region Audit Services
 
-        public IQueryable<AuditModel> GetAudits(AuditParameters parameters, bool otherLang)
+        public IQueryable<AuditModel> GetAudits(AuditParameters parameters)
         {
             return _repository.Audit
                        .FindAll(parameters, trackChanges: false)
@@ -30,18 +30,18 @@ namespace CoreServices.Logic
                            AuditType = string.IsNullOrEmpty(a.OldValues) && !string.IsNullOrEmpty(a.NewValues) ?
                            new AuditType
                            {
-                               Name = otherLang ? "Create" : "إنشاء",
+                               Name ="Create",
                                ColorCode = "Green"
 
                            } : !string.IsNullOrEmpty(a.NewValues) && !string.IsNullOrEmpty(a.OldValues) ?
                            new AuditType
                            {
-                               Name = otherLang ? "Update" : "تعديل",
+                               Name =  "Update",
                                ColorCode = "Orange"
 
                            } : new AuditType
                            {
-                               Name = otherLang ? "Remove" : "حذف",
+                               Name =  "Remove",
                                ColorCode = "Red"
 
                            },
@@ -56,16 +56,16 @@ namespace CoreServices.Logic
             return _repository.Audit.Count();
         }
 
-        public AuditModel GetAuditbyId(int id, bool otherLang)
+        public AuditModel GetAuditbyId(int id)
         {
-            return GetAudits(new AuditParameters { Id = id }, otherLang).SingleOrDefault();
+            return GetAudits(new AuditParameters { Id = id }).SingleOrDefault();
         }
 
 
         public async Task<PagedList<AuditModel>> GetAuditsPaged(
-             AuditParameters parameters, bool otherLang)
+             AuditParameters parameters)
         {
-            return await PagedList<AuditModel>.ToPagedList(GetAudits(parameters, otherLang), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<AuditModel>.ToPagedList(GetAudits(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
 
