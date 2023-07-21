@@ -1,4 +1,6 @@
-﻿namespace Entities.DBModels.DashboardAdministrationModels
+﻿using Entities.EnumData;
+
+namespace Entities.DBModels.DashboardAdministrationModels
 {
     public class DashboardAccessLevel : LookUpEntity
     {

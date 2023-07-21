@@ -1,4 +1,6 @@
-﻿namespace Entities.CoreServicesModels.DashboardAdministrationModels
+﻿using Entities.EnumData;
+
+namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
     public class DashboardViewParameters : RequestParameters
     {

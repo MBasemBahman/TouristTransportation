@@ -1,5 +1,6 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.DashboardAdministration.Models;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.RequestFeatures;
 namespace Dashboard.Areas.DashboardAdministration.Controllers
@@ -71,6 +72,24 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             {
                 model = _mapper.Map<DashboardAccessLevelCreateOrEditModel>(
                     await _unitOfWork.DashboardAdministration.FindAccessLevelById(id, trackChanges: false));
+
+                #region Check for new Languages
+
+                foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
+                {
+                    model.DashboardAccessLevelLangs ??= new List<DashboardAccessLevelLangModel>();
+
+                    if (model.DashboardAccessLevelLangs.All(a => a.Language != language))
+                    {
+                        model.DashboardAccessLevelLangs.Add(new DashboardAccessLevelLangModel
+                        {
+                            Language = language
+                        });
+                    }
+                }
+
+                #endregion
+
             }
 
             return View(model);

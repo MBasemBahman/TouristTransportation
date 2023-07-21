@@ -161,7 +161,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
                 !_unitOfWork.Account.GetAccounts(new AccountParameters
                 {
                     Fk_AccountState = id
-                }).Any());
+                },language:null).Any());
         }
 
         [HttpPost, ActionName("Delete")]

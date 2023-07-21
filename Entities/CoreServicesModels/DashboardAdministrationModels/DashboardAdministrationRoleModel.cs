@@ -30,13 +30,12 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
         public string Name { get; set; }
 
         public List<DashboardAdministrationRoleLangModel> DashboardAdministrationRoleLangs { get; set; }
-
     }
 
     public class DashboardAdministrationRoleLangModel
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
         
         [DisplayName(nameof(Language))]

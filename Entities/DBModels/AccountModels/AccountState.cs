@@ -8,9 +8,7 @@ namespace Entities.DBModels.AccountModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public new string Name { get; set; }
 
-        [DisplayName(nameof(ColorCode))]
-        public string ColorCode { get; set; }
-
+        
         [DisplayName(nameof(Accounts))]
         public IList<Account> Accounts { get; set; }
 

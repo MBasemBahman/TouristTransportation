@@ -1,5 +1,7 @@
 ﻿
 
+using Entities.EnumData;
+
 namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
     public class DashboardAccessLevelParameters : RequestParameters

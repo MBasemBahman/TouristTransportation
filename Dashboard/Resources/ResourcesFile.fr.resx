@@ -972,5 +972,37 @@
   </data>
   <data name="Content" xml:space="preserve">
     <value>Content</value>
+  <data name="AccountState" xml:space="preserve">
+    <value>Account State</value>
+  </data>
+  <data name="AccountStates" xml:space="preserve">
+    <value>Account States</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="AccountTypes" xml:space="preserve">
+    <value>Account Types</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Areas" xml:space="preserve">
+    <value>Areas</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Main Data" xml:space="preserve">
+    <value>Main Data</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Suppliers</value>
   </data>
 </root>

@@ -1,5 +1,7 @@
-﻿using Entities.CoreServicesModels.UserModels;
+﻿using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
+using Entities.DBModels.MainDataModels;
 
 namespace Entities.CoreServicesModels.AccountModels
 {
@@ -43,6 +45,14 @@ namespace Entities.CoreServicesModels.AccountModels
         
         [DisplayName(nameof(User))]
         public UserModel User { get; set; }
+
+        [DisplayName(nameof(Supplier))]
+        [ForeignKey(nameof(Supplier))]
+        public int? Fk_Supplier { get; set; }
+
+        [DisplayName(nameof(Supplier))]
+        public SupplierModel Supplier { get; set; }
+
     }
 
     public class AccountCreateOrEditModel
@@ -60,6 +70,10 @@ namespace Entities.CoreServicesModels.AccountModels
         
         [DisplayName(nameof(ImageUrl))]
         public string ImageUrl { get; set; }
+
+        [DisplayName(nameof(Supplier))]
+        [ForeignKey(nameof(Supplier))]
+        public int? Fk_Supplier { get; set; }
 
         [DisplayName(nameof(Phone))]
         [Phone]

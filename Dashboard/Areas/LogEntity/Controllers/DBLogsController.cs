@@ -36,7 +36,6 @@ namespace Dashboard.Areas.LogEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] LogFilter dtParameters)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
 
             LogParameters parameters = new()
             {
@@ -45,7 +44,7 @@ namespace Dashboard.Areas.LogEntity.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<LogModel> data = await _unitOfWork.Log.GetLogsPaged(parameters, otherLang);
+            PagedList<LogModel> data = await _unitOfWork.Log.GetLogsPaged(parameters, trackChanges:false);
 
             List<LogDto> resultDto = _mapper.Map<List<LogDto>>(data);
 

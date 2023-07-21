@@ -16,23 +16,74 @@
 
                     <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.EmailAddress):</dt>
                     <dd class="col-sm-8 mb-1">@Model.EmailAddress</dd>
-                    
-                    <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
-                    <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+
+                    <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.AccountState):</dt>
+                    <dd class="col-sm-8 mb-1">
+                        <span>
+                            @if (Model.AccountState.ColorCode != "#fff" && Model.AccountState.ColorCode != "#ffff" && !string.IsNullOrEmpty(Model.AccountState.ColorCode))
+                            {
+                                <span class="badge px-2 text-center" style="background-color:@Model.AccountState.ColorCode;color:white">@Model.AccountState.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Model.AccountState.Name</span>
+                            }
+                        </span>
+                    </dd>
+
                 </dl>
             </div>
             <div class="col-xl-5 col-12">
                 <dl class="row mb-0">
                     <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Phone):</dt>
                     <dd class="col-sm-8 mb-1">@Model.Phone</dd>
-                    
-                    <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
-                    <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
-                    
+
+                    <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.AccountType):</dt>
+                    <dd class="col-sm-8 mb-1">
+                        <span>
+                            @if (Model.AccountType.ColorCode != "#fff" && Model.AccountType.ColorCode != "#ffff" && !string.IsNullOrEmpty(Model.AccountType.ColorCode))
+                            {
+                                <span class="badge px-2 text-center" style="background-color:@Model.AccountType.ColorCode;color:white">@Model.AccountType.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Model.AccountType.Name</span>
+                            }
+                        </span>
+                    </dd>
+
+                    <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Supplier):</dt>
+                    <dd class="col-sm-8 mb-1">@(Model.Supplier!=null ? Model.Supplier.Name : "-")</dd>
+
                 </dl>
             </div>
 
         </div>
+
+            <div class="row">
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
+                <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
+            </dl>
+        </div>
+
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedBy):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CreatedBy</dd>
+
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedBy):</dt>
+                <dd class="col-sm-8 mb-1">@Model.LastModifiedBy</dd>
+            </dl>
+        </div>
+
+    </div>
+
     </div>
 </div>
 

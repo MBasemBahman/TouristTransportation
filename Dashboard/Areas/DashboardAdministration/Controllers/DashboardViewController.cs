@@ -70,7 +70,25 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             {
                 model = _mapper.Map<DashboardViewCreateOrEditModel>(
                                                 await _unitOfWork.DashboardAdministration.FindViewById(id, trackChanges: false));
+
+                #region Check for new Languages
+
+                foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
+                {
+                    model.DashboardViewLangs ??= new List<DashboardViewLangModel>();
+
+                    if (model.DashboardViewLangs.All(a => a.Language != language))
+                    {
+                        model.DashboardViewLangs.Add(new DashboardViewLangModel
+                        {
+                            Language = language
+                        });
+                    }
+                }
+
+                #endregion
             }
+
 
             return View(model);
         }

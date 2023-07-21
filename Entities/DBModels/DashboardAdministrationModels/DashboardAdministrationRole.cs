@@ -17,9 +17,10 @@ namespace Entities.DBModels.DashboardAdministrationModels
         public List<DashboardAdministrationRoleLang> DashboardAdministrationRoleLangs { get; set; }
     }
 
-    public class DashboardAdministrationRoleLang : LangEntity<DashboardAdministrationRole>
+
+
+    public class DashboardAdministrationRoleLang : AuditLangEntity<DashboardAdministrationRole>
     {
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
         

@@ -68,16 +68,16 @@
                                             j++;
                                         }
                                         
-                                        @for(int i = 0; i< Model.Permissions.Count();i++)
+                                        @for(int j = 0; j< Model.Permissions.Count();j++)
                                         {
                                             <div class="col-md-12 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label">@Model.Permissions[i].AccessLevelName</label>
-                                                    <input type="hidden" asp-for="Permissions[i].Fk_AccessLevel">
-                                                    <input type="hidden" asp-for="Permissions[i].AccessLevelName">
-                                                    <select asp-for="Permissions[i].Fk_Views" class="select2 form-select fk_Views_selectboxes" multiple asp-items="@(new MultiSelectList(ViewData["SystemViews"] as Dictionary<string,string>,"Key","Value"))">
+                                                    <label class="form-label">@Model.Permissions[j].AccessLevelName</label>
+                                                    <input type="hidden" asp-for="Permissions[j].Fk_AccessLevel">
+                                                    <input type="hidden" asp-for="Permissions[j].AccessLevelName">
+                                                    <select asp-for="Permissions[j].Fk_Views" class="select2 form-select fk_Views_selectboxes" multiple asp-items="@(new MultiSelectList(ViewData["SystemViews"] as Dictionary<string,string>,"Key","Value"))">
                                                     </select>
-                                                    <span asp-validation-for="Permissions[i].Fk_Views" class="text-danger"></span>
+                                                    <span asp-validation-for="Permissions[j].Fk_Views" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         }

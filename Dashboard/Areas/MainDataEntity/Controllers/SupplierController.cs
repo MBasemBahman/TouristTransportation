@@ -164,7 +164,7 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
                 !_unitOfWork.Account.GetAccounts(new Entities.CoreServicesModels.AccountModels.AccountParameters
                 {
                     Fk_Supplier = id
-                }).Any());
+                },language:null).Any());
         }
 
         [HttpPost, ActionName("Delete")]
