@@ -20,8 +20,10 @@ namespace Entities.CoreServicesModels.AccountModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-        public new string Name { get; set; }
+        public  string Name { get; set; }
 
+        [DisplayName(nameof(ColorCode))]
+        public string ColorCode { get; set; }
         public List<AccountStateLangModel> AccountStateLangs { get; set; }
     }
     

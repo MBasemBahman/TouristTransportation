@@ -30,8 +30,14 @@
             Audit = 11,
             Account = 12,
             CompanyTripState = 13,
-            Post = 14,
-            PostAttachment = 15
+            AccountState = 14,
+            AccountType = 15,
+            Area = 16,
+            Country = 17,
+            Currency = 18,
+            Supplier = 19,
+            Post = 20,
+            PostAttachment = 21
         }
 
         public enum AccountProfileItems

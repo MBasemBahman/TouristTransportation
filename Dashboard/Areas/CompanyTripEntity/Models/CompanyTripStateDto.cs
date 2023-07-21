@@ -14,5 +14,5 @@ public class CompanyTripStateDto : CompanyTripStateModel
     public new string CreatedAt { get; set; }
 
     [DisplayName(nameof(LastModifiedAt))]
-    public string LastModifiedAt { get; set; }
+    public new string LastModifiedAt { get; set; }
 }

@@ -1,8 +1,8 @@
 ﻿@using Entities.EnumData
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model CompanyTripStateCreateOrEditModel
+@model CurrencyCreateOrEditModel
 @{
-    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("CompanyTripState")}";
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("Currency")}";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.useForm = true;
     ViewBag.useImageUploud = true;
@@ -24,7 +24,7 @@
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/CompanyTripEntity/CompanyTripState/Index">@Localizer.Get("CompanyTripStates")</a>
+                                    <a href="/MainDataEntity/Currency/Index">@Localizer.Get("Currencies")</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     @ViewData["Title"]
@@ -54,6 +54,14 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="RateInPounds" class="form-label"></label>
+                                                <input asp-for="RateInPounds" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("RateInPounds"))" />
+                                                <span asp-validation-for="RateInPounds" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                     
                                         @{ int i = 0;}
                                         @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                                         {
@@ -61,10 +69,10 @@
                                                 <div class="mb-1">
                                                     <label class="form-label">@Localizer.Get($"Name {language}")</label>
                                                     
-                                                    <input asp-for="CompanyTripStateLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
-                                                    <span asp-validation-for="CompanyTripStateLangs[i].Name" class="text-danger"></span>
+                                                    <input asp-for="CurrencyLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"/>
+                                                    <span asp-validation-for="CurrencyLangs[i].Name" class="text-danger"></span>
                                                     
-                                                    <input type="hidden" asp-for="CompanyTripStateLangs[i].Language" value="@language" />
+                                                    <input type="hidden" asp-for="CurrencyLangs[i].Language" value="@language" />
                                                 </div>
                                             </div>
                                             i++;

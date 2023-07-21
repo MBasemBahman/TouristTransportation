@@ -8,6 +8,7 @@ namespace Entities.CoreServicesModels.AccountModels
         public string EmailAddress { get; set; }
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }
+        public int Fk_Supplier { get; set; }
     }
 
     public class AccountModel : AuditImageEntity

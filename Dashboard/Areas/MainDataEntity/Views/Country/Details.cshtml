@@ -1,11 +1,11 @@
-﻿@model CompanyTripStateDto
+﻿@model CountryDto
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.emptyLayout = true;
 }
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("CompanyTripState")</h5>
+    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("Country")</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
@@ -17,7 +17,9 @@
                 <dd class="col-sm-8 mb-1">@Model.Name</dd>
             </dl>
         </div>
-       
+
+      
+
     </div>
 
     <hr />
@@ -25,12 +27,12 @@
         <div class="col-xl-7 col-12">
             <dl class="row mb-0">
 
-             
                 <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
                 <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
             </dl>
         </div>
-    
+
+
     </div>
 
 

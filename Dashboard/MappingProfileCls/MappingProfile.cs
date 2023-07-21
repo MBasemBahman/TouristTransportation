@@ -3,16 +3,19 @@ using Dashboard.Areas.DashboardAdministration.Models;
 using Dashboard.Areas.LogEntity.Models;
 using Dashboard.Areas.UserEntity.Models;
 using Dashboard.Areas.AuditEntity.Models;
+using Dashboard.Areas.MainDataEntity.Models;
 #endregion
 
 #region Core Service Models
 using Entities.CoreServicesModels.LogModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.CoreServicesModels.AuditModels;
+using Entities.CoreServicesModels.MainDataModels;
 #endregion
 
 #region DB Models
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.DBModels.MainDataModels;
 #endregion
 
 using Dashboard.Areas.AccountEntity.Models;
@@ -159,9 +162,7 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<CompanyTripStateLang, CompanyTripStateLangModel>();
 
             _ = CreateMap<CompanyTripStateLangModel, CompanyTripStateLang>();
-            
-            #endregion
-            
+
             #endregion
 
             #region Post Models
@@ -205,6 +206,40 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<AccountFilter, AccountParameters>();
             #endregion
 
+            #region Account State
+
+            _ = CreateMap<AccountState, AccountStateCreateOrEditModel>();
+
+            _ = CreateMap<AccountStateCreateOrEditModel, AccountState>();
+
+            _ = CreateMap<AccountStateModel, AccountStateDto>();
+
+            _ = CreateMap<AccountStateFilter, AccountStateParameters>();
+
+            _ = CreateMap<AccountStateLang, AccountStateLangModel>();
+
+            _ = CreateMap<AccountStateLangModel, AccountStateLang>();
+
+            #endregion
+
+            #region Account Type
+
+            _ = CreateMap<AccountType, AccountTypeCreateOrEditModel>();
+
+            _ = CreateMap<AccountTypeCreateOrEditModel, AccountType>();
+
+            _ = CreateMap<AccountTypeModel, AccountTypeDto>();
+
+            _ = CreateMap<AccountTypeFilter, AccountTypeParameters>();
+
+            _ = CreateMap<AccountTypeLang, AccountTypeLangModel>();
+
+            _ = CreateMap<AccountTypeLangModel, AccountTypeLang>();
+
+            #endregion
+
+            #endregion
+
             #region Audit Models
 
             #region Audit
@@ -214,6 +249,74 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<AuditFilter, AuditParameters>();
             #endregion
 
+
+            #endregion
+
+            #region Main Data Models
+
+            #region Area
+
+            _ = CreateMap<Area, AreaCreateOrEditModel>();
+
+            _ = CreateMap<AreaCreateOrEditModel, Area>();
+
+            _ = CreateMap<AreaModel, AreaDto>();
+
+            _ = CreateMap<AreaFilter, AreaParameters>();
+
+            _ = CreateMap<AreaLang, AreaLangModel>();
+
+            _ = CreateMap<AreaLangModel, AreaLang>();
+
+            #endregion
+
+            #region Currency
+
+            _ = CreateMap<Currency, CurrencyCreateOrEditModel>();
+
+            _ = CreateMap<CurrencyCreateOrEditModel, Currency>();
+
+            _ = CreateMap<CurrencyModel, CurrencyDto>();
+
+            _ = CreateMap<CurrencyFilter, CurrencyParameters>();
+
+            _ = CreateMap<CurrencyLang, CurrencyLangModel>();
+
+            _ = CreateMap<CurrencyLangModel, CurrencyLang>();
+
+            #endregion
+
+            #region Country
+
+            _ = CreateMap<Country, CountryCreateOrEditModel>();
+
+            _ = CreateMap<CountryCreateOrEditModel, Country>();
+
+            _ = CreateMap<CountryModel, CountryDto>();
+
+            _ = CreateMap<CountryFilter, CountryParameters>();
+
+            _ = CreateMap<CountryLang, CountryLangModel>();
+
+            _ = CreateMap<CountryLangModel, CountryLang>();
+
+            #endregion
+
+            #region Supplier
+
+            _ = CreateMap<Supplier, SupplierCreateOrEditModel>();
+
+            _ = CreateMap<SupplierCreateOrEditModel, Supplier>();
+
+            _ = CreateMap<SupplierModel, SupplierDto>();
+
+            _ = CreateMap<SupplierFilter, SupplierParameters>();
+
+            _ = CreateMap<SupplierLang, SupplierLangModel>();
+
+            _ = CreateMap<SupplierLangModel, SupplierLang>();
+
+            #endregion
 
             #endregion
         }
