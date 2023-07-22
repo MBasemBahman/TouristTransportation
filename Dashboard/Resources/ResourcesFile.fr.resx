@@ -1006,4 +1006,34 @@
   <data name="Suppliers" xml:space="preserve">
     <value>Suppliers</value>
   </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="Hotel Information" xml:space="preserve">
+    <value>Hotel Information</value>
+  </data>
+  <data name="Hotel Information Description" xml:space="preserve">
+    <value>Hotel Information Description</value>
+  </data>
+  <data name="BookingUrl" xml:space="preserve">
+    <value>BookingUrl</value>
+  </data>
+  <data name="LocationUrl" xml:space="preserve">
+    <value>LocationUrl</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Hotel Features Information" xml:space="preserve">
+    <value>Hotel Features Information</value>
+  </data>
+  <data name="Hotel Features Information Description" xml:space="preserve">
+    <value>Hotel Features Information Description</value>
+  </data>
+  <data name="Hotel Attachments Information" xml:space="preserve">
+    <value>Hotel Attachments Information</value>
+  </data>
+  <data name="Hotel Attachments Information Description" xml:space="preserve">
+    <value>Hotel Attachments Information Description</value>
+  </data>
 </root>

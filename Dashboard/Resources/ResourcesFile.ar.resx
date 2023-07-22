@@ -1044,4 +1044,34 @@
   <data name="Suppliers" xml:space="preserve">
     <value>الموردين</value>
   </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>فندق</value>
+  </data>
+  <data name="Hotel Information" xml:space="preserve">
+    <value>بيانات الفندق</value>
+  </data>
+  <data name="Hotel Information Description" xml:space="preserve">
+    <value>البيانات الاساسية للفندق</value>
+  </data>
+  <data name="BookingUrl" xml:space="preserve">
+    <value>عنوان الحجز</value>
+  </data>
+  <data name="LocationUrl" xml:space="preserve">
+    <value>رابط المكان</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="Hotel Features Information" xml:space="preserve">
+    <value>مميزات الفندق</value>
+  </data>
+  <data name="Hotel Features Information Description" xml:space="preserve">
+    <value>البيانات الاساسية لمميزات الفندق</value>
+  </data>
+  <data name="Hotel Attachments Information" xml:space="preserve">
+    <value>مرفقات الفندق</value>
+  </data>
+  <data name="Hotel Attachments Information Description" xml:space="preserve">
+    <value>المرفقات الخاصة بالفندق</value>
+  </data>
 </root>
