@@ -108,6 +108,8 @@ namespace Entities.AuthenticationModels
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public int Fk_Account { get; set; }
+        public int Fk_AccountType { get; set; }
+        public int Fk_AccountState { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
 

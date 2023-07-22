@@ -37,6 +37,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(Rate))] 
         public double Rate { get; set; }
+        
+        [DisplayName(nameof(AttachmentsCount))]
+        public int AttachmentsCount { get; set; }
     }
 
     public class HotelCreateOrEditModel

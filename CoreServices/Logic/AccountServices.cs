@@ -101,6 +101,11 @@ namespace CoreServices.Logic
         {
             return GetAccounts(new AccountParameters { Id = id },language).SingleOrDefault();
         }
+        
+        public AccountModel GetByUserId(int fk_User, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetAccounts(new AccountParameters { Fk_User = fk_User },language).SingleOrDefault();
+        }
 
         public AccountModel GetAccountByEmailAddress(string emailAddress)
         {

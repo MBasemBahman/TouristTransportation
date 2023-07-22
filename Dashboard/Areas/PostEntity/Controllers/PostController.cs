@@ -48,8 +48,6 @@ namespace Dashboard.Areas.PostEntity.Controllers
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] PostFilter dtParameters)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
             PostParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
@@ -57,7 +55,7 @@ namespace Dashboard.Areas.PostEntity.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<PostModel> data = await _unitOfWork.Post.GetPostsPaged(parameters, otherLang);
+            PagedList<PostModel> data = await _unitOfWork.Post.GetPostsPaged(parameters);
 
             List<PostDto> resultDto = _mapper.Map<List<PostDto>>(data);
 
@@ -70,10 +68,8 @@ namespace Dashboard.Areas.PostEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
             PostDto data = _mapper.Map<PostDto>(_unitOfWork.Post
-                                                           .GetPostById(id, otherLang));
+                                                           .GetPostById(id));
 
             return View(data);
         }

@@ -22,6 +22,9 @@ namespace Entities.CoreServicesModels.PostModels
         [DisplayName(nameof(Content))]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+
+        [DisplayName(nameof(AttachmentsCount))]
+        public int AttachmentsCount { get; set; }
     }
 
     public class PostCreateOrEditModel

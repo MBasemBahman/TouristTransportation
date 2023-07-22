@@ -21,7 +21,7 @@ namespace CoreServices.Logic
         #region Post Services
 
         public IQueryable<PostModel> GetPosts(
-            PostParameters parameters, DBModelsEnum.LanguageEnum? language)
+            PostParameters parameters)
         {
             return _repository.Post
                               .FindAll(parameters, trackChanges: false)
@@ -38,6 +38,7 @@ namespace CoreServices.Logic
                                       }
                                   },
                                   Content = a.Content,
+                                  AttachmentsCount = a.PostAttachments.Count,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
@@ -48,9 +49,9 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<PostModel>> GetPostsPaged(
-            PostParameters parameters , DBModelsEnum.LanguageEnum? language)
+            PostParameters parameters)
         {
-            return await PagedList<PostModel>.ToPagedList(GetPosts(parameters, language), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<PostModel>.ToPagedList(GetPosts(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<PagedList<PostModel>> GetPostsPaged(
@@ -71,9 +72,9 @@ namespace CoreServices.Logic
             return await _repository.Post.FindById(id, trackChanges);
         }
         
-        public PostModel GetPostById(int id, DBModelsEnum.LanguageEnum? language)
+        public PostModel GetPostById(int id)
         {
-            return GetPosts(new PostParameters { Id = id }, language).SingleOrDefault();
+            return GetPosts(new PostParameters { Id = id }).SingleOrDefault();
         }
         
 
@@ -89,9 +90,14 @@ namespace CoreServices.Logic
 
         public async Task DeletePost(int id)
         {
-            Post account = await _repository.Post.FindById(id, trackChanges: false);
+            Post post = await _repository.Post.FindById(id, trackChanges: false);
 
-            _repository.Post.Delete(account);
+            _repository.Post.Delete(post);
+        }
+        
+        public void DeletePost(Post post)
+        {
+            _repository.Post.Delete(post);
         }
 
         #endregion
@@ -99,7 +105,7 @@ namespace CoreServices.Logic
         #region Post Attachment Services
 
         public IQueryable<PostAttachmentModel> GetPostAttachments(
-            PostAttachmentParameters parameters, DBModelsEnum.LanguageEnum? language)
+            PostAttachmentParameters parameters)
         {
             return _repository.PostAttachment
                               .FindAll(parameters, trackChanges: false)
@@ -124,10 +130,9 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<PostAttachmentModel>> GetPostAttachmentsPaged(
-            PostAttachmentParameters parameters , DBModelsEnum.LanguageEnum? language)
+        public async Task<PagedList<PostAttachmentModel>> GetPostAttachmentsPaged(PostAttachmentParameters parameters)
         {
-            return await PagedList<PostAttachmentModel>.ToPagedList(GetPostAttachments(parameters, language), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<PostAttachmentModel>.ToPagedList(GetPostAttachments(parameters), parameters.PageNumber, parameters.PageSize);
         }
 
         public async Task<PagedList<PostAttachmentModel>> GetPostAttachmentsPaged(
@@ -142,9 +147,9 @@ namespace CoreServices.Logic
             return await _repository.PostAttachment.FindById(id, trackChanges);
         }
         
-        public PostAttachmentModel GetPostAttachmentById(int id, DBModelsEnum.LanguageEnum? language)
+        public PostAttachmentModel GetPostAttachmentById(int id)
         {
-            return GetPostAttachments(new PostAttachmentParameters { Id = id }, language).SingleOrDefault();
+            return GetPostAttachments(new PostAttachmentParameters { Id = id }).SingleOrDefault();
         }
         
 
@@ -163,6 +168,16 @@ namespace CoreServices.Logic
             PostAttachment account = await _repository.PostAttachment.FindById(id, trackChanges: false);
 
             _repository.PostAttachment.Delete(account);
+        }
+        
+        public async Task DeletePostAttachment(int id, int fk_PostAccount, int fk_Account)
+        {
+            PostAttachment postAttachment = await _repository.PostAttachment.FindById(id, trackChanges: false);
+
+            if (fk_PostAccount == fk_Account)
+            {
+                _repository.PostAttachment.Delete(postAttachment);
+            }
         }
 
         #endregion

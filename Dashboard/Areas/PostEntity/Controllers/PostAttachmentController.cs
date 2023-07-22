@@ -46,15 +46,14 @@ namespace Dashboard.Areas.PostEntity.Controllers
                 _unitOfWork.Post.CreatePostAttachment(attachment);
                 await _unitOfWork.Save();
             }
+            
             return NoContent();
         }
 
         [Authorize(DashboardViewEnum.PostAttachment, AccessLevelEnum.CreateOrEdit)]
         public ActionResult<List<PostAttachmentModel>> GetPostAttachments(int fk_Post)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            return _unitOfWork.Post.GetPostAttachments(new PostAttachmentParameters { Fk_Post = fk_Post }, otherLang).ToList();
+            return _unitOfWork.Post.GetPostAttachments(new PostAttachmentParameters { Fk_Post = fk_Post }).ToList();
         }
 
         [HttpPost, ActionName("Delete")]

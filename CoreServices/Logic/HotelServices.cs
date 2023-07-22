@@ -32,6 +32,7 @@ namespace CoreServices.Logic
                                   Address = a.Address,
                                   Description = a.Description,
                                   Rate = a.Rate,
+                                  AttachmentsCount = a.HotelAttachments.Count,
                                   BookingUrl = a.BookingUrl,
                                   Fk_Area = a.Fk_Area,
                                   Area = new AreaModel

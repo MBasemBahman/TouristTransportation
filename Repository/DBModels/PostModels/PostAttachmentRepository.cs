@@ -19,7 +19,8 @@ namespace Repository.DBModels.PostModels
 
         public async Task<PostAttachment> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(PostAttachment entity)
