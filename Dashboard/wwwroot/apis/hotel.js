@@ -39,6 +39,40 @@ function saveHotel(data, errDiv) {
     });
 }
 
+function saveHotelFeatures(data, errDiv) {
+    $.ajax({
+        url: `/HotelEntity/HotelFeature/CreateOrEditBulk`,
+        method: 'post',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (data) {
+            $("input[name=id]").val(data.id);
+            $("input[name=fk_Hotel]").val(data.id);
+            nextForm(errDiv);
+        },
+        error: function (errorMessages) {
+            
+            let errors = '<ul>';
+            
+            errorMessages.responseJSON.forEach(function (message) {
+                errors += `<li>${message}</li>`;
+            });
+            
+            errors += '</ul>';
+            
+            errDiv.html(errors);
+        }
+    });
+}
+
 function nextForm(errDiv = $(".post_error_div")) {
     errDiv.html('');
     numberedStepper.next();

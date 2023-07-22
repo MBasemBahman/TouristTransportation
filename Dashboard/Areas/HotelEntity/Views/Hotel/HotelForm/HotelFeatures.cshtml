@@ -1,0 +1,50 @@
+﻿@using Entities.EnumData
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model HotelCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Hotel Features Information")</h5>
+    <small class="text-muted">@Localizer.Get("Hotel Features Information Description")</small>
+</div>
+
+<form class="hotel_features_form" asp-action="CreateOrEditBulk" asp-controller="HotelFeature" enctype="multipart/form-data">
+    <div class="row">
+        <div class="text-danger hotel_features_error_div"></div>
+        <input type="hidden" asp-for="@id" />
+        <hr />
+
+        @{ int i = 0;}
+        @foreach (HotelFeatureCategoryModel featureCategory in (List<HotelFeatureCategoryModel>)ViewData["HotelFeatureCategories"])
+        {
+            <div class="col-md-6 col-12">
+                <div class="mb-1">
+                    <label class="form-label">@featureCategory.Name</label>
+                    
+                    <select class="form-control select2" name="HotelFeatures" multiple>
+                        @foreach (HotelFeatureModel feature in featureCategory.HotelFeatures)
+                        {
+                            <option value="@feature.Id" selected="@(Model.HotelFeatures.Contains(feature.Id))">@feature.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            i++;
+        }
+
+        <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+    </div>
+</form>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-outline-secondary btn-prev" disabled>
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button type="button" class="btn btn-primary btn-next hotel_features_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Next")</span>
+        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+    </button>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Contracts.Logger;
 using Dashboard.Areas.AccountEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
 using Entities.RequestFeatures;
@@ -103,7 +104,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
                 model = _mapper.Map<AccountCreateOrEditModel>(countryDB);
                 model.User = _mapper.Map<UserCreateModel>(countryDB.User);
 
-                model.ImageUrl = accountDB.StorageUrl + accountDB.ImageUrl;
+                model.ImageUrl = countryDB.StorageUrl + countryDB.ImageUrl;
             }
 
 
@@ -198,7 +199,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
         //helper method
         private void SetViewData(int id, bool isProfile = false)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             ViewData["id"] = id;
             ViewData["isProfile"] = isProfile;

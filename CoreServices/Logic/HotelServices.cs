@@ -221,6 +221,42 @@ namespace CoreServices.Logic
             return await PagedList<HotelFeatureModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
         }
 
+        public void UpdateHotelFeatures(int fk_Hotel, List<int> hotelFeatures)
+        {
+            if (!hotelFeatures.Any()) return;
+
+            List<int> oldIds = _repository.HotelSelectedFeatures.FindAll(new HotelSelectedFeaturesParameters
+            {
+                Fk_Hotel = fk_Hotel
+            }, trackChanges: false).Select(a => a.Fk_HotelFeature).ToList();
+
+            List<int> newIds = hotelFeatures.Except(oldIds).ToList();
+
+            foreach (int fk_HotelFeature in newIds)
+            {
+                _repository.HotelSelectedFeatures.Create(new HotelSelectedFeatures
+                {
+                    Fk_Hotel = fk_Hotel,
+                    Fk_HotelFeature = fk_HotelFeature,
+                });
+            }
+            
+            List<int> removedIds = oldIds.Except(hotelFeatures).ToList();
+            
+            foreach (int fk_HotelFeature in removedIds)
+            {
+                HotelSelectedFeatures entity = _repository.HotelSelectedFeatures
+                    .FindAll(new HotelSelectedFeaturesParameters
+                    {
+                        Fk_Hotel = fk_Hotel,
+                        Fk_HotelFeature = fk_HotelFeature
+                    }, trackChanges: false)
+                    .FirstOrDefault();
+                
+                _repository.HotelSelectedFeatures.Delete(entity);
+            }
+        }
+        
         public async Task<HotelFeature> FindHotelFeatureById(int id, bool trackChanges)
         {
             return await _repository.HotelFeature.FindById(id, trackChanges);
@@ -265,6 +301,14 @@ namespace CoreServices.Logic
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   ColorCode = a.ColorCode,
+                                  HotelFeatures = parameters.IncludeHotelFeatures == true ? 
+                                      a.HotelFeatures.Select(b => new HotelFeatureModel
+                                      {
+                                          Id = b.Id,
+                                          Name = language != null ? b.HotelFeatureLangs
+                                              .Where(c => c.Language == language)
+                                              .Select(c => c.Name).FirstOrDefault() : b.Name,
+                                      }).ToList() : null,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

@@ -40,7 +40,7 @@
             PostAttachment = 21,
             PostReaction = 22,
             Hotel = 1022,
-            HotelAttachment = 1023
+            HotelAttachment = 1023,
         }
 
         public enum AccountProfileItems

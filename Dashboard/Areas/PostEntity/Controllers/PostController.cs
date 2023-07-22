@@ -172,7 +172,7 @@ namespace Dashboard.Areas.PostEntity.Controllers
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             ViewData["id"] = id;
-            ViewData["Accounts"] = _unitOfWork.Account.GetAccountsLookUp(new AccountParameters());
+            ViewData["Accounts"] = _unitOfWork.Account.GetAccountsLookUp(new AccountParameters(), otherLang);
         }
 
     }

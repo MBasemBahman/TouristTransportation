@@ -6,7 +6,7 @@ namespace Entities.CoreServicesModels.HotelModels
 {
     public class HotelFeatureCategoryParameters : RequestParameters
     {
-        
+        public bool? IncludeHotelFeatures { get; set; }
     }
 
     public class HotelFeatureCategoryModel : AuditLookUpEntity
@@ -14,6 +14,8 @@ namespace Entities.CoreServicesModels.HotelModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public new string Name { get; set; }
+
+        public List<HotelFeatureModel> HotelFeatures { get; set; }
     }
 
     public class HotelFeatureCategoryCreateOrEditModel

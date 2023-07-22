@@ -56,9 +56,23 @@
                                     <i data-feather="chevron-right" class="font-medium-2"></i>
                                 </div>
                                 
-                                <div class="step" data-target="#hotel-attachments" role="tab" id="hotel-attachments-trigger">
+                                <div class="step" data-target="#hotel-features" role="tab" id="hotel-features-trigger">
                                     <button type="button" class="step-trigger">
                                         <span class="bs-stepper-box">2</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("Hotel Features Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("Hotel Features Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="line">
+                                    <i data-feather="chevron-right" class="font-medium-2"></i>
+                                </div>
+                                
+                                <div class="step" data-target="#hotel-attachments" role="tab" id="hotel-attachments-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">3</span>
                                         <span class="bs-stepper-label">
                                             <span class="bs-stepper-title">@Localizer.Get("Hotel Attachments Information")</span>
                                             <span class="bs-stepper-subtitle">@Localizer.Get("Hotel Attachments Information Description")</span>
@@ -71,6 +85,10 @@
                             <div class="bs-stepper-content">
                                 <div id="hotel-details" class="content" role="tabpanel" aria-labelledby="hotel-details-trigger">
                                     @await Html.PartialAsync("HotelForm/HotelDetails", Model)
+                                </div>
+                                
+                                <div id="hotel-features" class="content" role="tabpanel" aria-labelledby="hotel-features-trigger">
+                                    @await Html.PartialAsync("HotelForm/HotelFeatures", Model)
                                 </div>
                                 
                                 <div id="hotel-attachments" class="content" role="tabpanel" aria-labelledby="hotel-attachments-trigger">
@@ -89,7 +107,7 @@
 {
     <script src="~/apis/site.js"></script>
     <script src="~/apis/hotel.js"></script>
-    
+
     <script>
         // First Step
         $(document).on("click", ".hotel_submit_btn", function(e) {
@@ -102,6 +120,14 @@
         });
         
         // Second Step
+        $(document).on("click", ".hotel_features_submit_btn", function () {
+            let hotelForm = $('.hotel_features_form')[0];
+            let hotelFormData = new FormData(hotelForm);
+              
+            saveHotelFeatures(hotelFormData, $(".hotel_features_error_div"));
+        });
+        
+        // Third Step
         $(document).on("click", ".hotel_attachment_submit_btn", function(e) {
           e.preventDefault();
         

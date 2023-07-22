@@ -80,6 +80,8 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         [Authorize(DashboardViewEnum.Hotel, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
             HotelCreateOrEditModel model = new();
 
             if (id > 0)
@@ -87,6 +89,11 @@ namespace Dashboard.Areas.HotelEntity.Controllers
                 Hotel dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: false);
                 model = _mapper.Map<HotelCreateOrEditModel>(dataDB);
 
+                model.HotelFeatures = _unitOfWork.Hotel.GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
+                {
+                    Fk_Hotel = id,
+                }, otherLang).Select(a => a.Fk_HotelFeature).ToList();
+                    
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
@@ -184,6 +191,10 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             ViewData["id"] = id;
             ViewData["Areas"] = _unitOfWork.MainData.GetAreasLookUp(new AreaParameters(), otherLang);
             ViewData["Countries"] = _unitOfWork.MainData.GetCountriesLookUp(new CountryParameters(), otherLang);
+            ViewData["HotelFeatureCategories"] = _unitOfWork.Hotel.GetHotelFeatureCategories(new HotelFeatureCategoryParameters
+            {
+                IncludeHotelFeatures = true
+            }, otherLang).ToList();
         }
 
     }

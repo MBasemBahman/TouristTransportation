@@ -66,6 +66,7 @@ namespace Entities.CoreServicesModels.HotelModels
         public double Rate { get; set; }
 
         public List<HotelLangModel> HotelLangs { get; set; }
+        public List<int> HotelFeatures { get; set; }
     }
     
     public class HotelLangModel

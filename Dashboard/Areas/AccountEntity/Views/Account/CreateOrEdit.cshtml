@@ -114,10 +114,10 @@
                                         </div>
                                         
                                         <div class="col-md-12 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="User.Password" class="form-label"></label>
-                                                <input asp-for="User.Password" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Password"))"/>
-                                                <span asp-validation-for="User.Password" class="text-danger"></span>
+                                        <div class="mb-1">
+                                            <label asp-for="User.Password" class="form-label"></label>
+                                            <input asp-for="User.Password" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Password"))"/>
+                                            <span asp-validation-for="User.Password" class="text-danger"></span>
 
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
 
-                                         <div class="col-md-6 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="Fk_AccountState" class="form-label"></label>
                                                 <select asp-for="Fk_AccountState" class="select2 form-select" asp-items="@(new SelectList(ViewData["AccountState"] as Dictionary<string,string>,"Key","Value"))">
@@ -142,7 +142,7 @@
                                             <div class="mb-1">
                                                 <label asp-for="Fk_Supplier" class="form-label"></label>
                                                 <select asp-for="Fk_Supplier" class="select2 form-select" asp-items="@(new SelectList(ViewData["Supplier"] as Dictionary<string,string>,"Key","Value"))">
-                                                <option value="0">@Localizer.Get("Not Found")</option>
+                                                    <option value="0">@Localizer.Get("Not Found")</option>
                                                 </select>
                                                 <span asp-validation-for="Fk_Supplier" class="text-danger"></span>
                                             </div>
@@ -163,6 +163,7 @@
                                                 <a asp-action="Index" class="btn btn-warning"> @Localizer.Get("Back") </a>
                                             }
                                         </div>
+                                    </div>
                                     </div>
                                 </form>
                             </div>
