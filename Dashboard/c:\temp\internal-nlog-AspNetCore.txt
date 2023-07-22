@@ -422,3 +422,45 @@
    --- End of inner exception stack trace ---
 2023-07-22 05:14:47.2888 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
 2023-07-22 05:14:47.3030 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-22 13:23:39.8384 Info Configuration file change detected! Reloading in 1000ms...
+2023-07-22 13:23:39.8452 Info Configuration file change detected! Reloading in 1000ms...
+2023-07-22 13:23:40.8447 Info Reloading configuration...
+2023-07-22 13:23:40.8645 Error Exception when loading configuration /home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config Exception: System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+2023-07-22 13:23:40.8695 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Exception when loading configuration /home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+ ---> System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+   --- End of inner exception stack trace ---
+2023-07-22 13:23:40.8704 Warn NLog Config Reload() failed. Invalid XML?
+2023-07-22 13:30:53.7054 Info Configuration file change detected! Reloading in 1000ms...
+2023-07-22 13:30:53.7357 Info Configuration file change detected! Reloading in 1000ms...
+2023-07-22 13:30:54.7357 Info Reloading configuration...
+2023-07-22 13:30:54.7873 Error Exception when loading configuration /home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config Exception: System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+2023-07-22 13:30:54.8050 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Exception when loading configuration /home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+ ---> System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+   --- End of inner exception stack trace ---
+2023-07-22 13:30:54.8063 Warn NLog Config Reload() failed. Invalid XML?
+2023-07-22 13:34:17.5334 Info AppDomain Shutting down. LogFactory closing...
+2023-07-22 13:34:17.5576 Info LogFactory has been closed.
