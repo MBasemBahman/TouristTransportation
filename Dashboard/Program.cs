@@ -1,4 +1,15 @@
+using System.Runtime.InteropServices;
+
 TenantConfig config = new(TenantEnvironments.Development);
+
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+{
+    LogManager.Configuration.Variables["mydir"] = "c:\\logs\\";
+}
+else
+{
+    LogManager.Configuration.Variables["mydir"] = "/tmp/";
+}
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), config.NlogConfig));
 

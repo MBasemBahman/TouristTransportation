@@ -82,7 +82,10 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
-            HotelCreateOrEditModel model = new();
+            HotelCreateOrEditModel model = new()
+            {
+                HotelFeatures = new List<int>()
+            };
 
             if (id > 0)
             {
