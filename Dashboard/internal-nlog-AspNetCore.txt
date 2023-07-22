@@ -7,3 +7,5 @@
 2023-07-22 13:59:22.6394 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'dbTarget' not found for logging rule: *.
 2023-07-22 13:59:22.6394 Info Closing old configuration.
 2023-07-22 13:59:22.6394 Info Validating config: Targets=0, ConfigItems=1, FilePath=/home/abdelrahman/DotnetProjects/TouristTransportation/Dashboard/nlog.development.config
+2023-07-22 14:35:03.1213 Info AppDomain Shutting down. LogFactory closing...
+2023-07-22 14:35:03.1260 Info LogFactory has been closed.
