@@ -979,4 +979,52 @@
   <data name="Suppliers" xml:space="preserve">
     <value>Suppliers</value>
   </data>
+  <data name="Car Data" xml:space="preserve">
+    <value>Car Data</value>
+  </data>
+  <data name="CarCategories" xml:space="preserve">
+    <value>Car Categories</value>
+  </data>
+  <data name="CarCategory" xml:space="preserve">
+    <value>Car Category</value>
+  </data>
+  <data name="CarClass" xml:space="preserve">
+    <value>Car Class</value>
+  </data>
+  <data name="CarClasses" xml:space="preserve">
+    <value>Car Classes</value>
+  </data>
+  <data name="Company Trip Data" xml:space="preserve">
+    <value>Company Trip Data</value>
+  </data>
+  <data name="CompanyTripState" xml:space="preserve">
+    <value>Company Trip State</value>
+  </data>
+  <data name="CompanyTripStates" xml:space="preserve">
+    <value>Company Trip States</value>
+  </data>
+  <data name="Hotel Data" xml:space="preserve">
+    <value>Hotel Data</value>
+  </data>
+  <data name="HotelFeature" xml:space="preserve">
+    <value>Hotel Feature</value>
+  </data>
+  <data name="HotelFeatureCategories" xml:space="preserve">
+    <value>Hotel Feature Categories</value>
+  </data>
+  <data name="HotelFeatureCategory" xml:space="preserve">
+    <value>Hotel Feature Category</value>
+  </data>
+  <data name="HotelFeatures" xml:space="preserve">
+    <value>Hotel Features</value>
+  </data>
+  <data name="Trip Data" xml:space="preserve">
+    <value>Trip Data</value>
+  </data>
+  <data name="TripState" xml:space="preserve">
+    <value>Trip State</value>
+  </data>
+  <data name="TripStates" xml:space="preserve">
+    <value>Trip States</value>
+  </data>
 </root>

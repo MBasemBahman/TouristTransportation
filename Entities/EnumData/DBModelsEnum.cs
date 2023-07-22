@@ -35,7 +35,12 @@
             Area = 16,
             Country = 17,
             Currency = 18,
-            Supplier = 19
+            Supplier = 19,
+            CarClass = 20,
+            CarCategory = 21,
+            TripState = 22,
+            HotelFeatureCategory = 23,
+            HotelFeature = 24
         }
 
         public enum AccountProfileItems

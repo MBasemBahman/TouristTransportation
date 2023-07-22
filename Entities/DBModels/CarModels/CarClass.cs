@@ -9,12 +9,12 @@ public class CarClass : AuditEntity
     [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
     public string Name { get; set; }
     
-    [DisplayName(nameof(TripState))]
-    [ForeignKey(nameof(TripState))]
-    public int Fk_TripState { get; set; }
+    [DisplayName(nameof(CarCategory))]
+    [ForeignKey(nameof(CarCategory))]
+    public int Fk_CarCategory { get; set; }
     
-    [DisplayName(nameof(TripState))]
-    public TripState TripState { get; set; }
+    [DisplayName(nameof(CarCategory))]
+    public CarCategory CarCategory { get; set; }
 
     public List<CarClassLang> CarClassLangs { get; set; }
 }

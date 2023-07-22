@@ -1,11 +1,14 @@
 using Entities.AuthenticationModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.AuditModels;
+using Entities.DBModels.CarModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.DashboardAdministrationModels;
+using Entities.DBModels.HotelModels;
 using Entities.DBModels.LogModels;
 using Entities.DBModels.MainDataModels;
 using Entities.DBModels.SharedModels;
+using Entities.DBModels.TripModels;
 using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -56,6 +59,10 @@ namespace BaseDB
         #region CompanyTrip
         public DbSet<CompanyTrip> CompanyTrips { get; set; }
         public DbSet<CompanyTripBooking> CompanyTripBookings { get; set; }
+        public DbSet<CompanyTripAttachment> CompanyTripAttachments { get; set; }
+        public DbSet<CompanyTripBookingHistory> CompanyTripBookingHistories { get; set; }
+        public DbSet<CompanyTripBookingState> CompanyTripBookingStates { get; set; }
+        public DbSet<CompanyTripState> CompanyTripStates { get; set; }
         #endregion
 
         #region Audit Models
@@ -67,6 +74,30 @@ namespace BaseDB
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        #endregion
+
+        #region Trip Model
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<TripHistory> TripHistories { get; set; }
+        public DbSet<TripPoint> TripPoints { get; set; }
+        public DbSet<TripState> TripStates { get; set; }
+
+        #endregion
+
+        #region Car Model
+        public DbSet<CarCategory> CarCategories { get; set; }
+        public DbSet<CarClass> CarClasses { get; set; }
+
+        #endregion
+
+
+        #region Hotel Model
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<HotelAttachment> HotelAttachments { get; set; }
+        public DbSet<HotelFeature> HotelFeatures { get; set; }
+        public DbSet<HotelFeatureCategory> HotelFeatureCategories { get; set; }
+        public DbSet<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

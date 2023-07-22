@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.CarModels;
+using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.TripModels;
 using Entities.DBModels.CarModels;
 using Entities.EnumData;
@@ -70,6 +71,10 @@ namespace CoreServices.Logic
         {
             return _repository.CarCategory.Count();
         }
+        public Dictionary<string, string> GetCarCategoriesLookUp(CarCategoryParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetCarCategories(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
 
         public async Task DeleteCarCategory(int id)
         {
@@ -93,12 +98,12 @@ namespace CoreServices.Logic
                                   Name = language != null ? a.CarClassLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
-                                  Fk_TripState = a.Fk_TripState,
-                                  TripState = new TripStateModel
+                                  Fk_CarCategory = a.Fk_CarCategory,
+                                  CarCategory = new CarCategoryModel
                                   {
-                                    Name  = language != null ? a.TripState.TripStateLangs
+                                    Name  = language != null ? a.CarCategory.CarCategoryLangs
                                         .Where(b => b.Language == language)
-                                        .Select(b => b.Name).FirstOrDefault() : a.TripState.Name,
+                                        .Select(b => b.Name).FirstOrDefault() : a.CarCategory.Name,
                                   },
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
