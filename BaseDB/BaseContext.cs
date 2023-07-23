@@ -71,12 +71,6 @@ namespace BaseDB
         public DbSet<Post> Posts { get; set; }
 
         #endregion
-        
-        #region Hotel Models
-
-        public DbSet<Hotel> Hotels { get; set; }
-
-        #endregion
 
         #region Audit Models
         public DbSet<Audit> Audits { get; set; }
