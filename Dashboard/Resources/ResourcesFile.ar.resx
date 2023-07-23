@@ -1073,5 +1073,52 @@
   </data>
   <data name="Hotel Attachments Information Description" xml:space="preserve">
     <value>المرفقات الخاصة بالفندق</value>
+  <data name="Car Data" xml:space="preserve">
+    <value>بيانات السيارات</value>
+  </data>
+  <data name="CarCategories" xml:space="preserve">
+    <value>فئات السيارة</value>
+  </data>
+  <data name="CarCategory" xml:space="preserve">
+    <value>فئة السيارة</value>
+  </data>
+  <data name="CarClass" xml:space="preserve">
+    <value>تصنيف السيارة</value>
+  </data>
+  <data name="CarClasses" xml:space="preserve">
+    <value>تصنيفات السيارة</value>
+  </data>
+  <data name="Company Trip Data" xml:space="preserve">
+    <value>بيانات رحلات الشركة</value>
+  </data>
+  <data name="CompanyTripState" xml:space="preserve">
+    <value>حالة رحلة الشركة</value>
+  </data>
+  <data name="CompanyTripStates" xml:space="preserve">
+    <value>حالات رحلة الشركة</value>
+  </data>
+  <data name="Hotel Data" xml:space="preserve">
+    <value>بيانات الفنادق</value>
+  </data>
+  <data name="HotelFeature" xml:space="preserve">
+    <value>ميزة الفندق</value>
+  </data>
+  <data name="HotelFeatureCategories" xml:space="preserve">
+    <value>فئات ميزات الفندق</value>
+  </data>
+  <data name="HotelFeatureCategory" xml:space="preserve">
+    <value>فئة ميزات الفندق</value>
+  </data>
+  <data name="HotelFeatures" xml:space="preserve">
+    <value>ميزات الفندق</value>
+  </data>
+  <data name="Trip Data" xml:space="preserve">
+    <value>بيانات الرحلات</value>
+  </data>
+  <data name="TripState" xml:space="preserve">
+    <value>حالة الرحلة</value>
+  </data>
+  <data name="TripStates" xml:space="preserve">
+    <value>حالات الرحلة</value>
   </data>
 </root>

@@ -1,15 +1,15 @@
 ﻿using Contracts.Logger;
-using Dashboard.Areas.HotelEntity.Models;
-using Entities.CoreServicesModels.HotelModels;
-using Entities.DBModels.HotelModels;
+using Dashboard.Areas.TripEntity.Models;
+using Entities.CoreServicesModels.TripModels;
+using Entities.DBModels.TripModels;
 using Entities.EnumData;
 using Entities.RequestFeatures;
 
-namespace Dashboard.Areas.HotelEntity.Controllers
+namespace Dashboard.Areas.TripEntity.Controllers
 {
-    [Area("HotelEntity")]
-    [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.View)]
-    public class HotelFeatureController : Controller
+    [Area("TripEntity")]
+    [Authorize(DashboardViewEnum.TripState, AccessLevelEnum.View)]
+    public class TripStateController : Controller
     {
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         private readonly IWebHostEnvironment _environment;
 
 
-        public HotelFeatureController(ILoggerManager logger, IMapper mapper,
+        public TripStateController(ILoggerManager logger, IMapper mapper,
                 UnitOfWork unitOfWork, LinkGenerator linkGenerator,
                 IWebHostEnvironment environment)
         {
@@ -32,7 +32,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         public IActionResult Index(int id, bool ProfileLayOut = false)
         {
 
-            HotelFeatureFilter filter = new()
+            TripStateFilter filter = new()
             {
                 Id = id
             };
@@ -45,24 +45,24 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody] HotelFeatureFilter dtParameters)
+        public async Task<IActionResult> LoadTable([FromBody] TripStateFilter dtParameters)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelFeatureParameters parameters = new()
+           TripStateParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
             };
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<HotelFeatureModel> data = await _unitOfWork.Hotel.GetHotelFeaturesPaged(parameters, otherLang);
+            PagedList<TripStateModel> data = await _unitOfWork.Trip.GetTripStatesPaged(parameters, otherLang);
 
-            List<HotelFeatureDto> resultDto = _mapper.Map<List<HotelFeatureDto>>(data);
+            List<TripStateDto> resultDto = _mapper.Map<List<TripStateDto>>(data);
 
-            DataTable<HotelFeatureDto> dataTableManager = new();
+            DataTable<TripStateDto> dataTableManager = new();
 
-            DataTableResult<HotelFeatureDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelFeaturesCount());
+            DataTableResult<TripStateDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Trip.GetTripStatesCount());
 
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
@@ -71,30 +71,30 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         {
             LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelFeatureDto data = _mapper.Map<HotelFeatureDto>(_unitOfWork.Hotel.GetHotelFeatureById(id, otherLang));
+            TripStateDto data = _mapper.Map<TripStateDto>(_unitOfWork.Trip.GetTripStateById(id, otherLang));
 
             return View(data);
         }
 
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.TripState, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            HotelFeatureCreateOrEditModel model = new();
+            TripStateCreateOrEditModel model = new();
 
             if (id > 0)
             {
-                HotelFeature dataDB = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: false);
-                model = _mapper.Map<HotelFeatureCreateOrEditModel>(dataDB);
+                TripState dataDB = await _unitOfWork.Trip.FindTripStateById(id, trackChanges: false);
+                model = _mapper.Map<TripStateCreateOrEditModel>(dataDB);
 
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
                 {
-                    model.HotelFeatureLangs ??= new List<HotelFeatureLangModel>();
+                    model.TripStateLangs ??= new List<TripStateLangModel>();
 
-                    if (model.HotelFeatureLangs.All(a => a.Language != language))
+                    if (model.TripStateLangs.All(a => a.Language != language))
                     {
-                        model.HotelFeatureLangs.Add(new HotelFeatureLangModel
+                        model.TripStateLangs.Add(new TripStateLangModel
                         {
                             Language = language
                         });
@@ -111,8 +111,8 @@ namespace Dashboard.Areas.HotelEntity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id, HotelFeatureCreateOrEditModel model)
+        [Authorize(DashboardViewEnum.TripState, AccessLevelEnum.CreateOrEdit)]
+        public async Task<IActionResult> CreateOrEdit(int id, TripStateCreateOrEditModel model)
         {
 
             if (!ModelState.IsValid)
@@ -125,18 +125,18 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             {
 
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-                HotelFeature dataDB = new();
+                TripState dataDB = new();
                 if (id == 0)
                 {
-                    dataDB = _mapper.Map<HotelFeature>(model);
+                    dataDB = _mapper.Map<TripState>(model);
 
                     dataDB.CreatedBy = auth.UserName;
 
-                    _unitOfWork.Hotel.CreateHotelFeature(dataDB);
+                    _unitOfWork.Trip.CreateTripState(dataDB);
                 }
                 else
                 {
-                    dataDB = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: true);
+                    dataDB = await _unitOfWork.Trip.FindTripStateById(id, trackChanges: true);
 
                     _ = _mapper.Map(model, dataDB);
 
@@ -155,23 +155,23 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             return View(model);
         }
 
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.TripState, AccessLevelEnum.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
-            HotelFeature data = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: false);
+            TripState data = await _unitOfWork.Trip.FindTripStateById(id, trackChanges: false);
 
-            return View(data != null &&
-                !_unitOfWork.Hotel.GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
+            return View(data != null && 
+                !_unitOfWork.Trip.GetTrips(new TripParameters
                 {
-                    Fk_HotelFeature = id
-                }, language: null).Any()) ;
+                    Fk_TripState = id
+                },language:null).Any());
         }
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.TripState, AccessLevelEnum.Delete)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _unitOfWork.Hotel.DeleteHotelFeature(id);
+            await _unitOfWork.Trip.DeleteTripState(id);
             await _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
@@ -180,10 +180,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         //helper method
         private void SetViewData(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
-
             ViewData["id"] = id;
-            ViewData["HotelFeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp (new HotelFeatureCategoryParameters(), otherLang);
         }
 
     }

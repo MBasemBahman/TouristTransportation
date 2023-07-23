@@ -75,6 +75,16 @@ namespace CoreServices.Logic
             return GetHotels(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
+        public Dictionary<string, string> GetHotelFeaturesLookUp(HotelFeatureParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetHotelFeatures(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+
+        public Dictionary<string, string> GetHotelFeatureCategorysLookUp(HotelFeatureCategoryParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetHotelFeatureCategories(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+
         public HotelModel GetHotelById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetHotels(new HotelParameters { Id = id }, language).SingleOrDefault();

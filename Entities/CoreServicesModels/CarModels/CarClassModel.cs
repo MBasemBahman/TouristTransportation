@@ -14,14 +14,14 @@ namespace Entities.CoreServicesModels.CarModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-        public new string Name { get; set; }
+        public string Name { get; set; }
 
-        [DisplayName(nameof(TripState))]
-        [ForeignKey(nameof(TripState))]
-        public int Fk_TripState { get; set; }
+        [DisplayName(nameof(CarCategory))]
+        [ForeignKey(nameof(CarCategory))]
+        public int Fk_CarCategory { get; set; }
     
-        [DisplayName(nameof(TripState))]
-        public TripStateModel TripState { get; set; }
+        [DisplayName(nameof(CarCategory))]
+        public CarCategoryModel CarCategory { get; set; }
     }
 
     public class CarClassCreateOrEditModel
@@ -30,9 +30,10 @@ namespace Entities.CoreServicesModels.CarModels
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public string Name { get; set; }
 
-        [DisplayName(nameof(TripState))]
-        [ForeignKey(nameof(TripState))]
-        public int Fk_TripState { get; set; }
+        [DisplayName(nameof(CarCategory))]
+        [ForeignKey(nameof(CarCategory))]
+        public int Fk_CarCategory { get; set; }
+
 
         public List<CarClassLangModel> CarClassLangs { get; set; }
     }

@@ -4,6 +4,9 @@ using Dashboard.Areas.LogEntity.Models;
 using Dashboard.Areas.UserEntity.Models;
 using Dashboard.Areas.AuditEntity.Models;
 using Dashboard.Areas.MainDataEntity.Models;
+using Dashboard.Areas.CarEntity.Models;
+using Dashboard.Areas.HotelEntity.Models;
+using Dashboard.Areas.TripEntity.Models;
 #endregion
 
 #region Core Service Models
@@ -11,11 +14,17 @@ using Entities.CoreServicesModels.LogModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.CoreServicesModels.AuditModels;
 using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.CarModels;
+using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.TripModels;
 #endregion
 
 #region DB Models
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.MainDataModels;
+using Entities.DBModels.HotelModels;
+using Entities.DBModels.TripModels;
+using Entities.DBModels.CarModels;
 #endregion
 
 using Dashboard.Areas.AccountEntity.Models;
@@ -338,6 +347,106 @@ namespace Dashboard.MappingProfileCls
             #endregion
 
             #endregion
+
+            #region Car Models
+
+            #region Car Class
+
+            _ = CreateMap<CarClass, CarClassCreateOrEditModel>();
+
+            _ = CreateMap<CarClassCreateOrEditModel, CarClass>();
+
+            _ = CreateMap<CarClassModel, CarClassDto>();
+
+            _ = CreateMap<CarClassFilter, CarClassParameters>();
+
+            _ = CreateMap<CarClassLang, CarClassLangModel>();
+
+            _ = CreateMap<CarClassLangModel, CarClassLang>();
+
+            #endregion
+
+            #region Car Category
+
+            _ = CreateMap<CarCategory, CarCategoryCreateOrEditModel>();
+
+            _ = CreateMap<CarCategoryCreateOrEditModel, CarCategory>();
+
+            _ = CreateMap<CarCategoryModel, CarCategoryDto>();
+
+            _ = CreateMap<CarCategoryFilter, CarCategoryParameters>();
+
+            _ = CreateMap<CarCategoryLang, CarCategoryLangModel>();
+
+            _ = CreateMap<CarCategoryLangModel, CarCategoryLang>();
+
+            #endregion
+
+
+
+            #endregion
+
+            #region Hotel Models
+
+            #region Hotel Feature
+
+            _ = CreateMap<HotelFeature, HotelFeatureCreateOrEditModel>();
+
+            _ = CreateMap<HotelFeatureCreateOrEditModel, HotelFeature>();
+
+            _ = CreateMap<HotelFeatureModel, HotelFeatureDto>();
+
+            _ = CreateMap<HotelFeatureFilter, HotelFeatureParameters>();
+
+            _ = CreateMap<HotelFeatureLang, HotelFeatureLangModel>();
+
+            _ = CreateMap<HotelFeatureLangModel, HotelFeatureLang>();
+
+            #endregion
+
+            #region Hotel Feature Category
+
+            _ = CreateMap<HotelFeatureCategory, HotelFeatureCategoryCreateOrEditModel>();
+
+            _ = CreateMap<HotelFeatureCategoryCreateOrEditModel, HotelFeatureCategory>();
+
+            _ = CreateMap<HotelFeatureCategoryModel, HotelFeatureCategoryDto>();
+
+            _ = CreateMap<HotelFeatureCategoryFilter, HotelFeatureCategoryParameters>();
+
+            _ = CreateMap<HotelFeatureCategoryLang, HotelFeatureCategoryLangModel>();
+
+            _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
+
+            #endregion
+
+
+
+            #endregion
+
+            #region Trip Models
+
+            #region Trip State
+
+            _ = CreateMap<TripState, TripStateCreateOrEditModel>();
+
+            _ = CreateMap<TripStateCreateOrEditModel, TripState>();
+
+            _ = CreateMap<TripStateModel, TripStateDto>();
+
+            _ = CreateMap<TripStateFilter, TripStateParameters>();
+
+            _ = CreateMap<TripStateLang, TripStateLangModel>();
+
+            _ = CreateMap<TripStateLangModel, TripStateLang>();
+
+            #endregion
+
+      
+
+
+            #endregion
+
         }
     }
 

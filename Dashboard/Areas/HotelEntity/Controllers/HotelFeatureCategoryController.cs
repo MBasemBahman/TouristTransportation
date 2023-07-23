@@ -8,8 +8,8 @@ using Entities.RequestFeatures;
 namespace Dashboard.Areas.HotelEntity.Controllers
 {
     [Area("HotelEntity")]
-    [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.View)]
-    public class HotelFeatureController : Controller
+    [Authorize(DashboardViewEnum.HotelFeatureCategory, AccessLevelEnum.View)]
+    public class HotelFeatureCategoryController : Controller
     {
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         private readonly IWebHostEnvironment _environment;
 
 
-        public HotelFeatureController(ILoggerManager logger, IMapper mapper,
+        public HotelFeatureCategoryController(ILoggerManager logger, IMapper mapper,
                 UnitOfWork unitOfWork, LinkGenerator linkGenerator,
                 IWebHostEnvironment environment)
         {
@@ -32,7 +32,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         public IActionResult Index(int id, bool ProfileLayOut = false)
         {
 
-            HotelFeatureFilter filter = new()
+            HotelFeatureCategoryFilter filter = new()
             {
                 Id = id
             };
@@ -45,24 +45,24 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody] HotelFeatureFilter dtParameters)
+        public async Task<IActionResult> LoadTable([FromBody] HotelFeatureCategoryFilter dtParameters)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelFeatureParameters parameters = new()
+            HotelFeatureCategoryParameters parameters = new()
             {
                 SearchColumns = "Id,Name"
             };
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<HotelFeatureModel> data = await _unitOfWork.Hotel.GetHotelFeaturesPaged(parameters, otherLang);
+            PagedList<HotelFeatureCategoryModel> data = await _unitOfWork.Hotel.GetHotelFeatureCategoriesPaged(parameters, otherLang);
 
-            List<HotelFeatureDto> resultDto = _mapper.Map<List<HotelFeatureDto>>(data);
+            List<HotelFeatureCategoryDto> resultDto = _mapper.Map<List<HotelFeatureCategoryDto>>(data);
 
-            DataTable<HotelFeatureDto> dataTableManager = new();
+            DataTable<HotelFeatureCategoryDto> dataTableManager = new();
 
-            DataTableResult<HotelFeatureDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelFeaturesCount());
+            DataTableResult<HotelFeatureCategoryDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelFeatureCategoriesCount());
 
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
@@ -71,30 +71,30 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         {
             LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelFeatureDto data = _mapper.Map<HotelFeatureDto>(_unitOfWork.Hotel.GetHotelFeatureById(id, otherLang));
+            HotelFeatureCategoryDto data = _mapper.Map<HotelFeatureCategoryDto>(_unitOfWork.Hotel.GetHotelFeatureCategoryById(id, otherLang));
 
             return View(data);
         }
 
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.HotelFeatureCategory, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            HotelFeatureCreateOrEditModel model = new();
+            HotelFeatureCategoryCreateOrEditModel model = new();
 
             if (id > 0)
             {
-                HotelFeature dataDB = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: false);
-                model = _mapper.Map<HotelFeatureCreateOrEditModel>(dataDB);
+                HotelFeatureCategory dataDB = await _unitOfWork.Hotel.FindHotelFeatureCategoryById(id, trackChanges: false);
+                model = _mapper.Map<HotelFeatureCategoryCreateOrEditModel>(dataDB);
 
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
                 {
-                    model.HotelFeatureLangs ??= new List<HotelFeatureLangModel>();
+                    model.HotelFeatureCategoryLangs ??= new List<HotelFeatureCategoryLangModel>();
 
-                    if (model.HotelFeatureLangs.All(a => a.Language != language))
+                    if (model.HotelFeatureCategoryLangs.All(a => a.Language != language))
                     {
-                        model.HotelFeatureLangs.Add(new HotelFeatureLangModel
+                        model.HotelFeatureCategoryLangs.Add(new HotelFeatureCategoryLangModel
                         {
                             Language = language
                         });
@@ -111,7 +111,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.HotelFeatureCategory, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id, HotelFeatureCreateOrEditModel model)
         {
 
@@ -125,18 +125,18 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             {
 
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-                HotelFeature dataDB = new();
+                HotelFeatureCategory dataDB = new();
                 if (id == 0)
                 {
-                    dataDB = _mapper.Map<HotelFeature>(model);
+                    dataDB = _mapper.Map<HotelFeatureCategory>(model);
 
                     dataDB.CreatedBy = auth.UserName;
 
-                    _unitOfWork.Hotel.CreateHotelFeature(dataDB);
+                    _unitOfWork.Hotel.CreateHotelFeatureCategory(dataDB);
                 }
                 else
                 {
-                    dataDB = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: true);
+                    dataDB = await _unitOfWork.Hotel.FindHotelFeatureCategoryById(id, trackChanges: true);
 
                     _ = _mapper.Map(model, dataDB);
 
@@ -155,23 +155,23 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             return View(model);
         }
 
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.HotelFeatureCategory, AccessLevelEnum.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
-            HotelFeature data = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: false);
+            HotelFeatureCategory data = await _unitOfWork.Hotel.FindHotelFeatureCategoryById(id, trackChanges: false);
 
             return View(data != null &&
-                !_unitOfWork.Hotel.GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
+                !_unitOfWork.Hotel.GetHotelFeatures(new HotelFeatureParameters
                 {
-                    Fk_HotelFeature = id
-                }, language: null).Any()) ;
+                    Fk_HotelFeatureCategory = id
+                },language:null).Any());
         }
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.HotelFeatureCategory, AccessLevelEnum.Delete)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _unitOfWork.Hotel.DeleteHotelFeature(id);
+            await _unitOfWork.Hotel.DeleteHotelFeatureCategory(id);
             await _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
@@ -183,7 +183,6 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
 
             ViewData["id"] = id;
-            ViewData["HotelFeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp (new HotelFeatureCategoryParameters(), otherLang);
         }
 
     }

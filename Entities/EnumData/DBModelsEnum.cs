@@ -39,8 +39,13 @@
             Post = 20,
             PostAttachment = 21,
             PostReaction = 22,
-            Hotel = 1022,
-            HotelAttachment = 1023,
+            Hotel = 23,
+            HotelAttachment = 24,
+            CarClass = 25,
+            CarCategory = 26,
+            TripState = 27,
+            HotelFeatureCategory = 28,
+            HotelFeature = 29
         }
 
         public enum AccountProfileItems

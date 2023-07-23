@@ -22,7 +22,7 @@ namespace Entities.CoreServicesModels.HotelModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-        public new string Name { get; set; }
+        public  string Name { get; set; }
 
         public List<HotelFeatureCategoryLangModel> HotelFeatureCategoryLangs { get; set; }
     }
