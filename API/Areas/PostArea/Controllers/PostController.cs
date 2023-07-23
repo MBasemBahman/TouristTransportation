@@ -28,25 +28,14 @@ namespace API.Areas.PostArea.Controllers
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
-            if (auth.Fk_Account == 0)
-            {
-                throw new Exception("Not Allowed");
-            }
-
+            parameters.Fk_AccountForReaction = auth.Fk_Account;
+            parameters.IncludeAttachments = true;
+            
             PagedList<PostModel> posts = await _unitOfWork.Post.GetPostsPaged(parameters);
 
             SetPagination(posts.MetaData, parameters);
 
             List<PostDto> postsDto = _mapper.Map<List<PostDto>>(posts);
-
-            postsDto.ForEach(post =>
-            {
-                post = SetAttachments(post).Result;
-                if (post.OldPost != null && post.OldPost.AttachmentsCount > 0)
-                {
-                    post.OldPost = SetAttachments(post.OldPost).Result;
-                }
-            });
 
             return postsDto;
         }
@@ -61,18 +50,18 @@ namespace API.Areas.PostArea.Controllers
                 throw new Exception("Bad Request!");
             }
 
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            
             //For My Reaction
 
-            PostModel post = _unitOfWork.Post.GetPostById(id);
+            PostModel post = _unitOfWork.Post.GetPosts(new PostParameters
+            {
+                Id = id,
+                Fk_AccountForReaction = auth.Fk_Account,
+                IncludeAttachments = true
+            }).FirstOrDefault();
 
             PostDto postDto = _mapper.Map<PostDto>(post);
-
-            postDto = await SetAttachments(postDto);
-
-            if (postDto.OldPost != null && postDto.OldPost.AttachmentsCount > 0)
-            {
-                postDto.OldPost = SetAttachments(postDto.OldPost).Result;
-            }
 
             return postDto;
         }
@@ -81,11 +70,6 @@ namespace API.Areas.PostArea.Controllers
         [Route(nameof(CreatePost))]
         public async Task<PostDto> CreatePost([FromForm] PostCreateOrEditDto model)
         {
-            if (string.IsNullOrEmpty(model.Content))
-            {
-                throw new Exception("Please fill post content!");
-            }
-            
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             Post post = _mapper.Map<Post>(model);
@@ -116,16 +100,14 @@ namespace API.Areas.PostArea.Controllers
             await _unitOfWork.Save();
 
             
-            PostModel postModel = _unitOfWork.Post.GetPostById(post.Id);
-            PostDto returnData = _mapper.Map<PostDto>(postModel);
-
-            returnData = await SetAttachments(returnData);
-
-            if (returnData.OldPost != null && returnData.OldPost.AttachmentsCount > 0)
+            PostModel postModel = _unitOfWork.Post.GetPosts(new PostParameters
             {
-                returnData.OldPost = SetAttachments(returnData.OldPost).Result;
-            }
-
+                Id = post.Id,
+                IncludeAttachments = true
+            }).FirstOrDefault();
+            
+            PostDto returnData = _mapper.Map<PostDto>(postModel);
+            
             return returnData;
         }
 
@@ -138,15 +120,15 @@ namespace API.Areas.PostArea.Controllers
                 throw new Exception("Bad Request!");
             }
 
-            if (string.IsNullOrEmpty(model.Content))
-            {
-                throw new Exception("Please fill post content!");
-            }
-            
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
             
             Post post = await _unitOfWork.Post.FindPostById(id, trackChanges: true);
 
+            if (post.Fk_Account != auth.Fk_Account)
+            {
+                throw new Exception("Not Allowed");
+            }
+            
             model.Fk_Account = auth.Fk_Account;
             
             _ = _mapper.Map(model, post);
@@ -184,14 +166,14 @@ namespace API.Areas.PostArea.Controllers
 
             await _unitOfWork.Save();
 
-            PostDto returnData = _mapper.Map<PostDto>(_unitOfWork.Post.GetPostById(id));
-
-            returnData = await SetAttachments(returnData);
-
-            if (returnData.OldPost is { AttachmentsCount: > 0 })
+            PostModel postModel = _unitOfWork.Post.GetPosts(new PostParameters
             {
-                returnData.OldPost = SetAttachments(returnData.OldPost).Result;
-            }
+                Id = id,
+                Fk_AccountForReaction = auth.Fk_Account,
+                IncludeAttachments = true
+            }).FirstOrDefault();
+            
+            PostDto returnData = _mapper.Map<PostDto>(postModel);
 
             return returnData;
         }
@@ -221,21 +203,5 @@ namespace API.Areas.PostArea.Controllers
             return true;
         }
         
-        // Helper Methods
-        private async Task<PostDto> SetAttachments(PostDto post)
-        {
-            if (post.AttachmentsCount > 0 && post.Id > 0)
-            {
-                post.Attachments = _mapper.Map<IEnumerable<PostAttachmentDto>>(
-                    await _unitOfWork.Post.GetPostAttachmentsPaged(new PostAttachmentParameters
-                    {
-                        Fk_Post = post.Id,
-                        PageNumber = 1,
-                        PageSize = 5,
-                    }));
-            }
-
-            return post;
-        }
     }
 }

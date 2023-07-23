@@ -96,7 +96,12 @@ namespace Dashboard.Areas.HotelEntity.Controllers
                 {
                     Fk_Hotel = id,
                 }, otherLang).Select(a => a.Fk_HotelFeature).ToList();
-                    
+
+                if (model.Fk_Area != null)
+                {
+                    ViewData["Fk_Country"] = _unitOfWork.MainData.GetAreaById((int)model.Fk_Area, otherLang).Fk_Country;
+                }
+                
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))

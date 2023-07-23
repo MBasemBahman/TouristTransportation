@@ -39,6 +39,16 @@ namespace CoreServices.Logic
                                   },
                                   Content = a.Content,
                                   AttachmentsCount = a.PostAttachments.Count,
+                                  ReactionCount = a.PostReactions.Count,
+                                  IReact = a.PostReactions.Any(b => b.Fk_Account == parameters.Fk_AccountForReaction),
+                                  PostAttachments = parameters.IncludeAttachments == true ? a.PostAttachments
+                                      .Select(b => new PostAttachmentModel
+                                      {
+                                          FileName = b.FileName,
+                                          FileType = b.FileType,
+                                          FileUrl = b.FileUrl,
+                                          FileLength = b.FileLength,
+                                      }).ToList() : null,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

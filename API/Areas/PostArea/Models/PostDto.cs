@@ -11,8 +11,6 @@ namespace API.Areas.PostArea.Models
         public new string CreatedAt { get; set; }
 
         public IEnumerable<PostAttachmentDto> Attachments { get; set; }
-
-        public new PostDto OldPost { get; set; }
     }
 
     public class PostCreateOrEditDto : PostCreateOrEditModel

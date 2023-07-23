@@ -4,6 +4,7 @@
 
 @{
     int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+    int fk_Country = ViewData["Fk_Country"] != null ? (int)ViewData["Fk_Country"] : 0;
 }
 
 <div class="content-header">
@@ -68,9 +69,12 @@
         <div class="col-md-6 col-12">
             <div class="mb-1">
                 <label class="form-label">@Localizer.Get("Country")</label>
-                <select name="Fk_Country" class="select2 form-select"
-                        asp-items="@(new SelectList(ViewData["Countries"] as Dictionary<string, string>, "Key", "Value"))">
-                        <option value="">@Localizer.Get("Not Selected")</option>
+                <select name="Fk_Country" class="select2 form-select">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                    @foreach (KeyValuePair<string, string> country in (Dictionary<string, string>)ViewData["Countries"])
+                    {
+                        <option value="@country.Key" selected="@(fk_Country.ToString() == country.Key)">@country.Value</option>
+                    }
                 </select>
             </div>
         </div>

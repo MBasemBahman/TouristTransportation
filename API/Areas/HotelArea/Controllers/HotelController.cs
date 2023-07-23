@@ -39,15 +39,6 @@ namespace API.Areas.HotelArea.Controllers
 
             List<HotelDto> hotelsDto = _mapper.Map<List<HotelDto>>(hotels);
 
-            hotelsDto.ForEach(hotel =>
-            {
-                hotel = SetAttachments(hotel).Result;
-                if (hotel.OldHotel != null && hotel.OldHotel.AttachmentsCount > 0)
-                {
-                    hotel.OldHotel = SetAttachments(hotel.OldHotel).Result;
-                }
-            });
-
             return hotelsDto;
         }
 
@@ -69,11 +60,6 @@ namespace API.Areas.HotelArea.Controllers
             HotelDto hotelDto = _mapper.Map<HotelDto>(hotel);
 
             hotelDto = await SetAttachments(hotelDto);
-
-            if (hotelDto.OldHotel is { AttachmentsCount: > 0 })
-            {
-                hotelDto.OldHotel = SetAttachments(hotelDto.OldHotel).Result;
-            }
 
             return hotelDto;
         }
