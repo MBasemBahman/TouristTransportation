@@ -69,7 +69,7 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             SupplierDto data = _mapper.Map<SupplierDto>(_unitOfWork.MainData.GetSupplierById(id, otherLang));
 

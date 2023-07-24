@@ -17,7 +17,9 @@ namespace Repository.DBModels.CarModels
 
         public async Task<CarClass> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.CarClassLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(CarClass entity)

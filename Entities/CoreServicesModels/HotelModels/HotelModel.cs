@@ -43,7 +43,7 @@ namespace Entities.CoreServicesModels.HotelModels
         public int AttachmentsCount { get; set; }
         
         [DisplayName(nameof(AttachmentsCount))]
-        public List<HotelSelectedFeaturesModel> HotelSelectedFeatures { get; set; }
+        public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
     }
 
     public class HotelCreateOrEditModel

@@ -118,6 +118,11 @@ namespace CoreServices.Logic
             _repository.Account.Create(entity);
         }
 
+        public string GeneratePassword(string password)
+        {
+            return BC.HashPassword(password);
+        }
+
         public int GetAccountsCount()
         {
             return _repository.Account.Count();

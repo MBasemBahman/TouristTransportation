@@ -69,7 +69,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             CompanyTripStateDto data = _mapper.Map<CompanyTripStateDto>(_unitOfWork.CompanyTrip.GetCompanyTripStateById(id, otherLang));
 

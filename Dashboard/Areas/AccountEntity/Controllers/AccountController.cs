@@ -137,6 +137,8 @@ namespace Dashboard.Areas.AccountEntity.Controllers
                     dataDB.User = _mapper.Map<User>(model.User);
 
                     dataDB.CreatedBy = auth.UserName;
+                    
+                    dataDB.User.Password = _unitOfWork.Account.GeneratePassword(model.User.Password);
 
                     _unitOfWork.Account.CreateAccount(dataDB);
                 }
@@ -146,6 +148,11 @@ namespace Dashboard.Areas.AccountEntity.Controllers
 
                     _ = _mapper.Map(model, dataDB);
 
+                    if (!string.IsNullOrEmpty(model.User.Password))
+                    {
+                        dataDB.User.Password = _unitOfWork.Account.GeneratePassword(model.User.Password);
+                    }
+                    
                     dataDB.LastModifiedBy = auth.UserName;
                 }
 

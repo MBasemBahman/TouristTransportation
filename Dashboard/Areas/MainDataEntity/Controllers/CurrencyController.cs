@@ -69,7 +69,7 @@ namespace Dashboard.Areas.MainDataEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             CurrencyDto data = _mapper.Map<CurrencyDto>(_unitOfWork.MainData.GetCurrencyById(id, otherLang));
 

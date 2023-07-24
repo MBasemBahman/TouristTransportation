@@ -19,7 +19,8 @@ namespace Repository.DBModels.MainDataModels
         public async Task<Currency> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                .Include(a=>a.CurrencyLangs).SingleOrDefaultAsync();
+                .Include(a=>a.CurrencyLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(Currency entity)

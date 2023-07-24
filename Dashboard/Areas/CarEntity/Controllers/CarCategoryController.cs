@@ -69,7 +69,7 @@ namespace Dashboard.Areas.CarEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             CarCategoryDto data = _mapper.Map<CarCategoryDto>(_unitOfWork.Car.GetCarCategoryById(id, otherLang));
 
@@ -180,8 +180,6 @@ namespace Dashboard.Areas.CarEntity.Controllers
         //helper method
         private void SetViewData(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
-
             ViewData["id"] = id;
         }
 

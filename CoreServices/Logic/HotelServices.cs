@@ -21,6 +21,17 @@ namespace CoreServices.Logic
         public IQueryable<HotelModel> GetHotels(
             HotelParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
+            List<HotelFeatureCategoryModel> categories = new List<HotelFeatureCategoryModel>();
+            if (parameters.IncludeSelectedFeature == true)
+            {
+                categories = GetHotelFeatureCategories(new HotelFeatureCategoryParameters(), language)
+                    .Select(a => new HotelFeatureCategoryModel
+                    {
+                        Id = a.Id,
+                        Name = a.Name
+                    }).ToList();   
+            }
+
             return _repository.Hotel
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new HotelModel
@@ -41,16 +52,28 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   },
+                                  
                                   HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
-                                      .GroupBy(b => b.HotelFeature.HotelFeatureCategory)
-                                      .SelectMany(group => group.Select(b => new HotelSelectedFeaturesModel
+                                      .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
+                                      .Select(group => new HotelSelectedFeaturesWithCategoryModel
                                       {
-                                          HotelFeature = new HotelFeatureModel
-                                          { 
-                                              Id = b.Fk_HotelFeature,
-                                              // You can add more properties of HotelFeatureModel if needed
-                                          }
-                                      })).ToList() : null,
+                                          Fk_HotelFeatureCategory = group.Key,
+                                          HotelFeatureCategory = new HotelFeatureCategoryModel
+                                          {
+                                              Id = group.Key,
+                                              Name = language != null ? group.FirstOrDefault().HotelFeature.HotelFeatureCategory.HotelFeatureCategoryLangs
+                                                  .Where(c => c.Language == language)
+                                                  .Select(d => d.Name).FirstOrDefault() : group.FirstOrDefault().HotelFeature.HotelFeatureCategory.Name,
+                                          },
+                                          HotelFeatures = group.Select(b => new HotelFeatureModel
+                                          {
+                                              Id = b.Id,
+                                              Name = language != null ? b.HotelFeature.HotelFeatureLangs
+                                                  .Where(c => c.Language == language)
+                                                  .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
+                                          }).ToList()
+                                      }).ToList() : null,
+                                  
                                   ImageUrl = a.StorageUrl + a.ImageUrl,
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,

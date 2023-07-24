@@ -30,6 +30,7 @@ namespace Repository.DBModels.AccountModels
 
         public new void Create(Account entity)
         {
+            
             base.Create(entity);
         }
     }
