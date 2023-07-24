@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevelopmentDAL.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigrate : Migration
+    public partial class NewDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,8 +20,8 @@ namespace DevelopmentDAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,7 +62,7 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyTripBookingState",
+                name: "CarCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -76,11 +76,11 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyTripBookingState", x => x.Id);
+                    table.PrimaryKey("PK_CarCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyTripState",
+                name: "CompanyTripBookingStates",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -94,11 +94,47 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyTripState", x => x.Id);
+                    table.PrimaryKey("PK_CompanyTripBookingStates", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Currency",
+                name: "CompanyTripStates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyTripStates", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Currencies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -113,7 +149,7 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Currency", x => x.Id);
+                    table.PrimaryKey("PK_Currencies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,6 +204,24 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HotelFeatureCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelFeatureCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Logs",
                 columns: table => new
                 {
@@ -185,7 +239,7 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Supplier",
+                name: "Suppliers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -198,7 +252,25 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Supplier", x => x.Id);
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TripStates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripStates", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -274,6 +346,55 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CarCategoryLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarCategoryLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CarCategoryLang_CarCategories_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "CarCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CarClasses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FkCarCategory = table.Column<int>(name: "Fk_CarCategory", type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarClasses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CarClasses_CarCategories_Fk_CarCategory",
+                        column: x => x.FkCarCategory,
+                        principalTable: "CarCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CompanyTripBookingStateLang",
                 columns: table => new
                 {
@@ -291,9 +412,9 @@ namespace DevelopmentDAL.Migrations
                 {
                     table.PrimaryKey("PK_CompanyTripBookingStateLang", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompanyTripBookingStateLang_CompanyTripBookingState_Fk_Source",
+                        name: "FK_CompanyTripBookingStateLang_CompanyTripBookingStates_Fk_Source",
                         column: x => x.FkSource,
-                        principalTable: "CompanyTripBookingState",
+                        principalTable: "CompanyTripBookingStates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -320,9 +441,9 @@ namespace DevelopmentDAL.Migrations
                 {
                     table.PrimaryKey("PK_CompanyTrips", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompanyTrips_CompanyTripState_Fk_CompanyTripState",
+                        name: "FK_CompanyTrips_CompanyTripStates_Fk_CompanyTripState",
                         column: x => x.FkCompanyTripState,
-                        principalTable: "CompanyTripState",
+                        principalTable: "CompanyTripStates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -345,9 +466,59 @@ namespace DevelopmentDAL.Migrations
                 {
                     table.PrimaryKey("PK_CompanyTripStateLang", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompanyTripStateLang_CompanyTripState_Fk_Source",
+                        name: "FK_CompanyTripStateLang_CompanyTripStates_Fk_Source",
                         column: x => x.FkSource,
-                        principalTable: "CompanyTripState",
+                        principalTable: "CompanyTripStates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Areas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkCountry = table.Column<int>(name: "Fk_Country", type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Areas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Areas_Countries_Fk_Country",
+                        column: x => x.FkCountry,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CountryLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CountryLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CountryLang_Countries_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -370,30 +541,9 @@ namespace DevelopmentDAL.Migrations
                 {
                     table.PrimaryKey("PK_CurrencyLang", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CurrencyLang_Currency_Fk_Source",
+                        name: "FK_CurrencyLang_Currencies_Fk_Source",
                         column: x => x.FkSource,
-                        principalTable: "Currency",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DashboardAccessLevelLang",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
-                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DashboardAccessLevelLang", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DashboardAccessLevelLang_DashboardAccessLevels_Fk_Source",
-                        column: x => x.FkSource,
-                        principalTable: "DashboardAccessLevels",
+                        principalTable: "Currencies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -405,7 +555,11 @@ namespace DevelopmentDAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -454,22 +608,51 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DashboardViewLang",
+                name: "HotelFeatureCategoryLang",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DashboardViewLang", x => x.Id);
+                    table.PrimaryKey("PK_HotelFeatureCategoryLang", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DashboardViewLang_DashboardViews_Fk_Source",
+                        name: "FK_HotelFeatureCategoryLang_HotelFeatureCategories_Fk_Source",
                         column: x => x.FkSource,
-                        principalTable: "DashboardViews",
+                        principalTable: "HotelFeatureCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelFeatures",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkHotelFeatureCategory = table.Column<int>(name: "Fk_HotelFeatureCategory", type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelFeatures", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelFeatures_HotelFeatureCategories_Fk_HotelFeatureCategory",
+                        column: x => x.FkHotelFeatureCategory,
+                        principalTable: "HotelFeatureCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -492,9 +675,34 @@ namespace DevelopmentDAL.Migrations
                 {
                     table.PrimaryKey("PK_SupplierLang", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SupplierLang_Supplier_Fk_Source",
+                        name: "FK_SupplierLang_Suppliers_Fk_Source",
                         column: x => x.FkSource,
-                        principalTable: "Supplier",
+                        principalTable: "Suppliers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TripStateLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripStateLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TripStateLang_TripStates_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "TripStates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -534,9 +742,9 @@ namespace DevelopmentDAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Accounts_Supplier_Fk_Supplier",
+                        name: "FK_Accounts_Suppliers_Fk_Supplier",
                         column: x => x.FkSupplier,
-                        principalTable: "Supplier",
+                        principalTable: "Suppliers",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Accounts_Users_Fk_User",
@@ -653,7 +861,32 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyTripAttachment",
+                name: "CarClassLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarClassLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CarClassLang_CarClasses_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "CarClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyTripAttachments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -667,9 +900,9 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyTripAttachment", x => x.Id);
+                    table.PrimaryKey("PK_CompanyTripAttachments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompanyTripAttachment_CompanyTrips_Fk_CompanyTrip",
+                        name: "FK_CompanyTripAttachments_CompanyTrips_Fk_CompanyTrip",
                         column: x => x.FkCompanyTrip,
                         principalTable: "CompanyTrips",
                         principalColumn: "Id",
@@ -697,6 +930,86 @@ namespace DevelopmentDAL.Migrations
                         name: "FK_CompanyTripLang_CompanyTrips_Fk_Source",
                         column: x => x.FkSource,
                         principalTable: "CompanyTrips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AreaLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AreaLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AreaLang_Areas_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "Areas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookingUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LocationUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkArea = table.Column<int>(name: "Fk_Area", type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rate = table.Column<double>(type: "float", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StorageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hotels_Areas_Fk_Area",
+                        column: x => x.FkArea,
+                        principalTable: "Areas",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelFeatureLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelFeatureLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelFeatureLang_HotelFeatures_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "HotelFeatures",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -731,9 +1044,9 @@ namespace DevelopmentDAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CompanyTripBookings_CompanyTripBookingState_Fk_CompanyTripBookingState",
+                        name: "FK_CompanyTripBookings_CompanyTripBookingStates_Fk_CompanyTripBookingState",
                         column: x => x.FkCompanyTripBookingState,
-                        principalTable: "CompanyTripBookingState",
+                        principalTable: "CompanyTripBookingStates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -743,9 +1056,9 @@ namespace DevelopmentDAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CompanyTripBookings_Currency_Fk_Currency",
+                        name: "FK_CompanyTripBookings_Currencies_Fk_Currency",
                         column: x => x.FkCurrency,
-                        principalTable: "Currency",
+                        principalTable: "Currencies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -775,7 +1088,143 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyTripBookingHistory",
+                name: "Trips",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkClient = table.Column<int>(name: "Fk_Client", type: "int", nullable: false),
+                    FkSupplier = table.Column<int>(name: "Fk_Supplier", type: "int", nullable: true),
+                    FkDriver = table.Column<int>(name: "Fk_Driver", type: "int", nullable: true),
+                    FkCarClass = table.Column<int>(name: "Fk_CarClass", type: "int", nullable: true),
+                    FkTripState = table.Column<int>(name: "Fk_TripState", type: "int", nullable: false),
+                    TripAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    WaitingPrice = table.Column<double>(type: "float", nullable: false),
+                    MembersCount = table.Column<int>(type: "int", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trips", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trips_Accounts_Fk_Client",
+                        column: x => x.FkClient,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trips_Accounts_Fk_Driver",
+                        column: x => x.FkDriver,
+                        principalTable: "Accounts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Trips_CarClasses_Fk_CarClass",
+                        column: x => x.FkCarClass,
+                        principalTable: "CarClasses",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Trips_Suppliers_Fk_Supplier",
+                        column: x => x.FkSupplier,
+                        principalTable: "Suppliers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Trips_TripStates_Fk_TripState",
+                        column: x => x.FkTripState,
+                        principalTable: "TripStates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelAttachments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkHotel = table.Column<int>(name: "Fk_Hotel", type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileLength = table.Column<double>(type: "float", nullable: false),
+                    FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StorageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelAttachments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelAttachments_Hotels_Fk_Hotel",
+                        column: x => x.FkHotel,
+                        principalTable: "Hotels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelLang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkSource = table.Column<int>(name: "Fk_Source", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelLang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelLang_Hotels_Fk_Source",
+                        column: x => x.FkSource,
+                        principalTable: "Hotels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelSelectedFeatures",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkHotel = table.Column<int>(name: "Fk_Hotel", type: "int", nullable: false),
+                    FkHotelFeature = table.Column<int>(name: "Fk_HotelFeature", type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelSelectedFeatures", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelSelectedFeatures_HotelFeatures_Fk_HotelFeature",
+                        column: x => x.FkHotelFeature,
+                        principalTable: "HotelFeatures",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HotelSelectedFeatures_Hotels_Fk_Hotel",
+                        column: x => x.FkHotel,
+                        principalTable: "Hotels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyTripBookingHistories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -790,19 +1239,19 @@ namespace DevelopmentDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyTripBookingHistory", x => x.Id);
+                    table.PrimaryKey("PK_CompanyTripBookingHistories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CompanyTripBookingHistory_CompanyTripBookingState_Fk_CompanyTripBookingState",
+                        name: "FK_CompanyTripBookingHistories_CompanyTripBookingStates_Fk_CompanyTripBookingState",
                         column: x => x.FkCompanyTripBookingState,
-                        principalTable: "CompanyTripBookingState",
+                        principalTable: "CompanyTripBookingStates",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CompanyTripBookingHistory_CompanyTripBookings_Fk_CompanyTripBooking",
+                        name: "FK_CompanyTripBookingHistories_CompanyTripBookings_Fk_CompanyTripBooking",
                         column: x => x.FkCompanyTripBooking,
                         principalTable: "CompanyTripBookings",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -830,7 +1279,7 @@ namespace DevelopmentDAL.Migrations
                         column: x => x.FkPost,
                         principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -852,13 +1301,83 @@ namespace DevelopmentDAL.Migrations
                         column: x => x.FkAccount,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PostReaction_Posts_Fk_Post",
                         column: x => x.FkPost,
                         principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TripHistories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkTrip = table.Column<int>(name: "Fk_Trip", type: "int", nullable: false),
+                    FkSupplier = table.Column<int>(name: "Fk_Supplier", type: "int", nullable: true),
+                    FkDriver = table.Column<int>(name: "Fk_Driver", type: "int", nullable: true),
+                    FkTripState = table.Column<int>(name: "Fk_TripState", type: "int", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripHistories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TripHistories_Accounts_Fk_Driver",
+                        column: x => x.FkDriver,
+                        principalTable: "Accounts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TripHistories_Suppliers_Fk_Supplier",
+                        column: x => x.FkSupplier,
+                        principalTable: "Suppliers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TripHistories_TripStates_Fk_TripState",
+                        column: x => x.FkTripState,
+                        principalTable: "TripStates",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TripHistories_Trips_Fk_Trip",
+                        column: x => x.FkTrip,
+                        principalTable: "Trips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TripPoints",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkTrip = table.Column<int>(name: "Fk_Trip", type: "int", nullable: false),
+                    FromLatitude = table.Column<double>(type: "float", nullable: true),
+                    FromLongitude = table.Column<double>(type: "float", nullable: true),
+                    ToLatitude = table.Column<double>(type: "float", nullable: true),
+                    ToLongitude = table.Column<double>(type: "float", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    TripAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LeaveAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    WaitingTime = table.Column<double>(type: "float", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripPoints", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TripPoints_Trips_Fk_Trip",
+                        column: x => x.FkTrip,
+                        principalTable: "Trips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -901,13 +1420,21 @@ namespace DevelopmentDAL.Migrations
                     { 18, null, "Currency", "Currency" },
                     { 19, null, "Supplier", "Supplier" },
                     { 20, null, "Post", "Post" },
-                    { 21, null, "PostAttachment", "PostAttachment" }
+                    { 21, null, "PostAttachment", "PostAttachment" },
+                    { 22, null, "PostReaction", "PostReaction" },
+                    { 23, null, "Hotel", "Hotel" },
+                    { 24, null, "HotelAttachment", "HotelAttachment" },
+                    { 25, null, "CarClass", "CarClass" },
+                    { 26, null, "CarCategory", "CarCategory" },
+                    { 27, null, "TripState", "TripState" },
+                    { 28, null, "HotelFeatureCategory", "HotelFeatureCategory" },
+                    { 29, null, "HotelFeature", "HotelFeature" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Culture", "EmailAddress", "LastModifiedBy", "Name", "Password", "PhoneNumber", "UserName" },
-                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$uR4Pjqvzi7yJz7MQQ9ILke1IeBQA8K6TRkJ3SfzJ/cmT6sr5S6LOu", null, "Developer" });
+                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$X7kHlHtht9ZNOg8VGEXo8ea6tJ0D5xiCYt8abAY7oYbQbRVqZCxlC", null, "Developer" });
 
             migrationBuilder.InsertData(
                 table: "AdministrationRolePremissions",
@@ -934,56 +1461,26 @@ namespace DevelopmentDAL.Migrations
                     { 18, 1, 1, 18 },
                     { 19, 1, 1, 19 },
                     { 20, 1, 1, 20 },
-                    { 21, 1, 1, 21 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "DashboardAccessLevelLang",
-                columns: new[] { "Id", "Fk_Source", "Name" },
-                values: new object[,]
-                {
-                    { 1, 1, "FullAccess" },
-                    { 2, 2, "DataControl" },
-                    { 3, 3, "Viewer" }
+                    { 21, 1, 1, 21 },
+                    { 22, 1, 1, 22 },
+                    { 23, 1, 1, 23 },
+                    { 24, 1, 1, 24 },
+                    { 25, 1, 1, 25 },
+                    { 26, 1, 1, 26 },
+                    { 27, 1, 1, 27 },
+                    { 28, 1, 1, 28 },
+                    { 29, 1, 1, 29 }
                 });
 
             migrationBuilder.InsertData(
                 table: "DashboardAdministrationRoleLang",
-                columns: new[] { "Id", "Fk_Source", "Name" },
-                values: new object[] { 1, 1, "Developer" });
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[] { 1, 1, 0, null, "Developer" });
 
             migrationBuilder.InsertData(
                 table: "DashboardAdministrators",
                 columns: new[] { "Id", "Fk_DashboardAdministrationRole", "Fk_User", "JobTitle", "LastModifiedBy" },
                 values: new object[] { 1, 1, 1, "Developer", null });
-
-            migrationBuilder.InsertData(
-                table: "DashboardViewLang",
-                columns: new[] { "Id", "Fk_Source", "Name" },
-                values: new object[,]
-                {
-                    { 1, 1, "Home" },
-                    { 2, 2, "User" },
-                    { 3, 3, "DashboardAdministrator" },
-                    { 4, 4, "DashboardAccessLevel" },
-                    { 5, 5, "DashboardAdministrationRole" },
-                    { 6, 6, "DashboardView" },
-                    { 7, 7, "RefreshToken" },
-                    { 8, 8, "UserDevice" },
-                    { 9, 9, "Verification" },
-                    { 10, 10, "DBLogs" },
-                    { 11, 11, "Audit" },
-                    { 12, 12, "Account" },
-                    { 13, 13, "CompanyTripState" },
-                    { 14, 14, "AccountState" },
-                    { 15, 15, "AccountType" },
-                    { 16, 16, "Area" },
-                    { 17, 17, "Country" },
-                    { 18, 18, "Currency" },
-                    { 19, 19, "Supplier" },
-                    { 20, 20, "Post" },
-                    { 21, 21, "PostAttachment" }
-                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_Fk_AccountState",
@@ -1046,18 +1543,55 @@ namespace DevelopmentDAL.Migrations
                 column: "Fk_DashboardView");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyTripAttachment_Fk_CompanyTrip",
-                table: "CompanyTripAttachment",
+                name: "IX_AreaLang_Fk_Source",
+                table: "AreaLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Areas_Fk_Country",
+                table: "Areas",
+                column: "Fk_Country");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Areas_Name",
+                table: "Areas",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarCategories_Name",
+                table: "CarCategories",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarCategoryLang_Fk_Source",
+                table: "CarCategoryLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarClasses_Fk_CarCategory",
+                table: "CarClasses",
+                column: "Fk_CarCategory");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarClassLang_Fk_Source",
+                table: "CarClassLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanyTripAttachments_Fk_CompanyTrip",
+                table: "CompanyTripAttachments",
                 column: "Fk_CompanyTrip");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyTripBookingHistory_Fk_CompanyTripBooking",
-                table: "CompanyTripBookingHistory",
+                name: "IX_CompanyTripBookingHistories_Fk_CompanyTripBooking",
+                table: "CompanyTripBookingHistories",
                 column: "Fk_CompanyTripBooking");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyTripBookingHistory_Fk_CompanyTripBookingState",
-                table: "CompanyTripBookingHistory",
+                name: "IX_CompanyTripBookingHistories_Fk_CompanyTripBookingState",
+                table: "CompanyTripBookingHistories",
                 column: "Fk_CompanyTripBookingState");
 
             migrationBuilder.CreateIndex(
@@ -1081,15 +1615,15 @@ namespace DevelopmentDAL.Migrations
                 column: "Fk_Currency");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyTripBookingState_Name",
-                table: "CompanyTripBookingState",
-                column: "Name",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CompanyTripBookingStateLang_Fk_Source",
                 table: "CompanyTripBookingStateLang",
                 column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanyTripBookingStates_Name",
+                table: "CompanyTripBookingStates",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyTripLang_Fk_Source",
@@ -1102,19 +1636,30 @@ namespace DevelopmentDAL.Migrations
                 column: "Fk_CompanyTripState");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyTripState_Name",
-                table: "CompanyTripState",
-                column: "Name",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CompanyTripStateLang_Fk_Source",
                 table: "CompanyTripStateLang",
                 column: "Fk_Source");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Currency_Name",
-                table: "Currency",
+                name: "IX_CompanyTripStates_Name",
+                table: "CompanyTripStates",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Countries_Name",
+                table: "Countries",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CountryLang_Fk_Source",
+                table: "CountryLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Currencies_Name",
+                table: "Currencies",
                 column: "Name",
                 unique: true);
 
@@ -1122,12 +1667,6 @@ namespace DevelopmentDAL.Migrations
                 name: "IX_CurrencyLang_Fk_Source",
                 table: "CurrencyLang",
                 column: "Fk_Source");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DashboardAccessLevelLang_Fk_Source",
-                table: "DashboardAccessLevelLang",
-                column: "Fk_Source",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DashboardAccessLevels_Name",
@@ -1138,8 +1677,7 @@ namespace DevelopmentDAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_DashboardAdministrationRoleLang_Fk_Source",
                 table: "DashboardAdministrationRoleLang",
-                column: "Fk_Source",
-                unique: true);
+                column: "Fk_Source");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DashboardAdministrationRoles_Name",
@@ -1156,12 +1694,6 @@ namespace DevelopmentDAL.Migrations
                 name: "IX_DashboardAdministrators_Fk_User",
                 table: "DashboardAdministrators",
                 column: "Fk_User",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DashboardViewLang_Fk_Source",
-                table: "DashboardViewLang",
-                column: "Fk_Source",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -1186,6 +1718,58 @@ namespace DevelopmentDAL.Migrations
                 table: "Devices",
                 column: "NotificationToken",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelAttachments_Fk_Hotel",
+                table: "HotelAttachments",
+                column: "Fk_Hotel");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelFeatureCategories_Name",
+                table: "HotelFeatureCategories",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelFeatureCategoryLang_Fk_Source",
+                table: "HotelFeatureCategoryLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelFeatureLang_Fk_Source",
+                table: "HotelFeatureLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelFeatures_Fk_HotelFeatureCategory",
+                table: "HotelFeatures",
+                column: "Fk_HotelFeatureCategory");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelFeatures_Name",
+                table: "HotelFeatures",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelLang_Fk_Source",
+                table: "HotelLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hotels_Fk_Area",
+                table: "Hotels",
+                column: "Fk_Area");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelSelectedFeatures_Fk_Hotel",
+                table: "HotelSelectedFeatures",
+                column: "Fk_Hotel");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelSelectedFeatures_Fk_HotelFeature",
+                table: "HotelSelectedFeatures",
+                column: "Fk_HotelFeature");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostAttachment_Fk_Post",
@@ -1224,6 +1808,67 @@ namespace DevelopmentDAL.Migrations
                 column: "Fk_Source");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TripHistories_Fk_Driver",
+                table: "TripHistories",
+                column: "Fk_Driver");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripHistories_Fk_Supplier",
+                table: "TripHistories",
+                column: "Fk_Supplier");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripHistories_Fk_Trip",
+                table: "TripHistories",
+                column: "Fk_Trip");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripHistories_Fk_TripState",
+                table: "TripHistories",
+                column: "Fk_TripState");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripPoints_Fk_Trip",
+                table: "TripPoints",
+                column: "Fk_Trip");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_Fk_CarClass",
+                table: "Trips",
+                column: "Fk_CarClass");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_Fk_Client",
+                table: "Trips",
+                column: "Fk_Client");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_Fk_Driver",
+                table: "Trips",
+                column: "Fk_Driver");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_Fk_Supplier",
+                table: "Trips",
+                column: "Fk_Supplier");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_Fk_TripState",
+                table: "Trips",
+                column: "Fk_TripState");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripStateLang_Fk_Source",
+                table: "TripStateLang",
+                column: "Fk_Source");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TripStates_Name",
+                table: "TripStates",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_UserName",
                 table: "Users",
                 column: "UserName",
@@ -1254,13 +1899,22 @@ namespace DevelopmentDAL.Migrations
                 name: "AdministrationRolePremissions");
 
             migrationBuilder.DropTable(
+                name: "AreaLang");
+
+            migrationBuilder.DropTable(
                 name: "Audits");
 
             migrationBuilder.DropTable(
-                name: "CompanyTripAttachment");
+                name: "CarCategoryLang");
 
             migrationBuilder.DropTable(
-                name: "CompanyTripBookingHistory");
+                name: "CarClassLang");
+
+            migrationBuilder.DropTable(
+                name: "CompanyTripAttachments");
+
+            migrationBuilder.DropTable(
+                name: "CompanyTripBookingHistories");
 
             migrationBuilder.DropTable(
                 name: "CompanyTripBookingStateLang");
@@ -1272,10 +1926,10 @@ namespace DevelopmentDAL.Migrations
                 name: "CompanyTripStateLang");
 
             migrationBuilder.DropTable(
-                name: "CurrencyLang");
+                name: "CountryLang");
 
             migrationBuilder.DropTable(
-                name: "DashboardAccessLevelLang");
+                name: "CurrencyLang");
 
             migrationBuilder.DropTable(
                 name: "DashboardAdministrationRoleLang");
@@ -1284,10 +1938,22 @@ namespace DevelopmentDAL.Migrations
                 name: "DashboardAdministrators");
 
             migrationBuilder.DropTable(
-                name: "DashboardViewLang");
+                name: "Devices");
 
             migrationBuilder.DropTable(
-                name: "Devices");
+                name: "HotelAttachments");
+
+            migrationBuilder.DropTable(
+                name: "HotelFeatureCategoryLang");
+
+            migrationBuilder.DropTable(
+                name: "HotelFeatureLang");
+
+            migrationBuilder.DropTable(
+                name: "HotelLang");
+
+            migrationBuilder.DropTable(
+                name: "HotelSelectedFeatures");
 
             migrationBuilder.DropTable(
                 name: "Logs");
@@ -1305,37 +1971,70 @@ namespace DevelopmentDAL.Migrations
                 name: "SupplierLang");
 
             migrationBuilder.DropTable(
-                name: "Verifications");
+                name: "TripHistories");
 
             migrationBuilder.DropTable(
-                name: "CompanyTripBookings");
+                name: "TripPoints");
+
+            migrationBuilder.DropTable(
+                name: "TripStateLang");
+
+            migrationBuilder.DropTable(
+                name: "Verifications");
 
             migrationBuilder.DropTable(
                 name: "DashboardAccessLevels");
 
             migrationBuilder.DropTable(
+                name: "DashboardViews");
+
+            migrationBuilder.DropTable(
+                name: "CompanyTripBookings");
+
+            migrationBuilder.DropTable(
                 name: "DashboardAdministrationRoles");
 
             migrationBuilder.DropTable(
-                name: "DashboardViews");
+                name: "HotelFeatures");
+
+            migrationBuilder.DropTable(
+                name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "CompanyTripBookingState");
+                name: "Trips");
+
+            migrationBuilder.DropTable(
+                name: "CompanyTripBookingStates");
 
             migrationBuilder.DropTable(
                 name: "CompanyTrips");
 
             migrationBuilder.DropTable(
-                name: "Currency");
+                name: "Currencies");
+
+            migrationBuilder.DropTable(
+                name: "HotelFeatureCategories");
+
+            migrationBuilder.DropTable(
+                name: "Areas");
 
             migrationBuilder.DropTable(
                 name: "Accounts");
 
             migrationBuilder.DropTable(
-                name: "CompanyTripState");
+                name: "CarClasses");
+
+            migrationBuilder.DropTable(
+                name: "TripStates");
+
+            migrationBuilder.DropTable(
+                name: "CompanyTripStates");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
 
             migrationBuilder.DropTable(
                 name: "AccountState");
@@ -1344,10 +2043,13 @@ namespace DevelopmentDAL.Migrations
                 name: "AccountType");
 
             migrationBuilder.DropTable(
-                name: "Supplier");
+                name: "Suppliers");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "CarCategories");
         }
     }
 }

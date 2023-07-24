@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevelopmentDAL.Migrations
 {
     [DbContext(typeof(DevelopmentContext))]
-    [Migration("20230721114859_main_data")]
-    partial class maindata
+    [Migration("20230724063907_NewDB")]
+    partial class NewDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,6 +262,169 @@ namespace DevelopmentDAL.Migrations
                     b.ToTable("Audits");
                 });
 
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("CarCategories");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarCategoryLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("CarCategoryLang");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_CarCategory")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_CarCategory");
+
+                    b.ToTable("CarClasses");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarClassLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("CarClassLang");
+                });
+
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTrip", b =>
                 {
                     b.Property<int>("Id")
@@ -351,7 +514,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasIndex("Fk_CompanyTrip");
 
-                    b.ToTable("CompanyTripAttachment");
+                    b.ToTable("CompanyTripAttachments");
                 });
 
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTripBooking", b =>
@@ -459,7 +622,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasIndex("Fk_CompanyTripBookingState");
 
-                    b.ToTable("CompanyTripBookingHistory");
+                    b.ToTable("CompanyTripBookingHistories");
                 });
 
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTripBookingState", b =>
@@ -499,7 +662,7 @@ namespace DevelopmentDAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("CompanyTripBookingState");
+                    b.ToTable("CompanyTripBookingStates");
                 });
 
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTripBookingStateLang", b =>
@@ -623,7 +786,7 @@ namespace DevelopmentDAL.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("CompanyTripState");
+                    b.ToTable("CompanyTripStates");
                 });
 
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTripStateLang", b =>
@@ -869,6 +1032,70 @@ namespace DevelopmentDAL.Migrations
                             FkDashboardAccessLevel = 1,
                             FkDashboardAdministrationRole = 1,
                             FkDashboardView = 21
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 22
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 23
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 24
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 25
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 26
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 27
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 28
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FkDashboardAccessLevel = 1,
+                            FkDashboardAdministrationRole = 1,
+                            FkDashboardView = 29
                         });
                 });
 
@@ -950,57 +1177,6 @@ namespace DevelopmentDAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardAccessLevelLang", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<int>("Fk_Source")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Fk_Source")
-                        .IsUnique();
-
-                    b.ToTable("DashboardAccessLevelLang");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 1,
-                            Name = "FullAccess"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 2,
-                            Name = "DataControl"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 3,
-                            Name = "Viewer"
-                        });
-                });
-
             modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardAdministrationRole", b =>
                 {
                     b.Property<int>("Id")
@@ -1050,8 +1226,23 @@ namespace DevelopmentDAL.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getutcdate()");
 
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Fk_Source")
                         .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1059,8 +1250,7 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Fk_Source")
-                        .IsUnique();
+                    b.HasIndex("Fk_Source");
 
                     b.ToTable("DashboardAdministrationRoleLang");
 
@@ -1070,6 +1260,8 @@ namespace DevelopmentDAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FkSource = 1,
+                            Language = 0,
+                            LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Developer"
                         });
                 });
@@ -1311,10 +1503,126 @@ namespace DevelopmentDAL.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "PostAttachment",
                             ViewPath = "PostAttachment"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PostReaction",
+                            ViewPath = "PostReaction"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Hotel",
+                            ViewPath = "Hotel"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "HotelAttachment",
+                            ViewPath = "HotelAttachment"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CarClass",
+                            ViewPath = "CarClass"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CarCategory",
+                            ViewPath = "CarCategory"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TripState",
+                            ViewPath = "TripState"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "HotelFeatureCategory",
+                            ViewPath = "HotelFeatureCategory"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "HotelFeature",
+                            ViewPath = "HotelFeature"
                         });
                 });
 
-            modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardViewLang", b =>
+            modelBuilder.Entity("Entities.DBModels.HotelModels.Hotel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookingUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Fk_Area")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("StorageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Area");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelAttachment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1327,8 +1635,158 @@ namespace DevelopmentDAL.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getutcdate()");
 
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("FileLength")
+                        .HasColumnType("float");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Hotel")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StorageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Hotel");
+
+                    b.ToTable("HotelAttachments");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_HotelFeatureCategory")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_HotelFeatureCategory");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("HotelFeatures");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("HotelFeatureCategories");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureCategoryLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Fk_Source")
                         .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1336,159 +1794,133 @@ namespace DevelopmentDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Fk_Source")
-                        .IsUnique();
+                    b.HasIndex("Fk_Source");
 
-                    b.ToTable("DashboardViewLang");
+                    b.ToTable("HotelFeatureCategoryLang");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 1,
-                            Name = "Home"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 2,
-                            Name = "User"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 3,
-                            Name = "DashboardAdministrator"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 4,
-                            Name = "DashboardAccessLevel"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 5,
-                            Name = "DashboardAdministrationRole"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 6,
-                            Name = "DashboardView"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 7,
-                            Name = "RefreshToken"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 8,
-                            Name = "UserDevice"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 9,
-                            Name = "Verification"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 10,
-                            Name = "DBLogs"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 11,
-                            Name = "Audit"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 12,
-                            Name = "Account"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 13,
-                            Name = "CompanyTripState"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 14,
-                            Name = "AccountState"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 15,
-                            Name = "AccountType"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 16,
-                            Name = "Area"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 17,
-                            Name = "Country"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 18,
-                            Name = "Currency"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 19,
-                            Name = "Supplier"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 20,
-                            Name = "Post"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FkSource = 21,
-                            Name = "PostAttachment"
-                        });
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("HotelFeatureLang");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("HotelLang");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelSelectedFeatures", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Hotel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fk_HotelFeature")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Hotel");
+
+                    b.HasIndex("Fk_HotelFeature");
+
+                    b.ToTable("HotelSelectedFeatures");
                 });
 
             modelBuilder.Entity("Entities.DBModels.LogModels.Log", b =>
@@ -1970,6 +2402,258 @@ namespace DevelopmentDAL.Migrations
                     b.ToTable("PostReaction");
                 });
 
+            modelBuilder.Entity("Entities.DBModels.TripModels.Trip", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Fk_CarClass")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fk_Client")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Fk_Driver")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Fk_Supplier")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fk_TripState")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MembersCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("TripAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("WaitingPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_CarClass");
+
+                    b.HasIndex("Fk_Client");
+
+                    b.HasIndex("Fk_Driver");
+
+                    b.HasIndex("Fk_Supplier");
+
+                    b.HasIndex("Fk_TripState");
+
+                    b.ToTable("Trips");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Fk_Driver")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Fk_Supplier")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fk_Trip")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Fk_TripState")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Driver");
+
+                    b.HasIndex("Fk_Supplier");
+
+                    b.HasIndex("Fk_Trip");
+
+                    b.HasIndex("Fk_TripState");
+
+                    b.ToTable("TripHistories");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripPoint", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("Fk_Trip")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("FromLatitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("FromLongitude")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("LeaveAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("ToLatitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("ToLongitude")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("TripAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("WaitingTime")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Trip");
+
+                    b.ToTable("TripPoints");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripState", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("TripStates");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripStateLang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fk_Source")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Fk_Source");
+
+                    b.ToTable("TripStateLang");
+                });
+
             modelBuilder.Entity("Entities.DBModels.UserModels.Device", b =>
                 {
                     b.Property<int>("Id")
@@ -2121,7 +2805,7 @@ namespace DevelopmentDAL.Migrations
                             EmailAddress = "user@mail.com",
                             LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Developer",
-                            Password = "$2a$11$j1lrA.frJsNi9aQAqB/m6.c5XFtlbWe1AvOaTcDfysQ9Pdrlxx0t.",
+                            Password = "$2a$11$X7kHlHtht9ZNOg8VGEXo8ea6tJ0D5xiCYt8abAY7oYbQbRVqZCxlC",
                             UserName = "Developer"
                         });
                 });
@@ -2212,6 +2896,39 @@ namespace DevelopmentDAL.Migrations
                 {
                     b.HasOne("Entities.DBModels.AccountModels.AccountType", "Source")
                         .WithMany("AccountTypeLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarCategoryLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.CarModels.CarCategory", "Source")
+                        .WithMany("CarCategoryLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarClass", b =>
+                {
+                    b.HasOne("Entities.DBModels.CarModels.CarCategory", "CarCategory")
+                        .WithMany("CarClasses")
+                        .HasForeignKey("Fk_CarCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CarCategory");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarClassLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.CarModels.CarClass", "Source")
+                        .WithMany("CarClassLangs")
                         .HasForeignKey("Fk_Source")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2355,22 +3072,11 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("DashboardView");
                 });
 
-            modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardAccessLevelLang", b =>
-                {
-                    b.HasOne("Entities.DBModels.DashboardAdministrationModels.DashboardAccessLevel", "Source")
-                        .WithOne("DashboardAccessLevelLang")
-                        .HasForeignKey("Entities.DBModels.DashboardAdministrationModels.DashboardAccessLevelLang", "Fk_Source")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Source");
-                });
-
             modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardAdministrationRoleLang", b =>
                 {
                     b.HasOne("Entities.DBModels.DashboardAdministrationModels.DashboardAdministrationRole", "Source")
-                        .WithOne("DashboardAdministrationRoleLang")
-                        .HasForeignKey("Entities.DBModels.DashboardAdministrationModels.DashboardAdministrationRoleLang", "Fk_Source")
+                        .WithMany("DashboardAdministrationRoleLangs")
+                        .HasForeignKey("Fk_Source")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2396,15 +3102,87 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardViewLang", b =>
+            modelBuilder.Entity("Entities.DBModels.HotelModels.Hotel", b =>
                 {
-                    b.HasOne("Entities.DBModels.DashboardAdministrationModels.DashboardView", "Source")
-                        .WithOne("DashboardViewLang")
-                        .HasForeignKey("Entities.DBModels.DashboardAdministrationModels.DashboardViewLang", "Fk_Source")
+                    b.HasOne("Entities.DBModels.MainDataModels.Area", "Area")
+                        .WithMany()
+                        .HasForeignKey("Fk_Area");
+
+                    b.Navigation("Area");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelAttachment", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.Hotel", "Hotel")
+                        .WithMany("HotelAttachments")
+                        .HasForeignKey("Fk_Hotel")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeature", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.HotelFeatureCategory", "HotelFeatureCategory")
+                        .WithMany("HotelFeatures")
+                        .HasForeignKey("Fk_HotelFeatureCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HotelFeatureCategory");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureCategoryLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.HotelFeatureCategory", "Source")
+                        .WithMany("HotelFeatureCategoryLangs")
+                        .HasForeignKey("Fk_Source")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.HotelFeature", "Source")
+                        .WithMany("HotelFeatureLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.Hotel", "Source")
+                        .WithMany("HotelLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelSelectedFeatures", b =>
+                {
+                    b.HasOne("Entities.DBModels.HotelModels.Hotel", "Hotel")
+                        .WithMany("HotelSelectedFeatures")
+                        .HasForeignKey("Fk_Hotel")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.DBModels.HotelModels.HotelFeature", "HotelFeature")
+                        .WithMany("HotelSelectedFeatures")
+                        .HasForeignKey("Fk_HotelFeature")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("HotelFeature");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
@@ -2503,6 +3281,94 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("Entities.DBModels.TripModels.Trip", b =>
+                {
+                    b.HasOne("Entities.DBModels.CarModels.CarClass", "CarClass")
+                        .WithMany()
+                        .HasForeignKey("Fk_CarClass");
+
+                    b.HasOne("Entities.DBModels.AccountModels.Account", "Client")
+                        .WithMany()
+                        .HasForeignKey("Fk_Client")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.DBModels.AccountModels.Account", "Driver")
+                        .WithMany()
+                        .HasForeignKey("Fk_Driver");
+
+                    b.HasOne("Entities.DBModels.MainDataModels.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("Fk_Supplier");
+
+                    b.HasOne("Entities.DBModels.TripModels.TripState", "TripState")
+                        .WithMany()
+                        .HasForeignKey("Fk_TripState")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CarClass");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("Supplier");
+
+                    b.Navigation("TripState");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripHistory", b =>
+                {
+                    b.HasOne("Entities.DBModels.AccountModels.Account", "Driver")
+                        .WithMany()
+                        .HasForeignKey("Fk_Driver");
+
+                    b.HasOne("Entities.DBModels.MainDataModels.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("Fk_Supplier");
+
+                    b.HasOne("Entities.DBModels.TripModels.Trip", "Trip")
+                        .WithMany("TripHistories")
+                        .HasForeignKey("Fk_Trip")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.DBModels.TripModels.TripState", "TripState")
+                        .WithMany()
+                        .HasForeignKey("Fk_TripState");
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("Supplier");
+
+                    b.Navigation("Trip");
+
+                    b.Navigation("TripState");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripPoint", b =>
+                {
+                    b.HasOne("Entities.DBModels.TripModels.Trip", "Trip")
+                        .WithMany("TripPoints")
+                        .HasForeignKey("Fk_Trip")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trip");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripStateLang", b =>
+                {
+                    b.HasOne("Entities.DBModels.TripModels.TripState", "Source")
+                        .WithMany("TripStateLangs")
+                        .HasForeignKey("Fk_Source")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Source");
+                });
+
             modelBuilder.Entity("Entities.DBModels.UserModels.Device", b =>
                 {
                     b.HasOne("Entities.DBModels.UserModels.User", "User")
@@ -2555,6 +3421,18 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("Accounts");
                 });
 
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarCategory", b =>
+                {
+                    b.Navigation("CarCategoryLangs");
+
+                    b.Navigation("CarClasses");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.CarModels.CarClass", b =>
+                {
+                    b.Navigation("CarClassLangs");
+                });
+
             modelBuilder.Entity("Entities.DBModels.CompanyTripModels.CompanyTrip", b =>
                 {
                     b.Navigation("CompanyTripAttachments");
@@ -2583,8 +3461,6 @@ namespace DevelopmentDAL.Migrations
 
             modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardAccessLevel", b =>
                 {
-                    b.Navigation("DashboardAccessLevelLang");
-
                     b.Navigation("Premissions");
                 });
 
@@ -2592,16 +3468,37 @@ namespace DevelopmentDAL.Migrations
                 {
                     b.Navigation("Administrators");
 
-                    b.Navigation("DashboardAdministrationRoleLang");
+                    b.Navigation("DashboardAdministrationRoleLangs");
 
                     b.Navigation("Premissions");
                 });
 
             modelBuilder.Entity("Entities.DBModels.DashboardAdministrationModels.DashboardView", b =>
                 {
-                    b.Navigation("DashboardViewLang");
-
                     b.Navigation("Premissions");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.Hotel", b =>
+                {
+                    b.Navigation("HotelAttachments");
+
+                    b.Navigation("HotelLangs");
+
+                    b.Navigation("HotelSelectedFeatures");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeature", b =>
+                {
+                    b.Navigation("HotelFeatureLangs");
+
+                    b.Navigation("HotelSelectedFeatures");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.HotelModels.HotelFeatureCategory", b =>
+                {
+                    b.Navigation("HotelFeatureCategoryLangs");
+
+                    b.Navigation("HotelFeatures");
                 });
 
             modelBuilder.Entity("Entities.DBModels.MainDataModels.Area", b =>
@@ -2631,6 +3528,18 @@ namespace DevelopmentDAL.Migrations
                     b.Navigation("PostAttachments");
 
                     b.Navigation("PostReactions");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.Trip", b =>
+                {
+                    b.Navigation("TripHistories");
+
+                    b.Navigation("TripPoints");
+                });
+
+            modelBuilder.Entity("Entities.DBModels.TripModels.TripState", b =>
+                {
+                    b.Navigation("TripStateLangs");
                 });
 
             modelBuilder.Entity("Entities.DBModels.UserModels.User", b =>
