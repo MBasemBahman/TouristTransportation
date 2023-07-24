@@ -1084,4 +1084,7 @@
   <data name="TripStates" xml:space="preserve">
     <value>Trip States</value>
   </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
 </root>

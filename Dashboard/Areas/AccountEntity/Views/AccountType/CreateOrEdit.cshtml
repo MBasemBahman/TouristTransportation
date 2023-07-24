@@ -53,13 +53,6 @@
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="ColorCode" class="form-label"></label>
-                                                <input type="color" asp-for="ColorCode" class="form-control" />
-                                                <span asp-validation-for="ColorCode" class="text-danger"></span>
-                                            </div>
-                                        </div>
 
                                         @{ int i = 0;}
                                         @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
@@ -76,6 +69,14 @@
                                             </div>
                                             i++;
                                         }
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="ColorCode" class="form-label"></label>
+                                                <input type="color" asp-for="ColorCode" class="form-control" />
+                                                <span asp-validation-for="ColorCode" class="text-danger"></span>
+                                            </div>
+                                        </div>
 
                                         <hr/>
                                         <div class="col-12">

@@ -34,6 +34,8 @@ namespace API.Areas.HotelArea.Controllers
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
+            parameters.IncludeSelectedFeature = true;
+            
             PagedList<HotelModel> hotels = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
 
             SetPagination(hotels.MetaData, parameters);

@@ -41,6 +41,16 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   },
+                                  HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
+                                      .GroupBy(b => b.HotelFeature.HotelFeatureCategory)
+                                      .SelectMany(group => group.Select(b => new HotelSelectedFeaturesModel
+                                      {
+                                          HotelFeature = new HotelFeatureModel
+                                          { 
+                                              Id = b.Fk_HotelFeature,
+                                              // You can add more properties of HotelFeatureModel if needed
+                                          }
+                                      })).ToList() : null,
                                   ImageUrl = a.StorageUrl + a.ImageUrl,
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,

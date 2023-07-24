@@ -62,25 +62,7 @@
                                     </div>
                                     <br />
                                     <div class="row">
-                                       
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Fk_AccountType" class="form-label"></label>
-                                                <select asp-for="Fk_AccountType" class="select2 form-select"
-                                                        asp-items="@(new SelectList(ViewData["AccountTypes"] as Dictionary<string,string>,"Key","Value"))"></select>
-                                                <span asp-validation-for="Fk_AccountType" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Fk_AccountState" class="form-label"></label>
-                                                <select asp-for="Fk_AccountState" class="select2 form-select"
-                                                        asp-items="@(new SelectList(ViewData["AccountStates"] as Dictionary<string,string>,"Key","Value"))"></select>
-                                                <span asp-validation-for="Fk_AccountState" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        
+
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="User.Name" class="form-label"></label>
@@ -114,12 +96,13 @@
                                         </div>
                                         
                                         <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label asp-for="User.Password" class="form-label"></label>
-                                            <input asp-for="User.Password" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Password"))"/>
-                                            <span asp-validation-for="User.Password" class="text-danger"></span>
-
+                                            <div class="mb-1">
+                                                <label asp-for="User.Password" class="form-label"></label>
+                                                <input asp-for="User.Password" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Password"))"/>
+                                                <span asp-validation-for="User.Password" class="text-danger"></span>
+                                            </div>
                                         </div>
+                                        
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="Fk_AccountType" class="form-label"></label>
@@ -147,6 +130,7 @@
                                                 <span asp-validation-for="Fk_Supplier" class="text-danger"></span>
                                             </div>
                                         </div>
+                                        
                                         <hr/>
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">@Localizer.Get("Submit")</button>
@@ -164,7 +148,7 @@
                                             }
                                         </div>
                                     </div>
-                                    </div>
+                                   
                                 </form>
                             </div>
                         </div>

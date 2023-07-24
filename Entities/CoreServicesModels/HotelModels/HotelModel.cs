@@ -7,6 +7,7 @@ namespace Entities.CoreServicesModels.HotelModels
     public class HotelParameters : RequestParameters
     {
         public int? Fk_Area { get; set; }
+        public bool? IncludeSelectedFeature { get; set; }
     }
 
     public class HotelModel : AuditImageEntity
@@ -40,6 +41,9 @@ namespace Entities.CoreServicesModels.HotelModels
         
         [DisplayName(nameof(AttachmentsCount))]
         public int AttachmentsCount { get; set; }
+        
+        [DisplayName(nameof(AttachmentsCount))]
+        public List<HotelSelectedFeaturesModel> HotelSelectedFeatures { get; set; }
     }
 
     public class HotelCreateOrEditModel

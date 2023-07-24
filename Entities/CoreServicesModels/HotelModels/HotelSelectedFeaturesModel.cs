@@ -35,4 +35,17 @@ namespace Entities.CoreServicesModels.HotelModels
         [ForeignKey(nameof(HotelFeature))]
         public int Fk_HotelFeature { get; set; }
     }
+    
+    public class HotelSelectedFeaturesWithCategoryModel : AuditEntity
+    {
+        [DisplayName(nameof(HotelFeatureCategory))]
+        [ForeignKey(nameof(HotelFeatureCategory))]
+        public int Fk_HotelFeatureCategory { get; set; }
+    
+        [DisplayName(nameof(HotelFeatureCategory))]
+        public HotelFeatureCategoryModel HotelFeatureCategory { get; set; }
+
+        [DisplayName(nameof(HotelFeatures))]
+        public List<HotelFeatureModel> HotelFeatures { get; set; }
+    }
 }

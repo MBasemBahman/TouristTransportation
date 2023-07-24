@@ -69,13 +69,25 @@ namespace Dashboard.Areas.HotelEntity.Controllers
 
         public IActionResult Details(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             HotelFeatureDto data = _mapper.Map<HotelFeatureDto>(_unitOfWork.Hotel.GetHotelFeatureById(id, otherLang));
 
             return View(data);
         }
 
+        public async Task<ActionResult> CreateOrEditBulk(int id, List<int> hotelFeatures)
+        {
+            _unitOfWork.Hotel.UpdateHotelFeatures(id, hotelFeatures);
+
+            await _unitOfWork.Save();
+            
+            return Ok(new HotelModel
+            {
+                Id = id
+            });
+        }
+        
         [Authorize(DashboardViewEnum.HotelFeature, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
@@ -180,7 +192,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
         //helper method
         private void SetViewData(int id)
         {
-            LanguageEnum otherLang = (LanguageEnum)Request.HttpContext.Items[ApiConstants.Language];
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             ViewData["id"] = id;
             ViewData["HotelFeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp (new HotelFeatureCategoryParameters(), otherLang);
