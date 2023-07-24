@@ -17,7 +17,7 @@ namespace API.Areas.HotelArea.Controllers
         IWebHostEnvironment environment,
         IOptions<AppSettings> appSettings) : base(logger, mapper, unitOfWork, linkGenerator, environment, appSettings)
         {
-            
+
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace API.Areas.HotelArea.Controllers
             {
                 throw new Exception("Not Allowed");
             }
-            
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             PagedList<HotelModel> hotels = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
@@ -69,7 +69,7 @@ namespace API.Areas.HotelArea.Controllers
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            
+
             if (post.AttachmentsCount > 0 && post.Id > 0)
             {
                 post.Attachments = _mapper.Map<IEnumerable<HotelAttachmentDto>>(

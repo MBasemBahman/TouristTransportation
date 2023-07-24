@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using Entities.CoreServicesModels.PostModels;
 
 namespace API.Areas.PostArea.Models
@@ -16,9 +14,9 @@ namespace API.Areas.PostArea.Models
     public class PostCreateOrEditDto : PostCreateOrEditModel
     {
         public new int? Fk_Account { get; set; }
-        
+
         public List<IFormFile> AttachmentFiles { get; set; }
         public List<int> RmvAttachments { get; set; }
     }
-    
+
 }

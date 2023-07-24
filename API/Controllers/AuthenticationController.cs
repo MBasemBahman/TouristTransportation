@@ -29,7 +29,7 @@ namespace API.Controllers
             model.UserName = RegexService.GetUserName(model.UserName);
 
             UserAuthenticatedDto auth = await _authManager.Authenticate(model, IpAddress());
-            
+
             SetToken(auth.TokenResponse);
             SetRefresh(auth.RefreshTokenResponse);
 

@@ -1,5 +1,4 @@
 ﻿using DevelopmentDAL;
-using Entities.ServicesModels;
 
 namespace API.Extensions
 {
@@ -129,13 +128,13 @@ namespace API.Extensions
 
             _ = services.Configure<RequestLocalizationOptions>(options =>
             {
-                List<CultureInfo> supportedCultures = new List<CultureInfo> {new CultureInfo("ar")};
-            
+                List<CultureInfo> supportedCultures = new() { new CultureInfo("ar") };
+
                 foreach (string language in Enum.GetNames(typeof(LanguageEnum)))
                 {
                     supportedCultures.Add(new CultureInfo(language));
                 }
-                
+
                 options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "en");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;

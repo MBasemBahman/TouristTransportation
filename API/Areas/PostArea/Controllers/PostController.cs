@@ -18,7 +18,7 @@ namespace API.Areas.PostArea.Controllers
         IWebHostEnvironment environment,
         IOptions<AppSettings> appSettings) : base(logger, mapper, unitOfWork, linkGenerator, environment, appSettings)
         {
-            
+
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace API.Areas.PostArea.Controllers
 
             parameters.Fk_AccountForReaction = auth.Fk_Account;
             parameters.IncludeAttachments = true;
-            
+
             PagedList<PostModel> posts = await _unitOfWork.Post.GetPostsPaged(parameters);
 
             SetPagination(posts.MetaData, parameters);
@@ -42,7 +42,7 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetPost))]
-        public async Task<PostDto> GetPost(
+        public PostDto GetPost(
           [FromQuery, BindRequired] int id)
         {
             if (id == 0)
@@ -51,7 +51,7 @@ namespace API.Areas.PostArea.Controllers
             }
 
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-            
+
             //For My Reaction
 
             PostModel post = _unitOfWork.Post.GetPosts(new PostParameters
@@ -94,20 +94,20 @@ namespace API.Areas.PostArea.Controllers
                     });
                 }
             }
-            
+
             _unitOfWork.Post.CreatePost(post);
 
             await _unitOfWork.Save();
 
-            
+
             PostModel postModel = _unitOfWork.Post.GetPosts(new PostParameters
             {
                 Id = post.Id,
                 IncludeAttachments = true
             }).FirstOrDefault();
-            
+
             PostDto returnData = _mapper.Map<PostDto>(postModel);
-            
+
             return returnData;
         }
 
@@ -121,16 +121,16 @@ namespace API.Areas.PostArea.Controllers
             }
 
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-            
+
             Post post = await _unitOfWork.Post.FindPostById(id, trackChanges: true);
 
             if (post.Fk_Account != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
-            
+
             model.Fk_Account = auth.Fk_Account;
-            
+
             _ = _mapper.Map(model, post);
 
             post.LastModifiedBy = auth.UserName;
@@ -151,7 +151,7 @@ namespace API.Areas.PostArea.Controllers
                         FileType = file.ContentType,
                     };
                     _unitOfWork.Post.CreatePostAttachment(attachment);
-                    
+
                     await _unitOfWork.Save();
                 }
             }
@@ -172,7 +172,7 @@ namespace API.Areas.PostArea.Controllers
                 Fk_AccountForReaction = auth.Fk_Account,
                 IncludeAttachments = true
             }).FirstOrDefault();
-            
+
             PostDto returnData = _mapper.Map<PostDto>(postModel);
 
             return returnData;
@@ -197,11 +197,11 @@ namespace API.Areas.PostArea.Controllers
             }
 
             _unitOfWork.Post.DeletePost(post);
-            
+
             await _unitOfWork.Save();
 
             return true;
         }
-        
+
     }
 }

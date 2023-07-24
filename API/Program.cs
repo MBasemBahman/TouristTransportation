@@ -23,7 +23,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureLocalization();
 builder.Services.ConfigureVersioning();
 builder.Services.ConfigureResponseCaching();
-builder.Services.ConfigureScopedService();  
+builder.Services.ConfigureScopedService();
 builder.Services.ConfigureSqlContext(builder.Configuration, config);
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {

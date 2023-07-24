@@ -1,13 +1,9 @@
 ﻿using API.Areas.HotelArea.Models;
 using API.Areas.PostArea.Models;
-using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.PostModels;
-using Entities.CoreServicesModels.UserModels;
-using Entities.DBModels.AccountModels;
 using Entities.DBModels.HotelModels;
 using Entities.DBModels.PostModels;
-using Entities.DBModels.UserModels;
 
 namespace API.MappingProfileCls
 {
@@ -30,15 +26,15 @@ namespace API.MappingProfileCls
             CreateMap<TimeSpan, string>().ConvertUsing(new TimeSpanTypeConverter());
             CreateMap<TimeSpan?, string>().ConvertUsing(new TimeSpanNullableTypeConverter());
             CreateMap<string, List<string>>().ConvertUsing(new ListOfStringTypeConverter());
-            
+
             #region PostModels
-            
+
             #region PostModels
-            
+
             _ = CreateMap<PostModel, PostDto>();
             _ = CreateMap<PostCreateOrEditDto, Post>();
             _ = CreateMap<Post, PostCreateOrEditDto>();
-            
+
             #endregion
 
             #region PostAttachment Models
@@ -47,17 +43,17 @@ namespace API.MappingProfileCls
             _ = CreateMap<PostAttachmentModel, PostAttachmentDto>().ReverseMap();
 
             #endregion
-            
+
             #endregion
-            
+
             #region HotelModels
-            
+
             #region HotelModels
-            
+
             _ = CreateMap<HotelModel, HotelDto>();
             _ = CreateMap<HotelCreateOrEditDto, Hotel>();
             _ = CreateMap<Hotel, HotelCreateOrEditDto>();
-            
+
             #endregion
 
             #region HotelAttachment Models
@@ -66,7 +62,7 @@ namespace API.MappingProfileCls
             _ = CreateMap<HotelAttachmentModel, HotelAttachmentDto>().ReverseMap();
 
             #endregion
-            
+
             #endregion
         }
 

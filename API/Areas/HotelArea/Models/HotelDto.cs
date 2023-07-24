@@ -13,10 +13,10 @@ namespace API.Areas.HotelArea.Models
 
     public class HotelCreateOrEditDto : HotelCreateOrEditModel
     {
-        public new int? Fk_Account { get; set; }
-        
+        public int? Fk_Account { get; set; }
+
         public List<IFormFile> AttachmentFiles { get; set; }
         public List<int> RmvAttachments { get; set; }
     }
-    
+
 }
