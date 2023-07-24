@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,1029 +59,1029 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="About App" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About App" xml:space="preserve">
     <value>About App</value>
   </data>
-	<data name="Actions" xml:space="preserve">
+  <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
-	<data name="Add" xml:space="preserve">
+  <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
-	<data name="AddNew" xml:space="preserve">
+  <data name="AddNew" xml:space="preserve">
     <value>Add New</value>
   </data>
-	<data name="AdministratorsCount" xml:space="preserve">
+  <data name="AdministratorsCount" xml:space="preserve">
     <value>Administrators</value>
   </data>
-	<data name="Advanced Search" xml:space="preserve">
+  <data name="Advanced Search" xml:space="preserve">
     <value>Advanced Search</value>
   </data>
-	<data name="Advanced Settings" xml:space="preserve">
+  <data name="Advanced Settings" xml:space="preserve">
     <value>Advanced Settings</value>
   </data>
-	<data name="All" xml:space="preserve">
+  <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-	<data name="All Data" xml:space="preserve">
+  <data name="All Data" xml:space="preserve">
     <value>All Data</value>
   </data>
-	<data name="All Rights Reserved" xml:space="preserve">
+  <data name="All Rights Reserved" xml:space="preserve">
     <value>All Rights Reserved</value>
   </data>
-	<data name="ar" xml:space="preserve">
+  <data name="ar" xml:space="preserve">
     <value>Arabic</value>
   </data>
-	<data name="Attachments" xml:space="preserve">
+  <data name="Attachments" xml:space="preserve">
     <value>Attachments</value>
   </data>
-	<data name="Back" xml:space="preserve">
+  <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-	<data name="Back to home" xml:space="preserve">
+  <data name="Back to home" xml:space="preserve">
     <value>Back to home</value>
   </data>
-	<data name="BranchRequestAttachment" xml:space="preserve">
+  <data name="BranchRequestAttachment" xml:space="preserve">
     <value>Attachment</value>
   </data>
-	<data name="Can't delete this item" xml:space="preserve">
+  <data name="Can't delete this item" xml:space="preserve">
     <value>Can't delete this item</value>
   </data>
-	<data name="Cancel" xml:space="preserve">
+  <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-	<data name="Change" xml:space="preserve">
+  <data name="Change" xml:space="preserve">
     <value>Change</value>
   </data>
-	<data name="Change Language" xml:space="preserve">
+  <data name="Change Language" xml:space="preserve">
     <value>Change Language</value>
   </data>
-	<data name="Change Password" xml:space="preserve">
+  <data name="Change Password" xml:space="preserve">
     <value>Change Password</value>
   </data>
-	<data name="Change Theme" xml:space="preserve">
+  <data name="Change Theme" xml:space="preserve">
     <value>Change Theme</value>
   </data>
-	<data name="ChangePassword" xml:space="preserve">
+  <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
-	<data name="ChooseFile" xml:space="preserve">
+  <data name="ChooseFile" xml:space="preserve">
     <value>Choose File</value>
   </data>
-	<data name="Click to View" xml:space="preserve">
+  <data name="Click to View" xml:space="preserve">
     <value>Click to View</value>
   </data>
-	<data name="Code" xml:space="preserve">
+  <data name="Code" xml:space="preserve">
     <value>Code</value>
   </data>
-	<data name="ColorCode" xml:space="preserve">
+  <data name="ColorCode" xml:space="preserve">
     <value>Color Code</value>
   </data>
-	<data name="Copy" xml:space="preserve">
+  <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
-	<data name="COPYRIGHT" xml:space="preserve">
+  <data name="COPYRIGHT" xml:space="preserve">
     <value>COPYRIGHT</value>
   </data>
-	<data name="Create" xml:space="preserve">
+  <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
-	<data name="CreateAccess" xml:space="preserve">
+  <data name="CreateAccess" xml:space="preserve">
     <value>Create Access</value>
   </data>
-	<data name="CreatedAt" xml:space="preserve">
+  <data name="CreatedAt" xml:space="preserve">
     <value>Created At</value>
   </data>
-	<data name="CreatedBy" xml:space="preserve">
+  <data name="CreatedBy" xml:space="preserve">
     <value>Created By</value>
   </data>
-	<data name="CreatedByIp" xml:space="preserve">
+  <data name="CreatedByIp" xml:space="preserve">
     <value>Created By Ip</value>
   </data>
-	<data name="CreateOrEdit" xml:space="preserve">
+  <data name="CreateOrEdit" xml:space="preserve">
     <value>Create Or Edit</value>
   </data>
-	<data name="Csv" xml:space="preserve">
+  <data name="Csv" xml:space="preserve">
     <value>Csv</value>
   </data>
-	<data name="Culture" xml:space="preserve">
+  <data name="Culture" xml:space="preserve">
     <value>Culture</value>
   </data>
-	<data name="Dashboard" xml:space="preserve">
-    <value>Juwana</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Tourism</value>
   </data>
-	<data name="DashboardAccessLevel" xml:space="preserve">
+  <data name="DashboardAccessLevel" xml:space="preserve">
     <value>Dashboard Access Level</value>
   </data>
-	<data name="DashboardAccessLevels" xml:space="preserve">
+  <data name="DashboardAccessLevels" xml:space="preserve">
     <value>Dashboard Access Levels</value>
   </data>
-	<data name="DashboardAdministration" xml:space="preserve">
+  <data name="DashboardAdministration" xml:space="preserve">
     <value>Dashboard Administration</value>
   </data>
-	<data name="DashboardAdministrationRole" xml:space="preserve">
+  <data name="DashboardAdministrationRole" xml:space="preserve">
     <value>Dashboard Administration Role</value>
   </data>
-	<data name="DashboardAdministrationRoles" xml:space="preserve">
+  <data name="DashboardAdministrationRoles" xml:space="preserve">
     <value>Dashboard Administration Roles</value>
   </data>
-	<data name="DashboardAdministrator" xml:space="preserve">
+  <data name="DashboardAdministrator" xml:space="preserve">
     <value>Dashboard Administrator</value>
   </data>
-	<data name="DashboardAdministrators" xml:space="preserve">
+  <data name="DashboardAdministrators" xml:space="preserve">
     <value>Dashboard Administrators</value>
   </data>
-	<data name="DashboardView" xml:space="preserve">
+  <data name="DashboardView" xml:space="preserve">
     <value>Dashboard View</value>
   </data>
-	<data name="DashboardViews" xml:space="preserve">
+  <data name="DashboardViews" xml:space="preserve">
     <value>Dashboard Views</value>
   </data>
-	<data name="Date" xml:space="preserve">
+  <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
-	<data name="Delete" xml:space="preserve">
+  <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-	<data name="Delete Message" xml:space="preserve">
+  <data name="Delete Message" xml:space="preserve">
     <value>Are you sure to remove this item?</value>
   </data>
-	<data name="DeleteAccess" xml:space="preserve">
+  <data name="DeleteAccess" xml:space="preserve">
     <value>Delete Access</value>
   </data>
-	<data name="Description" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-	<data name="Description Arabic" xml:space="preserve">
+  <data name="Description Arabic" xml:space="preserve">
     <value>Description Arabic</value>
   </data>
-	<data name="Description English" xml:space="preserve">
+  <data name="Description English" xml:space="preserve">
     <value>Description English</value>
   </data>
-	<data name="Details" xml:space="preserve">
+  <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
-	<data name="DeviceModel" xml:space="preserve">
+  <data name="DeviceModel" xml:space="preserve">
     <value>Device Model</value>
   </data>
-	<data name="Devices" xml:space="preserve">
+  <data name="Devices" xml:space="preserve">
     <value>Devices</value>
   </data>
-	<data name="DeviceType" xml:space="preserve">
+  <data name="DeviceType" xml:space="preserve">
     <value>Device Type</value>
   </data>
-	<data name="DeviceVersion" xml:space="preserve">
+  <data name="DeviceVersion" xml:space="preserve">
     <value>Device Version</value>
   </data>
-	<data name="Display" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>Display</value>
   </data>
-	<data name="Download" xml:space="preserve">
+  <data name="Download" xml:space="preserve">
     <value>Download</value>
   </data>
-	<data name="Drop files here or click to upload." xml:space="preserve">
+  <data name="Drop files here or click to upload." xml:space="preserve">
     <value>Drop files here or click to upload.</value>
   </data>
-	<data name="Edit" xml:space="preserve">
+  <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-	<data name="EditAccess" xml:space="preserve">
+  <data name="EditAccess" xml:space="preserve">
     <value>Edit Access</value>
   </data>
-	<data name="Email" xml:space="preserve">
+  <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-	<data name="EmailAddress" xml:space="preserve">
+  <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
-	<data name="EmployeesSize" xml:space="preserve">
+  <data name="EmployeesSize" xml:space="preserve">
     <value>Maximum branch staff</value>
   </data>
-	<data name="en" xml:space="preserve">
+  <data name="en" xml:space="preserve">
     <value>English</value>
   </data>
-	<data name="EndDate" xml:space="preserve">
+  <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
-	<data name="Enter" xml:space="preserve">
+  <data name="Enter" xml:space="preserve">
     <value>Enter</value>
   </data>
-	<data name="Error" xml:space="preserve">
+  <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-	<data name="Excel" xml:space="preserve">
+  <data name="Excel" xml:space="preserve">
     <value>Excel</value>
   </data>
-	<data name="Expires" xml:space="preserve">
+  <data name="Expires" xml:space="preserve">
     <value>Expires</value>
   </data>
-	<data name="Export" xml:space="preserve">
+  <data name="Export" xml:space="preserve">
     <value>Export</value>
   </data>
-	<data name="Export Excel" xml:space="preserve">
+  <data name="Export Excel" xml:space="preserve">
     <value>Export Excel</value>
   </data>
-	<data name="FileLength" xml:space="preserve">
+  <data name="FileLength" xml:space="preserve">
     <value>File Length</value>
   </data>
-	<data name="FileName" xml:space="preserve">
+  <data name="FileName" xml:space="preserve">
     <value>File Name</value>
   </data>
-	<data name="FileType" xml:space="preserve">
+  <data name="FileType" xml:space="preserve">
     <value>File Type</value>
   </data>
-	<data name="FileUrl" xml:space="preserve">
+  <data name="FileUrl" xml:space="preserve">
     <value>File Url</value>
   </data>
-	<data name="From Date To Date" xml:space="preserve">
+  <data name="From Date To Date" xml:space="preserve">
     <value>From Date To Date</value>
   </data>
-	<data name="FromDate" xml:space="preserve">
+  <data name="FromDate" xml:space="preserve">
     <value>From Date</value>
   </data>
-	<data name="FullName" xml:space="preserve">
+  <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
-	<data name="Home" xml:space="preserve">
+  <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
-	<data name="Image" xml:space="preserve">
+  <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
-	<data name="InArabic" xml:space="preserve">
+  <data name="InArabic" xml:space="preserve">
     <value>In Arabic</value>
   </data>
-	<data name="InDark" xml:space="preserve">
+  <data name="InDark" xml:space="preserve">
     <value>In Dark</value>
   </data>
-	<data name="InEnglish" xml:space="preserve">
+  <data name="InEnglish" xml:space="preserve">
     <value>In English</value>
   </data>
-	<data name="IsActive" xml:space="preserve">
+  <data name="IsActive" xml:space="preserve">
     <value>Is Active?</value>
   </data>
-	<data name="IsExpired" xml:space="preserve">
+  <data name="IsExpired" xml:space="preserve">
     <value>Is Expired</value>
   </data>
-	<data name="Language" xml:space="preserve">
+  <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
-	<data name="LastActive" xml:space="preserve">
+  <data name="LastActive" xml:space="preserve">
     <value>Last Active</value>
   </data>
-	<data name="LastModifiedAt" xml:space="preserve">
+  <data name="LastModifiedAt" xml:space="preserve">
     <value>Last Modified At</value>
   </data>
-	<data name="LastModifiedBy" xml:space="preserve">
+  <data name="LastModifiedBy" xml:space="preserve">
     <value>Last Modified By</value>
   </data>
-	<data name="Log" xml:space="preserve">
+  <data name="Log" xml:space="preserve">
     <value>Log</value>
   </data>
-	<data name="Logger" xml:space="preserve">
+  <data name="Logger" xml:space="preserve">
     <value>Logger</value>
   </data>
-	<data name="Logout" xml:space="preserve">
+  <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
-	<data name="Logs" xml:space="preserve">
+  <data name="Logs" xml:space="preserve">
     <value>Logs</value>
   </data>
-	<data name="Name" xml:space="preserve">
+  <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-	<data name="Name Arabic" xml:space="preserve">
+  <data name="Name Arabic" xml:space="preserve">
     <value>Name Arabic</value>
   </data>
-	<data name="Name English" xml:space="preserve">
+  <data name="Name English" xml:space="preserve">
     <value>Name English</value>
   </data>
-	<data name="Navigation" xml:space="preserve">
+  <data name="Navigation" xml:space="preserve">
     <value>Navigation</value>
   </data>
-	<data name="New" xml:space="preserve">
+  <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
-	<data name="NewPassword" xml:space="preserve">
+  <data name="NewPassword" xml:space="preserve">
     <value>New Password</value>
   </data>
-	<data name="Not Delete Message" xml:space="preserve">
+  <data name="Not Delete Message" xml:space="preserve">
     <value>لا يمكن حذف العنصر لأنه مرتبط بعناصر اخري.</value>
   </data>
-	<data name="Not Found" xml:space="preserve">
+  <data name="Not Found" xml:space="preserve">
     <value>Not Found</value>
   </data>
-	<data name="Not Specific" xml:space="preserve">
+  <data name="Not Specific" xml:space="preserve">
     <value>Not Specific</value>
   </data>
-	<data name="Notes" xml:space="preserve">
+  <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
-	<data name="Ok" xml:space="preserve">
+  <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
-	<data name="Online" xml:space="preserve">
+  <data name="Online" xml:space="preserve">
     <value>Online</value>
   </data>
-	<data name="Oops! The request have error." xml:space="preserve">
+  <data name="Oops! The request have error." xml:space="preserve">
     <value>Oops! The request have error.</value>
   </data>
-	<data name="Order" xml:space="preserve">
+  <data name="Order" xml:space="preserve">
     <value>Order</value>
   </data>
-	<data name="others" xml:space="preserve">
+  <data name="others" xml:space="preserve">
     <value>others</value>
   </data>
-	<data name="Password" xml:space="preserve">
+  <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
-	<data name="Pdf" xml:space="preserve">
+  <data name="Pdf" xml:space="preserve">
     <value>Pdf</value>
   </data>
-	<data name="Phone" xml:space="preserve">
+  <data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
-	<data name="PhoneNumber" xml:space="preserve">
+  <data name="PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
   </data>
-	<data name="Please sign-in to your account and start the adventure" xml:space="preserve">
+  <data name="Please sign-in to your account and start the adventure" xml:space="preserve">
     <value>Please sign-in to your account and start the adventure</value>
   </data>
-	<data name="Preview" xml:space="preserve">
+  <data name="Preview" xml:space="preserve">
     <value>Preview</value>
   </data>
-	<data name="Print" xml:space="preserve">
+  <data name="Print" xml:space="preserve">
     <value>Print</value>
   </data>
-	<data name="Profile" xml:space="preserve">
+  <data name="Profile" xml:space="preserve">
     <value>Profile</value>
   </data>
-	<data name="Records" xml:space="preserve">
+  <data name="Records" xml:space="preserve">
     <value>Records</value>
   </data>
-	<data name="RefreshTokens" xml:space="preserve">
+  <data name="RefreshTokens" xml:space="preserve">
     <value>Refresh Tokens</value>
   </data>
-	<data name="Remove" xml:space="preserve">
+  <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
-	<data name="Reset" xml:space="preserve">
+  <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
-	<data name="Revoked" xml:space="preserve">
+  <data name="Revoked" xml:space="preserve">
     <value>Revoked</value>
   </data>
-	<data name="Search" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-	<data name="Select All" xml:space="preserve">
+  <data name="Select All" xml:space="preserve">
     <value>Select All</value>
   </data>
-	<data name="Something Error!" xml:space="preserve">
+  <data name="Something Error!" xml:space="preserve">
     <value>Something Error!</value>
   </data>
-	<data name="StartDate" xml:space="preserve">
+  <data name="StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
-	<data name="StateNotes" xml:space="preserve">
+  <data name="StateNotes" xml:space="preserve">
     <value>State Notes</value>
   </data>
-	<data name="Submit" xml:space="preserve">
+  <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-	<data name="Success" xml:space="preserve">
+  <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>
-	<data name="Token" xml:space="preserve">
+  <data name="Token" xml:space="preserve">
     <value>Token</value>
   </data>
-	<data name="Upload Attachment" xml:space="preserve">
+  <data name="Upload Attachment" xml:space="preserve">
     <value>Upload Attachment</value>
   </data>
-	<data name="Upload Attachments" xml:space="preserve">
+  <data name="Upload Attachments" xml:space="preserve">
     <value>Upload Attachments</value>
   </data>
-	<data name="Upload Image" xml:space="preserve">
+  <data name="Upload Image" xml:space="preserve">
     <value>Upload Image</value>
   </data>
-	<data name="Uploads" xml:space="preserve">
+  <data name="Uploads" xml:space="preserve">
     <value>Uploads</value>
   </data>
-	<data name="Uploud attachment" xml:space="preserve">
+  <data name="Uploud attachment" xml:space="preserve">
     <value>Uploud attachment</value>
   </data>
-	<data name="URL" xml:space="preserve">
+  <data name="URL" xml:space="preserve">
     <value>URL</value>
   </data>
-	<data name="User" xml:space="preserve">
+  <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
-	<data name="User Details" xml:space="preserve">
+  <data name="User Details" xml:space="preserve">
     <value>User Details</value>
   </data>
-	<data name="User Profile" xml:space="preserve">
+  <data name="User Profile" xml:space="preserve">
     <value>User Profile</value>
   </data>
-	<data name="UserName" xml:space="preserve">
+  <data name="UserName" xml:space="preserve">
     <value>User Name</value>
   </data>
-	<data name="Users" xml:space="preserve">
+  <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
-	<data name="Verifications" xml:space="preserve">
+  <data name="Verifications" xml:space="preserve">
     <value>Verifications</value>
   </data>
-	<data name="View" xml:space="preserve">
+  <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
-	<data name="View Attachment" xml:space="preserve">
+  <data name="View Attachment" xml:space="preserve">
     <value>View Attachment</value>
   </data>
-	<data name="ViewAccess" xml:space="preserve">
+  <data name="ViewAccess" xml:space="preserve">
     <value>View Access</value>
   </data>
-	<data name="ViewPath" xml:space="preserve">
+  <data name="ViewPath" xml:space="preserve">
     <value>View Path</value>
   </data>
-	<data name="Well Done!" xml:space="preserve">
+  <data name="Well Done!" xml:space="preserve">
     <value>Well Done!</value>
   </data>
-	<data name="WhatsApp" xml:space="preserve">
+  <data name="WhatsApp" xml:space="preserve">
     <value>WhatsApp</value>
   </data>
-	<data name="Yes" xml:space="preserve">
+  <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-	<data name="Your new password must be different from previously used passwords" xml:space="preserve">
+  <data name="Your new password must be different from previously used passwords" xml:space="preserve">
     <value>Your new password must be different from previously used passwords</value>
   </data>
-	<data name="_Details" xml:space="preserve">
+  <data name="_Details" xml:space="preserve">
     <value>Details</value>
   </data>
-	<data name="{0} is required" xml:space="preserve">
+  <data name="{0} is required" xml:space="preserve">
     <value>{0} is required</value>
   </data>
-	<data name="{0} not valid" xml:space="preserve">
+  <data name="{0} not valid" xml:space="preserve">
     <value>{0} not valid</value>
   </data>
-	<data name="Audit" xml:space="preserve">
+  <data name="Audit" xml:space="preserve">
     <value>Audit</value>
   </data>
-	<data name="Audits" xml:space="preserve">
+  <data name="Audits" xml:space="preserve">
     <value>Audits</value>
   </data>
-	<data name="KeyValues" xml:space="preserve">
+  <data name="KeyValues" xml:space="preserve">
     <value>Key Values</value>
   </data>
-	<data name="NewValues" xml:space="preserve">
+  <data name="NewValues" xml:space="preserve">
     <value>New Values</value>
   </data>
-	<data name="OldValues" xml:space="preserve">
+  <data name="OldValues" xml:space="preserve">
     <value>Old Values</value>
   </data>
-	<data name="TableName" xml:space="preserve">
+  <data name="TableName" xml:space="preserve">
     <value>Table Name</value>
   </data>
-	<data name="AuditType" xml:space="preserve">
+  <data name="AuditType" xml:space="preserve">
     <value>Audit Type</value>
   </data>
-	<data name="Update" xml:space="preserve">
+  <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-	<data name="EndOfContract" xml:space="preserve">
+  <data name="EndOfContract" xml:space="preserve">
     <value>End Of Contract</value>
   </data>
-	<data name="HiringDate" xml:space="preserve">
+  <data name="HiringDate" xml:space="preserve">
     <value>Hiring Date</value>
   </data>
-	<data name="EndAt" xml:space="preserve">
+  <data name="EndAt" xml:space="preserve">
     <value>End At</value>
   </data>
-	<data name="Notifications" xml:space="preserve">
+  <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
-	<data name="ExportAccess" xml:space="preserve">
+  <data name="ExportAccess" xml:space="preserve">
     <value>Export Access</value>
   </data>
-	<data name="ClaimDues Calculator" xml:space="preserve">
+  <data name="ClaimDues Calculator" xml:space="preserve">
     <value>ClaimDues Calculator</value>
   </data>
-	<data name="Calculator" xml:space="preserve">
+  <data name="Calculator" xml:space="preserve">
     <value>Calculator</value>
   </data>
-	<data name="expect to claim" xml:space="preserve">
+  <data name="expect to claim" xml:space="preserve">
     <value>Expect To Claim</value>
   </data>
-	<data name="Riyal" xml:space="preserve">
+  <data name="Riyal" xml:space="preserve">
     <value>Riyal</value>
   </data>
-	<data name="Calculate ClaimDues" xml:space="preserve">
+  <data name="Calculate ClaimDues" xml:space="preserve">
     <value>Calculate ClaimDues</value>
   </data>
-	<data name="Value" xml:space="preserve">
+  <data name="Value" xml:space="preserve">
     <value>Value</value>
   </data>
-	<data name="Upload Template" xml:space="preserve">
+  <data name="Upload Template" xml:space="preserve">
     <value>Upload Tempate</value>
   </data>
-	<data name="ToleranceValue" xml:space="preserve">
+  <data name="ToleranceValue" xml:space="preserve">
     <value>Tolerance Value</value>
   </data>
-	<data name="system" xml:space="preserve">
+  <data name="system" xml:space="preserve">
     <value>System</value>
   </data>
-	<data name="StartAt" xml:space="preserve">
+  <data name="StartAt" xml:space="preserve">
     <value>Start At</value>
   </data>
-	<data name="Custodys" xml:space="preserve">
+  <data name="Custodys" xml:space="preserve">
     <value>Custodys</value>
   </data>
-	<data name="Countries" xml:space="preserve">
+  <data name="Countries" xml:space="preserve">
     <value>Countries</value>
   </data>
-	<data name="Country" xml:space="preserve">
+  <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
-	<data name="Countrys" xml:space="preserve">
+  <data name="Countrys" xml:space="preserve">
     <value>Countries</value>
   </data>
-	<data name="Add New" xml:space="preserve">
+  <data name="Add New" xml:space="preserve">
     <value>Add New</value>
   </data>
-	<data name="AED" xml:space="preserve">
+  <data name="AED" xml:space="preserve">
     <value>AED</value>
   </data>
-	<data name="Are You Sure ?" xml:space="preserve">
+  <data name="Are You Sure ?" xml:space="preserve">
     <value>Are You Sure ?</value>
   </data>
-	<data name="Branch" xml:space="preserve">
+  <data name="Branch" xml:space="preserve">
     <value>Branch</value>
   </data>
-	<data name="Branchs" xml:space="preserve">
+  <data name="Branchs" xml:space="preserve">
     <value>Branches</value>
   </data>
-	<data name="Click To See" xml:space="preserve">
+  <data name="Click To See" xml:space="preserve">
     <value>Click To See</value>
   </data>
-	<data name="Account" xml:space="preserve">
+  <data name="Account" xml:space="preserve">
     <value>Account</value>
   </data>
-	<data name="Accounts" xml:space="preserve">
+  <data name="Accounts" xml:space="preserve">
     <value>Accounts</value>
   </data>
-	<data name="CardTemplates" xml:space="preserve">
+  <data name="CardTemplates" xml:space="preserve">
     <value>Card Templates</value>
   </data>
-	<data name="Company" xml:space="preserve">
+  <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
-	<data name="Companies" xml:space="preserve">
+  <data name="Companies" xml:space="preserve">
     <value>Companies</value>
   </data>
-	<data name="Account Data" xml:space="preserve">
+  <data name="Account Data" xml:space="preserve">
     <value>Account Data</value>
   </data>
-	<data name="Card Data" xml:space="preserve">
+  <data name="Card Data" xml:space="preserve">
     <value>Card Data</value>
   </data>
-	<data name="Badges" xml:space="preserve">
+  <data name="Badges" xml:space="preserve">
     <value>Badges</value>
   </data>
-	<data name="CardTypes" xml:space="preserve">
+  <data name="CardTypes" xml:space="preserve">
     <value>Card Types</value>
   </data>
-	<data name="Account Details" xml:space="preserve">
+  <data name="Account Details" xml:space="preserve">
     <value>Account Details</value>
   </data>
-	<data name="Account Cards" xml:space="preserve">
+  <data name="Account Cards" xml:space="preserve">
     <value>Account Cards</value>
   </data>
-	<data name="CardType" xml:space="preserve">
+  <data name="CardType" xml:space="preserve">
     <value>Card Type</value>
   </data>
-	<data name="HaveDisplayText" xml:space="preserve">
+  <data name="HaveDisplayText" xml:space="preserve">
     <value>Have Display Text</value>
   </data>
-	<data name="Prefix" xml:space="preserve">
+  <data name="Prefix" xml:space="preserve">
     <value>Prefix</value>
   </data>
-	<data name="Badge" xml:space="preserve">
+  <data name="Badge" xml:space="preserve">
     <value>Badge</value>
   </data>
-	<data name="CardTemplate" xml:space="preserve">
+  <data name="CardTemplate" xml:space="preserve">
     <value>Card Template</value>
   </data>
-	<data name="FirstName" xml:space="preserve">
+  <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
   </data>
-	<data name="LastName" xml:space="preserve">
+  <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
-	<data name="Suffix" xml:space="preserve">
+  <data name="Suffix" xml:space="preserve">
     <value>Suffix</value>
   </data>
-	<data name="Accreditations" xml:space="preserve">
+  <data name="Accreditations" xml:space="preserve">
     <value>Accreditations</value>
   </data>
-	<data name="Nickname" xml:space="preserve">
+  <data name="Nickname" xml:space="preserve">
     <value>Nick Name</value>
   </data>
-	<data name="Pronouns" xml:space="preserve">
+  <data name="Pronouns" xml:space="preserve">
     <value>Pronouns</value>
   </data>
-	<data name="Title" xml:space="preserve">
+  <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
-	<data name="Department" xml:space="preserve">
+  <data name="Department" xml:space="preserve">
     <value>Department</value>
   </data>
-	<data name="HeadLine" xml:space="preserve">
+  <data name="HeadLine" xml:space="preserve">
     <value>HeadLine</value>
   </data>
-	<data name="AccountCardBadges" xml:space="preserve">
+  <data name="AccountCardBadges" xml:space="preserve">
     <value>Account Card Badges</value>
   </data>
-	<data name="Add Badge" xml:space="preserve">
+  <data name="Add Badge" xml:space="preserve">
     <value>Add Badge</value>
   </data>
-	<data name="DisplayText" xml:space="preserve">
+  <data name="DisplayText" xml:space="preserve">
     <value>Display Text</value>
   </data>
-	<data name="AccountCard" xml:space="preserve">
+  <data name="AccountCard" xml:space="preserve">
     <value>Account Card</value>
   </data>
-	<data name="Company Details" xml:space="preserve">
+  <data name="Company Details" xml:space="preserve">
     <value>Company Details</value>
   </data>
-	<data name="Company Profile" xml:space="preserve">
+  <data name="Company Profile" xml:space="preserve">
     <value>Company Profile</value>
   </data>
-	<data name="Accounts Cards" xml:space="preserve">
+  <data name="Accounts Cards" xml:space="preserve">
     <value>Accounts Cards</value>
   </data>
-	<data name="Click to Show" xml:space="preserve">
+  <data name="Click to Show" xml:space="preserve">
     <value>Click to Show</value>
   </data>
-	<data name="refNumber" xml:space="preserve">
+  <data name="refNumber" xml:space="preserve">
     <value>Card Show</value>
   </data>
-	<data name="Import" xml:space="preserve">
+  <data name="Import" xml:space="preserve">
     <value>Import</value>
   </data>
-	<data name="Download Model" xml:space="preserve">
+  <data name="Download Model" xml:space="preserve">
     <value>Download Model</value>
   </data>
-	<data name="Excel File" xml:space="preserve">
+  <data name="Excel File" xml:space="preserve">
     <value>Excel File</value>
   </data>
-	<data name="BirthDay" xml:space="preserve">
+  <data name="BirthDay" xml:space="preserve">
     <value>Birthday</value>
   </data>
-	<data name="Anniversary" xml:space="preserve">
+  <data name="Anniversary" xml:space="preserve">
     <value>Anniversary</value>
   </data>
-	<data name="Spouse" xml:space="preserve">
+  <data name="Spouse" xml:space="preserve">
     <value>Spouse</value>
   </data>
-	<data name="Gender" xml:space="preserve">
+  <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
-	<data name="Male" xml:space="preserve">
+  <data name="Male" xml:space="preserve">
     <value>Male</value>
   </data>
-	<data name="Female" xml:space="preserve">
+  <data name="Female" xml:space="preserve">
     <value>Female</value>
   </data>
-	<data name="JobTitle" xml:space="preserve">
+  <data name="JobTitle" xml:space="preserve">
     <value>Job Title</value>
   </data>
-	<data name="Office" xml:space="preserve">
+  <data name="Office" xml:space="preserve">
     <value>Office</value>
   </data>
-	<data name="HomeCountry" xml:space="preserve">
+  <data name="HomeCountry" xml:space="preserve">
     <value>Home Country</value>
   </data>
-	<data name="HomeCity" xml:space="preserve">
+  <data name="HomeCity" xml:space="preserve">
     <value>Home City</value>
   </data>
-	<data name="HomeState" xml:space="preserve">
+  <data name="HomeState" xml:space="preserve">
     <value>Home State</value>
   </data>
-	<data name="HomeStreet" xml:space="preserve">
+  <data name="HomeStreet" xml:space="preserve">
     <value>Home Street</value>
   </data>
-	<data name="HomePostalCode" xml:space="preserve">
+  <data name="HomePostalCode" xml:space="preserve">
     <value>Home Postal Code</value>
   </data>
-	<data name="WorkCountry" xml:space="preserve">
+  <data name="WorkCountry" xml:space="preserve">
     <value>Work Country</value>
   </data>
-	<data name="WorkCity" xml:space="preserve">
+  <data name="WorkCity" xml:space="preserve">
     <value>Work City</value>
   </data>
-	<data name="WorkState" xml:space="preserve">
+  <data name="WorkState" xml:space="preserve">
     <value>Work State</value>
   </data>
-	<data name="WorkStreet" xml:space="preserve">
+  <data name="WorkStreet" xml:space="preserve">
     <value>Work Street</value>
   </data>
-	<data name="WorkPostalCode" xml:space="preserve">
+  <data name="WorkPostalCode" xml:space="preserve">
     <value>Work Postal Code</value>
   </data>
-	<data name="WebPagePersonal" xml:space="preserve">
+  <data name="WebPagePersonal" xml:space="preserve">
     <value>Web Page Personal</value>
   </data>
-	<data name="WebPageWork" xml:space="preserve">
+  <data name="WebPageWork" xml:space="preserve">
     <value>Web Page Work</value>
   </data>
-	<data name="EmailAddresses" xml:space="preserve">
+  <data name="EmailAddresses" xml:space="preserve">
     <value>Email (more than one can be added by clicking on Enter)</value>
   </data>
-	<data name="Choose Option" xml:space="preserve">
+  <data name="Choose Option" xml:space="preserve">
     <value>Choose Option</value>
   </data>
-	<data name="Comment" xml:space="preserve">
+  <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
-	<data name="PhoneNumberWork" xml:space="preserve">
+  <data name="PhoneNumberWork" xml:space="preserve">
     <value>Phone Number Work</value>
   </data>
-	<data name="PhoneNumberHome" xml:space="preserve">
+  <data name="PhoneNumberHome" xml:space="preserve">
     <value>Phone Number Home</value>
   </data>
-	<data name="PhoneNumberFax" xml:space="preserve">
+  <data name="PhoneNumberFax" xml:space="preserve">
     <value>Phone Number Fax</value>
   </data>
-	<data name="PhoneNumberMobile" xml:space="preserve">
+  <data name="PhoneNumberMobile" xml:space="preserve">
     <value>Phone Number Mobile</value>
   </data>
-	<data name="Address Home Info" xml:space="preserve">
+  <data name="Address Home Info" xml:space="preserve">
     <value>Home Address</value>
   </data>
-	<data name="Address Work Info" xml:space="preserve">
+  <data name="Address Work Info" xml:space="preserve">
     <value>Work Address</value>
   </data>
-	<data name="Second Upload Image" xml:space="preserve">
+  <data name="Second Upload Image" xml:space="preserve">
     <value>Second Upload Image</value>
   </data>
-	<data name="VideoUrl" xml:space="preserve">
+  <data name="VideoUrl" xml:space="preserve">
     <value>YouTube Url</value>
   </data>
-	<data name="WebsiteUrl" xml:space="preserve">
+  <data name="WebsiteUrl" xml:space="preserve">
     <value>Site Url</value>
   </data>
-	<data name="Address Home Data" xml:space="preserve">
+  <data name="Address Home Data" xml:space="preserve">
     <value>Home Address</value>
   </data>
-	<data name="Address Work Data" xml:space="preserve">
+  <data name="Address Work Data" xml:space="preserve">
     <value>Work Address</value>
   </data>
-	<data name="Advanced Data" xml:space="preserve">
+  <data name="Advanced Data" xml:space="preserve">
     <value>Other info</value>
   </data>
-	<data name="Color" xml:space="preserve">
+  <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
-	<data name="Close" xml:space="preserve">
+  <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
-	<data name="First Design" xml:space="preserve">
+  <data name="First Design" xml:space="preserve">
     <value>First Deisgn</value>
   </data>
-	<data name="Second Design" xml:space="preserve">
+  <data name="Second Design" xml:space="preserve">
     <value>Second Design</value>
   </data>
-	<data name="Third Design" xml:space="preserve">
+  <data name="Third Design" xml:space="preserve">
     <value>Third Design</value>
   </data>
-	<data name="Invalid token" xml:space="preserve">
+  <data name="Invalid token" xml:space="preserve">
     <value>The login expired, please login again!</value>
   </data>
-	<data name="Welcome to dashboard" xml:space="preserve">
+  <data name="Welcome to dashboard" xml:space="preserve">
     <value>Welcome to the dashboard!</value>
   </data>
-	<data name="User name already registered" xml:space="preserve">
+  <data name="User name already registered" xml:space="preserve">
     <value>Username already registered!</value>
   </data>
-	<data name="Fk_CardTemplates" xml:space="preserve">
+  <data name="Fk_CardTemplates" xml:space="preserve">
     <value>Card Templates
 </value>
   </data>
-	<data name="CompanyCardTemplates" xml:space="preserve">
+  <data name="CompanyCardTemplates" xml:space="preserve">
     <value>CompanyCardTemplates</value>
   </data>
-	<data name="AttachmentFile" xml:space="preserve">
+  <data name="AttachmentFile" xml:space="preserve">
     <value>Attachment File</value>
   </data>
-	<data name="Name en" xml:space="preserve">
+  <data name="Name en" xml:space="preserve">
     <value>Name English</value>
   </data>
-	<data name="Name fr" xml:space="preserve">
+  <data name="Name fr" xml:space="preserve">
     <value>Name French</value>
   </data>
-	<data name="Name de" xml:space="preserve">
+  <data name="Name de" xml:space="preserve">
     <value>Name Duetsch</value>
   </data>
-	<data name="de" xml:space="preserve">
+  <data name="de" xml:space="preserve">
     <value>Duetsch</value>
   </data>
-	<data name="fr" xml:space="preserve">
+  <data name="fr" xml:space="preserve">
     <value>French</value>
   </data>
-	<data name="Post" xml:space="preserve">
+  <data name="Post" xml:space="preserve">
     <value>Post</value>
   </data>
-	<data name="Post Information" xml:space="preserve">
+  <data name="Post Information" xml:space="preserve">
     <value>Post Information</value>
   </data>
-	<data name="Post Information Description" xml:space="preserve">
+  <data name="Post Information Description" xml:space="preserve">
     <value>Post Information Description</value>
   </data>
-	<data name="Post Attachments Information" xml:space="preserve">
+  <data name="Post Attachments Information" xml:space="preserve">
     <value>Post Attachments Information</value>
   </data>
-	<data name="Post Attachments Information Description" xml:space="preserve">
+  <data name="Post Attachments Information Description" xml:space="preserve">
     <value>Post Attachments Information Description</value>
   </data>
-	<data name="Previous" xml:space="preserve">
+  <data name="Previous" xml:space="preserve">
     <value>Previous</value>
   </data>
-	<data name="Next" xml:space="preserve">
+  <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
-	<data name="Posts" xml:space="preserve">
+  <data name="Posts" xml:space="preserve">
     <value>Posts</value>
   </data>
-	<data name="Content" xml:space="preserve">
+  <data name="Content" xml:space="preserve">
     <value>Content</value>
   </data>
-	<data name="AccountState" xml:space="preserve">
+  <data name="AccountState" xml:space="preserve">
     <value>Account State</value>
   </data>
-	<data name="AccountStates" xml:space="preserve">
+  <data name="AccountStates" xml:space="preserve">
     <value>Account States</value>
   </data>
-	<data name="AccountType" xml:space="preserve">
+  <data name="AccountType" xml:space="preserve">
     <value>Account Type</value>
   </data>
-	<data name="AccountTypes" xml:space="preserve">
+  <data name="AccountTypes" xml:space="preserve">
     <value>Account Types</value>
   </data>
-	<data name="Area" xml:space="preserve">
+  <data name="Area" xml:space="preserve">
     <value>Area</value>
   </data>
-	<data name="Areas" xml:space="preserve">
+  <data name="Areas" xml:space="preserve">
     <value>Areas</value>
   </data>
-	<data name="Currencies" xml:space="preserve">
+  <data name="Currencies" xml:space="preserve">
     <value>Currencies</value>
   </data>
-	<data name="Currency" xml:space="preserve">
+  <data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
-	<data name="Main Data" xml:space="preserve">
+  <data name="Main Data" xml:space="preserve">
     <value>Main Data</value>
   </data>
-	<data name="Supplier" xml:space="preserve">
+  <data name="Supplier" xml:space="preserve">
     <value>Supplier</value>
   </data>
-	<data name="Suppliers" xml:space="preserve">
+  <data name="Suppliers" xml:space="preserve">
     <value>Suppliers</value>
   </data>
-	<data name="Hotel" xml:space="preserve">
+  <data name="Hotel" xml:space="preserve">
     <value>Hotel</value>
   </data>
-	<data name="Hotel Information" xml:space="preserve">
+  <data name="Hotel Information" xml:space="preserve">
     <value>Hotel Information</value>
   </data>
-	<data name="Hotel Information Description" xml:space="preserve">
+  <data name="Hotel Information Description" xml:space="preserve">
     <value>Hotel Information Description</value>
   </data>
-	<data name="BookingUrl" xml:space="preserve">
+  <data name="BookingUrl" xml:space="preserve">
     <value>BookingUrl</value>
   </data>
-	<data name="LocationUrl" xml:space="preserve">
+  <data name="LocationUrl" xml:space="preserve">
     <value>LocationUrl</value>
   </data>
-	<data name="Address" xml:space="preserve">
+  <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
-	<data name="Hotel Features Information" xml:space="preserve">
+  <data name="Hotel Features Information" xml:space="preserve">
     <value>Hotel Features Information</value>
   </data>
-	<data name="Hotel Features Information Description" xml:space="preserve">
+  <data name="Hotel Features Information Description" xml:space="preserve">
     <value>Hotel Features Information Description</value>
   </data>
-	<data name="Hotel Attachments Information" xml:space="preserve">
+  <data name="Hotel Attachments Information" xml:space="preserve">
     <value>Hotel Attachments Information</value>
   </data>
-	<data name="Hotel Attachments Information Description" xml:space="preserve">
+  <data name="Hotel Attachments Information Description" xml:space="preserve">
     <value>Hotel Attachments Information Description</value>
-	  </data>
-	<data name="Car Data" xml:space="preserve">
+  </data>
+  <data name="Car Data" xml:space="preserve">
     <value>Car Data</value>
   </data>
-	<data name="CarCategories" xml:space="preserve">
+  <data name="CarCategories" xml:space="preserve">
     <value>Car Categories</value>
   </data>
-	<data name="CarCategory" xml:space="preserve">
+  <data name="CarCategory" xml:space="preserve">
     <value>Car Category</value>
   </data>
-	<data name="CarClass" xml:space="preserve">
+  <data name="CarClass" xml:space="preserve">
     <value>Car Class</value>
   </data>
-	<data name="CarClasses" xml:space="preserve">
+  <data name="CarClasses" xml:space="preserve">
     <value>Car Classes</value>
   </data>
-	<data name="Company Trip Data" xml:space="preserve">
+  <data name="Company Trip Data" xml:space="preserve">
     <value>Company Trip Data</value>
   </data>
-	<data name="CompanyTripState" xml:space="preserve">
+  <data name="CompanyTripState" xml:space="preserve">
     <value>Company Trip State</value>
   </data>
-	<data name="CompanyTripStates" xml:space="preserve">
+  <data name="CompanyTripStates" xml:space="preserve">
     <value>Company Trip States</value>
   </data>
-	<data name="Hotel Data" xml:space="preserve">
+  <data name="Hotel Data" xml:space="preserve">
     <value>Hotel Data</value>
   </data>
-	<data name="HotelFeature" xml:space="preserve">
+  <data name="HotelFeature" xml:space="preserve">
     <value>Hotel Feature</value>
   </data>
-	<data name="HotelFeatureCategories" xml:space="preserve">
+  <data name="HotelFeatureCategories" xml:space="preserve">
     <value>Hotel Feature Categories</value>
   </data>
-	<data name="HotelFeatureCategory" xml:space="preserve">
+  <data name="HotelFeatureCategory" xml:space="preserve">
     <value>Hotel Feature Category</value>
   </data>
-	<data name="HotelFeatures" xml:space="preserve">
+  <data name="HotelFeatures" xml:space="preserve">
     <value>Hotel Features</value>
   </data>
-	<data name="Trip Data" xml:space="preserve">
+  <data name="Trip Data" xml:space="preserve">
     <value>Trip Data</value>
   </data>
-	<data name="TripState" xml:space="preserve">
+  <data name="TripState" xml:space="preserve">
     <value>Trip State</value>
   </data>
-	<data name="TripStates" xml:space="preserve">
+  <data name="TripStates" xml:space="preserve">
     <value>Trip States</value>
   </data>
 </root>
