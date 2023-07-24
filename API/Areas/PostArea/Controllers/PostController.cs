@@ -1,6 +1,7 @@
 using API.Areas.PostArea.Models;
 using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.PostModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.PostArea.Controllers
 {
@@ -95,7 +96,7 @@ namespace API.Areas.PostArea.Controllers
                 }
             }
 
-            _unitOfWork.Post.CreatePost(post);
+            _unitOfWork.Post.AddPost(post);
 
             await _unitOfWork.Save();
 

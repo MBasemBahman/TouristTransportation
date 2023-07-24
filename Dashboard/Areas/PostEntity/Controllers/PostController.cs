@@ -118,7 +118,7 @@ namespace Dashboard.Areas.PostEntity.Controllers
 
                     dataDB.CreatedBy = auth.UserName;
 
-                    _unitOfWork.Post.CreatePost(dataDB);
+                    _unitOfWork.Post.AddPost(dataDB);
                 }
                 else
                 {

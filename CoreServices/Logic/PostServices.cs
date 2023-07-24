@@ -88,7 +88,7 @@ namespace CoreServices.Logic
         }
         
 
-        public void CreatePost(Post entity)
+        public void AddPost(Post entity)
         {
             _repository.Post.Create(entity);
         }
