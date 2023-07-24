@@ -54,14 +54,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="RateInPounds" class="form-label"></label>
-                                                <input asp-for="RateInPounds" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("RateInPounds"))" />
-                                                <span asp-validation-for="RateInPounds" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                     
                                         @{ int i = 0;}
                                         @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                                         {
@@ -77,6 +69,14 @@
                                             </div>
                                             i++;
                                         }
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="RateInPounds" class="form-label"></label>
+                                                <input asp-for="RateInPounds" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("RateInPounds"))" />
+                                                <span asp-validation-for="RateInPounds" class="text-danger"></span>
+                                            </div>
+                                        </div>
 
                                         <hr/>
                                         <div class="col-12">

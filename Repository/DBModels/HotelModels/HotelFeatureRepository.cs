@@ -48,10 +48,10 @@ namespace Repository.DBModels.HotelModels
         public static IQueryable<HotelFeature> Filter(
             this IQueryable<HotelFeature> accounts,
             int id,
-            int? fk_HotelFeatureCategory)
+            int fk_HotelFeatureCategory)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_HotelFeatureCategory == null || a.Fk_HotelFeatureCategory == fk_HotelFeatureCategory) );
+                                       (fk_HotelFeatureCategory == 0 || a.Fk_HotelFeatureCategory == fk_HotelFeatureCategory) );
         }
     }
 }

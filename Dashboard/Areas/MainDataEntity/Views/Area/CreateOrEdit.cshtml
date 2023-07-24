@@ -53,14 +53,7 @@
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
-                                         <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Fk_Country" class="form-label"></label>
-                                                <select asp-for="Fk_Country" class="select2 form-select" asp-items="@(new SelectList(ViewData["Country"] as Dictionary<string,string>,"Key","Value"))">
-                                                </select>
-                                                <span asp-validation-for="Fk_Country" class="text-danger"></span>
-                                            </div>
-                                        </div>
+                                         
                                         @{ int i = 0;}
                                         @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                                         {
@@ -76,6 +69,15 @@
                                             </div>
                                             i++;
                                         }
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Fk_Country" class="form-label"></label>
+                                                <select asp-for="Fk_Country" class="select2 form-select" asp-items="@(new SelectList(ViewData["Country"] as Dictionary<string,string>,"Key","Value"))">
+                                                </select>
+                                                <span asp-validation-for="Fk_Country" class="text-danger"></span>
+                                            </div>
+                                        </div>
 
                                         <hr/>
                                         <div class="col-12">
