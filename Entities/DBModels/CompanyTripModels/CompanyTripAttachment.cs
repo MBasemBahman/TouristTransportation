@@ -1,6 +1,6 @@
 namespace Entities.DBModels.CompanyTripModels;
 
-public class CompanyTripAttachment : AuditEntity
+public class CompanyTripAttachment : AuditAttachmentEntity
 {
     [DisplayName(nameof(CompanyTrip))]
     [ForeignKey(nameof(CompanyTrip))]

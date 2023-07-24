@@ -45,7 +45,9 @@
             CarCategory = 26,
             TripState = 27,
             HotelFeatureCategory = 28,
-            HotelFeature = 29
+            HotelFeature = 29,
+            CompanyTrip = 30,
+            CompanyTripAttachment = 31
         }
 
         public enum AccountProfileItems

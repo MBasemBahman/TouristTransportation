@@ -172,7 +172,27 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<CompanyTripStateLangModel, CompanyTripStateLang>();
 
             #endregion
+            
+            #region CompanyTrip Models
 
+            _ = CreateMap<CompanyTrip, CompanyTripCreateOrEditModel>()
+                .ForMember(dest => dest.StorageUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+
+            _ = CreateMap<CompanyTripCreateOrEditModel, CompanyTrip>();
+
+            _ = CreateMap<CompanyTripModel, CompanyTripDto>();
+
+            _ = CreateMap<CompanyTripFilter, CompanyTripParameters>();
+
+            _ = CreateMap<CompanyTripLang, CompanyTripLangModel>();
+
+            _ = CreateMap<CompanyTripLangModel, CompanyTripLang>();
+
+            #endregion
+            
+            #endregion
+            
             #region Post Models
 
             #region Post
@@ -245,9 +265,7 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<AccountTypeLangModel, AccountTypeLang>();
 
             #endregion
-
-            #endregion
-
+            
             #region Hotel
 
             #region Hotel Models
@@ -419,8 +437,6 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
 
             #endregion
-
-
 
             #endregion
 

@@ -1087,4 +1087,37 @@
 	<data name="Hotels" xml:space="preserve">
 		<value>Hotels</value>
 	</data>
+	<data name="Title Arabic" xml:space="preserve">
+		<value>Title Arabic</value>
+	</data>
+	<data name="CompanyTrip" xml:space="preserve">
+		<value>CompanyTrip</value>
+	</data>
+	<data name="CompanyTrips" xml:space="preserve">
+		<value>CompanyTrips</value>
+	</data>
+	<data name="Price" xml:space="preserve">
+		<value>Price</value>
+	</data>
+	<data name="Title en" xml:space="preserve">
+		<value>Title</value>
+	</data>
+	<data name="Title fr" xml:space="preserve">
+		<value>Title</value>
+	</data>
+	<data name="Title de" xml:space="preserve">
+		<value>Title</value>
+	</data>
+	<data name="CompanyTrip Information" xml:space="preserve">
+		<value>CompanyTrip Information</value>
+	</data>
+	<data name="CompanyTrip Information Description" xml:space="preserve">
+		<value>CompanyTrip Information Description</value>
+	</data>
+	<data name="CompanyTrip Attachments Information" xml:space="preserve">
+		<value>CompanyTrip Attachments Information</value>
+	</data>
+	<data name="CompanyTrip Attachments Information Description" xml:space="preserve">
+		<value>CompanyTrip Attachments Information Description</value>
+	</data>
 </root>

@@ -33,6 +33,12 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DisplayName(nameof(Notes))]
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
+        
+        [DisplayName(nameof(ImageUrl))]
+        public string ImageUrl { get; set; }
+
+        [DisplayName(nameof(AttachmentsCount))]
+        public int AttachmentsCount { get; set; }
     }
 
     public class CompanyTripCreateOrEditModel
@@ -56,13 +62,21 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
         
+        [DisplayName(nameof(ImageUrl))]
+        public string ImageUrl { get; set; }
+
+        [DisplayName(nameof(StorageUrl))]
+        [DataType(DataType.Url, ErrorMessage = PropertyAttributeConstants.TypeValidationMsg)]
+        [Url]
+        public string StorageUrl { get; set; }
+        
         public List<CompanyTripLangModel> CompanyTripLangs { get; set; }
     }
     
     public class CompanyTripLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        [DisplayName($"{nameof(Title)}{PropertyAttributeConstants.EnLang}")]
+        [DisplayName(nameof(Title))]
         public string Title { get; set; }
         
         [DisplayName(nameof(Language))]

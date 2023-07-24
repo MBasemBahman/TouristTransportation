@@ -1,0 +1,40 @@
+﻿@model CompanyTripDto
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.emptyLayout = true;
+    
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="info-container">
+            <div class="row">
+                
+                 <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+                <div class="col-xl-6 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Title):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Title</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Price</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Description):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Description</dd>
+                    </dl>
+                </div>
+
+                <div class="col-xl-6 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CompanyTripState):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CompanyTripState.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Notes):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Notes</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

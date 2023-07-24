@@ -1,0 +1,107 @@
+﻿@using Entities.EnumData
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CompanyTripCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("CompanyTrip Information")</h5>
+    <small class="text-muted">@Localizer.Get("CompanyTrip Information Description")</small>
+</div>
+
+<form class="company_trip_form" asp-action="CreateOrEditWizard" asp-controller="CompanyTrip" enctype="multipart/form-data">
+    <div class="row">
+        <div class="text-danger company_trip_error_div"></div>
+        <input type="hidden" asp-for="@id" />
+        <hr />
+        
+        <div class="d-flex" style="margin-bottom: 10px;">
+            <a href="#" class="me-25">
+                <img src="@($"{Model.ImageUrl}")" class="uploadedAvatar account-upload-img rounded me-50" height="100" width="100" alt="imageurl">
+            </a>
+            <!-- upload and reset button -->
+            <div class="d-flex align-items-end mt-75 ms-1">
+                <div>
+                    <label for="account-upload" class="btn btn-sm btn-primary mb-75 me-75 waves-effect waves-float waves-light">@Localizer.Get("Upload Image")</label>
+                    <input type="file" id="account-upload" class="account-upload" hidden="" name="ImageFile" accept="image/*">
+                    <button type="button" class="account-reset btn btn-sm btn-outline-secondary mb-75 waves-effect">@Localizer.Get("Reset")</button>
+                </div>
+            </div>
+            <!--/ upload and reset button -->
+        </div>
+        
+        <hr />
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Title" class="form-label"></label>
+                <input type="text" asp-for="Title" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("Title")" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        
+        @{ int i = 0;}
+        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+        {
+            <div class="col-md-6 col-12">
+                <div class="mb-1">
+                    <label class="form-label">@Localizer.Get($"Title {language}")</label>
+                    
+                    <input asp-for="CompanyTripLangs[i].Title" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Title"))"/>
+                    <span asp-validation-for="CompanyTripLangs[i].Title" class="text-danger"></span>
+                    
+                    <input type="hidden" asp-for="CompanyTripLangs[i].Language" value="@language" />
+                </div>
+            </div>
+            i++;
+        }
+
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Price" class="form-label"></label>
+                <input type="text" asp-for="Price" class="form-control" placeholder="@Localizer.Get("Price")" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_CompanyTripState" class="form-label"></label>
+                <select asp-for="Fk_CompanyTripState" class="select2 form-select" asp-items="@(new SelectList(ViewData["CompanyTripStates"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_CompanyTripState" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control summernote">@Localizer.Get("Enter") @Localizer.Get("Content")</textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Notes" class="form-label"></label>
+                <textarea asp-for="Notes" class="form-control summernote">@Localizer.Get("Enter") @Localizer.Get("Content")</textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+    </div>
+</form>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-outline-secondary btn-prev" disabled>
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button type="button" class="btn btn-primary btn-next company_trip_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Next")</span>
+        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+    </button>
+</div>

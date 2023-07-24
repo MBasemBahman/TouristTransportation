@@ -7,7 +7,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         public int Fk_CompanyTrip { get; set; }
     }
 
-    public class CompanyTripAttachmentModel : AuditEntity
+    public class CompanyTripAttachmentModel : AuditAttachmentEntity
     {
         [DisplayName(nameof(CompanyTrip))]
         [ForeignKey(nameof(CompanyTrip))]

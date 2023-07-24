@@ -1,6 +1,7 @@
 ﻿using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.EnumData;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreServices.Logic
 {
@@ -53,6 +54,11 @@ namespace CoreServices.Logic
             return await _repository.CompanyTripState.FindById(id, trackChanges);
         }
         
+        public Dictionary<string, string> GetCompanyTripStatesLookUp(CompanyTripStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetCompanyTripStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+        
         public CompanyTripStateModel GetCompanyTripStateById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripStates(new CompanyTripStateParameters { Id = id }, language).SingleOrDefault();
@@ -95,7 +101,10 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Title).FirstOrDefault() : a.CompanyTrip.Title,
                                   },
-                                  AttachmentUrl = a.AttachmentUrl,
+                                  FileUrl = a.StorageUrl + a.FileUrl,
+                                  FileLength = a.FileLength,
+                                  FileName = a.FileName,
+                                  FileType = a.FileType,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
@@ -161,10 +170,22 @@ namespace CoreServices.Logic
                                   Title = language != null ? a.CompanyTripLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Title).FirstOrDefault() : a.Title,
+                                  Fk_CompanyTripState = a.Fk_CompanyTripState,
+                                  CompanyTripState = new CompanyTripStateModel
+                                  {
+                                      Name = language != null ? a.CompanyTripState.CompanyTripStateLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.CompanyTripState.Name,
+                                  },
+                                  Price = a.Price,
+                                  Notes = a.Notes,
+                                  Description = a.Description,
+                                  ImageUrl = a.StorageUrl + a.ImageUrl,
+                                  AttachmentsCount = a.CompanyTripAttachments.Count,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
-                                  LastModifiedBy = a.LastModifiedBy
+                                  LastModifiedBy = a.LastModifiedBy,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -176,6 +197,12 @@ namespace CoreServices.Logic
             return await PagedList<CompanyTripModel>.ToPagedList(GetCompanyTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public async Task<string> UploadCompanyTripAttachment(string rootPath, IFormFile file)
+        {
+            FileUploader uploader = new(rootPath);
+            return await uploader.UploadFile(file, "Upload/CompanyTripAttachment");
+        }
+        
         public async Task<PagedList<CompanyTripModel>> GetCompanyTripsPaged(
           IQueryable<CompanyTripModel> data,
          CompanyTripParameters parameters)

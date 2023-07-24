@@ -1,0 +1,114 @@
+﻿@model CompanyTripCreateOrEditModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("CompanyTrip")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.useForm = true;
+    ViewBag.useFormRepeater = true;
+    ViewBag.useImageUploud = true;
+    ViewBag.useWizard = true;
+    ViewBag.useLoader = true;
+    ViewBag.useModels = true;
+    ViewBag.useSummernote = true;
+    ViewBag.useCustomDropzone = true;
+
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/CompanyTripEntity/CompanyTrip/Index">@Localizer.Get("CompanyTrips")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+                    <section class="horizontal-wizard">
+                        <div class="bs-stepper horizontal-wizard-example">
+                            <div class="bs-stepper-header" role="tablist">
+                                <div class="step" data-target="#company-trip-details" role="tab" id="company-trip-details-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">1</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("CompanyTrip Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("CompanyTrip Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="line">
+                                    <i data-feather="chevron-right" class="font-medium-2"></i>
+                                </div>
+                                
+                                <div class="step" data-target="#company-trip-attachments" role="tab" id="company-trip-attachments-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">2</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("CompanyTrip Attachments Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("CompanyTrip Attachments Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+                           
+                                
+                            </div>
+                            <div class="bs-stepper-content">
+                                <div id="company-trip-details" class="content" role="tabpanel" aria-labelledby="company-trip-details-trigger">
+                                    @await Html.PartialAsync("CompanyTripForm/CompanyTripDetails", Model)
+                                </div>
+
+                                <div id="company-trip-attachments" class="content" role="tabpanel" aria-labelledby="company-trip-attachments-trigger">
+                                    @await Html.PartialAsync("CompanyTripForm/CompanyTripAttachments", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+    </div>
+</div>
+<!-- END: Content-->
+
+@section scripts
+{
+    <script src="~/apis/site.js"></script>
+    <script src="~/apis/company-trip.js"></script>
+
+    <script>
+        // First Step
+        $(document).on("click", ".company_trip_submit_btn", function(e) {
+          e.preventDefault();
+          
+          let companyTripForm = $('.company_trip_form')[0];
+          let companyTripFormData = new FormData(companyTripForm);
+          
+          saveCompanyTrip(companyTripFormData, $(".company_trip_error_div"));
+        });
+        
+        // Second Step
+        $(document).on("click", ".company_trip_attachment_submit_btn", function(e) {
+          e.preventDefault();
+        
+          window.location.href = "@Url.ActionLink("Index", "CompanyTrip", new { area = "CompanyTripEntity" })";
+        });
+        
+        
+        
+    </script>
+}

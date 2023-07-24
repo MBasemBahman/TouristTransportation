@@ -1,0 +1,9 @@
+using Entities.CoreServicesModels.CompanyTripModels;
+
+namespace API.Areas.CompanyTripArea.Models
+{
+    public class CompanyTripAttachmentDto : CompanyTripAttachmentModel
+    {
+        public new string CreatedAt { get; set; }
+    }
+}

@@ -86,6 +86,20 @@
                         </a>
                     </li>
                 }
+            
+                @if (viewList.Contains((int)DashboardViewEnum.CompanyTrip))
+                {
+                    <li class="@(active == DashboardViewEnum.CompanyTrip.ToString() ? "active" : "") nav-item">
+                        <a class="d-flex align-items-center"
+                   asp-action="Index" asp-area="CompanyTripEntity"
+                   asp-controller="CompanyTrip">
+                            <i data-feather='sunrise'></i>
+                            <span class="menu-title text-truncate">
+                                @Localizer.Get("CompanyTrips")
+                            </span>
+                        </a>
+                    </li>
+                }
 
                 <li class=" navigation-header">
                     <span data-i18n="User Interface">@Localizer.Get("Advanced Settings")</span>

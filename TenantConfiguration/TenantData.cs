@@ -10,6 +10,7 @@
         public enum TenantApis
         {
             Authentication,
+            CompanyTrip,
             Hotel,
             Post,
         }

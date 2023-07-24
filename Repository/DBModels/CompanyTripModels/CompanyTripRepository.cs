@@ -19,7 +19,9 @@ namespace Repository.DBModels.CompanyTripModels
 
         public async Task<CompanyTrip> FindById(int id, bool trackChanges)
         {
-            return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .Include(a => a.CompanyTripLangs)
+                .SingleOrDefaultAsync();
         }
 
         public new void Create(CompanyTrip entity)
@@ -46,10 +48,10 @@ namespace Repository.DBModels.CompanyTripModels
         public static IQueryable<CompanyTrip> Filter(
             this IQueryable<CompanyTrip> accounts,
             int id,
-            int? fk_CompanyTripState)
+            int fk_CompanyTripState)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_CompanyTripState == null || a.Fk_CompanyTripState == fk_CompanyTripState) );
+                                       (fk_CompanyTripState == 0 || a.Fk_CompanyTripState == fk_CompanyTripState) );
         }
     }
 }
