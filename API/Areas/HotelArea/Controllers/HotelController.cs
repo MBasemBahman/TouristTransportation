@@ -8,6 +8,7 @@ namespace API.Areas.HotelArea.Controllers
     [Area("Hotel")]
     [ApiExplorerSettings(GroupName = "Hotel")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
+    [AllowAnonymous]
     public class HotelController : ExtendControllerBase
     {
         public HotelController(

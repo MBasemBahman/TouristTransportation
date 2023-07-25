@@ -8,6 +8,7 @@ namespace API.Areas.CompanyTripArea.Controllers
     [Area("CompanyTrip")]
     [ApiExplorerSettings(GroupName = "CompanyTrip")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
+    [AllowAnonymous]
     public class CompanyTripController : ExtendControllerBase
     {
         public CompanyTripController(
@@ -26,11 +27,6 @@ namespace API.Areas.CompanyTripArea.Controllers
         public async Task<IEnumerable<CompanyTripDto>> GetCompanyTrips([FromQuery] CompanyTripParameters parameters)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-
-            if (auth.Fk_Account == 0)
-            {
-                throw new Exception("Not Allowed");
-            }
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             

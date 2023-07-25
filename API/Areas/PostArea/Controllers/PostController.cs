@@ -24,13 +24,18 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetPosts))]
+        [AllowAnonymous]
         public async Task<IEnumerable<PostDto>> GetPosts(
           [FromQuery] PostParameters parameters)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
-            parameters.Fk_AccountForReaction = auth.Fk_Account;
             parameters.IncludeAttachments = true;
+
+            if (auth != null)
+            {
+                parameters.Fk_AccountForReaction = auth.Fk_Account;
+            }
 
             PagedList<PostModel> posts = await _unitOfWork.Post.GetPostsPaged(parameters);
 
@@ -43,6 +48,7 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetPost))]
+        [AllowAnonymous]
         public PostDto GetPost(
           [FromQuery, BindRequired] int id)
         {
@@ -58,7 +64,7 @@ namespace API.Areas.PostArea.Controllers
             PostModel post = _unitOfWork.Post.GetPosts(new PostParameters
             {
                 Id = id,
-                Fk_AccountForReaction = auth.Fk_Account,
+                Fk_AccountForReaction = auth != null ? auth.Fk_Account : 0,
                 IncludeAttachments = true
             }).FirstOrDefault();
 
