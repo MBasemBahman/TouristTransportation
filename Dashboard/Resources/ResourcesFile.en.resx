@@ -1126,4 +1126,10 @@
   <data name="tl" xml:space="preserve">
     <value>Italian</value>
   </data>
+  <data name="Name ru" xml:space="preserve">
+    <value>Name Russian</value>
+  </data>
+  <data name="Name tl" xml:space="preserve">
+    <value>Name Italian</value>
+  </data>
 </root>

@@ -1164,4 +1164,10 @@
   <data name="tl" xml:space="preserve">
     <value>الإيطالية</value>
   </data>
+  <data name="Name ru" xml:space="preserve">
+    <value>الاسم بالروسية</value>
+  </data>
+  <data name="Name tl" xml:space="preserve">
+    <value>الاسم بالإيطالية</value>
+  </data>
 </root>
