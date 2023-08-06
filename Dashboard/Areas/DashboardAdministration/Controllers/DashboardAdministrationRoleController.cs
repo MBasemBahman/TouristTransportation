@@ -7,7 +7,7 @@ using Entities.RequestFeatures;
 namespace Dashboard.Areas.DashboardAdministration.Controllers
 {
     [Area("DashboardAdministration")]
-    [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.View)]
+    [Authorize(DashboardViewEnum.DashboardAdministrationRole, AccessLevelEnum.View)]
     public class DashboardAdministrationRoleController : Controller
     {
         private readonly ILoggerManager _logger;
@@ -88,7 +88,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             return View(model);
         }
 
-        [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.DashboardAdministrationRole, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
@@ -127,7 +127,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.CreateOrEdit)]
+        [Authorize(DashboardViewEnum.DashboardAdministrationRole, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(
             int id,
             DashboardAdministrationRoleCreateOrEditModel Role,
@@ -171,7 +171,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
             return View(_unitOfWork.DashboardAdministration.GetRoleCreateOrEditViewModel(Role, permissions, otherLang, id));
         }
 
-        [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.DashboardAdministrationRole, AccessLevelEnum.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             DashboardAdministrationRole data = await _unitOfWork.DashboardAdministration.FindRoleById(id, trackChanges: false);
@@ -183,7 +183,7 @@ namespace Dashboard.Areas.DashboardAdministration.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(DashboardViewEnum.DashboardAccessLevel, AccessLevelEnum.Delete)]
+        [Authorize(DashboardViewEnum.DashboardAdministrationRole, AccessLevelEnum.Delete)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _unitOfWork.DashboardAdministration.DeleteRole(id);
