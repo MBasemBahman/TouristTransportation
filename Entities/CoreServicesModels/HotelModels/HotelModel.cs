@@ -7,6 +7,8 @@ namespace Entities.CoreServicesModels.HotelModels
     public class HotelParameters : RequestParameters
     {
         public int? Fk_Area { get; set; }
+        public int? Fk_Country { get; set; }
+        public bool? IsActive { get; set; }
         public bool? IncludeSelectedFeature { get; set; }
     }
 
@@ -38,6 +40,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(Rate))] 
         public double Rate { get; set; }
+        
+        [DisplayName(nameof(IsActive))]
+        public bool IsActive { get; set; }
         
         [DisplayName(nameof(AttachmentsCount))]
         public int AttachmentsCount { get; set; }
@@ -72,6 +77,9 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(Rate))] 
         public double Rate { get; set; }
 
+        [DisplayName(nameof(IsActive))]
+        public bool IsActive { get; set; }
+        
         public List<HotelLangModel> HotelLangs { get; set; }
         public List<int> HotelFeatures { get; set; }
     }

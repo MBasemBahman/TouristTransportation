@@ -45,6 +45,7 @@ namespace CoreServices.Logic
                                   Rate = a.Rate,
                                   AttachmentsCount = a.HotelAttachments.Count,
                                   BookingUrl = a.BookingUrl,
+                                  IsActive = a.IsActive,
                                   Fk_Area = a.Fk_Area,
                                   Area = new AreaModel
                                   {
@@ -345,6 +346,7 @@ namespace CoreServices.Logic
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   ColorCode = a.ColorCode,
+                                  HotelFeaturesCount = a.HotelFeatures.Count,
                                   HotelFeatures = parameters.IncludeHotelFeatures == true ? 
                                       a.HotelFeatures.Select(b => new HotelFeatureModel
                                       {

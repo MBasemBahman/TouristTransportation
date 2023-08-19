@@ -1,4 +1,5 @@
-﻿using Entities.DBModels.HotelModels;
+﻿using Entities.DBModels.CarModels;
+using Entities.DBModels.HotelModels;
 using Entities.DBModels.MainDataModels;
 using Entities.EnumData;
 
@@ -14,6 +15,9 @@ namespace Entities.CoreServicesModels.CarModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public new string Name { get; set; }
+        
+        [DisplayName(nameof(CarClass))] 
+        public int CarClassCount { get; set; }
     }
 
     public class CarCategoryCreateOrEditModel

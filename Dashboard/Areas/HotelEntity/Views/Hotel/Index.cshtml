@@ -48,7 +48,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <p class="m-2 demo-inline-spacing">
+                                <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
+                                    <i data-feather='filter'></i>
+                                    @Localizer.Get("Advanced Search")
+                                </a>
 
+                            </p>
+                            @{
+                                await Html.RenderPartialAsync("../Hotel/Filter", Model, ViewData);
+                            }
+                            
                             <div class="card-datatable">
                                 <table class="datatables datatables-ajax table table-responsive table">
                                     <thead>
@@ -83,6 +93,7 @@
                                             <th>@Html.DisplayNameFor(model => row.Name)</th>
                                             <th>@Html.DisplayNameFor(model => row.Address)</th>
                                             <th>@Html.DisplayNameFor(model => row.Rate)</th>
+                                            <th>@Html.DisplayNameFor(model => row.IsActive)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>@Html.DisplayNameFor(model => row.Id)</th>
                                         </tr>
@@ -103,6 +114,7 @@
 @section scripts
 {
     <script src="~/apis/charts.js"></script>
+    <script src="~/apis/site.js"></script>
     <script>
         function LoadTable() {
             var dt_ajax_table = $('.datatables');
@@ -116,6 +128,8 @@
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
+                            data.Fk_Country = $("#Fk_Country").length > 0 ? $("#Fk_Country").val() : '@Model.Fk_Country';
+                            data.Fk_Area = $("#Fk_Area").length > 0 ? $("#Fk_Area").val() : '@Model.Fk_Area';
                             
                             return JSON.stringify(data);
                         }
@@ -126,6 +140,13 @@
                         { data: "name" },
                         { data: "address" },
                         { data: "rate" },
+                        { data: "isActive", render: function(data) {
+                          if (data) {
+                              return `<span class="badge bg-success">@Localizer.Get("Yes")<span>`;
+                          }
+                          
+                          return `<span class="badge bg-danger">@Localizer.Get("No")<span>`;
+                        } },
                         { data: "createdAt" },
                         { data: "id" },
                     ]
@@ -153,6 +174,10 @@
                 }
             });
 
+        });
+        
+        $(document).on('change', '#Fk_Country', function () {
+            getAreas($('#Fk_Area'),$(this).val(), false);
         });
     </script>
 }

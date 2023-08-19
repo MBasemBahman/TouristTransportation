@@ -29,18 +29,21 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id, bool ProfileLayOut = false)
+        public IActionResult Index(int id, int fk_HotelFeatureCategory, bool ProfileLayOut = false)
         {
 
             HotelFeatureFilter filter = new()
             {
-                Id = id
+                Id = id,
+                Fk_HotelFeatureCategory = fk_HotelFeatureCategory
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
+            SetViewData(id: 0);
+            
             return View(filter);
         }
 

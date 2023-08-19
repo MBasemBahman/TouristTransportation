@@ -175,6 +175,7 @@ namespace CoreServices.Logic
                                   Name = language != null ? a.CurrencyLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  RateInPounds = a.RateInPounds,
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,

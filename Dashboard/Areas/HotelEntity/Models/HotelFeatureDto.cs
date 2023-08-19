@@ -6,6 +6,8 @@ namespace Dashboard.Areas.HotelEntity.Models
     public class HotelFeatureFilter : DtParameters
     {
         public int Id { get; set; }
+        
+        [DisplayName("HotelFeatureCategory")]
         public int Fk_HotelFeatureCategory { get; set; }
 
     }

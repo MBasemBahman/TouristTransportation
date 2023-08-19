@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-12">
+        <div class="col-md-4 col-12">
             <div class="mb-1">
                 <label class="form-label">@Localizer.Get("Country")</label>
                 <select name="Fk_Country" class="select2 form-select">
@@ -79,7 +79,7 @@
             </div>
         </div>
         
-        <div class="col-md-6 col-12">
+        <div class="col-md-4 col-12">
             <div class="mb-1">
                 <label asp-for="Fk_Area" class="form-label"></label>
                 <select asp-for="Fk_Area" class="select2 form-select"
@@ -87,6 +87,17 @@
                     <option value="">@Localizer.Get("Not Selected")</option>
                 </select>
                 <span asp-validation-for="Fk_Area" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-12">
+            <div class="mb-1">
+                <label asp-for="IsActive" class="form-label"></label>
+                <select asp-for="IsActive" class="select2 form-select">
+                    <option value="true">@Localizer.Get("Yes")</option>
+                    <option value="false">@Localizer.Get("No")</option>
+                </select>
+                <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
         </div>
 

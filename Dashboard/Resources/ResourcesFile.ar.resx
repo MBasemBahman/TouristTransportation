@@ -1170,4 +1170,16 @@
   <data name="Name tl" xml:space="preserve">
     <value>الاسم بالإيطالية</value>
   </data>
+  <data name="RateInPounds" xml:space="preserve">
+    <value>القيمة بالجنية</value>
+  </data>
+  <data name="Fk_Country" xml:space="preserve">
+    <value>الدولة</value>
+  </data>
+  <data name="Fk_Area" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
 </root>

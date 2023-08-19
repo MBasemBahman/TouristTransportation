@@ -1,12 +1,15 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CarModels;
 using System.ComponentModel;
+using Entities.DBModels.CarModels;
 
 namespace Dashboard.Areas.CarEntity.Models
 {
     public class CarClassFilter : DtParameters
     {
         public int Id { get; set; }
+        
+        [DisplayName(nameof(CarCategory))]
         public int Fk_CarCategory { get; set; }
     }
 

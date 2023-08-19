@@ -31,6 +31,9 @@ public class Hotel : AuditImageEntity
 
     [DisplayName(nameof(Rate))]
     public double Rate { get; set; } = 5;
+    
+    [DisplayName(nameof(IsActive))]
+    public bool IsActive { get; set; }
 
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }

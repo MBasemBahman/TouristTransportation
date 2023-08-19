@@ -28,6 +28,7 @@ namespace CoreServices.Logic
                                   Name = language != null ? a.CarCategoryLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  CarClassCount = a.CarClasses.Count,
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,

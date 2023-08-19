@@ -29,18 +29,21 @@ namespace Dashboard.Areas.CarEntity.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id, bool ProfileLayOut = false)
+        public IActionResult Index(int id, int fk_CarCategory, bool ProfileLayOut = false)
         {
 
             CarClassFilter filter = new()
             {
-                Id = id
+                Id = id,
+                Fk_CarCategory = fk_CarCategory
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
+            SetViewData(id: 0);
+            
             return View(filter);
         }
 

@@ -12,7 +12,8 @@ namespace Repository.DBModels.CarModels
         public IQueryable<CarClass> FindAll(CarClassParameters parameters, bool trackChanges)
         {
             return FindByCondition(a => true, trackChanges)
-                   .Filter(parameters.Id);
+                   .Filter(parameters.Id,
+                       parameters.Fk_CarCategory);
         }
 
         public async Task<CarClass> FindById(int id, bool trackChanges)
@@ -45,9 +46,11 @@ namespace Repository.DBModels.CarModels
     {
         public static IQueryable<CarClass> Filter(
             this IQueryable<CarClass> accounts,
-            int id)
+            int id,
+            int fk_CarCategory)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => (id == 0 || a.Id == id) &&
+                                       (fk_CarCategory == 0 || a.Fk_CarCategory == fk_CarCategory) );
         }
     }
 }

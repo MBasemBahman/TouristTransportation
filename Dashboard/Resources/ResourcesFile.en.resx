@@ -1132,4 +1132,16 @@
   <data name="Name tl" xml:space="preserve">
     <value>Name Italian</value>
   </data>
+  <data name="RateInPounds" xml:space="preserve">
+    <value>Rate In Pounds</value>
+  </data>
+  <data name="Fk_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Fk_Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
 </root>

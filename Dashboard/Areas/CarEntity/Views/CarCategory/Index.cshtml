@@ -83,6 +83,7 @@
 
                                             </th>
                                             <th>@Html.DisplayNameFor(model => row.Name)</th>
+                                            <th>@Html.DisplayNameFor(model => row.CarClassCount)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -122,6 +123,9 @@
                     columns: [
                         { data: "id" },
                         { data: "name" },
+                        { data: "carClassCount", render: function(data, type, row) {
+                          return `<a href="/CarEntity/CarClass/Index?fk_CarCategory=${row.id}" target="_blank">${data}</a>`;
+                        } },
                         { data: "createdAt" },
                         { data: "id" },
                     ]

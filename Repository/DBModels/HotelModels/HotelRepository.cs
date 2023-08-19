@@ -13,7 +13,9 @@ namespace Repository.DBModels.HotelModels
         {
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
-                       parameters.Fk_Area);
+                       parameters.Fk_Country,
+                       parameters.Fk_Area,
+                       parameters.IsActive);
 
         }
 
@@ -48,10 +50,14 @@ namespace Repository.DBModels.HotelModels
         public static IQueryable<Hotel> Filter(
             this IQueryable<Hotel> accounts,
             int id,
-            int? fk_Area)
+            int? fk_Country,
+            int? fk_Area,
+            bool? isActive)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_Area == null || a.Fk_Area == fk_Area) );
+                                       (fk_Country == null || a.Area.Fk_Country == fk_Country) &&
+                                       (fk_Area == null || a.Fk_Area == fk_Area) &&
+                                       (isActive == null || a.IsActive == isActive) );
         }
     }
 }

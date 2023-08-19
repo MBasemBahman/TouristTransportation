@@ -15,6 +15,8 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public new string Name { get; set; }
 
+        [DisplayName(nameof(HotelFeatures))]
+        public int HotelFeaturesCount { get; set; }
         public List<HotelFeatureModel> HotelFeatures { get; set; }
     }
 
