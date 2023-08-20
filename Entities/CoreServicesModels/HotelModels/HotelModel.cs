@@ -79,6 +79,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(IsActive))]
         public bool IsActive { get; set; }
+
+        [DisplayName(nameof(ImageUrl))]
+        public string ImageUrl { get; set; }
         
         public List<HotelLangModel> HotelLangs { get; set; }
         public List<int> HotelFeatures { get; set; }

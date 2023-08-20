@@ -269,10 +269,13 @@ namespace Dashboard.MappingProfileCls
             #region Hotel
 
             #region Hotel Models
-            
-            _ = CreateMap<Hotel, HotelCreateOrEditModel>();
 
-            _ = CreateMap<HotelCreateOrEditModel, Hotel>();
+            _ = CreateMap<Hotel, HotelCreateOrEditModel>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+
+            _ = CreateMap<HotelCreateOrEditModel, Hotel>()
+                .ForMember(dest => dest.StorageUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
 
             _ = CreateMap<HotelModel, HotelDto>();
 

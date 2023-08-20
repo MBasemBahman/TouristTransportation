@@ -94,6 +94,8 @@ namespace Dashboard.Areas.HotelEntity.Controllers
                 Hotel dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: false);
                 model = _mapper.Map<HotelCreateOrEditModel>(dataDB);
 
+                model.ImageUrl = dataDB.StorageUrl + dataDB.ImageUrl;
+                
                 model.HotelFeatures = _unitOfWork.Hotel.GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
                 {
                     Fk_Hotel = id,
@@ -160,6 +162,14 @@ namespace Dashboard.Areas.HotelEntity.Controllers
                     dataDB.LastModifiedBy = auth.UserName;
                 }
 
+                IFormFile imageFile = HttpContext.Request.Form.Files["ImageFile"];
+
+                if (imageFile != null)
+                {
+                    dataDB.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, imageFile);
+                    dataDB.StorageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
+                }
+                
                 await _unitOfWork.Save();
 
                 return Ok(new HotelModel
