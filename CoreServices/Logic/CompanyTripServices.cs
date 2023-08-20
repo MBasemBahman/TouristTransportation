@@ -180,7 +180,7 @@ namespace CoreServices.Logic
                                   Price = a.Price,
                                   Notes = a.Notes,
                                   Description = a.Description,
-                                  ImageUrl = a.StorageUrl + a.ImageUrl,
+                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/trip.png",
                                   AttachmentsCount = a.CompanyTripAttachments.Count,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,

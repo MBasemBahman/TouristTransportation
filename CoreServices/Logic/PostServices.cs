@@ -31,7 +31,7 @@ namespace CoreServices.Logic
                                   Fk_Account = a.Fk_Account,
                                   Account = new AccountModel
                                   {
-                                      ImageUrl = a.Account.StorageUrl + a.Account.ImageUrl,
+                                      ImageUrl = !string.IsNullOrEmpty(a.Account.ImageUrl) ? a.Account.StorageUrl + a.Account.ImageUrl : "/userImg.png",
                                       User  = new UserModel
                                       {
                                           Name = a.Account.User.Name

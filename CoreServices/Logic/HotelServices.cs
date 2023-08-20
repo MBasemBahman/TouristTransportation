@@ -75,7 +75,7 @@ namespace CoreServices.Logic
                                           }).ToList()
                                       }).ToList() : null,
                                   
-                                  ImageUrl = a.StorageUrl + a.ImageUrl,
+                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/hotel.png",
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,

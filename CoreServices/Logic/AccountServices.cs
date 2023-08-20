@@ -36,7 +36,7 @@ namespace CoreServices.Logic
                                   } : null,
                                   Phone = a.Phone,
                                   EmailAddress = a.EmailAddress,
-                                  ImageUrl = a.StorageUrl + a.ImageUrl,
+                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/userImg.png",
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
