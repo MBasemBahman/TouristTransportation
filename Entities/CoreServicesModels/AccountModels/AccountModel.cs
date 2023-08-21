@@ -84,4 +84,18 @@ namespace Entities.CoreServicesModels.AccountModels
         [EmailAddress]
         public string EmailAddress { get; set; }
     }
+    
+    public class AccountCreateModel
+    {
+        [DisplayName(nameof(User))]
+        public UserCreateModel User { get; set; }
+
+        [DisplayName(nameof(Phone))]
+        [Phone]
+        public string Phone { get; set; }
+
+        [DisplayName(nameof(EmailAddress))]
+        [EmailAddress]
+        public string EmailAddress { get; set; }
+    }
 }

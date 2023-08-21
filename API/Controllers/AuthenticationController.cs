@@ -1,4 +1,8 @@
-﻿using Entities.DBModels.UserModels;
+﻿using API.Models;
+using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.UserModels;
+using Entities.DBModels.AccountModels;
+using Entities.DBModels.UserModels;
 
 namespace API.Controllers
 {
@@ -34,6 +38,54 @@ namespace API.Controllers
             SetRefresh(auth.RefreshTokenResponse);
 
             return auth;
+        }
+        
+        [HttpPost]
+        [Route(nameof(RegisterUserWithAccount))]
+        [AllowAnonymous]
+        public async Task<UserDto> RegisterUserWithAccount([FromBody] UserForRegistrationDto model)
+        {
+            if (model.EmailAddress.IsExisting() && _unitOfWork.Account.GetAccounts(new AccountParameters
+                {
+                    EmailAddress = model.EmailAddress
+                }, LanguageEnum.en).Any())
+            {
+                throw new Exception("Email Address already registered!");
+            }
+
+            model.UserName = RegexService.GetUserName(model.UserName);
+
+            User user = new User
+            {
+                Name = model.Name,
+                UserName = model.UserName,
+                EmailAddress = model.EmailAddress,
+                PhoneNumber = model.PhoneNumber,
+                Password = model.Password,
+                Account = new Account
+                {
+                    EmailAddress = model.EmailAddress,
+                    Fk_AccountState = (int)AccountStateEnum.Active,
+                    Fk_AccountType = (int)AccountTypeEnum.Client,
+                    Phone = model.PhoneNumber,
+                }
+            };
+
+            await _unitOfWork.User.CreateUser(user);
+            await _unitOfWork.Save();
+
+            UserAuthenticatedDto auth = await _authManager.Authenticate(new UserForAuthenticationDto
+            {
+                UserName = model.UserName,
+                Password = model.Password,
+            }, IpAddress());
+
+            SetToken(auth.TokenResponse);
+            SetRefresh(auth.RefreshTokenResponse);
+
+            UserDto usersDto = _mapper.Map<UserDto>(auth);
+
+            return usersDto;
         }
 
         [HttpPut]

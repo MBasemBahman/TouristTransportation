@@ -74,6 +74,18 @@
             Dislike = 2,
             Love = 3
         }
+        
+        public enum AccountStateEnum
+        {
+            Active = 1,
+        }
+        
+        public enum AccountTypeEnum
+        {
+            Client = 1,
+            Driver = 2,
+            Test = 3,
+        }
 
         public enum LanguageEnum
         {
