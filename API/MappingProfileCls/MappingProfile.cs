@@ -1,8 +1,10 @@
 ﻿using API.Areas.CompanyTripArea.Models;
 using API.Areas.HotelArea.Models;
+using API.Areas.MainDataArea.Models;
 using API.Areas.PostArea.Models;
 using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.HotelModels;
@@ -65,6 +67,14 @@ namespace API.MappingProfileCls
             _ = CreateMap<HotelAttachmentModel, HotelAttachmentDto>().ReverseMap();
 
             #endregion
+
+            #endregion
+            
+            #region MainDataModels
+
+            _ = CreateMap<CurrencyModel, CurrencyDto>();
+            _ = CreateMap<CountryModel, CountryDto>();
+            _ = CreateMap<AreaModel, AreaDto>();
 
             #endregion
             

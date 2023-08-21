@@ -13,6 +13,7 @@
             CompanyTrip,
             Hotel,
             Post,
+            MainData
         }
 
         public enum TenantViews
