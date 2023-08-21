@@ -9,6 +9,7 @@ namespace API.Areas.HotelArea.Models
         public new string CreatedAt { get; set; }
 
         public IEnumerable<HotelAttachmentDto> Attachments { get; set; }
+        public IEnumerable<HotelFeatureCategoryModel> HotelFeatures { get; set; }
     }
 
     public class HotelCreateOrEditDto : HotelCreateOrEditModel

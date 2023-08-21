@@ -6,6 +6,12 @@ namespace Entities.DBModels.AccountModels;
 
 public class Account : AuditImageEntity
 {
+    [DisplayName(nameof(FirstName))]
+    public string FirstName { get; set; }
+    
+    [DisplayName(nameof(LastName))]
+    public string LastName { get; set; }
+    
     [DisplayName(nameof(User))]
     [ForeignKey(nameof(User))]
     public int? Fk_User { get; set; }

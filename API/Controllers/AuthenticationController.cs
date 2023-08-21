@@ -57,18 +57,21 @@ namespace API.Controllers
 
             User user = new User
             {
-                Name = model.Name,
+                Name = $"{model.FirstName} {model.LastName}",
                 UserName = model.UserName,
                 EmailAddress = model.EmailAddress,
                 PhoneNumber = model.PhoneNumber,
                 Password = model.Password,
                 Account = new Account
                 {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     EmailAddress = model.EmailAddress,
                     Fk_AccountState = (int)AccountStateEnum.Active,
                     Fk_AccountType = (int)AccountTypeEnum.Client,
                     Phone = model.PhoneNumber,
-                }
+                },
+                Culture = model.Culture
             };
 
             await _unitOfWork.User.CreateUser(user);

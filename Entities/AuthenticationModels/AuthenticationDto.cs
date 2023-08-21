@@ -5,7 +5,10 @@ namespace Entities.AuthenticationModels
     public class UserForRegistrationDto
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string UserName { get; set; }

@@ -121,7 +121,11 @@ namespace CoreServices.Logic
 
         public HotelModel GetHotelById(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetHotels(new HotelParameters { Id = id }, language).SingleOrDefault();
+            return GetHotels(new HotelParameters
+            {
+                Id = id,
+                IncludeSelectedFeature = true
+            }, language).SingleOrDefault();
         }
         
 
@@ -265,7 +269,7 @@ namespace CoreServices.Logic
         {
             return await PagedList<HotelFeatureModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
         }
-
+        
         public void UpdateHotelFeatures(int fk_Hotel, List<int> hotelFeatures)
         {
             if (!hotelFeatures.Any()) return;
