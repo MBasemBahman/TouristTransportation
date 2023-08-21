@@ -58,6 +58,14 @@ namespace Entities.CoreServicesModels.AccountModels
 
     public class AccountCreateOrEditModel
     {
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        [DisplayName(nameof(FirstName))]
+        public string FirstName { get; set; }
+        
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        [DisplayName(nameof(LastName))]
+        public string LastName { get; set; }
+        
         [DisplayName(nameof(AccountType))]
         [ForeignKey(nameof(AccountType))]
         public int Fk_AccountType { get; set; }

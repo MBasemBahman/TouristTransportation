@@ -35,7 +35,6 @@
 
     public class UserCreateModel
     {
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
 

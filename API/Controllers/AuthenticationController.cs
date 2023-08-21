@@ -43,7 +43,7 @@ namespace API.Controllers
         [HttpPost]
         [Route(nameof(RegisterUserWithAccount))]
         [AllowAnonymous]
-        public async Task<UserDto> RegisterUserWithAccount([FromBody] UserForRegistrationDto model)
+        public async Task<UserAuthenticatedDto> RegisterUserWithAccount([FromBody] UserForRegistrationDto model)
         {
             if (model.EmailAddress.IsExisting() && _unitOfWork.Account.GetAccounts(new AccountParameters
                 {
@@ -86,9 +86,7 @@ namespace API.Controllers
             SetToken(auth.TokenResponse);
             SetRefresh(auth.RefreshTokenResponse);
 
-            UserDto usersDto = _mapper.Map<UserDto>(auth);
-
-            return usersDto;
+            return auth;
         }
 
         [HttpPut]

@@ -2,6 +2,7 @@
 using API.Areas.HotelArea.Models;
 using API.Areas.MainDataArea.Models;
 using API.Areas.PostArea.Models;
+using API.Models;
 using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.MainDataModels;
@@ -75,6 +76,12 @@ namespace API.MappingProfileCls
             _ = CreateMap<CurrencyModel, CurrencyDto>();
             _ = CreateMap<CountryModel, CountryDto>();
             _ = CreateMap<AreaModel, AreaDto>();
+
+            #endregion
+
+            #region User Models
+
+            _ = CreateMap<UserAuthenticatedDto, UserDto>();
 
             #endregion
             
