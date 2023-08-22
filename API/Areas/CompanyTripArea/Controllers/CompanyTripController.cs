@@ -8,7 +8,7 @@ namespace API.Areas.CompanyTripArea.Controllers
     [Area("CompanyTrip")]
     [ApiExplorerSettings(GroupName = "CompanyTrip")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
-    [AllowAnonymous]
+    [Authorize]
     public class CompanyTripController : ExtendControllerBase
     {
         public CompanyTripController(
