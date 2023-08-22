@@ -47,12 +47,12 @@ namespace CoreServices.Logic
                                   BookingUrl = a.BookingUrl,
                                   IsActive = a.IsActive,
                                   Fk_Area = a.Fk_Area,
-                                  Area = new AreaModel
+                                  Area = a.Fk_Area != null ? new AreaModel
                                   {
                                       Name = language != null ? a.Area.AreaLangs
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.Name,
-                                  },
+                                  } : null,
                                   
                                   HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
                                       .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
