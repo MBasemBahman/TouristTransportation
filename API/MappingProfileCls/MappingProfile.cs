@@ -1,15 +1,23 @@
-﻿using API.Areas.CompanyTripArea.Models;
+﻿using API.Areas.AccountArea.Models;
+using API.Areas.CarArea.Models;
+using API.Areas.CompanyTripArea.Models;
 using API.Areas.HotelArea.Models;
 using API.Areas.MainDataArea.Models;
 using API.Areas.PostArea.Models;
+using API.Areas.TripArea.Models;
 using API.Models;
+using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.CarModels;
 using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.PostModels;
+using Entities.CoreServicesModels.TripModels;
+using Entities.DBModels.AccountModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.HotelModels;
 using Entities.DBModels.PostModels;
+using Entities.DBModels.TripModels;
 
 namespace API.MappingProfileCls
 {
@@ -99,6 +107,38 @@ namespace API.MappingProfileCls
 
             _ = CreateMap<CompanyTripAttachment, CompanyTripAttachmentDto>().ReverseMap();
             _ = CreateMap<CompanyTripAttachmentModel, CompanyTripAttachmentDto>().ReverseMap();
+
+            #endregion
+
+            #endregion
+            
+            #region TripModels
+
+            #region TripModels
+
+            _ = CreateMap<TripModel, TripDto>();
+            _ = CreateMap<TripCreateOrEditDto, Trip>();
+            _ = CreateMap<Trip, TripCreateOrEditDto>();
+
+            #endregion
+
+            #endregion
+
+            #region AccountModels
+
+            #region AccountModels
+
+            _ = CreateMap<AccountModel, AccountDto>();
+
+            #endregion
+
+            #endregion
+            
+            #region CarModels
+
+            #region CarClassModels
+
+            _ = CreateMap<CarClassModel, CarClassDto>();
 
             #endregion
 
