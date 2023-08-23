@@ -23,8 +23,8 @@ namespace API.Areas.CarArea.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetDrivers))]
-        public async Task<IEnumerable<CarClassDto>> GetDrivers([FromQuery] CarClassParameters parameters)
+        [Route(nameof(GetCarClasses))]
+        public async Task<IEnumerable<CarClassDto>> GetCarClasses([FromQuery] CarClassParameters parameters)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
@@ -38,8 +38,8 @@ namespace API.Areas.CarArea.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetDriver))]
-        public async Task<CarClassDto> GetDriver([FromQuery, BindRequired] int id)
+        [Route(nameof(GetCarClass))]
+        public async Task<CarClassDto> GetCarClass([FromQuery, BindRequired] int id)
         {
             if (id == 0)
             {
