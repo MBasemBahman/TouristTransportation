@@ -9,6 +9,7 @@ namespace API.Areas.PostArea.Controllers
     [Area("Post")]
     [ApiExplorerSettings(GroupName = "Post")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
+    [Authorize]
     public class PostController : ExtendControllerBase
     {
         public PostController(
@@ -24,7 +25,6 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetPosts))]
-        [AllowAnonymous]
         public async Task<IEnumerable<PostDto>> GetPosts(
           [FromQuery] PostParameters parameters)
         {
@@ -48,7 +48,6 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetPost))]
-        [AllowAnonymous]
         public PostDto GetPost(
           [FromQuery, BindRequired] int id)
         {
