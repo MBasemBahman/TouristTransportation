@@ -80,14 +80,28 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Fk_Account" class="form-label"></label>
-                                                <select asp-for="Fk_Account" class="select2 form-select">
-                                                </select>
-                                                <span asp-validation-for="Fk_Account" class="text-danger"></span>
+                                        @if (Model.Fk_Account > 0)
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label asp-for="Fk_Account" class="form-label"></label>
+                                                    <input type="hidden" asp-for="Fk_Account"/>
+                                                    <select asp-for="Fk_Account" class="select2 form-select" disabled>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label asp-for="Fk_Account" class="form-label"></label>
+                                                    <select asp-for="Fk_Account" class="select2 form-select">
+                                                    </select>
+                                                    <span asp-validation-for="Fk_Account" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        }
                                         
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
@@ -160,7 +174,7 @@
     <script>
         $(document).ready(function() {
             
-          $("#Fk_Account").select2({
+          $("select#Fk_Account").select2({
              ajax: {
                 url: "@Url.ActionLink("GetAccountsByFilters", "Services", new { area = "Dashboard" })",
                 dataType: "json",
@@ -206,7 +220,7 @@
                 success: function (data) {
                     let item = data[0];
                     
-                    $("#Fk_Account").html(`<option selected value="${item.id}">${item.user.name} | ${item.phone}</option>`);
+                    $("select#Fk_Account").html(`<option selected value="${item.id}">${item.user.name} | ${item.phone}</option>`);
                 }
               });
         </script>
