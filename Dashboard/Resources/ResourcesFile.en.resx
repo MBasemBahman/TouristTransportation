@@ -1168,4 +1168,10 @@
   <data name="CompanyTrip Profile" xml:space="preserve">
     <value>CompanyTrip Profile</value>
   </data>
+  <data name="CompanyTripBookingStates" xml:space="preserve">
+    <value>CompanyTrip Booking States</value>
+  </data>
+  <data name="CompanyTrip Booking" xml:space="preserve">
+    <value>CompanyTrip Booking</value>
+  </data>
 </root>

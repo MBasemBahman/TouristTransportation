@@ -314,6 +314,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBookingState\CreateOrEdit.cshtml" />
+    <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBookingState\Delete.cshtml" />
+    <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBookingState\Details.cshtml" />
+    <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBookingState\Index.cshtml" />
     <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBooking\CreateOrEdit.cshtml" />
     <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBooking\Delete.cshtml" />
     <AdditionalFiles Include="Areas\CompanyTripEntity\Views\CompanyTripBooking\Details.cshtml" />

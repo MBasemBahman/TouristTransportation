@@ -136,7 +136,7 @@
                                             <button type="reset" class="btn btn-outline-secondary me-1">@Localizer.Get("Reset")</button>
                                             
                                             <a asp-route-id="@Model.Fk_CompanyTrip" asp-action="Profile" asp-controller="CompanyTrip"
-                                               asp-route-returnItem="@((int)CompanyTripProfileItems.CompanyTripBooking)"
+                                               asp-route-returnItem="@((int)DBModelsEnum.CompanyTripProfileItems.CompanyTripBooking)"
                                                class="btn btn-warning"> @Localizer.Get("Back") </a>
                                             
                                         </div>

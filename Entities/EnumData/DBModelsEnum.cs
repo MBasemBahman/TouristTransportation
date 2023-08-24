@@ -48,7 +48,8 @@
             HotelFeature = 29,
             CompanyTrip = 30,
             CompanyTripAttachment = 31,
-            CompanyTripBooking = 32
+            CompanyTripBooking = 32,
+            CompanyTripBookingState = 33
         }
 
         public enum AccountProfileItems

@@ -173,6 +173,22 @@ namespace Dashboard.MappingProfileCls
 
             #endregion
             
+            #region CompanyTripBookingState Models
+            
+            _ = CreateMap<CompanyTripBookingState, CompanyTripBookingStateCreateOrEditModel>();
+
+            _ = CreateMap<CompanyTripBookingStateCreateOrEditModel, CompanyTripBookingState>();
+
+            _ = CreateMap<CompanyTripBookingStateModel, CompanyTripBookingStateDto>();
+
+            _ = CreateMap<CompanyTripBookingStateFilter, CompanyTripBookingStateParameters>();
+
+            _ = CreateMap<CompanyTripBookingStateLang, CompanyTripBookingStateLangModel>();
+
+            _ = CreateMap<CompanyTripBookingStateLangModel, CompanyTripBookingStateLang>();
+
+            #endregion
+            
             #region CompanyTripBooking Models
             
             _ = CreateMap<CompanyTripBooking, CompanyTripBookingCreateOrEditModel>();

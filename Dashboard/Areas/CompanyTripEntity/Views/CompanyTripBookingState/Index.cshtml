@@ -1,6 +1,6 @@
-﻿@model CompanyTripBookingFilter
+﻿@model CompanyTripBookingStateFilter
 @{
-    ViewData["Title"] = Localizer.Get("CompanyTripBooking");
+    ViewData["Title"] = Localizer.Get("CompanyTripBookingState");
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.useDatatable = true;
     ViewBag.useModels = true;
@@ -9,14 +9,10 @@
     ViewBag.useCharts = true;
     var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
 
-    var row = new CompanyTripBookingDto();
-    ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null && (bool)ViewData["ProfileLayOut"];
-
+    var row = new CompanyTripBookingStateDto();
 }
 
-@if (!ViewBag.emptyLayout)
-{
-    <!-- BEGIN: Content-->
+<!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -86,7 +82,7 @@
                                                 }
 
                                             </th>
-                                            <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Name)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -104,70 +100,6 @@
     </div>
 </div>
 <!-- END: Content-->
-}
-else
-{
-    <section id="ajax-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <h4 class="card-title"> @ViewData["Title"]</h4>
-                    </div>
-                    <div class="card-datatable">
-                        <table class="datatables datatables-ajax table table-responsive table">
-                            <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => row.Id)
-
-                                    @if (accessLevel.ViewAccess)
-                                    {
-                                        <a id="details" asp-action="Details">
-                                        </a>
-                                    }
-                                                
-                                    @if (accessLevel.ExportAccess)
-                                    {
-                                        <a id="export" href="export">
-                                        </a>
-                                    }
-
-                                    @if (accessLevel.CreateAccess)
-                                    {
-                                        <a id="create" asp-action="CreateOrEdit" asp-route-fk_CompanyTrip="@Model.Fk_CompanyTrip">
-                                        </a>
-                                    }
-
-                                    @if (accessLevel.EditAccess)
-                                    {
-                                        <input type="hidden" value="?fk_CompanyTrip=@Model.Fk_CompanyTrip" />
-                                        <a id="edit" asp-action="CreateOrEdit">
-                                        </a>
-                                    }
-                                    @if (accessLevel.DeleteAccess)
-                                    {
-                                        <a id="delete" asp-action="Delete">
-                                        </a>
-                                    }
-
-                                </th>
-                                <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
-                                <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
-                                <th>
-                                    @Html.DisplayNameFor(model => row.Id)
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-}
-
 @section scripts{
     <script>
     function LoadTable(){
@@ -182,7 +114,6 @@ else
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
-                            data.fk_CompanyTrip = @Model.Fk_CompanyTrip;
 
                             return JSON.stringify(data);
                         }
@@ -190,7 +121,7 @@ else
                     // Columns Setups
                     columns: [
                         { data: "id" },
-                        { data: "companyTrip.title" },
+                        { data: "name" },
                         { data: "createdAt" },
                         { data: "id" },
                     ]

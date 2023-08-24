@@ -134,7 +134,11 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
                 await _unitOfWork.Save();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Profile", "CompanyTrip", new
+                {
+                    Id = dataDB.Fk_CompanyTrip,
+                    returnItem = (int)CompanyTripProfileItems.CompanyTripBooking
+                });
             }
             catch (Exception ex)
             {

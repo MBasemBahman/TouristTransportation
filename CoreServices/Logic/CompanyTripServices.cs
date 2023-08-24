@@ -326,6 +326,13 @@ namespace CoreServices.Logic
                               {
                                   Id = a.Id,
                                   Fk_Account = a.Fk_Account,
+                                  Fk_CompanyTrip = a.Fk_CompanyTrip,
+                                  CompanyTrip = new CompanyTripModel
+                                  {
+                                      Title = language != null ? a.CompanyTrip.CompanyTripLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Title).FirstOrDefault() : a.CompanyTrip.Title,
+                                  },
                                   Price = a.Price,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,

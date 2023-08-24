@@ -1206,4 +1206,10 @@
   <data name="CompanyTrip Profile" xml:space="preserve">
     <value>الملف الشخصي للرحلة اليومية</value>
   </data>
+  <data name="CompanyTripBookingStates" xml:space="preserve">
+    <value>حالات حجز الرحلات اليومية</value>
+  </data>
+  <data name="CompanyTrip Booking" xml:space="preserve">
+    <value>حجز الرحلة اليومية</value>
+  </data>
 </root>

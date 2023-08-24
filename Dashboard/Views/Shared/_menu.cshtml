@@ -241,7 +241,8 @@
                 }
 
 
-                @if (viewList.Contains((int)DashboardViewEnum.CompanyTripState))
+                @if (viewList.Contains((int)DashboardViewEnum.CompanyTripState) ||
+                     viewList.Contains((int)DashboardViewEnum.CompanyTripBookingState))
                 {
 
                     <li class=" nav-item">
@@ -256,6 +257,16 @@
                                 <li class="@(active == DashboardViewEnum.CompanyTripState.ToString()?"active":"")">
                                     <a class="d-flex align-items-center" asp-controller="CompanyTripState" asp-area="CompanyTripEntity" asp-action="Index">
                                         <i data-feather='settings'></i><span class="menu-item text-truncate" data-i18n="Second Level">@Localizer.Get("CompanyTripStates")</span>
+                                    </a>
+                                </li>
+                            }
+                            
+                            @if (viewList.Contains((int)DashboardViewEnum.CompanyTripBookingState))
+                            {
+
+                                <li class="@(active == DashboardViewEnum.CompanyTripBookingState.ToString()?"active":"")">
+                                    <a class="d-flex align-items-center" asp-controller="CompanyTripBookingState" asp-area="CompanyTripEntity" asp-action="Index">
+                                        <i data-feather='settings'></i><span class="menu-item text-truncate" data-i18n="Second Level">@Localizer.Get("CompanyTripBookingStates")</span>
                                     </a>
                                 </li>
                             }
