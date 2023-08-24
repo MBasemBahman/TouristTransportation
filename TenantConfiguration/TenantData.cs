@@ -13,7 +13,10 @@
             CompanyTrip,
             Hotel,
             Post,
-            MainData
+            MainData,
+            Account,
+            Car,
+            Trip
         }
 
         public enum TenantViews
