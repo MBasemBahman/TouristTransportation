@@ -44,6 +44,20 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
             return View(filter);
         }
+        
+        public IActionResult Profile(int id, int returnItem = (int)CompanyTripProfileItems.Details)
+        {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripDto data = _mapper.Map<CompanyTripDto>(_unitOfWork.CompanyTrip
+                .GetCompanyTripById(id, otherLang));
+
+            ViewData["otherLang"] = otherLang;
+
+            ViewData["returnItem"] = returnItem;
+            
+            return View(data);
+        }
 
         [HttpPost]
         public async Task<IActionResult> LoadTable([FromBody] CompanyTripFilter dtParameters)

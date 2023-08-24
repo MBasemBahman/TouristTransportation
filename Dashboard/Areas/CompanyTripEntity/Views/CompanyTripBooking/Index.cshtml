@@ -1,21 +1,17 @@
-﻿@model CompanyTripFilter
+﻿@model CompanyTripBookingFilter
 @{
-    ViewData["Title"] = Localizer.Get("CompanyTrips");
+    ViewData["Title"] = Localizer.Get("CompanyTripBooking");
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.useDatatable = true;
-
+    ViewBag.useModels = true;
+    ViewBag.useForm = true;
+    ViewBag.useDatePicker = true;
+    ViewBag.useCharts = true;
     var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
 
-    var row = new CompanyTripDto();
+    var row = new CompanyTripBookingDto();
     ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null && (bool)ViewData["ProfileLayOut"];
 
-    if (!ViewBag.emptyLayout)
-    {
-        ViewBag.useModels = true;
-        ViewBag.useForm = true;
-        ViewBag.useDatePicker = true;
-        ViewBag.useCharts = true;
-    }
 }
 
 @if (!ViewBag.emptyLayout)
@@ -50,7 +46,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
+                            <div class="card-header border-bottom">
+                                <h4 class="card-title"> @ViewData["Title"]</h4>
+                            </div>
                             <div class="card-datatable">
                                 <table class="datatables datatables-ajax table table-responsive table">
                                     <thead>
@@ -60,7 +58,13 @@
 
                                                 @if (accessLevel.ViewAccess)
                                                 {
-                                                    <a id="profile" asp-action="Profile">
+                                                    <a id="details" asp-action="Details">
+                                                    </a>
+                                                }
+                                                
+                                                @if (accessLevel.ExportAccess)
+                                                {
+                                                    <a id="export" href="export">
                                                     </a>
                                                 }
 
@@ -82,11 +86,11 @@
                                                 }
 
                                             </th>
-                                            <th>@Html.DisplayNameFor(model => row.Title)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Price)</th>
-                                            <th>@Html.DisplayNameFor(model => row.CompanyTripState)</th>
+                                            <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Id)</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => row.Id)
+                                            </th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -107,7 +111,9 @@ else
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
+                    <div class="card-header border-bottom">
+                        <h4 class="card-title"> @ViewData["Title"]</h4>
+                    </div>
                     <div class="card-datatable">
                         <table class="datatables datatables-ajax table table-responsive table">
                             <thead>
@@ -117,19 +123,25 @@ else
 
                                     @if (accessLevel.ViewAccess)
                                     {
-                                        <a id="profile" asp-action="Profile">
+                                        <a id="details" asp-action="Details">
+                                        </a>
+                                    }
+                                                
+                                    @if (accessLevel.ExportAccess)
+                                    {
+                                        <a id="export" href="export">
                                         </a>
                                     }
 
                                     @if (accessLevel.CreateAccess)
                                     {
-                                        <a id="create" asp-action="CreateOrEdit">
+                                        <a id="create" asp-action="CreateOrEdit" asp-route-fk_CompanyTrip="@Model.Fk_CompanyTrip">
                                         </a>
                                     }
 
                                     @if (accessLevel.EditAccess)
                                     {
-                                        <a id="edit" asp-action="CreateOrEdit">
+                                        <a id="edit" asp-action="CreateOrEdit" asp-route-fk_CompanyTrip="@Model.Fk_CompanyTrip">
                                         </a>
                                     }
                                     @if (accessLevel.DeleteAccess)
@@ -139,11 +151,11 @@ else
                                     }
 
                                 </th>
-                                <th>@Html.DisplayNameFor(model => row.Title)</th>
-                                <th>@Html.DisplayNameFor(model => row.Price)</th>
-                                <th>@Html.DisplayNameFor(model => row.CompanyTripState)</th>
+                                <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
                                 <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
-                                <th>@Html.DisplayNameFor(model => row.Id)</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => row.Id)
+                                </th>
                             </tr>
                             </thead>
                         </table>
@@ -152,13 +164,12 @@ else
             </div>
         </div>
     </section>
+
 }
 
-@section scripts
-{
-    <script src="~/apis/charts.js"></script>
+@section scripts{
     <script>
-        function LoadTable() {
+    function LoadTable(){
             var dt_ajax_table = $('.datatables');
             if (dt_ajax_table.length) {
                 var dt_ajax = dt_ajax_table.dataTable({
@@ -170,16 +181,15 @@ else
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
-                            
+                            data.fk_CompanyTrip = @Model.Fk_CompanyTrip;
+
                             return JSON.stringify(data);
                         }
                     },
                     // Columns Setups
                     columns: [
                         { data: "id" },
-                        { data: "title" },
-                        { data: "price" },
-                        { data: "companyTripState.name" },
+                        { data: "companyTrip.title" },
                         { data: "createdAt" },
                         { data: "id" },
                     ]
@@ -193,10 +203,11 @@ else
                 $('body').on('submit', '.filter', function () {
                     event.preventDefault();
                     dt_ajax_table.DataTable().draw();
+
                 });
 
             }
-        }
+    }
 
         $(document).ready(function () {
             LoadTable();
@@ -208,5 +219,5 @@ else
             });
 
         });
-    </script>
+</script>
 }

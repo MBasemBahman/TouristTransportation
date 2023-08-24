@@ -7,6 +7,7 @@ namespace Entities.CoreServicesModels.AccountModels
 {
     public class AccountParameters : RequestParameters
     {
+        public string Name { get; set; }
         public string EmailAddress { get; set; }
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }

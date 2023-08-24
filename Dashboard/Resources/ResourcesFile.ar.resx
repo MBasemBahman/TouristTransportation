@@ -1182,4 +1182,28 @@
   <data name="Rate" xml:space="preserve">
     <value>التقييم</value>
   </data>
+  <data name="Title ru" xml:space="preserve">
+    <value>العنوان بالروسية</value>
+  </data>
+  <data name="Title tl" xml:space="preserve">
+    <value>العنوان بالتركية</value>
+  </data>
+  <data name="CompanyTripBookingState" xml:space="preserve">
+    <value>حالة الحجز</value>
+  </data>
+  <data name="CurrencyRate" xml:space="preserve">
+    <value>سعر العملة</value>
+  </data>
+  <data name="MembersCount" xml:space="preserve">
+    <value>عدد الاعضاء</value>
+  </data>
+  <data name="CompanyTripBooking" xml:space="preserve">
+    <value>حجز رحلة يومية</value>
+  </data>
+  <data name="CompanyTripBookings" xml:space="preserve">
+    <value>حجز الرحلات اليومية</value>
+  </data>
+  <data name="CompanyTrip Profile" xml:space="preserve">
+    <value>الملف الشخصي للرحلة اليومية</value>
+  </data>
 </root>

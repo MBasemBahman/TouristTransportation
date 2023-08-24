@@ -1144,4 +1144,28 @@
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
   </data>
+  <data name="Title ru" xml:space="preserve">
+    <value>Title Russian</value>
+  </data>
+  <data name="Title tl" xml:space="preserve">
+    <value>Title Turkey</value>
+  </data>
+  <data name="CompanyTripBookingState" xml:space="preserve">
+    <value>CompanyTrip Booking State</value>
+  </data>
+  <data name="CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="MembersCount" xml:space="preserve">
+    <value>Members Count</value>
+  </data>
+  <data name="CompanyTripBooking" xml:space="preserve">
+    <value>CompanyTrip Booking</value>
+  </data>
+  <data name="CompanyTripBookings" xml:space="preserve">
+    <value>CompanyTrip Bookings</value>
+  </data>
+  <data name="CompanyTrip Profile" xml:space="preserve">
+    <value>CompanyTrip Profile</value>
+  </data>
 </root>

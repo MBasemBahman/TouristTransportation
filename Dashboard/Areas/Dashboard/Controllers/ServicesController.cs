@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.MainDataModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.MainDataModels;
 
 namespace Dashboard.Areas.Dashboard.Controllers
 {
@@ -21,6 +22,13 @@ namespace Dashboard.Areas.Dashboard.Controllers
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             return _unitOfWork.MainData.GetAreas(parameters, otherLang).ToList();
+        }
+        
+        public ActionResult<List<AccountModel>> GetAccountsByFilters(AccountParameters parameters)
+        {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
+            return _unitOfWork.Account.GetAccounts(parameters, otherLang).ToList();
         }
     }
 }

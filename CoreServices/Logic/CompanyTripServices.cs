@@ -42,6 +42,11 @@ namespace CoreServices.Logic
             return await PagedList<CompanyTripStateModel>.ToPagedList(GetCompanyTripStates(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public Dictionary<string, string> GetCompanyTripBookingStatesLookUp(CompanyTripBookingStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetCompanyTripBookingStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+        
         public async Task<PagedList<CompanyTripStateModel>> GetCompanyTripStatesPaged(
           IQueryable<CompanyTripStateModel> data,
          CompanyTripStateParameters parameters)
@@ -197,6 +202,11 @@ namespace CoreServices.Logic
             return await PagedList<CompanyTripModel>.ToPagedList(GetCompanyTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public Dictionary<string, string> GetCompanyTripsLookUp(CompanyTripParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetCompanyTrips(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Title);
+        }
+        
         public async Task<string> UploadCompanyTripAttachment(string rootPath, IFormFile file)
         {
             FileUploader uploader = new(rootPath);

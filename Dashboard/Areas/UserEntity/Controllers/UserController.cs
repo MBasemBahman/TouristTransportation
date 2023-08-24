@@ -67,8 +67,8 @@ namespace Dashboard.Areas.UserEntity.Controllers
 
         public IActionResult Profile(int id)
         {
-            bool otherLang = (bool)Request.HttpContext.Items[ApiConstants.Language];
-
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
             UserDto data = _mapper.Map<UserDto>(_unitOfWork.User
                                                            .GetUserbyId(id, trackChanges: false));
 

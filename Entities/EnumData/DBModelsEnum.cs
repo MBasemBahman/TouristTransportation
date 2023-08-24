@@ -47,13 +47,21 @@
             HotelFeatureCategory = 28,
             HotelFeature = 29,
             CompanyTrip = 30,
-            CompanyTripAttachment = 31
+            CompanyTripAttachment = 31,
+            CompanyTripBooking = 32
         }
 
         public enum AccountProfileItems
         {
             Details = 1,
             AccountCard = 2
+        }
+        
+        public enum CompanyTripProfileItems
+        {
+            Details = 1,
+            Attachments = 2,
+            CompanyTripBooking = 3
         }
 
         public enum AccountReturnPage

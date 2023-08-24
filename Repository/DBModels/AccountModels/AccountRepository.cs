@@ -13,6 +13,7 @@ namespace Repository.DBModels.AccountModels
         {
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
+                       parameters.Name,
                        parameters.EmailAddress,
                        parameters.Fk_AccountState,
                        parameters.Fk_AccountType,
@@ -40,6 +41,7 @@ namespace Repository.DBModels.AccountModels
         public static IQueryable<Account> Filter(
             this IQueryable<Account> accounts,
             int id,
+            string name,
             string emailAddress,
             int fk_AccountState,
             int fk_AccountType,
@@ -47,6 +49,14 @@ namespace Repository.DBModels.AccountModels
             int? fk_User)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
+                                       
+                                       (string.IsNullOrEmpty(name) || a.FirstName.Contains(name) 
+                                                                   || a.LastName.Contains(name)
+                                                                   || a.User.Name.Contains(name)
+                                                                   || a.User.UserName.Contains(name)
+                                                                   || a.Phone.Contains(name)
+                                                                   || a.EmailAddress.Contains(name)) &&
+                                       
                                        (string.IsNullOrEmpty(emailAddress) || a.EmailAddress == emailAddress) &&
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_Supplier == 0 || a.Fk_Supplier == fk_Supplier) &&
