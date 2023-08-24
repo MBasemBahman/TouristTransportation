@@ -39,19 +39,19 @@ namespace API.Areas.CarArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetCarClass))]
-        public async Task<CarClassDto> GetCarClass([FromQuery, BindRequired] int id)
+        public CarClassDto GetCarClass([FromQuery, BindRequired] int id)
         {
             if (id == 0)
             {
                 throw new Exception("Bad Request!");
             }
-            
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             CarClassModel account = _unitOfWork.Car.GetCarClassById(id, language);
 
             CarClassDto accountDto = _mapper.Map<CarClassDto>(account);
-            
+
             return accountDto;
         }
     }
