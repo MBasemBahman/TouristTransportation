@@ -1,4 +1,7 @@
-﻿using Entities.CoreServicesModels.CompanyTripModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.CompanyTripModels;
+using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
@@ -326,6 +329,14 @@ namespace CoreServices.Logic
                               {
                                   Id = a.Id,
                                   Fk_Account = a.Fk_Account,
+                                  Account = new AccountModel
+                                  {
+                                      ImageUrl = a.Account.StorageUrl + a.Account.ImageUrl,
+                                      User = new UserModel
+                                      {
+                                          Name = $"{a.Account.User.Name} | {a.Account.Phone}"
+                                      }
+                                  },
                                   Fk_CompanyTrip = a.Fk_CompanyTrip,
                                   CompanyTrip = new CompanyTripModel
                                   {
@@ -333,7 +344,22 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Title).FirstOrDefault() : a.CompanyTrip.Title,
                                   },
+                                  Currency = new CurrencyModel
+                                  {
+                                      Name = language != null ? a.Currency.CurrencyLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.Currency.Name,
+                                  },
                                   Price = a.Price,
+                                  CurrencyRate = a.CurrencyRate,
+                                  MembersCount = a.MembersCount,
+                                  CompanyTripBookingState = new CompanyTripBookingStateModel
+                                  {
+                                      Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.CompanyTripBookingState.Name,
+                                  },
+                                  Date = a.Date,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

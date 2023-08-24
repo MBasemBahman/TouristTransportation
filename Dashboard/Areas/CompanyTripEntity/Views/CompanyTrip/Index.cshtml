@@ -50,7 +50,16 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <p class="m-2 demo-inline-spacing">
+                                <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
+                                    <i data-feather='filter'></i>
+                                    @Localizer.Get("Advanced Search")
+                                </a>
 
+                            </p>
+                            @{
+                                await Html.RenderPartialAsync("../CompanyTrip/Filter", Model, ViewData);
+                            }
                             <div class="card-datatable">
                                 <table class="datatables datatables-ajax table table-responsive table">
                                     <thead>
@@ -107,7 +116,16 @@ else
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <p class="m-2 demo-inline-spacing">
+                        <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
+                            <i data-feather='filter'></i>
+                            @Localizer.Get("Advanced Search")
+                        </a>
 
+                    </p>
+                    @{
+                        await Html.RenderPartialAsync("../CompanyTrip/Filter", Model, ViewData);
+                    }
                     <div class="card-datatable">
                         <table class="datatables datatables-ajax table table-responsive table">
                             <thead>
@@ -170,6 +188,7 @@ else
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
+                            data.Fk_CompanyTripState = $("#Fk_CompanyTripState").length > 0 ? $("#Fk_CompanyTripState").val() : '@Model.Fk_CompanyTripState';
                             
                             return JSON.stringify(data);
                         }
@@ -177,7 +196,9 @@ else
                     // Columns Setups
                     columns: [
                         { data: "id" },
-                        { data: "title" },
+                        { data: "title", render: function(data, type, row) {
+                          return `<a href="/CompanyTripEntity/CompanyTrip/Profile/${row.id}">${data}<a/>`;
+                        } },
                         { data: "price" },
                         { data: "companyTripState.name" },
                         { data: "createdAt" },

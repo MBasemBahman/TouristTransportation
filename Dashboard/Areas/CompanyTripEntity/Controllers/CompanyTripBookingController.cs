@@ -103,7 +103,6 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
         [Authorize(DashboardViewEnum.CompanyTripBooking, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id, CompanyTripBookingCreateOrEditModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 SetViewData(id);

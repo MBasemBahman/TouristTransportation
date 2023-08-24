@@ -1174,4 +1174,7 @@
   <data name="CompanyTrip Booking" xml:space="preserve">
     <value>CompanyTrip Booking</value>
   </data>
+  <data name="CompanyTripAttachment" xml:space="preserve">
+    <value>CompanyTrip Attachment</value>
+  </data>
 </root>

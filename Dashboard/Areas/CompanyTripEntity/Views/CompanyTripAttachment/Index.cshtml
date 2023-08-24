@@ -1,0 +1,90 @@
+﻿@model int
+@{
+    ViewData["Title"] = Localizer.Get("CompanyTripAttachment");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    ViewBag.emptyLayout = true;
+    ViewBag.useCustomDropzone = true;
+
+}
+
+
+<section id="ajax-datatable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <h4 class="card-title"> @ViewData["Title"]</h4>
+                </div>
+                <div class="card-datatable">
+                    <form asp-action="Upload" asp-controller="CompanyTripAttachment" asp-area="CompanyTripEntity" enctype="multipart/form-data" class="dropzone dropzone-area" id="dpz-multiple-files">
+                        <input type="hidden" name="fk_CompanyTrip" value="@Model" />
+                        <div class="dz-message">@Localizer.Get("Drop files here or click to upload.")</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    <script>
+        Dropzone.autoDiscover = false;
+        
+        $(function () {
+            'use strict';
+        
+            let myDropzone = new Dropzone("#dpz-multiple-files", {
+                paramName: 'file', // The name that will be used to transfer the file
+                maxFilesize: 10, // MB
+                clickable: false,
+                addRemoveLinks: false,
+            });
+        
+            let fk_CompanyTrip = $("input[name=fk_CompanyTrip]").val();
+        
+            if (fk_CompanyTrip > 0) {
+                $.ajax({
+                    url: `/CompanyTripEntity/CompanyTripAttachment/GetCompanyTripAttachments?fk_CompanyTrip=${fk_CompanyTrip}`,
+                    method: "get",
+                    success: function (data) {
+                        //Add existing files into dropzone
+                        let filesArr = [];
+        
+                        data.forEach(existingFile => {
+                            filesArr.push({
+                                id: existingFile.id,
+                                name: existingFile.fileName,
+                                size: existingFile.fileLength,
+                                fullPath: existingFile.fileUrl,
+                                fileType: existingFile.fileType
+                            });
+                        });
+        
+                        filesArr.forEach(existingFile => {
+                            let thumbnail = "";
+        
+                            if (existingFile.fileType == "image/jpeg" || existingFile.fileType == "image/png" || existingFile.fileType == "image/jpg") {
+                                thumbnail = existingFile.fullPath;
+                            } else if (existingFile.fileType == "application/pdf") {
+                                thumbnail = "/pdf.png";
+                            } else if (existingFile.fileType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || existingFile.fileType == "application/msword") {
+                                thumbnail = "/docx.png";
+                            } else if (existingFile.fileType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || existingFile.fileType == "application/vnd.ms-excel") {
+                                thumbnail = "/sheets.png";
+                            } else {
+                                thumbnail = "/file.png";
+                            }
+        
+                            myDropzone.emit("addedfile", existingFile);
+                            myDropzone.emit("thumbnail", existingFile, thumbnail);
+                            myDropzone.emit("complete", existingFile);
+                        });
+                    }
+                });
+            }
+        
+        });
+    </script>
+}

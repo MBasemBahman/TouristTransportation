@@ -86,7 +86,13 @@
                                                 }
 
                                             </th>
-                                            <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Account)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Currency)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Price)</th>
+                                            <th>@Html.DisplayNameFor(model => row.CurrencyRate)</th>
+                                            <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
+                                            <th>@Html.DisplayNameFor(model => row.CompanyTripBookingState)</th>
+                                            <th>@Html.DisplayNameFor(model => row.Date)</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -152,7 +158,13 @@ else
                                     }
 
                                 </th>
-                                <th>@Html.DisplayNameFor(model => row.CompanyTrip)</th>
+                                <th>@Html.DisplayNameFor(model => row.Account)</th>
+                                <th>@Html.DisplayNameFor(model => row.Currency)</th>
+                                <th>@Html.DisplayNameFor(model => row.Price)</th>
+                                <th>@Html.DisplayNameFor(model => row.CurrencyRate)</th>
+                                <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
+                                <th>@Html.DisplayNameFor(model => row.CompanyTripBookingState)</th>
+                                <th>@Html.DisplayNameFor(model => row.Date)</th>
                                 <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                 <th>
                                     @Html.DisplayNameFor(model => row.Id)
@@ -190,7 +202,35 @@ else
                     // Columns Setups
                     columns: [
                         { data: "id" },
-                        { data: "companyTrip.title" },
+                        {
+                        data: "account.user",
+                        render: function (data, type, row) {
+                            if (row.account.imageUrl != null) {
+                                return '<a href="/AccountEntity/Account/Profile/' + row.fk_Account +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                    + '<img src="' + row.account.imageUrl + '"  height="32" width="32">'
+                                    
+                                    + '</div></div>'
+                                    + ' <div class= "d-flex flex-column">'
+                                    + '<span class= "fw-bolder">' + data.name + '</span> '
+                                    + '<small class= "emp_post text-muted" ></small ></div></div></a>';
+                            }
+                            else {
+                                return '<a href="/AccountEntity/Account/Profile/' + row.fk_Account +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" >'
+                                    + '<div class="avatar  bg-light-dark  me-1"><span class="avatar-content"></span></div>'
+                                    + '</div>'
+                                    + ' <div class= "d-flex flex-column">'
+                                    + '<span class= "fw-bolder">' + data.name + '</span> '
+                                    + '<small class= "emp_post text-muted" ></small ></div></div></a>';
+                            }
+                        },
+                        orderable: false
+                    },
+                        { data: "currency.name" },
+                        { data: "price" },
+                        { data: "currencyRate" },
+                        { data: "membersCount" },
+                        { data: "companyTripBookingState.name" },
+                        { data: "date" },
                         { data: "createdAt" },
                         { data: "id" },
                     ]

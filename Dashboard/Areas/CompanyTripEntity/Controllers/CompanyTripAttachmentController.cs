@@ -26,6 +26,13 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             _environment = environment;
         }
 
+        public IActionResult Index(int fk_CompanyTrip = 0)
+        {
+            ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
+            
+            return View(fk_CompanyTrip);
+        }
+        
         [Authorize(DashboardViewEnum.CompanyTripAttachment, AccessLevelEnum.Create)]
         public async Task<IActionResult> Upload(int fk_CompanyTrip)
         {

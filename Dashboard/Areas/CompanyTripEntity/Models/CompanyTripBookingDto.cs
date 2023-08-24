@@ -17,6 +17,9 @@ public class CompanyTripBookingDto : CompanyTripBookingModel
 {
     [DisplayName(nameof(CreatedAt))]
     public new string CreatedAt { get; set; }
+    
+    [DisplayName(nameof(Date))]
+    public new string Date { get; set; }
 
     [DisplayName(nameof(LastModifiedAt))]
     public new string LastModifiedAt { get; set; }

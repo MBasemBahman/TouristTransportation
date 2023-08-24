@@ -66,6 +66,12 @@
                                                         <span class="fw-bold">@Localizer.Get("CompanyTrip Booking")</span>
                                                     </a>
                                                 </li>
+                                                
+                                                <li class="nav-item ">
+                                                    <a id="/CompanyTripEntity/CompanyTripAttachment/Index?Fk_CompanyTrip=@Model.Id&ProfileLayout=true" class="nav-link tab-item  @(returnItem == (int)DBModelsEnum.CompanyTripProfileItems.Attachments ? "active" : "")">
+                                                        <span class="fw-bold">@Localizer.Get("Attachments")</span>
+                                                    </a>
+                                                </li>
 
                                             </ul>
 

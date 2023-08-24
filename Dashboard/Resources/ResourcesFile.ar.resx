@@ -1186,7 +1186,7 @@
     <value>العنوان بالروسية</value>
   </data>
   <data name="Title tl" xml:space="preserve">
-    <value>العنوان بالتركية</value>
+    <value>العنوان بالايطالية</value>
   </data>
   <data name="CompanyTripBookingState" xml:space="preserve">
     <value>حالة الحجز</value>
@@ -1211,5 +1211,8 @@
   </data>
   <data name="CompanyTrip Booking" xml:space="preserve">
     <value>حجز الرحلة اليومية</value>
+  </data>
+  <data name="CompanyTripAttachment" xml:space="preserve">
+    <value>مرفقات الرحلة</value>
   </data>
 </root>

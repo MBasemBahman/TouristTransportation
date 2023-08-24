@@ -15,6 +15,32 @@
             <dl class="row mb-0">
                 <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CompanyTrip):</dt>
                 <dd class="col-sm-8 mb-1">@Model.CompanyTrip.Title</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Currency):</dt>
+                <dd class="col-sm-8 mb-1">@Model.Currency.Name</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CurrencyRate):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CurrencyRate</dd>
+            
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CompanyTripBookingState):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CompanyTripBookingState.Name</dd>
+            
+            </dl>
+        </div>
+        
+        <div class="col-xl-5 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Account):</dt>
+                <dd class="col-sm-8 mb-1">@Model.Account.User.Name</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
+                <dd class="col-sm-8 mb-1">@Model.Price</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.MembersCount):</dt>
+                <dd class="col-sm-8 mb-1">@Model.MembersCount</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Date):</dt>
+                <dd class="col-sm-8 mb-1">@Model.Date</dd>
             </dl>
         </div>
        
