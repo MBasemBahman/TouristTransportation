@@ -1,6 +1,4 @@
-﻿using Entities.DBModels.MainDataModels;
-using Entities.DBModels.PostModels;
-using Entities.EnumData;
+﻿using Entities.EnumData;
 
 namespace Entities.DBModels.AccountModels
 {
@@ -11,7 +9,7 @@ namespace Entities.DBModels.AccountModels
         public new string Name { get; set; }
 
         [DisplayName(nameof(ColorCode))]
-        public string ColorCode { get; set; }
+        public new string ColorCode { get; set; }
 
         [DisplayName(nameof(Accounts))]
         public IList<Account> Accounts { get; set; }

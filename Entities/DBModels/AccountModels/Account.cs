@@ -8,10 +8,10 @@ public class Account : AuditImageEntity
 {
     [DisplayName(nameof(FirstName))]
     public string FirstName { get; set; }
-    
+
     [DisplayName(nameof(LastName))]
     public string LastName { get; set; }
-    
+
     [DisplayName(nameof(User))]
     [ForeignKey(nameof(User))]
     public int? Fk_User { get; set; }
@@ -33,7 +33,7 @@ public class Account : AuditImageEntity
 
     [DisplayName(nameof(AccountState))]
     public AccountState AccountState { get; set; }
-    
+
     [DisplayName(nameof(EmailAddress))]
     [EmailAddress]
     public string EmailAddress { get; set; }
@@ -47,7 +47,7 @@ public class Account : AuditImageEntity
 
     [DisplayName(nameof(Supplier))]
     public Supplier Supplier { get; set; }
-    
+
     [DisplayName(nameof(Posts))]
     public List<Post> Posts { get; set; }
 }

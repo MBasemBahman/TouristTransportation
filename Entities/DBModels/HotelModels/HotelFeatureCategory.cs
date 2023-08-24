@@ -10,7 +10,7 @@ public class HotelFeatureCategory : AuditLookUpEntity
 
     [DisplayName(nameof(HotelFeatures))]
     public List<HotelFeature> HotelFeatures { get; set; }
-    
+
     public List<HotelFeatureCategoryLang> HotelFeatureCategoryLangs { get; set; }
 }
 

@@ -1,7 +1,5 @@
 ﻿using Entities.CoreServicesModels.CarModels;
-using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.DBModels.CarModels;
-using Entities.DBModels.CompanyTripModels;
 
 namespace Repository.DBModels.CarModels
 {
@@ -27,7 +25,7 @@ namespace Repository.DBModels.CarModels
         public new void Create(CarCategory entity)
         {
             entity.CarCategoryLangs ??= new List<CarCategoryLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.CarCategoryLangs.All(b => b.Language != language))
@@ -49,7 +47,7 @@ namespace Repository.DBModels.CarModels
             this IQueryable<CarCategory> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

@@ -19,14 +19,14 @@ namespace Repository.DBModels.MainDataModels
         public async Task<Supplier> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                .Include(a=>a.SupplierLangs)
+                .Include(a => a.SupplierLangs)
                 .SingleOrDefaultAsync();
         }
 
         public new void Create(Supplier entity)
         {
             entity.SupplierLangs ??= new List<SupplierLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.SupplierLangs.All(b => b.Language != language))
@@ -48,7 +48,7 @@ namespace Repository.DBModels.MainDataModels
             this IQueryable<Supplier> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

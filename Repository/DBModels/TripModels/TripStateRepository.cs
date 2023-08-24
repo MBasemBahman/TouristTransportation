@@ -1,8 +1,4 @@
-﻿using Entities.CoreServicesModels.CarModels;
-using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.TripModels;
-using Entities.DBModels.CarModels;
-using Entities.DBModels.CompanyTripModels;
+﻿using Entities.CoreServicesModels.TripModels;
 using Entities.DBModels.TripModels;
 
 namespace Repository.DBModels.TripModels
@@ -29,7 +25,7 @@ namespace Repository.DBModels.TripModels
         public new void Create(TripState entity)
         {
             entity.TripStateLangs ??= new List<TripStateLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.TripStateLangs.All(b => b.Language != language))
@@ -51,7 +47,7 @@ namespace Repository.DBModels.TripModels
             this IQueryable<TripState> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

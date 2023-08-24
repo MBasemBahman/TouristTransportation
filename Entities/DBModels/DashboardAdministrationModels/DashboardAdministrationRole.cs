@@ -23,7 +23,7 @@ namespace Entities.DBModels.DashboardAdministrationModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

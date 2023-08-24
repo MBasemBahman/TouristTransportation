@@ -1,5 +1,4 @@
 ﻿using Entities.CoreServicesModels.DashboardAdministrationModels;
-using Entities.DBModels.AccountModels;
 using Entities.DBModels.DashboardAdministrationModels;
 
 namespace Repository.DBModels.DashboardAdministrationModels

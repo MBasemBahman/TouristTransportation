@@ -36,7 +36,7 @@ namespace Repository.DBModels.CompanyTripModels
             int fk_CompanyTrip)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_CompanyTrip == 0 || a.Fk_CompanyTrip == fk_CompanyTrip) );
+                                       (fk_CompanyTrip == 0 || a.Fk_CompanyTrip == fk_CompanyTrip));
         }
     }
 }

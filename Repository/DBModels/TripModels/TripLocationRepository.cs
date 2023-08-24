@@ -3,34 +3,34 @@ using Entities.DBModels.TripModels;
 
 namespace Repository.DBModels.TripModels
 {
-    public class TripPointRepository : RepositoryBase<TripPoint>
+    public class TripLocationRepository : RepositoryBase<TripLocation>
     {
-        public TripPointRepository(BaseContext context) : base(context)
+        public TripLocationRepository(BaseContext context) : base(context)
         {
         }
 
-        public IQueryable<TripPoint> FindAll(TripPointParameters parameters, bool trackChanges)
+        public IQueryable<TripLocation> FindAll(TripLocationParameters parameters, bool trackChanges)
         {
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
                        parameters.Fk_Trip);
         }
 
-        public async Task<TripPoint> FindById(int id, bool trackChanges)
+        public async Task<TripLocation> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges).SingleOrDefaultAsync();
         }
 
-        public new void Create(TripPoint entity)
+        public new void Create(TripLocation entity)
         {
             base.Create(entity);
         }
     }
 
-    public static class TripPointRepositoryExtension
+    public static class TripLocationRepositoryExtension
     {
-        public static IQueryable<TripPoint> Filter(
-            this IQueryable<TripPoint> accounts,
+        public static IQueryable<TripLocation> Filter(
+            this IQueryable<TripLocation> accounts,
             int id,
             int fk_Trip)
         {

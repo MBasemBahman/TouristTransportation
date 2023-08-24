@@ -20,17 +20,17 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(BookingUrl))]
         public string BookingUrl { get; set; }
-    
+
         [DisplayName(nameof(LocationUrl))]
         public string LocationUrl { get; set; }
-    
+
         [DisplayName(nameof(Address))]
         public string Address { get; set; }
-    
+
         [DisplayName(nameof(Area))]
         [ForeignKey(nameof(Area))]
         public int? Fk_Area { get; set; }
-    
+
         [DisplayName(nameof(Area))]
         public AreaModel Area { get; set; }
 
@@ -38,15 +38,15 @@ namespace Entities.CoreServicesModels.HotelModels
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [DisplayName(nameof(Rate))] 
+        [DisplayName(nameof(Rate))]
         public double Rate { get; set; }
-        
+
         [DisplayName(nameof(IsActive))]
         public bool IsActive { get; set; }
-        
+
         [DisplayName(nameof(AttachmentsCount))]
         public int AttachmentsCount { get; set; }
-        
+
         [DisplayName(nameof(AttachmentsCount))]
         public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
     }
@@ -55,17 +55,17 @@ namespace Entities.CoreServicesModels.HotelModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-        public new string Name { get; set; }
+        public string Name { get; set; }
 
         [DisplayName(nameof(BookingUrl))]
         public string BookingUrl { get; set; }
-    
+
         [DisplayName(nameof(LocationUrl))]
         public string LocationUrl { get; set; }
-    
+
         [DisplayName(nameof(Address))]
         public string Address { get; set; }
-    
+
         [DisplayName(nameof(Area))]
         [ForeignKey(nameof(Area))]
         public int? Fk_Area { get; set; }
@@ -74,7 +74,7 @@ namespace Entities.CoreServicesModels.HotelModels
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [DisplayName(nameof(Rate))] 
+        [DisplayName(nameof(Rate))]
         public double Rate { get; set; }
 
         [DisplayName(nameof(IsActive))]
@@ -82,17 +82,17 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(ImageUrl))]
         public string ImageUrl { get; set; }
-        
+
         public List<HotelLangModel> HotelLangs { get; set; }
         public List<int> HotelFeatures { get; set; }
     }
-    
+
     public class HotelLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

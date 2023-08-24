@@ -31,7 +31,7 @@ namespace Repository.DBModels.AccountModels
 
         public new void Create(Account entity)
         {
-            
+
             base.Create(entity);
         }
     }
@@ -61,7 +61,7 @@ namespace Repository.DBModels.AccountModels
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_Supplier == 0 || a.Fk_Supplier == fk_Supplier) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) &&
-                                       (fk_User == null || a.Fk_User == fk_User) );
+                                       (fk_User == null || a.Fk_User == fk_User));
         }
     }
 }

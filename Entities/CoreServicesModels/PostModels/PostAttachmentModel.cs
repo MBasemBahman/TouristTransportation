@@ -1,8 +1,4 @@
-﻿using Entities.CoreServicesModels.AccountModels;
-using Entities.DBModels.AccountModels;
-using Entities.DBModels.MainDataModels;
-using Entities.DBModels.PostModels;
-using Entities.EnumData;
+﻿using Entities.DBModels.PostModels;
 
 namespace Entities.CoreServicesModels.PostModels
 {
@@ -16,7 +12,7 @@ namespace Entities.CoreServicesModels.PostModels
         [DisplayName(nameof(Post))]
         [ForeignKey(nameof(Post))]
         public int Fk_Post { get; set; }
-    
+
         [DisplayName(nameof(Post))]
         public PostModel Post { get; set; }
     }

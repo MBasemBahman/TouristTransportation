@@ -29,7 +29,7 @@ namespace Repository.DBModels.HotelModels
         public new void Create(Hotel entity)
         {
             entity.HotelLangs ??= new List<HotelLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.HotelLangs.All(b => b.Language != language))
@@ -57,7 +57,7 @@ namespace Repository.DBModels.HotelModels
             return accounts.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_Country == null || a.Area.Fk_Country == fk_Country) &&
                                        (fk_Area == null || a.Fk_Area == fk_Area) &&
-                                       (isActive == null || a.IsActive == isActive) );
+                                       (isActive == null || a.IsActive == isActive));
         }
     }
 }

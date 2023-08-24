@@ -42,13 +42,13 @@ namespace API.Areas.AccountArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetDriver))]
-        public async Task<AccountDto> GetDriver([FromQuery, BindRequired] int id)
+        public AccountDto GetDriver([FromQuery, BindRequired] int id)
         {
             if (id == 0)
             {
                 throw new Exception("Bad Request!");
             }
-            
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             AccountModel account = _unitOfWork.Account.GetAccountById(id, language);
@@ -57,9 +57,9 @@ namespace API.Areas.AccountArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
-            
+
             AccountDto accountDto = _mapper.Map<AccountDto>(account);
-            
+
             return accountDto;
         }
     }

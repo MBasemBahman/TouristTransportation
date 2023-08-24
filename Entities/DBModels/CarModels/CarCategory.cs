@@ -10,7 +10,7 @@ public class CarCategory : AuditLookUpEntity
 
     [DisplayName(nameof(CarClasses))]
     public List<CarClass> CarClasses { get; set; }
-    
+
     public List<CarCategoryLang> CarCategoryLangs { get; set; }
 }
 

@@ -1,6 +1,4 @@
-﻿using Entities.EnumData;
-
-namespace Entities.DBModels.DashboardAdministrationModels
+﻿namespace Entities.DBModels.DashboardAdministrationModels
 {
     [Index(nameof(ViewPath), IsUnique = true)]
     public class DashboardView : LookUpEntity

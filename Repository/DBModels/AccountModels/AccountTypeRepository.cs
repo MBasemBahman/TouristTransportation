@@ -1,11 +1,5 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.CarModels;
-using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.TripModels;
 using Entities.DBModels.AccountModels;
-using Entities.DBModels.CarModels;
-using Entities.DBModels.CompanyTripModels;
-using Entities.DBModels.TripModels;
 
 namespace Repository.DBModels.AccountModels
 {
@@ -24,13 +18,13 @@ namespace Repository.DBModels.AccountModels
         public async Task<AccountType> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                .Include(a=>a.AccountTypeLangs).SingleOrDefaultAsync();
+                .Include(a => a.AccountTypeLangs).SingleOrDefaultAsync();
         }
 
         public new void Create(AccountType entity)
         {
             entity.AccountTypeLangs ??= new List<AccountTypeLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.AccountTypeLangs.All(b => b.Language != language))
@@ -52,7 +46,7 @@ namespace Repository.DBModels.AccountModels
             this IQueryable<AccountType> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

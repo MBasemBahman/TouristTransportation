@@ -39,20 +39,20 @@ namespace API.Areas.TripArea.Controllers
 
         [HttpGet]
         [Route(nameof(GetTrip))]
-        public async Task<TripDto> GetTrip(
+        public TripDto GetTrip(
           [FromQuery, BindRequired] int id)
         {
             if (id == 0)
             {
                 throw new Exception("Bad Request!");
             }
-            
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             TripModel companyTrip = _unitOfWork.Trip.GetTripById(id, language);
 
             TripDto companyTripDto = _mapper.Map<TripDto>(companyTrip);
-            
+
             return companyTripDto;
         }
     }

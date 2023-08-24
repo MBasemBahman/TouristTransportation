@@ -12,7 +12,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DisplayName(nameof(CompanyTrip))]
         [ForeignKey(nameof(CompanyTrip))]
         public int Fk_CompanyTrip { get; set; }
-    
+
         [DisplayName(nameof(CompanyTrip))]
         public CompanyTripModel CompanyTrip { get; set; }
 

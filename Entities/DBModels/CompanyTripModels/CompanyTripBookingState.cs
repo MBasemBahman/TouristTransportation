@@ -10,7 +10,7 @@ public class CompanyTripBookingState : AuditLookUpEntity
 
     [DisplayName(nameof(CompanyTripBookings))]
     public List<CompanyTripBooking> CompanyTripBookings { get; set; }
-    
+
     public List<CompanyTripBookingStateLang> CompanyTripBookingStateLangs { get; set; }
 }
 

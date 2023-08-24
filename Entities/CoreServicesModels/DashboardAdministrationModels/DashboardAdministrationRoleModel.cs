@@ -1,5 +1,4 @@
-﻿using Entities.DBModels.DashboardAdministrationModels;
-using Entities.EnumData;
+﻿using Entities.EnumData;
 
 namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
@@ -37,7 +36,7 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

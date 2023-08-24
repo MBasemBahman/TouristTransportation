@@ -32,13 +32,13 @@ namespace Entities.CoreServicesModels.MainDataModels
 
         public List<AreaLangModel> AreaLangs { get; set; }
     }
-    
+
     public class AreaLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

@@ -36,7 +36,7 @@ namespace Repository.DBModels.HotelModels
             int fk_Hotel)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_Hotel == 0 || a.Fk_Hotel == fk_Hotel) );
+                                       (fk_Hotel == 0 || a.Fk_Hotel == fk_Hotel));
         }
     }
 }
