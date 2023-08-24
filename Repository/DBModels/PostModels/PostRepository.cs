@@ -36,7 +36,7 @@ namespace Repository.DBModels.PostModels
             int fk_Account)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_Account == 0 || a.Fk_Account == fk_Account) );
+                                       (fk_Account == 0 || a.Fk_Account == fk_Account));
         }
     }
 }

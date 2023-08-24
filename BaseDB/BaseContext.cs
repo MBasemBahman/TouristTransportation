@@ -85,6 +85,7 @@ namespace BaseDB
 
         #region Trip Model
         public DbSet<Trip> Trips { get; set; }
+        public DbSet<TripLocation> TripLocations { get; set; }
         public DbSet<TripHistory> TripHistories { get; set; }
         public DbSet<TripPoint> TripPoints { get; set; }
         public DbSet<TripState> TripStates { get; set; }
@@ -96,7 +97,6 @@ namespace BaseDB
         public DbSet<CarClass> CarClasses { get; set; }
 
         #endregion
-
 
         #region Hotel Model
         public DbSet<Hotel> Hotels { get; set; }

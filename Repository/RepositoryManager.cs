@@ -1,5 +1,4 @@
-﻿using Entities.DBModels.PostModels;
-using Repository.DBModels.AccountModels;
+﻿using Repository.DBModels.AccountModels;
 using Repository.DBModels.AuditModels;
 using Repository.DBModels.CarModels;
 using Repository.DBModels.CompanyTripModels;
@@ -44,38 +43,38 @@ namespace Repository
         #endregion
 
         #region Account
-        
+
         private AccountRepository _accountRepository;
         private AccountStateRepository _accountStateRepository;
         private AccountTypeRepository _accountTypeRepository;
-        
+
         #endregion
-        
+
         #region MainData Models
-        
+
         private CountryRepository _countryRepository;
         private CurrencyRepository _currencyRepository;
         private AreaRepository _areaRepository;
         private SupplierRepository _supplierRepository;
-        
+
         #endregion
-        
+
         #region Hotel Models
-        
+
         private HotelRepository _hotelRepository;
         private HotelAttachmentRepository _hotelAttachmentRepository;
         private HotelFeatureRepository _hotelFeatureRepository;
         private HotelFeatureCategoryRepository _hotelFeatureCategoryRepository;
         private HotelSelectedFeaturesRepository _hotelSelectedFeaturesRepository;
-        
+
         #endregion
-        
+
         #region Post Models
-        
+
         private PostRepository _postRepository;
         private PostAttachmentRepository _postAttachmentRepository;
         private PostReactionRepository _postReactionRepository;
-        
+
         #endregion
 
         #region CompanyTrip Models
@@ -100,11 +99,12 @@ namespace Repository
 
         private TripStateRepository _tripStateRepository;
         private TripRepository _tripRepository;
+        private TripLocationRepository _tripLocationRepository;
         private TripPointRepository _tripPointRepository;
         private TripHistoryRepository _tripHistoryRepository;
 
         #endregion
-        
+
         #endregion
 
         public RepositoryManager(BaseContext dBContext)
@@ -241,7 +241,7 @@ namespace Repository
                 return _accountRepository;
             }
         }
-        
+
         public AccountStateRepository AccountState
         {
             get
@@ -250,7 +250,7 @@ namespace Repository
                 return _accountStateRepository;
             }
         }
-        
+
         public AccountTypeRepository AccountType
         {
             get
@@ -262,7 +262,7 @@ namespace Repository
         #endregion
 
         #region MainData Models
-        
+
         public CountryRepository Country
         {
             get
@@ -271,7 +271,7 @@ namespace Repository
                 return _countryRepository;
             }
         }
-        
+
         public CurrencyRepository Currency
         {
             get
@@ -280,7 +280,7 @@ namespace Repository
                 return _currencyRepository;
             }
         }
-        
+
         public AreaRepository Area
         {
             get
@@ -289,7 +289,7 @@ namespace Repository
                 return _areaRepository;
             }
         }
-        
+
         public SupplierRepository Supplier
         {
             get
@@ -298,7 +298,7 @@ namespace Repository
                 return _supplierRepository;
             }
         }
-        
+
         #endregion
 
         #region Hotel Models
@@ -311,7 +311,7 @@ namespace Repository
                 return _hotelRepository;
             }
         }
-        
+
         public HotelAttachmentRepository HotelAttachment
         {
             get
@@ -320,7 +320,7 @@ namespace Repository
                 return _hotelAttachmentRepository;
             }
         }
-        
+
         public HotelFeatureRepository HotelFeature
         {
             get
@@ -329,7 +329,7 @@ namespace Repository
                 return _hotelFeatureRepository;
             }
         }
-        
+
         public HotelFeatureCategoryRepository HotelFeatureCategory
         {
             get
@@ -338,7 +338,7 @@ namespace Repository
                 return _hotelFeatureCategoryRepository;
             }
         }
-        
+
         public HotelSelectedFeaturesRepository HotelSelectedFeatures
         {
             get
@@ -347,7 +347,7 @@ namespace Repository
                 return _hotelSelectedFeaturesRepository;
             }
         }
-        
+
         #endregion
 
         #region Post Models
@@ -360,7 +360,7 @@ namespace Repository
                 return _postRepository;
             }
         }
-        
+
         public PostAttachmentRepository PostAttachment
         {
             get
@@ -369,7 +369,7 @@ namespace Repository
                 return _postAttachmentRepository;
             }
         }
-        
+
         public PostReactionRepository PostReaction
         {
             get
@@ -378,9 +378,9 @@ namespace Repository
                 return _postReactionRepository;
             }
         }
-        
+
         #endregion
-        
+
         #region CompanyTrip Models
 
         public CompanyTripAttachmentRepository CompanyTripAttachment
@@ -391,7 +391,7 @@ namespace Repository
                 return _companyTripAttachmentRepository;
             }
         }
-        
+
         public CompanyTripBookingHistoryRepository CompanyTripBookingHistory
         {
             get
@@ -400,7 +400,7 @@ namespace Repository
                 return _companyTripBookingHistoryRepository;
             }
         }
-        
+
         public CompanyTripBookingRepository CompanyTripBooking
         {
             get
@@ -409,7 +409,7 @@ namespace Repository
                 return _companyTripBookingRepository;
             }
         }
-        
+
         public CompanyTripBookingStateRepository CompanyTripBookingState
         {
             get
@@ -418,7 +418,7 @@ namespace Repository
                 return _companyTripBookingStateRepository;
             }
         }
-        
+
         public CompanyTripRepository CompanyTrip
         {
             get
@@ -427,7 +427,7 @@ namespace Repository
                 return _companyTripRepository;
             }
         }
-        
+
         public CompanyTripStateRepository CompanyTripState
         {
             get
@@ -436,9 +436,9 @@ namespace Repository
                 return _companyTripStateRepository;
             }
         }
-        
+
         #endregion
-        
+
         #region Car Models
 
         public CarCategoryRepository CarCategory
@@ -449,7 +449,7 @@ namespace Repository
                 return _carCategoryRepository;
             }
         }
-        
+
         public CarClassRepository CarClass
         {
             get
@@ -458,9 +458,9 @@ namespace Repository
                 return _carClassRepository;
             }
         }
-        
+
         #endregion
-        
+
         #region Trip Models
 
         public TripStateRepository TripState
@@ -471,7 +471,7 @@ namespace Repository
                 return _tripStateRepository;
             }
         }
-        
+
         public TripRepository Trip
         {
             get
@@ -480,7 +480,16 @@ namespace Repository
                 return _tripRepository;
             }
         }
-        
+
+        public TripLocationRepository TripLocation
+        {
+            get
+            {
+                _tripLocationRepository ??= new TripLocationRepository(_dBContext);
+                return _tripLocationRepository;
+            }
+        }
+
         public TripPointRepository TripPoint
         {
             get
@@ -489,7 +498,7 @@ namespace Repository
                 return _tripPointRepository;
             }
         }
-        
+
         public TripHistoryRepository TripHistory
         {
             get
@@ -500,7 +509,7 @@ namespace Repository
         }
 
         #endregion
-        
+
         #endregion
     }
 }

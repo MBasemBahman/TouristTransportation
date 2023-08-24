@@ -36,14 +36,14 @@ namespace Entities.CoreServicesModels.AccountModels
 
         [DisplayName(nameof(AccountState))]
         public AccountStateModel AccountState { get; set; }
-        
+
         [DisplayName(nameof(EmailAddress))]
         [EmailAddress]
         public string EmailAddress { get; set; }
 
-        [DisplayName(nameof(User))] 
+        [DisplayName(nameof(User))]
         public int? Fk_User { get; set; }
-        
+
         [DisplayName(nameof(User))]
         public UserModel User { get; set; }
 
@@ -61,11 +61,11 @@ namespace Entities.CoreServicesModels.AccountModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(FirstName))]
         public string FirstName { get; set; }
-        
+
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(LastName))]
         public string LastName { get; set; }
-        
+
         [DisplayName(nameof(AccountType))]
         [ForeignKey(nameof(AccountType))]
         public int Fk_AccountType { get; set; }
@@ -76,7 +76,7 @@ namespace Entities.CoreServicesModels.AccountModels
 
         [DisplayName(nameof(User))]
         public UserCreateModel User { get; set; }
-        
+
         [DisplayName(nameof(ImageUrl))]
         public string ImageUrl { get; set; }
 
@@ -92,7 +92,7 @@ namespace Entities.CoreServicesModels.AccountModels
         [EmailAddress]
         public string EmailAddress { get; set; }
     }
-    
+
     public class AccountCreateModel
     {
         [DisplayName(nameof(User))]

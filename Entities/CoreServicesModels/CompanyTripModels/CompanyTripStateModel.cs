@@ -1,12 +1,10 @@
-﻿using Entities.DBModels.HotelModels;
-using Entities.DBModels.MainDataModels;
-using Entities.EnumData;
+﻿using Entities.EnumData;
 
 namespace Entities.CoreServicesModels.CompanyTripModels
 {
     public class CompanyTripStateParameters : RequestParameters
     {
-        
+
     }
 
     public class CompanyTripStateModel : AuditLookUpEntity
@@ -20,17 +18,17 @@ namespace Entities.CoreServicesModels.CompanyTripModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(Name))]
-        public new string Name { get; set; }
+        public string Name { get; set; }
 
         public List<CompanyTripStateLangModel> CompanyTripStateLangs { get; set; }
     }
-    
+
     public class CompanyTripStateLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

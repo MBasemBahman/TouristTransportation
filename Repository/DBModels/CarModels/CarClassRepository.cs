@@ -26,7 +26,7 @@ namespace Repository.DBModels.CarModels
         public new void Create(CarClass entity)
         {
             entity.CarClassLangs ??= new List<CarClassLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.CarClassLangs.All(b => b.Language != language))
@@ -50,7 +50,7 @@ namespace Repository.DBModels.CarModels
             int fk_CarCategory)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_CarCategory == 0 || a.Fk_CarCategory == fk_CarCategory) );
+                                       (fk_CarCategory == 0 || a.Fk_CarCategory == fk_CarCategory));
         }
     }
 }

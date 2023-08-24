@@ -11,10 +11,10 @@ public class CompanyTrip : AuditImageEntity
     [DisplayName(nameof(CompanyTripState))]
     [ForeignKey(nameof(CompanyTripState))]
     public int Fk_CompanyTripState { get; set; }
-    
+
     [DisplayName(nameof(CompanyTripState))]
     public CompanyTripState CompanyTripState { get; set; }
-    
+
     [DisplayName(nameof(Description))]
     [DataType(DataType.MultilineText)]
     public string Description { get; set; }
@@ -28,7 +28,7 @@ public class CompanyTrip : AuditImageEntity
 
     [DisplayName(nameof(CompanyTripAttachments))]
     public List<CompanyTripAttachment> CompanyTripAttachments { get; set; }
-    
+
     public List<CompanyTripLang> CompanyTripLangs { get; set; }
 }
 

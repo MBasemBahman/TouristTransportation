@@ -1,8 +1,4 @@
-﻿using Entities.CoreServicesModels.CarModels;
-using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.TripModels;
-using Entities.DBModels.CarModels;
-using Entities.DBModels.CompanyTripModels;
+﻿using Entities.CoreServicesModels.TripModels;
 using Entities.DBModels.TripModels;
 
 namespace Repository.DBModels.TripModels
@@ -51,7 +47,7 @@ namespace Repository.DBModels.TripModels
                                        (fk_Supplier == null || a.Fk_Supplier == fk_Supplier) &&
                                        (fk_Driver == null || a.Fk_Driver == fk_Driver) &&
                                        (fk_CarClass == null || a.Fk_CarClass == fk_CarClass) &&
-                                       (fk_TripState == null || a.Fk_TripState == fk_TripState) );
+                                       (fk_TripState == null || a.Fk_TripState == fk_TripState));
         }
     }
 }

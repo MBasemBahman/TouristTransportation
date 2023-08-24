@@ -19,14 +19,14 @@ namespace Repository.DBModels.MainDataModels
         public async Task<Currency> FindById(int id, bool trackChanges)
         {
             return await FindByCondition(a => a.Id == id, trackChanges)
-                .Include(a=>a.CurrencyLangs)
+                .Include(a => a.CurrencyLangs)
                 .SingleOrDefaultAsync();
         }
 
         public new void Create(Currency entity)
         {
             entity.CurrencyLangs ??= new List<CurrencyLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.CurrencyLangs.All(b => b.Language != language))
@@ -38,7 +38,7 @@ namespace Repository.DBModels.MainDataModels
                     });
                 }
             }
-            
+
             base.Create(entity);
         }
     }
@@ -49,7 +49,7 @@ namespace Repository.DBModels.MainDataModels
             this IQueryable<Currency> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

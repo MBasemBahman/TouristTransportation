@@ -1,12 +1,10 @@
-﻿using Entities.DBModels.HotelModels;
-using Entities.DBModels.MainDataModels;
-using Entities.EnumData;
+﻿using Entities.EnumData;
 
 namespace Entities.CoreServicesModels.AccountModels
 {
     public class AccountTypeParameters : RequestParameters
     {
-        
+
     }
 
     public class AccountTypeModel : LookUpEntity, IColorEntity
@@ -20,19 +18,19 @@ namespace Entities.CoreServicesModels.AccountModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
-        public  string Name { get; set; }
+        public string Name { get; set; }
 
         [DisplayName(nameof(ColorCode))]
         public string ColorCode { get; set; }
         public List<AccountTypeLangModel> AccountTypeLangs { get; set; }
     }
-    
+
     public class AccountTypeLangModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
         public string Name { get; set; }
-        
+
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }

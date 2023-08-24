@@ -27,7 +27,7 @@ namespace Repository.DBModels.HotelModels
         public new void Create(HotelFeature entity)
         {
             entity.HotelFeatureLangs ??= new List<HotelFeatureLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.HotelFeatureLangs.All(b => b.Language != language))
@@ -51,7 +51,7 @@ namespace Repository.DBModels.HotelModels
             int fk_HotelFeatureCategory)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_HotelFeatureCategory == 0 || a.Fk_HotelFeatureCategory == fk_HotelFeatureCategory) );
+                                       (fk_HotelFeatureCategory == 0 || a.Fk_HotelFeatureCategory == fk_HotelFeatureCategory));
         }
     }
 }

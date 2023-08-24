@@ -45,7 +45,7 @@ namespace Repository.DBModels.CompanyTripModels
                                        (fk_CompanyTrip == 0 || a.Fk_CompanyTrip == fk_CompanyTrip) &&
                                        (fk_Account == 0 || a.Fk_Account == fk_Account) &&
                                        (fk_Currency == 0 || a.Fk_Currency == fk_Currency) &&
-                                       (fk_CompanyTripBookingState == 0 || a.Fk_CompanyTripBookingState == fk_CompanyTripBookingState) );
+                                       (fk_CompanyTripBookingState == 0 || a.Fk_CompanyTripBookingState == fk_CompanyTripBookingState));
         }
     }
 }

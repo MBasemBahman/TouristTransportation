@@ -26,7 +26,7 @@ namespace Repository.DBModels.MainDataModels
         public new void Create(Country entity)
         {
             entity.CountryLangs ??= new List<CountryLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.CountryLangs.All(b => b.Language != language))
@@ -48,7 +48,7 @@ namespace Repository.DBModels.MainDataModels
             this IQueryable<Country> rows,
             int id)
         {
-            return rows.Where(a => (id == 0 || a.Id == id) );
+            return rows.Where(a => id == 0 || a.Id == id);
         }
     }
 }

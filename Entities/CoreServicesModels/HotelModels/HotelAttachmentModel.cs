@@ -1,7 +1,4 @@
-﻿using Entities.CoreServicesModels.MainDataModels;
-using Entities.DBModels.HotelModels;
-using Entities.DBModels.MainDataModels;
-using Entities.EnumData;
+﻿using Entities.DBModels.HotelModels;
 
 namespace Entities.CoreServicesModels.HotelModels
 {
@@ -15,7 +12,7 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(Hotel))]
         [ForeignKey(nameof(Hotel))]
         public int Fk_Hotel { get; set; }
-    
+
         [DisplayName(nameof(Hotel))]
         public HotelModel Hotel { get; set; }
     }

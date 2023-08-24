@@ -1,4 +1,5 @@
-﻿using Entities.ResponseFeatures;
+﻿using Entities.Constants;
+using Entities.ResponseFeatures;
 
 namespace Entities.AuthenticationModels
 {
@@ -6,7 +7,7 @@ namespace Entities.AuthenticationModels
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string FirstName { get; set; }
-        
+
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         public string LastName { get; set; }
 

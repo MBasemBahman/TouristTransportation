@@ -27,7 +27,7 @@ namespace Repository.DBModels.MainDataModels
         public new void Create(Area entity)
         {
             entity.AreaLangs ??= new List<AreaLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.AreaLangs.All(b => b.Language != language))
@@ -51,7 +51,7 @@ namespace Repository.DBModels.MainDataModels
             int fk_Country)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_Country == 0 || a.Fk_Country == fk_Country) );
+                                       (fk_Country == 0 || a.Fk_Country == fk_Country));
         }
     }
 }

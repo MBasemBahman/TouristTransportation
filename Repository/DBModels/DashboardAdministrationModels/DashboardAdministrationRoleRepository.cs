@@ -26,7 +26,7 @@ namespace Repository.DBModels.DashboardAdministrationModels
         public new void Create(DashboardAdministrationRole entity)
         {
             entity.DashboardAdministrationRoleLangs ??= new List<DashboardAdministrationRoleLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.DashboardAdministrationRoleLangs.All(b => b.Language != language))

@@ -1,6 +1,5 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
-using Entities.DBModels.MainDataModels;
 using Entities.DBModels.PostModels;
 using Entities.EnumData;
 
@@ -17,17 +16,17 @@ namespace Entities.CoreServicesModels.PostModels
         [DisplayName(nameof(Post))]
         [ForeignKey(nameof(Post))]
         public int Fk_Post { get; set; }
-    
+
         [DisplayName(nameof(Post))]
         public PostModel Post { get; set; }
-        
+
         [DisplayName(nameof(Account))]
         [ForeignKey(nameof(Account))]
         public int Fk_Account { get; set; }
-    
+
         [DisplayName(nameof(Account))]
         public AccountModel Account { get; set; }
-    
+
         [DisplayName(nameof(ReactionEnum))]
         public DBModelsEnum.ReactionEnum ReactionEnum { get; set; }
     }
@@ -41,7 +40,7 @@ namespace Entities.CoreServicesModels.PostModels
         [DisplayName(nameof(Account))]
         [ForeignKey(nameof(Account))]
         public int Fk_Account { get; set; }
-        
+
         [DisplayName(nameof(ReactionEnum))]
         public DBModelsEnum.ReactionEnum ReactionEnum { get; set; }
     }

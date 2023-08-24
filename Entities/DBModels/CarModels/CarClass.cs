@@ -1,4 +1,3 @@
-using Entities.DBModels.TripModels;
 using Entities.EnumData;
 
 namespace Entities.DBModels.CarModels;
@@ -8,11 +7,11 @@ public class CarClass : AuditEntity
     [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
     [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
     public string Name { get; set; }
-    
+
     [DisplayName(nameof(CarCategory))]
     [ForeignKey(nameof(CarCategory))]
     public int Fk_CarCategory { get; set; }
-    
+
     [DisplayName(nameof(CarCategory))]
     public CarCategory CarCategory { get; set; }
 

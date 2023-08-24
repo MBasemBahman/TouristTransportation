@@ -25,7 +25,7 @@ namespace Repository.DBModels.CompanyTripModels
         public new void Create(CompanyTripState entity)
         {
             entity.CompanyTripStateLangs ??= new List<CompanyTripStateLang>();
-            
+
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 if (entity.CompanyTripStateLangs.All(b => b.Language != language))
@@ -47,7 +47,7 @@ namespace Repository.DBModels.CompanyTripModels
             this IQueryable<CompanyTripState> accounts,
             int id)
         {
-            return accounts.Where(a => (id == 0 || a.Id == id) );
+            return accounts.Where(a => id == 0 || a.Id == id);
         }
     }
 }

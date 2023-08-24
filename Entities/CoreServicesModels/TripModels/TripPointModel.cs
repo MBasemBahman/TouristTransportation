@@ -1,12 +1,4 @@
-﻿using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.CarModels;
-using Entities.CoreServicesModels.MainDataModels;
-using Entities.DBModels.AccountModels;
-using Entities.DBModels.CarModels;
-using Entities.DBModels.HotelModels;
-using Entities.DBModels.MainDataModels;
-using Entities.DBModels.TripModels;
-using Entities.EnumData;
+﻿using Entities.DBModels.TripModels;
 
 namespace Entities.CoreServicesModels.TripModels
 {
@@ -20,34 +12,34 @@ namespace Entities.CoreServicesModels.TripModels
         [DisplayName(nameof(Trip))]
         [ForeignKey(nameof(Trip))]
         public int Fk_Trip { get; set; }
-    
+
         [DisplayName(nameof(Trip))]
         public TripModel Trip { get; set; }
 
         [DisplayName(nameof(FromLatitude))]
         public double? FromLatitude { get; set; }
-    
+
         [DisplayName(nameof(FromLongitude))]
         public double? FromLongitude { get; set; }
-    
+
         [DisplayName(nameof(ToLatitude))]
         public double? ToLatitude { get; set; }
-    
+
         [DisplayName(nameof(ToLongitude))]
         public double? ToLongitude { get; set; }
-    
+
         [DisplayName(nameof(Price))]
         public double Price { get; set; }
-    
+
         [DisplayName(nameof(TripAt))]
         public DateTime? TripAt { get; set; }
-    
+
         [DisplayName(nameof(LeaveAt))]
         public DateTime? LeaveAt { get; set; }
 
         [DisplayName(nameof(WaitingTime))]
         public double WaitingTime { get; set; } // In Minutes
-    
+
         [DisplayName(nameof(WaitingTimeCost))]
         public double WaitingTimeCost { get; set; } // In Minutes
     }
@@ -60,27 +52,27 @@ namespace Entities.CoreServicesModels.TripModels
 
         [DisplayName(nameof(FromLatitude))]
         public double? FromLatitude { get; set; }
-    
+
         [DisplayName(nameof(FromLongitude))]
         public double? FromLongitude { get; set; }
-    
+
         [DisplayName(nameof(ToLatitude))]
         public double? ToLatitude { get; set; }
-    
+
         [DisplayName(nameof(ToLongitude))]
         public double? ToLongitude { get; set; }
-    
+
         [DisplayName(nameof(Price))]
         public double Price { get; set; }
-    
+
         [DisplayName(nameof(TripAt))]
         public DateTime? TripAt { get; set; }
-    
+
         [DisplayName(nameof(LeaveAt))]
         public DateTime? LeaveAt { get; set; }
 
         [DisplayName(nameof(WaitingTime))]
         public double WaitingTime { get; set; } // In Minutes
     }
-    
+
 }
