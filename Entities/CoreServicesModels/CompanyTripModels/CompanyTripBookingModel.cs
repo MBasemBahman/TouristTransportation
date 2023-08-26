@@ -12,6 +12,10 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         public int Fk_CompanyTrip { get; set; }
         public int Fk_Currency { get; set; }
         public int Fk_CompanyTripBookingState { get; set; }
+        
+        public DateTime? DateFrom { get; set; }
+
+        public DateTime? DateTo { get; set; }
     }
 
     public class CompanyTripBookingModel : AuditEntity

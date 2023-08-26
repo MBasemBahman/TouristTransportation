@@ -43,6 +43,8 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
+            SetViewData(id: 0);
+            
             return View(filter);
         }
 

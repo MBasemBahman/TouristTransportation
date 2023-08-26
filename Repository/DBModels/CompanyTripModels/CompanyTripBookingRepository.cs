@@ -16,7 +16,9 @@ namespace Repository.DBModels.CompanyTripModels
                        parameters.Fk_CompanyTrip,
                        parameters.Fk_Account,
                        parameters.Fk_Currency,
-                       parameters.Fk_CompanyTripBookingState);
+                       parameters.Fk_CompanyTripBookingState,
+                       parameters.DateFrom,
+                       parameters.DateTo);
 
         }
 
@@ -39,12 +41,21 @@ namespace Repository.DBModels.CompanyTripModels
             int fk_CompanyTrip,
             int fk_Account,
             int fk_Currency,
-            int fk_CompanyTripBookingState)
+            int fk_CompanyTripBookingState,
+            DateTime? dateFrom,
+            DateTime? dateTo)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
+                                       
+                                       (dateFrom == null || a.Date >= dateFrom) &&
+                                       (dateTo == null || dateTo == dateFrom || a.Date <= dateTo) &&
+                                       
                                        (fk_CompanyTrip == 0 || a.Fk_CompanyTrip == fk_CompanyTrip) &&
+                                       
                                        (fk_Account == 0 || a.Fk_Account == fk_Account) &&
+                                       
                                        (fk_Currency == 0 || a.Fk_Currency == fk_Currency) &&
+                                       
                                        (fk_CompanyTripBookingState == 0 || a.Fk_CompanyTripBookingState == fk_CompanyTripBookingState));
         }
     }
