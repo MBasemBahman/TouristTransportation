@@ -5,6 +5,7 @@ using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
+using static Entities.EnumData.DBModelsEnum;
 
 namespace CoreServices.Logic
 {
@@ -39,7 +40,7 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<CompanyTripStateModel>> GetCompanyTripStatesPaged(CompanyTripStateParameters parameters, 
+        public async Task<PagedList<CompanyTripStateModel>> GetCompanyTripStatesPaged(CompanyTripStateParameters parameters,
             DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripStateModel>.ToPagedList(GetCompanyTripStates(parameters, language), parameters.PageNumber, parameters.PageSize);
@@ -49,7 +50,7 @@ namespace CoreServices.Logic
         {
             return GetCompanyTripBookingStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
-        
+
         public async Task<PagedList<CompanyTripStateModel>> GetCompanyTripStatesPaged(
           IQueryable<CompanyTripStateModel> data,
          CompanyTripStateParameters parameters)
@@ -61,17 +62,17 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTripState.FindById(id, trackChanges);
         }
-        
+
         public Dictionary<string, string> GetCompanyTripStatesLookUp(CompanyTripStateParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
-        
+
         public CompanyTripStateModel GetCompanyTripStateById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripStates(new CompanyTripStateParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTripState(CompanyTripState entity)
         {
@@ -91,7 +92,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region CompanyTrip Attachment Services
 
         public IQueryable<CompanyTripAttachmentModel> GetCompanyTripAttachments(
@@ -123,7 +124,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<CompanyTripAttachmentModel>> GetCompanyTripAttachmentsPaged(
-            CompanyTripAttachmentParameters parameters , DBModelsEnum.LanguageEnum? language)
+            CompanyTripAttachmentParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripAttachmentModel>.ToPagedList(GetCompanyTripAttachments(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -139,12 +140,12 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTripAttachment.FindById(id, trackChanges);
         }
-        
+
         public CompanyTripAttachmentModel GetCompanyTripAttachmentById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripAttachments(new CompanyTripAttachmentParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTripAttachment(CompanyTripAttachment entity)
         {
@@ -163,8 +164,8 @@ namespace CoreServices.Logic
             _repository.CompanyTripAttachment.Delete(account);
         }
 
-        #endregion 
-        
+        #endregion
+
         #region CompanyTrip Services
 
         public IQueryable<CompanyTripModel> GetCompanyTrips(
@@ -194,13 +195,17 @@ namespace CoreServices.Logic
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
                                   LastModifiedBy = a.LastModifiedBy,
+                                  IBooked = parameters.Fk_Account > 0 &&
+                                            a.CompanyTripBookings
+                                             .Any(b => b.Fk_Account == parameters.Fk_Account &&
+                                                       b.Fk_CompanyTripBookingState != (int)CompanyTripBookingStateEnum.Canceled)
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
         }
 
         public async Task<PagedList<CompanyTripModel>> GetCompanyTripsPaged(
-            CompanyTripParameters parameters , DBModelsEnum.LanguageEnum? language)
+            CompanyTripParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripModel>.ToPagedList(GetCompanyTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -209,13 +214,13 @@ namespace CoreServices.Logic
         {
             return GetCompanyTrips(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Title);
         }
-        
+
         public async Task<string> UploadCompanyTripAttachment(string rootPath, IFormFile file)
         {
             FileUploader uploader = new(rootPath);
             return await uploader.UploadFile(file, "Upload/CompanyTripAttachment");
         }
-        
+
         public async Task<PagedList<CompanyTripModel>> GetCompanyTripsPaged(
           IQueryable<CompanyTripModel> data,
          CompanyTripParameters parameters)
@@ -227,12 +232,12 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTrip.FindById(id, trackChanges);
         }
-        
+
         public CompanyTripModel GetCompanyTripById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTrips(new CompanyTripParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTrip(CompanyTrip entity)
         {
@@ -251,8 +256,8 @@ namespace CoreServices.Logic
             _repository.CompanyTrip.Delete(account);
         }
 
-        #endregion 
-        
+        #endregion
+
         #region CompanyTripBookingState Services
 
         public IQueryable<CompanyTripBookingStateModel> GetCompanyTripBookingStates(
@@ -275,7 +280,7 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<CompanyTripBookingStateModel>> GetCompanyTripBookingStatesPaged(CompanyTripBookingStateParameters parameters, 
+        public async Task<PagedList<CompanyTripBookingStateModel>> GetCompanyTripBookingStatesPaged(CompanyTripBookingStateParameters parameters,
             DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripBookingStateModel>.ToPagedList(GetCompanyTripBookingStates(parameters, language), parameters.PageNumber, parameters.PageSize);
@@ -292,12 +297,12 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTripBookingState.FindById(id, trackChanges);
         }
-        
+
         public CompanyTripBookingStateModel GetCompanyTripBookingStateById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripBookingStates(new CompanyTripBookingStateParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTripBookingState(CompanyTripBookingState entity)
         {
@@ -317,7 +322,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region CompanyTripBooking Services
 
         public IQueryable<CompanyTripBookingModel> GetCompanyTripBookings(
@@ -369,7 +374,7 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<CompanyTripBookingModel>> GetCompanyTripBookingsPaged(CompanyTripBookingParameters parameters, 
+        public async Task<PagedList<CompanyTripBookingModel>> GetCompanyTripBookingsPaged(CompanyTripBookingParameters parameters,
             DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripBookingModel>.ToPagedList(GetCompanyTripBookings(parameters, language), parameters.PageNumber, parameters.PageSize);
@@ -386,12 +391,12 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTripBooking.FindById(id, trackChanges);
         }
-        
+
         public CompanyTripBookingModel GetCompanyTripBookingById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripBookings(new CompanyTripBookingParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTripBooking(CompanyTripBooking entity)
         {
@@ -411,7 +416,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region CompanyTripBookingHistory Services
 
         public IQueryable<CompanyTripBookingHistoryModel> GetCompanyTripBookingHistories(
@@ -434,7 +439,7 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
-        public async Task<PagedList<CompanyTripBookingHistoryModel>> GetCompanyTripBookingHistoriesPaged(CompanyTripBookingHistoryParameters parameters, 
+        public async Task<PagedList<CompanyTripBookingHistoryModel>> GetCompanyTripBookingHistoriesPaged(CompanyTripBookingHistoryParameters parameters,
             DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<CompanyTripBookingHistoryModel>.ToPagedList(GetCompanyTripBookingHistories(parameters, language), parameters.PageNumber, parameters.PageSize);
@@ -451,12 +456,12 @@ namespace CoreServices.Logic
         {
             return await _repository.CompanyTripBookingHistory.FindById(id, trackChanges);
         }
-        
+
         public CompanyTripBookingHistoryModel GetCompanyTripBookingHistoryById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripBookingHistories(new CompanyTripBookingHistoryParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateCompanyTripBookingHistory(CompanyTripBookingHistory entity)
         {

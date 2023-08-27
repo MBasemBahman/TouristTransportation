@@ -1,4 +1,5 @@
-﻿using Entities.DBModels.DashboardAdministrationModels;
+﻿using Entities.DBModels.AccountModels;
+using Entities.DBModels.DashboardAdministrationModels;
 
 namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
 {
@@ -18,12 +19,16 @@ namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
     {
         public void Configure(EntityTypeBuilder<DashboardAdministrationRoleLang> builder)
         {
-            _ = builder.HasData(new DashboardAdministrationRoleLang
+            foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
-                Id = (int)DashboardAdministrationRoleEnum.Developer,
-                Name = DashboardAdministrationRoleEnum.Developer.ToString(),
-                Fk_Source = (int)DashboardAdministrationRoleEnum.Developer
-            });
+                _ = builder.HasData(new DashboardAdministrationRoleLang
+                {
+                    Id = (int)DashboardAdministrationRoleEnum.Developer,
+                    Name = DashboardAdministrationRoleEnum.Developer.ToString(),
+                    Fk_Source = (int)DashboardAdministrationRoleEnum.Developer,
+                    Language = language
+                });
+            }
         }
     }
 }

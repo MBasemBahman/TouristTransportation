@@ -6,6 +6,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
     public class CompanyTripParameters : RequestParameters
     {
         public int Fk_CompanyTripState { get; set; }
+        public int Fk_Account { get; set; }
     }
 
     public class CompanyTripModel : AuditImageEntity
@@ -37,6 +38,8 @@ namespace Entities.CoreServicesModels.CompanyTripModels
 
         [DisplayName(nameof(AttachmentsCount))]
         public int AttachmentsCount { get; set; }
+
+        public bool IBooked { get; set; }
     }
 
     public class CompanyTripCreateOrEditModel

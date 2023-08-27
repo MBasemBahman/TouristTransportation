@@ -29,7 +29,9 @@ namespace API.Areas.CompanyTripArea.Controllers
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
+
+            parameters.Fk_Account = parameters.Fk_Account;
+
             PagedList<CompanyTripModel> companyTrips = await _unitOfWork.CompanyTrip.GetCompanyTripsPaged(parameters, language);
 
             SetPagination(companyTrips.MetaData, parameters);
@@ -49,10 +51,15 @@ namespace API.Areas.CompanyTripArea.Controllers
                 throw new Exception("Bad Request!");
             }
 
-            //For My Reaction
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            CompanyTripModel companyTrip = _unitOfWork.CompanyTrip.GetCompanyTripById(id, language);
+            CompanyTripModel companyTrip = _unitOfWork.CompanyTrip.GetCompanyTrips(new CompanyTripParameters
+            {
+                Id = id,
+                Fk_Account = auth.Fk_Account
+            }, language).FirstOrDefault();
 
             CompanyTripDto companyTripDto = _mapper.Map<CompanyTripDto>(companyTrip);
 
