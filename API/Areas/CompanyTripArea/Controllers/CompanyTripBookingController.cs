@@ -127,7 +127,7 @@ namespace API.Areas.CompanyTripArea.Controllers
         }
 
         [HttpDelete]
-        [Route(nameof(EditCompanyTripBooking))]
+        [Route(nameof(CancelCompanyTripBooking))]
         public async Task<CompanyTripBookingDto> CancelCompanyTripBooking([FromQuery, BindRequired] int Id)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
@@ -140,6 +140,7 @@ namespace API.Areas.CompanyTripArea.Controllers
             {
                 throw new Exception("Not Allowed!");
             }
+            companyTripBooking.Fk_CompanyTripBookingState = (int)CompanyTripBookingStateEnum.Canceled;
 
             _unitOfWork.CompanyTrip
                            .UpdateCompanyTripBookingHistory(companyTripBooking.Id,

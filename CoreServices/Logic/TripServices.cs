@@ -218,7 +218,8 @@ namespace CoreServices.Logic
                     Fk_Driver = trip.Fk_Driver,
                     Fk_Supplier = trip.Fk_Supplier,
                     Fk_TripState = trip.Fk_TripState,
-                    Notes = notes
+                    Notes = notes,
+                    Fk_Trip = trip.Id
                 });
             }
         }
