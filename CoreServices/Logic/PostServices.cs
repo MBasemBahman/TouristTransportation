@@ -255,6 +255,17 @@ namespace CoreServices.Logic
             _repository.PostReaction.Delete(account);
         }
 
+        public  void DeletePostReaction(int fk_Post,int fk_Account)
+        {
+            PostReaction postReaction =  _repository.PostReaction.FindAll(new PostReactionParameters
+            {
+                Fk_Account = fk_Account,
+                Fk_Post = fk_Post
+            }, trackChanges: false).FirstOrDefault();
+
+            _repository.PostReaction.Delete(postReaction);
+        }
+
         #endregion
     }
 }

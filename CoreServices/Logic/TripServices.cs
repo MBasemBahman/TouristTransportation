@@ -1,4 +1,8 @@
-﻿using Entities.CoreServicesModels.TripModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.CarModels;
+using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.TripModels;
+using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.TripModels;
 using Entities.EnumData;
 
@@ -12,7 +16,7 @@ namespace CoreServices.Logic
         {
             _repository = repository;
         }
-        
+
         #region TripState Services
 
         public IQueryable<TripStateModel> GetTripStates(
@@ -37,7 +41,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<TripStateModel>> GetTripStatesPaged(
-            TripStateParameters parameters , DBModelsEnum.LanguageEnum? language)
+            TripStateParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<TripStateModel>.ToPagedList(GetTripStates(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -58,7 +62,7 @@ namespace CoreServices.Logic
         {
             return GetTripStates(new TripStateParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateTripState(TripState entity)
         {
@@ -78,7 +82,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region Trip Services
 
         public IQueryable<TripModel> GetTrips(
@@ -97,14 +101,66 @@ namespace CoreServices.Logic
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
-                                  LastModifiedBy = a.LastModifiedBy
+                                  LastModifiedBy = a.LastModifiedBy,
+                                  Price = a.Price,
+                                  MembersCount = a.MembersCount,
+                                  Notes = a.Notes,
+                                  TripState = new TripStateModel
+                                  {
+                                      Id = a.Fk_TripState,
+                                      Name = language != null ? a.TripState.TripStateLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.TripState.Name,
+                                  },
+                                  TripAt = a.TripAt,
+                                  WaitingPrice = a.WaitingPrice,
+                                  CarClass = a.Fk_CarClass != null ? new CarClassModel
+                                  {
+                                      Name = language != null ? a.CarClass.CarClassLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.CarClass.Name,
+                                      Fk_CarCategory = a.CarClass.Fk_CarCategory,
+                                      CarCategory = new CarCategoryModel
+                                      {
+                                          Name = language != null ? a.CarClass.CarCategory.CarCategoryLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.CarClass.CarCategory.Name,
+
+                                      }
+                                  } : null,
+                                  Driver = a.Fk_Driver != null ?
+                                  new AccountModel
+                                  {
+                                      Fk_User = a.Driver.Fk_User,
+                                      User = a.Driver.Fk_User != null ? new UserModel
+                                      {
+                                          Name = a.Driver.User.Name
+
+                                      } : null
+                                  } : null,
+                                  Supplier = a.Fk_Supplier != null ?
+                                  new SupplierModel
+                                  {
+                                      Name = language != null ? a.Supplier.SupplierLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Supplier.Name,
+                                  } : null,
+                                  Client = new AccountModel
+                                  {
+                                      Fk_User = a.Client.Fk_User,
+                                      User = a.Client.Fk_User != null ? new UserModel
+                                      {
+                                          Name = a.Client.User.Name
+
+                                      } : null
+                                  }
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
         }
 
         public async Task<PagedList<TripModel>> GetTripsPaged(
-            TripParameters parameters , DBModelsEnum.LanguageEnum? language)
+            TripParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<TripModel>.ToPagedList(GetTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -125,10 +181,16 @@ namespace CoreServices.Logic
         {
             return GetTrips(new TripParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateTrip(Trip entity)
         {
+            entity.TripHistories = new List<TripHistory> { new TripHistory()
+            {
+                Fk_Driver = entity.Fk_Driver,
+                Fk_Supplier = entity.Fk_Supplier,
+                Fk_TripState = entity.Fk_TripState,
+            }};
             _repository.Trip.Create(entity);
         }
 
@@ -137,6 +199,28 @@ namespace CoreServices.Logic
             return _repository.Trip.Count();
         }
 
+
+        public void UpdateTripHistory(Trip trip,string notes)
+        {
+            TripHistory tripHistory = _repository.TripHistory.FindAll(new TripHistoryParameters
+            {
+                Fk_Trip = trip.Id
+            }, trackChanges: false).OrderByDescending(a => a.Id).FirstOrDefault();
+
+
+            if(tripHistory.Fk_Driver!=trip.Fk_Driver ||
+                tripHistory.Fk_TripState != trip.Fk_TripState ||
+                tripHistory.Fk_Supplier != trip.Fk_Supplier)
+            {
+                _repository.TripHistory.Create(new TripHistory
+                {
+                    Fk_Driver = trip.Fk_Driver,
+                    Fk_Supplier = trip.Fk_Supplier,
+                    Fk_TripState = trip.Fk_TripState,
+                    Notes = notes
+                });
+            }
+        }
         public async Task DeleteTrip(int id)
         {
             Trip account = await _repository.Trip.FindById(id, trackChanges: false);
@@ -145,7 +229,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region TripPoint Services
 
         public IQueryable<TripPointModel> GetTripPoints(
@@ -173,7 +257,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<TripPointModel>> GetTripPointsPaged(
-            TripPointParameters parameters , DBModelsEnum.LanguageEnum? language)
+            TripPointParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<TripPointModel>.ToPagedList(GetTripPoints(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -194,7 +278,7 @@ namespace CoreServices.Logic
         {
             return GetTripPoints(new TripPointParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateTripPoint(TripPoint entity)
         {
@@ -214,7 +298,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region TripHistory Services
 
         public IQueryable<TripHistoryModel> GetTripHistories(
@@ -236,7 +320,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<TripHistoryModel>> GetTripHistoriesPaged(
-            TripHistoryParameters parameters , DBModelsEnum.LanguageEnum? language)
+            TripHistoryParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<TripHistoryModel>.ToPagedList(GetTripHistories(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -257,7 +341,7 @@ namespace CoreServices.Logic
         {
             return GetTripHistories(new TripHistoryParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateTripHistory(TripHistory entity)
         {
@@ -277,5 +361,68 @@ namespace CoreServices.Logic
         }
 
         #endregion
+
+        #region TripLocation Services
+
+        public IQueryable<TripLocationModel> GetTripLocations(
+            TripLocationParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return _repository.TripLocation
+                              .FindAll(parameters, trackChanges: false)
+                              .Select(a => new TripLocationModel
+                              {
+                                  Id = a.Id,
+                                  Fk_Trip = a.Fk_Trip,
+                                  Latitude = a.Latitude,
+                                  Longitude = a.Longitude,
+                                  CreatedAt = a.CreatedAt,
+                              })
+                              .Search(parameters.SearchColumns, parameters.SearchTerm)
+                              .Sort(parameters.OrderBy);
+        }
+
+        public async Task<PagedList<TripLocationModel>> GetTripLocationsPaged(
+            TripLocationParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return await PagedList<TripLocationModel>.ToPagedList(GetTripLocations(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<PagedList<TripLocationModel>> GetTripLocationsPaged(
+          IQueryable<TripLocationModel> data,
+         TripLocationParameters parameters)
+        {
+            return await PagedList<TripLocationModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<TripLocation> FindTripLocationById(int id, bool trackChanges)
+        {
+            return await _repository.TripLocation.FindById(id, trackChanges);
+        }
+
+        public TripLocationModel GetTripLocationById(int id, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetTripLocations(new TripLocationParameters { Id = id }, language).SingleOrDefault();
+        }
+
+
+        public void CreateTripLocation(TripLocation entity)
+        {
+            _repository.TripLocation.Create(entity);
+        }
+
+        public int GetTripLocationsCount()
+        {
+            return _repository.TripLocation.Count();
+        }
+
+        public async Task DeleteTripLocation(int id)
+        {
+            TripLocation tripLocation = await _repository.TripLocation.FindById(id, trackChanges: false);
+
+            _repository.TripLocation.Delete(tripLocation);
+        }
+
+        #endregion
+
     }
 }
