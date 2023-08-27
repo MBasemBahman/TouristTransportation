@@ -26,6 +26,10 @@ namespace API.Areas.TripArea.Controllers
         [Route(nameof(GetTripPoints))]
         public async Task<IEnumerable<TripPointDto>> GetTripPoints([FromQuery] TripPointParameters parameters)
         {
+            if (parameters.Fk_Trip == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             PagedList<TripPointModel> tripPoints = await _unitOfWork.Trip.GetTripPointsPaged(parameters, language);
