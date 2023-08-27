@@ -264,9 +264,9 @@ else
                         { data: "membersCount" },
                         { data: "companyTripBookingState.name" },
                         { data: "date" },
-                        { data: "id", render: function (data) {
+                        { data: "id", render: function (data, type, row) {
                           return `<button type="button" class="btn btn-info open_history_modal" data-id="${data}">
-                                    ${data.historiesCount}
+                                    ${row.historiesCount}
                                   </button>`;
                         } },
                         { data: "createdAt" },
@@ -308,7 +308,7 @@ else
             url: '@Url.ActionLink("GetCompanyTripBookingHistoriesByFilters", "Services", new { area = "Dashboard" })',
             method: 'post',
             data: {
-                id: fk_CompanyTripBooking
+                fk_CompanyTripBooking: fk_CompanyTripBooking
             },
             success: function(data) {
               let rows = '';
