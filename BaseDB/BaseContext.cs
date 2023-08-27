@@ -144,8 +144,8 @@ namespace BaseDB
             #region DashboardAdministrationModels
 
             _ = modelBuilder.ApplyConfiguration(new DashboardAccessLevelConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleLangConfiguration());
+            // _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleConfiguration());
+            // _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleLangConfiguration());
             _ = modelBuilder.ApplyConfiguration(new AdministrationRolePremissionConfiguration());
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministratorConfiguration());
 
