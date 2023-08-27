@@ -98,9 +98,15 @@ namespace API.MappingProfileCls
             #region CompanyTripModels
 
             _ = CreateMap<CompanyTripModel, CompanyTripDto>();
+            _ = CreateMap<CompanyTripStateModel, CompanyTripStateDto>();
+            _ = CreateMap<CompanyTripBookingStateModel, CompanyTripBookingStateDto>();
             _ = CreateMap<CompanyTripCreateOrEditDto, CompanyTrip>();
             _ = CreateMap<CompanyTrip, CompanyTripCreateOrEditDto>();
 
+            #endregion
+
+            #region CompanyTripBooking
+            _ = CreateMap<CompanyTripBookingModel, CompanyTripBookingDto>();
             #endregion
 
             #region CompanyTripAttachment Models
