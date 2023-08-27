@@ -60,6 +60,9 @@ namespace Entities.CoreServicesModels.CompanyTripModels
 
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }
+        
+        [DisplayName(nameof(HistoriesCount))]
+        public int HistoriesCount { get; set; }
 
         [DisplayName(nameof(Date))]
         public DateTime Date { get; set; }
