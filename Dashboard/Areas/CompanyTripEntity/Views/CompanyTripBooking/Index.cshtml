@@ -266,7 +266,7 @@ else
                         { data: "date" },
                         { data: "id", render: function (data) {
                           return `<button type="button" class="btn btn-info open_history_modal" data-id="${data}">
-                                    @Localizer.Get("Click To See")
+                                    ${data.historiesCount}
                                   </button>`;
                         } },
                         { data: "createdAt" },

@@ -358,6 +358,7 @@ namespace CoreServices.Logic
                                   Price = a.Price,
                                   CurrencyRate = a.CurrencyRate,
                                   MembersCount = a.MembersCount,
+                                  HistoriesCount = a.CompanyTripBookingHistories.Count,
                                   CompanyTripBookingState = new CompanyTripBookingStateModel
                                   {
                                       Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
