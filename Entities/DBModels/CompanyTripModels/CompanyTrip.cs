@@ -29,6 +29,9 @@ public class CompanyTrip : AuditImageEntity
     [DisplayName(nameof(CompanyTripAttachments))]
     public List<CompanyTripAttachment> CompanyTripAttachments { get; set; }
 
+    [DisplayName(nameof(CompanyTripBookings))]
+    public List<CompanyTripBooking> CompanyTripBookings { get; set; }
+
     public List<CompanyTripLang> CompanyTripLangs { get; set; }
 }
 

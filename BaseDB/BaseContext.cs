@@ -14,9 +14,13 @@ using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ModelBuilderConfig.Configurations.AccountModels;
+using ModelBuilderConfig.Configurations.CompanyTripBookingModels;
 using ModelBuilderConfig.Configurations.DashboardAdministrationModels;
+using ModelBuilderConfig.Configurations.TripModels;
 using ModelBuilderConfig.Configurations.UserModels;
 using Newtonsoft.Json;
+using static ModelBuilderConfig.Configurations.CompanyTripBookingModels.CompanyTripBookingStateConfiguration;
 
 namespace BaseDB
 {
@@ -146,6 +150,34 @@ namespace BaseDB
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministratorConfiguration());
 
             #endregion
+
+            #region CompanyTripBookingModels
+
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateLangConfiguration());
+
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateLangConfiguration());
+
+            #endregion
+
+            #region TripModels
+
+            _ = modelBuilder.ApplyConfiguration(new TripStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new TripStateLangConfiguration());
+
+            #endregion
+
+            #region AccountModels
+
+            _ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountTypeLangConfiguration());
+
+            _ = modelBuilder.ApplyConfiguration(new AccountStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountStateLangConfiguration());
+
+            #endregion
+
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

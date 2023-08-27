@@ -107,6 +107,8 @@ namespace API.MappingProfileCls
 
             #region CompanyTripBooking
             _ = CreateMap<CompanyTripBookingModel, CompanyTripBookingDto>();
+            _ = CreateMap<CompanyTripBookingCreateModel, CompanyTripBooking>();
+            _ = CreateMap<CompanyTripBookingEditModel, CompanyTripBooking>();
             #endregion
 
             #region CompanyTripAttachment Models

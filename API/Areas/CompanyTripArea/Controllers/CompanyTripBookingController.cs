@@ -1,5 +1,7 @@
 using API.Areas.CompanyTripArea.Models;
 using Entities.CoreServicesModels.CompanyTripModels;
+using Entities.CoreServicesModels.MainDataModels;
+using Entities.DBModels.CompanyTripModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.CompanyTripArea.Controllers
@@ -47,6 +49,66 @@ namespace API.Areas.CompanyTripArea.Controllers
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripBookingModel CompanyTripBooking = _unitOfWork.CompanyTrip.GetCompanyTripBookingById(Id, language);
+
+            CompanyTripBookingDto CompanyTripBookingDto = _mapper.Map<CompanyTripBookingDto>(CompanyTripBooking);
+
+            return CompanyTripBookingDto;
+        }
+
+        [HttpPost]
+        [Route(nameof(CreateCompanyTripBooking))]
+        public CompanyTripBookingDto CreateCompanyTripBooking([FromBody, BindRequired] CompanyTripBookingCreateModel model)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripBooking companyTripBooking = _mapper.Map<CompanyTripBooking>(model);
+
+            CompanyTripModel companyTrip = _unitOfWork.CompanyTrip.GetCompanyTripById(model.Fk_CompanyTrip, language: null);
+            CurrencyModel currency = _unitOfWork.MainData.GetCurrencyById(model.Fk_Currency, language: null);
+
+            if (companyTripBooking.MembersCount == 0)
+            {
+                companyTripBooking.MembersCount = 1;
+            }
+
+            companyTripBooking.Fk_Account = auth.Fk_Account;
+            companyTripBooking.Fk_CompanyTripBookingState = (int)CompanyTripBookingStateEnum.Pending;
+            companyTripBooking.CurrencyRate = currency.RateInPounds;
+            companyTripBooking.Price = companyTrip.Price * companyTripBooking.MembersCount;
+
+            _unitOfWork.CompanyTrip.CreateCompanyTripBooking(companyTripBooking);
+            _unitOfWork.Save().Wait();
+
+            CompanyTripBookingModel CompanyTripBooking = _unitOfWork.CompanyTrip.GetCompanyTripBookingById(companyTripBooking.Id, language);
+
+            CompanyTripBookingDto CompanyTripBookingDto = _mapper.Map<CompanyTripBookingDto>(CompanyTripBooking);
+
+            return CompanyTripBookingDto;
+        }
+
+        [HttpPut]
+        [Route(nameof(EditCompanyTripBooking))]
+        public async Task<CompanyTripBookingDto> EditCompanyTripBooking([FromQuery, BindRequired] int Id, [FromBody, BindRequired] CompanyTripBookingEditModel model)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripBooking companyTripBooking = await _unitOfWork.CompanyTrip.FindCompanyTripBookingById(Id, trackChanges: true);
+
+            if (model.Fk_CompanyTripBookingState != (int)CompanyTripBookingStateEnum.Canceled ||
+               auth.Fk_Account != companyTripBooking.Fk_Account)
+            {
+                throw new Exception("Not Allowed!");
+            }
+
+            _mapper.Map(model, companyTripBooking);
+
+            _unitOfWork.Save().Wait();
 
             CompanyTripBookingModel CompanyTripBooking = _unitOfWork.CompanyTrip.GetCompanyTripBookingById(Id, language);
 

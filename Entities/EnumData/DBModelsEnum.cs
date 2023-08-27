@@ -54,27 +54,14 @@
 
         public enum AccountProfileItems
         {
-            Details = 1,
-            AccountCard = 2
+            Details = 1
         }
-        
+
         public enum CompanyTripProfileItems
         {
             Details = 1,
             Attachments = 2,
             CompanyTripBooking = 3
-        }
-
-        public enum AccountReturnPage
-        {
-            Index = 1,
-            Profile = 2
-        }
-
-        public enum Gender
-        {
-            Male = 1,
-            Female = 2
         }
 
         public enum ReactionEnum
@@ -87,13 +74,15 @@
         public enum AccountStateEnum
         {
             Active = 1,
+            Pending = 2,
+            Pan = 3
         }
 
         public enum AccountTypeEnum
         {
             Client = 1,
             Driver = 2,
-            Test = 3,
+            Seller = 3,
         }
 
         public enum LanguageEnum
@@ -103,6 +92,31 @@
             de,
             ru,
             tl
+        }
+
+        public enum CompanyTripStateEnum
+        {
+            Pending = 1,
+            Active = 2,
+            Canceled = 3,
+            Expired = 4
+        }
+
+        public enum CompanyTripBookingStateEnum
+        {
+            Pending = 1,
+            PendingOnPayment = 2,
+            Booked = 3,
+            Canceled = 4,
+        }
+
+        public enum TripStateEnum
+        {
+            Pending = 1,
+            PendingOnPayment = 2,
+            Booked = 3,
+            Done = 4,
+            Canceled = 5,
         }
     }
 }
