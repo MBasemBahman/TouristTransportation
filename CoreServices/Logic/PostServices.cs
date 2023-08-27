@@ -46,7 +46,7 @@ namespace CoreServices.Logic
                                       {
                                           FileName = b.FileName,
                                           FileType = b.FileType,
-                                          FileUrl = b.FileUrl,
+                                          FileUrl = b.StorageUrl + b.FileUrl,
                                           FileLength = b.FileLength,
                                       }).ToList() : null,
                                   CreatedAt = a.CreatedAt,
