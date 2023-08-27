@@ -151,32 +151,32 @@ namespace BaseDB
 
             #endregion
 
-            #region CompanyTripBookingModels
+            //#region CompanyTripBookingModels
 
-            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateLangConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateLangConfiguration());
 
-            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateLangConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new CompanyTripStateConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new CompanyTripStateLangConfiguration());
 
-            #endregion
+            //#endregion
 
-            #region TripModels
+            //#region TripModels
 
-            _ = modelBuilder.ApplyConfiguration(new TripStateConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new TripStateLangConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new TripStateConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new TripStateLangConfiguration());
 
-            #endregion
+            //#endregion
 
-            #region AccountModels
+            //#region AccountModels
 
-            _ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new AccountTypeLangConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new AccountTypeLangConfiguration());
 
-            _ = modelBuilder.ApplyConfiguration(new AccountStateConfiguration());
-            _ = modelBuilder.ApplyConfiguration(new AccountStateLangConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new AccountStateConfiguration());
+            //_ = modelBuilder.ApplyConfiguration(new AccountStateLangConfiguration());
 
-            #endregion
+            //#endregion
 
         }
 

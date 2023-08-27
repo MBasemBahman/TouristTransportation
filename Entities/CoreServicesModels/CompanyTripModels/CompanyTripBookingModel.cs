@@ -8,7 +8,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
 {
     public class CompanyTripBookingParameters : RequestParameters
     {
-        public int Fk_Account { get; set; }
+        public int Fk_AccountForBooking { get; set; }
         public int Fk_CompanyTrip { get; set; }
         public int Fk_Currency { get; set; }
         public int Fk_CompanyTripBookingState { get; set; }

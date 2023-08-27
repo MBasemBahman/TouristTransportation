@@ -14,7 +14,7 @@ namespace Repository.DBModels.CompanyTripModels
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
                        parameters.Fk_CompanyTrip,
-                       parameters.Fk_Account,
+                       parameters.Fk_AccountForBooking,
                        parameters.Fk_Currency,
                        parameters.Fk_CompanyTripBookingState,
                        parameters.DateFrom,

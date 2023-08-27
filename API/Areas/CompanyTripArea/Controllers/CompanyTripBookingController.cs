@@ -31,7 +31,7 @@ namespace API.Areas.CompanyTripArea.Controllers
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            parameters.Fk_Account = auth.Fk_Account;
+            parameters.Fk_AccountForBooking = auth.Fk_Account;
 
             PagedList<CompanyTripBookingModel> CompanyTripBookings = await _unitOfWork.CompanyTrip.GetCompanyTripBookingsPaged(parameters, language);
 
@@ -105,6 +105,12 @@ namespace API.Areas.CompanyTripArea.Controllers
             {
                 throw new Exception("Not Allowed!");
             }
+
+            _unitOfWork.CompanyTrip
+                           .UpdateCompanyTripBookingHistory(companyTripBooking.Id,
+                               companyTripBooking.Fk_CompanyTripBookingState,
+                               model.Fk_CompanyTripBookingState,
+                               model.Notes);
 
             _mapper.Map(model, companyTripBooking);
 

@@ -31,5 +31,8 @@ namespace API.Areas.CompanyTripArea.Models
     {
         public int Fk_CompanyTripBookingState { get; set; }
 
+        [DisplayName(nameof(Notes))]
+        [DataType(DataType.MultilineText)]
+        public string Notes { get; set; }
     }
 }

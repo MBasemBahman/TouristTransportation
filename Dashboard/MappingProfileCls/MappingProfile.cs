@@ -1,5 +1,4 @@
-﻿#region Dto Models
-using Dashboard.Areas.DashboardAdministration.Models;
+﻿using Dashboard.Areas.DashboardAdministration.Models;
 using Dashboard.Areas.LogEntity.Models;
 using Dashboard.Areas.UserEntity.Models;
 using Dashboard.Areas.AuditEntity.Models;
@@ -7,9 +6,6 @@ using Dashboard.Areas.MainDataEntity.Models;
 using Dashboard.Areas.CarEntity.Models;
 using Dashboard.Areas.HotelEntity.Models;
 using Dashboard.Areas.TripEntity.Models;
-#endregion
-
-#region Core Service Models
 using Entities.CoreServicesModels.LogModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.CoreServicesModels.AuditModels;
@@ -17,27 +13,19 @@ using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.CarModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.TripModels;
-#endregion
-
-#region DB Models
 using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.MainDataModels;
 using Entities.DBModels.HotelModels;
 using Entities.DBModels.TripModels;
 using Entities.DBModels.CarModels;
-#endregion
-
 using Dashboard.Areas.AccountEntity.Models;
 using Dashboard.Areas.CompanyTripEntity.Models;
-using Dashboard.Areas.HotelEntity.Models;
 using Dashboard.Areas.PostEntity.Models;
 using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.CompanyTripModels;
-using Entities.DBModels.HotelModels;
 using Entities.DBModels.PostModels;
 using Entities.RequestFeatures;
 
