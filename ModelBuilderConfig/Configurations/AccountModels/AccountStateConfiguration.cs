@@ -21,13 +21,14 @@ namespace ModelBuilderConfig.Configurations.AccountModels
     {
         public void Configure(EntityTypeBuilder<AccountStateLang> builder)
         {
+            int index = 1;
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 foreach (AccountStateEnum value in Enum.GetValues(typeof(AccountStateEnum)))
                 {
                     _ = builder.HasData(new AccountStateLang
                     {
-                        Id = (int)value,
+                        Id = index++,
                         Fk_Source = (int)value,
                         Name = value.ToString(),
                         Language = language

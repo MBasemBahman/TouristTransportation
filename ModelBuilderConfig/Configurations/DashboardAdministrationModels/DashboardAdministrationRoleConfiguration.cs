@@ -19,11 +19,12 @@ namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
     {
         public void Configure(EntityTypeBuilder<DashboardAdministrationRoleLang> builder)
         {
+            int index = 1;
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 _ = builder.HasData(new DashboardAdministrationRoleLang
                 {
-                    Id = (int)DashboardAdministrationRoleEnum.Developer,
+                    Id = index++,
                     Name = DashboardAdministrationRoleEnum.Developer.ToString(),
                     Fk_Source = (int)DashboardAdministrationRoleEnum.Developer,
                     Language = language

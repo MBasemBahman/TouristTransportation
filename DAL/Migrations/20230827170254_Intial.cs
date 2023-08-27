@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevelopmentDAL.Migrations
 {
     /// <inheritdoc />
-    public partial class NewDB : Migration
+    public partial class Intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -713,6 +713,8 @@ namespace DevelopmentDAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FkUser = table.Column<int>(name: "Fk_User", type: "int", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FkAccountType = table.Column<int>(name: "Fk_AccountType", type: "int", nullable: false),
@@ -896,7 +898,12 @@ namespace DevelopmentDAL.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileLength = table.Column<double>(type: "float", nullable: false),
+                    FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StorageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -972,6 +979,7 @@ namespace DevelopmentDAL.Migrations
                     FkArea = table.Column<int>(name: "Fk_Area", type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rate = table.Column<double>(type: "float", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
@@ -1353,6 +1361,28 @@ namespace DevelopmentDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TripLocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkTrip = table.Column<int>(name: "Fk_Trip", type: "int", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripLocations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TripLocations_Trips_Fk_Trip",
+                        column: x => x.FkTrip,
+                        principalTable: "Trips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TripPoints",
                 columns: table => new
                 {
@@ -1367,7 +1397,10 @@ namespace DevelopmentDAL.Migrations
                     TripAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LeaveAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     WaitingTime = table.Column<double>(type: "float", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1378,6 +1411,48 @@ namespace DevelopmentDAL.Migrations
                         principalTable: "Trips",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AccountState",
+                columns: new[] { "Id", "ColorCode", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, "Active" },
+                    { 2, null, "Pending" },
+                    { 3, null, "Pan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AccountType",
+                columns: new[] { "Id", "ColorCode", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, "Client" },
+                    { 2, null, "Driver" },
+                    { 3, null, "Seller" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompanyTripBookingStates",
+                columns: new[] { "Id", "ColorCode", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, null, "Pending" },
+                    { 2, null, null, "PendingOnPayment" },
+                    { 3, null, null, "Booked" },
+                    { 4, null, null, "Canceled" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompanyTripStates",
+                columns: new[] { "Id", "ColorCode", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, null, "Pending" },
+                    { 2, null, null, "Active" },
+                    { 3, null, null, "Canceled" },
+                    { 4, null, null, "Expired" }
                 });
 
             migrationBuilder.InsertData(
@@ -1428,13 +1503,73 @@ namespace DevelopmentDAL.Migrations
                     { 26, null, "CarCategory", "CarCategory" },
                     { 27, null, "TripState", "TripState" },
                     { 28, null, "HotelFeatureCategory", "HotelFeatureCategory" },
-                    { 29, null, "HotelFeature", "HotelFeature" }
+                    { 29, null, "HotelFeature", "HotelFeature" },
+                    { 30, null, "CompanyTrip", "CompanyTrip" },
+                    { 31, null, "CompanyTripAttachment", "CompanyTripAttachment" },
+                    { 32, null, "CompanyTripBooking", "CompanyTripBooking" },
+                    { 33, null, "CompanyTripBookingState", "CompanyTripBookingState" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TripStates",
+                columns: new[] { "Id", "ColorCode", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, null, "Pending" },
+                    { 2, null, null, "PendingOnPayment" },
+                    { 3, null, null, "Booked" },
+                    { 4, null, null, "Done" },
+                    { 5, null, null, "Canceled" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Culture", "EmailAddress", "LastModifiedBy", "Name", "Password", "PhoneNumber", "UserName" },
-                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$X7kHlHtht9ZNOg8VGEXo8ea6tJ0D5xiCYt8abAY7oYbQbRVqZCxlC", null, "Developer" });
+                values: new object[] { 1, null, "user@mail.com", null, "Developer", "$2a$11$xglm0gLtp32VnLt2cje0DeEhBsp/ISIglDWhKZkqg.6WYYerzVxHu", null, "Developer" });
+
+            migrationBuilder.InsertData(
+                table: "AccountStateLang",
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Active" },
+                    { 2, 2, 0, null, "Pending" },
+                    { 3, 3, 0, null, "Pan" },
+                    { 4, 1, 1, null, "Active" },
+                    { 5, 2, 1, null, "Pending" },
+                    { 6, 3, 1, null, "Pan" },
+                    { 7, 1, 2, null, "Active" },
+                    { 8, 2, 2, null, "Pending" },
+                    { 9, 3, 2, null, "Pan" },
+                    { 10, 1, 3, null, "Active" },
+                    { 11, 2, 3, null, "Pending" },
+                    { 12, 3, 3, null, "Pan" },
+                    { 13, 1, 4, null, "Active" },
+                    { 14, 2, 4, null, "Pending" },
+                    { 15, 3, 4, null, "Pan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AccountTypeLang",
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Client" },
+                    { 2, 2, 0, null, "Driver" },
+                    { 3, 3, 0, null, "Seller" },
+                    { 4, 1, 1, null, "Client" },
+                    { 5, 2, 1, null, "Driver" },
+                    { 6, 3, 1, null, "Seller" },
+                    { 7, 1, 2, null, "Client" },
+                    { 8, 2, 2, null, "Driver" },
+                    { 9, 3, 2, null, "Seller" },
+                    { 10, 1, 3, null, "Client" },
+                    { 11, 2, 3, null, "Driver" },
+                    { 12, 3, 3, null, "Seller" },
+                    { 13, 1, 4, null, "Client" },
+                    { 14, 2, 4, null, "Driver" },
+                    { 15, 3, 4, null, "Seller" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AdministrationRolePremissions",
@@ -1469,18 +1604,115 @@ namespace DevelopmentDAL.Migrations
                     { 26, 1, 1, 26 },
                     { 27, 1, 1, 27 },
                     { 28, 1, 1, 28 },
-                    { 29, 1, 1, 29 }
+                    { 29, 1, 1, 29 },
+                    { 30, 1, 1, 30 },
+                    { 31, 1, 1, 31 },
+                    { 32, 1, 1, 32 },
+                    { 33, 1, 1, 33 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompanyTripBookingStateLang",
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Pending" },
+                    { 2, 2, 0, null, "PendingOnPayment" },
+                    { 3, 3, 0, null, "Booked" },
+                    { 4, 4, 0, null, "Canceled" },
+                    { 5, 1, 1, null, "Pending" },
+                    { 6, 2, 1, null, "PendingOnPayment" },
+                    { 7, 3, 1, null, "Booked" },
+                    { 8, 4, 1, null, "Canceled" },
+                    { 9, 1, 2, null, "Pending" },
+                    { 10, 2, 2, null, "PendingOnPayment" },
+                    { 11, 3, 2, null, "Booked" },
+                    { 12, 4, 2, null, "Canceled" },
+                    { 13, 1, 3, null, "Pending" },
+                    { 14, 2, 3, null, "PendingOnPayment" },
+                    { 15, 3, 3, null, "Booked" },
+                    { 16, 4, 3, null, "Canceled" },
+                    { 17, 1, 4, null, "Pending" },
+                    { 18, 2, 4, null, "PendingOnPayment" },
+                    { 19, 3, 4, null, "Booked" },
+                    { 20, 4, 4, null, "Canceled" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompanyTripStateLang",
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Pending" },
+                    { 2, 2, 0, null, "Active" },
+                    { 3, 3, 0, null, "Canceled" },
+                    { 4, 4, 0, null, "Expired" },
+                    { 5, 1, 1, null, "Pending" },
+                    { 6, 2, 1, null, "Active" },
+                    { 7, 3, 1, null, "Canceled" },
+                    { 8, 4, 1, null, "Expired" },
+                    { 9, 1, 2, null, "Pending" },
+                    { 10, 2, 2, null, "Active" },
+                    { 11, 3, 2, null, "Canceled" },
+                    { 12, 4, 2, null, "Expired" },
+                    { 13, 1, 3, null, "Pending" },
+                    { 14, 2, 3, null, "Active" },
+                    { 15, 3, 3, null, "Canceled" },
+                    { 16, 4, 3, null, "Expired" },
+                    { 17, 1, 4, null, "Pending" },
+                    { 18, 2, 4, null, "Active" },
+                    { 19, 3, 4, null, "Canceled" },
+                    { 20, 4, 4, null, "Expired" }
                 });
 
             migrationBuilder.InsertData(
                 table: "DashboardAdministrationRoleLang",
                 columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
-                values: new object[] { 1, 1, 0, null, "Developer" });
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Developer" },
+                    { 2, 1, 1, null, "Developer" },
+                    { 3, 1, 2, null, "Developer" },
+                    { 4, 1, 3, null, "Developer" },
+                    { 5, 1, 4, null, "Developer" }
+                });
 
             migrationBuilder.InsertData(
                 table: "DashboardAdministrators",
                 columns: new[] { "Id", "Fk_DashboardAdministrationRole", "Fk_User", "JobTitle", "LastModifiedBy" },
                 values: new object[] { 1, 1, 1, "Developer", null });
+
+            migrationBuilder.InsertData(
+                table: "TripStateLang",
+                columns: new[] { "Id", "Fk_Source", "Language", "LastModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, null, "Pending" },
+                    { 2, 2, 0, null, "PendingOnPayment" },
+                    { 3, 3, 0, null, "Booked" },
+                    { 4, 4, 0, null, "Done" },
+                    { 5, 5, 0, null, "Canceled" },
+                    { 6, 1, 1, null, "Pending" },
+                    { 7, 2, 1, null, "PendingOnPayment" },
+                    { 8, 3, 1, null, "Booked" },
+                    { 9, 4, 1, null, "Done" },
+                    { 10, 5, 1, null, "Canceled" },
+                    { 11, 1, 2, null, "Pending" },
+                    { 12, 2, 2, null, "PendingOnPayment" },
+                    { 13, 3, 2, null, "Booked" },
+                    { 14, 4, 2, null, "Done" },
+                    { 15, 5, 2, null, "Canceled" },
+                    { 16, 1, 3, null, "Pending" },
+                    { 17, 2, 3, null, "PendingOnPayment" },
+                    { 18, 3, 3, null, "Booked" },
+                    { 19, 4, 3, null, "Done" },
+                    { 20, 5, 3, null, "Canceled" },
+                    { 21, 1, 4, null, "Pending" },
+                    { 22, 2, 4, null, "PendingOnPayment" },
+                    { 23, 3, 4, null, "Booked" },
+                    { 24, 4, 4, null, "Done" },
+                    { 25, 5, 4, null, "Canceled" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_Fk_AccountState",
@@ -1828,6 +2060,11 @@ namespace DevelopmentDAL.Migrations
                 column: "Fk_TripState");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TripLocations_Fk_Trip",
+                table: "TripLocations",
+                column: "Fk_Trip");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TripPoints_Fk_Trip",
                 table: "TripPoints",
                 column: "Fk_Trip");
@@ -1972,6 +2209,9 @@ namespace DevelopmentDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "TripHistories");
+
+            migrationBuilder.DropTable(
+                name: "TripLocations");
 
             migrationBuilder.DropTable(
                 name: "TripPoints");

@@ -21,13 +21,14 @@ namespace ModelBuilderConfig.Configurations.CompanyTripBookingModels
     {
         public void Configure(EntityTypeBuilder<CompanyTripStateLang> builder)
         {
+            int index = 1;
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 foreach (CompanyTripStateEnum value in Enum.GetValues(typeof(CompanyTripStateEnum)))
                 {
                     _ = builder.HasData(new CompanyTripStateLang
                     {
-                        Id = (int)value,
+                        Id = index++,
                         Fk_Source = (int)value,
                         Name = value.ToString(),
                         Language = language

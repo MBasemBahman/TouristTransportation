@@ -22,13 +22,14 @@ namespace ModelBuilderConfig.Configurations.TripModels
     {
         public void Configure(EntityTypeBuilder<TripStateLang> builder)
         {
+            int index = 1;
             foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
             {
                 foreach (TripStateEnum value in Enum.GetValues(typeof(TripStateEnum)))
                 {
                     _ = builder.HasData(new TripStateLang
                     {
-                        Id = (int)value,
+                        Id = index++,
                         Fk_Source = (int)value,
                         Name = value.ToString(),
                         Language = language

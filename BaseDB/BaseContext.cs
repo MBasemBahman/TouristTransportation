@@ -26,7 +26,7 @@ namespace BaseDB
 {
     public class BaseContext : DbContext
     {
-        private readonly UserAuthenticatedDto _user;   
+        private readonly UserAuthenticatedDto _user;
         public BaseContext(DbContextOptions options, UserAuthenticatedDto user) : base(options)
         {
             _user = user;
@@ -60,7 +60,7 @@ namespace BaseDB
         #region Account
         public DbSet<Account> Accounts { get; set; }
         #endregion
-        
+
         #region CompanyTrip
         public DbSet<CompanyTrip> CompanyTrips { get; set; }
         public DbSet<CompanyTripBooking> CompanyTripBookings { get; set; }
@@ -144,39 +144,39 @@ namespace BaseDB
             #region DashboardAdministrationModels
 
             _ = modelBuilder.ApplyConfiguration(new DashboardAccessLevelConfiguration());
-            // _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleConfiguration());
-            // _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new DashboardAdministrationRoleLangConfiguration());
             _ = modelBuilder.ApplyConfiguration(new AdministrationRolePremissionConfiguration());
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministratorConfiguration());
 
             #endregion
 
-            //#region CompanyTripBookingModels
+            #region CompanyTripBookingModels
 
-            //_ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateConfiguration());
-            //_ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripBookingStateLangConfiguration());
 
-            //_ = modelBuilder.ApplyConfiguration(new CompanyTripStateConfiguration());
-            //_ = modelBuilder.ApplyConfiguration(new CompanyTripStateLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CompanyTripStateLangConfiguration());
 
-            //#endregion
+            #endregion
 
-            //#region TripModels
+            #region TripModels
 
-            //_ = modelBuilder.ApplyConfiguration(new TripStateConfiguration());
-            //_ = modelBuilder.ApplyConfiguration(new TripStateLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new TripStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new TripStateLangConfiguration());
 
-            //#endregion
+            #endregion
 
-            //#region AccountModels
+            #region AccountModels
 
-            //_ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());
-            //_ = modelBuilder.ApplyConfiguration(new AccountTypeLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountTypeLangConfiguration());
 
-            //_ = modelBuilder.ApplyConfiguration(new AccountStateConfiguration());
-            //_ = modelBuilder.ApplyConfiguration(new AccountStateLangConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountStateConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new AccountStateLangConfiguration());
 
-            //#endregion
+            #endregion
 
         }
 
