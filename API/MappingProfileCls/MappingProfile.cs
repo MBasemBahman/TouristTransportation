@@ -58,6 +58,11 @@ namespace API.MappingProfileCls
 
             #endregion
 
+            #region Post Reaction Models
+            _ = CreateMap<PostReactionModel, PostReactionDto>();
+
+            #endregion
+
             #endregion
 
             #region HotelModels
@@ -122,14 +127,37 @@ namespace API.MappingProfileCls
             
             #region TripModels
 
-            #region TripModels
+            #region Trip
 
             _ = CreateMap<TripModel, TripDto>();
-            _ = CreateMap<TripCreateOrEditDto, Trip>();
-            _ = CreateMap<Trip, TripCreateOrEditDto>();
+            _ = CreateMap<TripEditDto, Trip>();
+            _ = CreateMap<TripCreateDto,Trip>();
 
             #endregion
 
+            #region TripState
+            _ = CreateMap<TripStateModel, TripStateDto>();
+            #endregion
+
+            #region TripHistory
+            _ = CreateMap<TripHistoryModel, TripHistoryDto>();
+            #endregion
+
+
+            #region TripLocation
+
+            _ = CreateMap<TripLocationModel, TripLocationDto>();
+            _ = CreateMap<TripLocationCreateDto, TripLocation>();
+
+            #endregion
+
+            #region TripPoint
+
+            _ = CreateMap<TripPointModel, TripPointDto>();
+            _ = CreateMap<TripPointEditDto, TripPoint>();
+            _ = CreateMap<TripPointCreateDto, TripPoint>();
+
+            #endregion
             #endregion
 
             #region AccountModels

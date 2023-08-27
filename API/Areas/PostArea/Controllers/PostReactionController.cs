@@ -23,16 +23,47 @@ namespace API.Areas.PostArea.Controllers
 
         }
 
-        //[HttpPost]
-        //[Route(nameof(CreatePost))]
-        //public async Task<PostDto> CreatePost([FromForm] PostCreateOrEditDto model)
-        //{
-        //    UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+        [HttpPost]
+        [Route(nameof(EditPostReaction))]
+        public async Task<PostReactionDto> EditPostReaction([FromBody] PostReactioEditDto model)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
-            
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-        //    return returnData;
-        //}
+            if (model.Fk_Post == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+
+            if(_unitOfWork.Post.GetPostReactions(new PostReactionParameters
+            {
+                Fk_Post =  model.Fk_Post,
+                Fk_Account = auth.Fk_Account
+            }, language: null).Any())
+            {
+                _unitOfWork.Post.DeletePostReaction(model.Fk_Post, auth.Fk_Account);
+            }
+            else
+            {
+                _unitOfWork.Post.CreatePostReaction(new PostReaction
+                {
+                    Fk_Account = auth.Fk_Account,
+                    Fk_Post = model.Fk_Post,
+                    Reaction = model.ReactionEnum
+                });
+            }
+            await _unitOfWork.Save();
+
+            PostReactionModel postReaction = _unitOfWork.Post.GetPostReactions(new PostReactionParameters
+            {
+                Fk_Post = model.Fk_Post,
+                Fk_Account = auth.Fk_Account
+            },language).FirstOrDefault();
+
+            PostReactionDto returnData = _mapper.Map<PostReactionDto>(postReaction);
+            return returnData;
+        }
 
     }
 }
