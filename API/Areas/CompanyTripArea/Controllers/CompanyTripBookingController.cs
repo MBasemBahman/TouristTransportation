@@ -46,7 +46,7 @@ namespace API.Areas.CompanyTripArea.Controllers
         [Route(nameof(GetCompanyTripBooking))]
         public CompanyTripBookingDto GetCompanyTripBooking([FromQuery, BindRequired] int Id)
         {
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
@@ -79,6 +79,7 @@ namespace API.Areas.CompanyTripArea.Controllers
             companyTripBooking.Fk_CompanyTripBookingState = (int)CompanyTripBookingStateEnum.Pending;
             companyTripBooking.CurrencyRate = currency.RateInPounds;
             companyTripBooking.Price = companyTrip.Price * companyTripBooking.MembersCount;
+            companyTripBooking.CreatedBy = auth.Name;
 
             _unitOfWork.CompanyTrip.CreateCompanyTripBooking(companyTripBooking);
             _unitOfWork.Save().Wait();
@@ -112,7 +113,9 @@ namespace API.Areas.CompanyTripArea.Controllers
                                model.Fk_CompanyTripBookingState,
                                model.Notes);
 
-            _mapper.Map(model, companyTripBooking);
+            _ = _mapper.Map(model, companyTripBooking);
+
+            companyTripBooking.LastModifiedBy = auth.Name;
 
             _unitOfWork.Save().Wait();
 
@@ -123,5 +126,35 @@ namespace API.Areas.CompanyTripArea.Controllers
             return CompanyTripBookingDto;
         }
 
+        [HttpDelete]
+        [Route(nameof(EditCompanyTripBooking))]
+        public async Task<CompanyTripBookingDto> CancelCompanyTripBooking([FromQuery, BindRequired] int Id)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripBooking companyTripBooking = await _unitOfWork.CompanyTrip.FindCompanyTripBookingById(Id, trackChanges: true);
+
+            if (auth.Fk_Account != companyTripBooking.Fk_Account)
+            {
+                throw new Exception("Not Allowed!");
+            }
+
+            _unitOfWork.CompanyTrip
+                           .UpdateCompanyTripBookingHistory(companyTripBooking.Id,
+                               companyTripBooking.Fk_CompanyTripBookingState,
+                               (int)CompanyTripBookingStateEnum.Canceled, companyTripBooking.Notes);
+
+            companyTripBooking.LastModifiedBy = auth.Name;
+
+            _unitOfWork.Save().Wait();
+
+            CompanyTripBookingModel CompanyTripBooking = _unitOfWork.CompanyTrip.GetCompanyTripBookingById(Id, language);
+
+            CompanyTripBookingDto CompanyTripBookingDto = _mapper.Map<CompanyTripBookingDto>(CompanyTripBooking);
+
+            return CompanyTripBookingDto;
+        }
     }
 }

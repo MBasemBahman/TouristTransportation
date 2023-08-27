@@ -1,7 +1,5 @@
 ﻿using API.Areas.TripArea.Models;
 using Entities.CoreServicesModels.TripModels;
-using Entities.DBModels.TripModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace API.Areas.TripArea.Controllers
 {
     [ApiVersion("1.0")]

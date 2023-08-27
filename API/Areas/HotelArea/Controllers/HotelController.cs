@@ -37,7 +37,7 @@ namespace API.Areas.HotelArea.Controllers
 
             parameters.IncludeSelectedFeature = true;
             parameters.IsActive = true;
-            
+
             PagedList<HotelModel> hotels = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
 
             SetPagination(hotels.MetaData, parameters);
@@ -52,8 +52,8 @@ namespace API.Areas.HotelArea.Controllers
         public async Task<HotelDto> GetHotel(
           [FromQuery, BindRequired] int id)
         {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
             if (id == 0)
             {
                 throw new Exception("Bad Request!");

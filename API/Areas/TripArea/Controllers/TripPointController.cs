@@ -77,12 +77,15 @@ namespace API.Areas.TripArea.Controllers
 
             Trip trip = await _unitOfWork.Trip.FindTripById(model.Fk_Trip, trackChanges: false);
 
-            if (trip.Fk_Client != auth.Fk_Account)
+            if (trip.Fk_Client != auth.Fk_Account &&
+                 trip.Fk_Driver != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
+
             TripPoint tripPoint = _mapper.Map<TripPoint>(model);
 
+            tripPoint.CreatedBy = auth.Name;
 
             _unitOfWork.Trip.CreateTripPoint(tripPoint);
 
@@ -112,14 +115,17 @@ namespace API.Areas.TripArea.Controllers
 
             Trip trip = await _unitOfWork.Trip.FindTripById(tripPoint.Fk_Trip, trackChanges: false);
 
-            if (trip.Fk_Client != auth.Fk_Account)
+            if (trip.Fk_Client != auth.Fk_Account &&
+                 trip.Fk_Driver != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
+
             _ = _mapper.Map(model, tripPoint);
 
-            await _unitOfWork.Save();
+            tripPoint.LastModifiedBy = auth.Name;
 
+            await _unitOfWork.Save();
 
             TripPointModel tripPointModel = _unitOfWork.Trip.GetTripPointById(tripPoint.Id, language);
 

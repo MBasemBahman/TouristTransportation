@@ -62,7 +62,7 @@ namespace API.Areas.TripArea.Controllers
                 _unitOfWork.Trip.GetTripPoints(new TripPointParameters
                 {
                     Fk_Trip = id
-                },language).ToList()
+                }, language).ToList()
                 );
 
 
@@ -100,7 +100,7 @@ namespace API.Areas.TripArea.Controllers
 
             trip.Fk_TripState = (int)TripStateEnum.Pending;
 
-            trip.CreatedBy = auth.UserName;
+            trip.CreatedBy = auth.Name;
 
             _unitOfWork.Trip.CreateTrip(trip);
 
@@ -137,18 +137,19 @@ namespace API.Areas.TripArea.Controllers
 
             Trip trip = await _unitOfWork.Trip.FindTripById(id, trackChanges: true);
 
-            if (trip.Fk_Client != auth.Fk_Account)
+            if (trip.Fk_Client != auth.Fk_Account &&
+                trip.Fk_Driver != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
 
             _ = _mapper.Map(model, trip);
 
-            trip.LastModifiedBy = auth.UserName;
+            trip.LastModifiedBy = auth.Name;
 
             await _unitOfWork.Save();
 
-            _unitOfWork.Trip.UpdateTripHistory(trip,notes:null);
+            _unitOfWork.Trip.UpdateTripHistory(trip, notes: null);
 
             await _unitOfWork.Save();
 
@@ -184,7 +185,7 @@ namespace API.Areas.TripArea.Controllers
             return tripDto;
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route(nameof(CancelTrip))]
         public async Task<TripDto> CancelTrip([FromQuery, BindRequired] int id)
         {
@@ -199,13 +200,13 @@ namespace API.Areas.TripArea.Controllers
 
             Trip trip = await _unitOfWork.Trip.FindTripById(id, trackChanges: true);
 
-            if (trip.Fk_Client != auth.Fk_Account)
+            if (trip.Fk_Client != auth.Fk_Account &&
+                trip.Fk_Driver != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
 
-     
-            trip.LastModifiedBy = auth.UserName;
+            trip.LastModifiedBy = auth.Name;
 
             trip.Fk_TripState = (int)TripStateEnum.Canceled;
 
@@ -242,7 +243,6 @@ namespace API.Areas.TripArea.Controllers
                   Fk_Trip = id
               }, language).ToList()
               );
-
 
             return tripDto;
         }

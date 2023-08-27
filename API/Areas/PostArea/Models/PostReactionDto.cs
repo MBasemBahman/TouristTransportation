@@ -1,10 +1,9 @@
-﻿using Entities.CoreServicesModels.PostModels;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
-using API.Areas.AccountArea.Models;
-using Entities.DBModels.AccountModels;
+﻿using API.Areas.AccountArea.Models;
+using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.PostModels;
 using Entities.EnumData;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Areas.PostArea.Models
 {

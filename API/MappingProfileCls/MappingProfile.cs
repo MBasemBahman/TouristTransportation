@@ -13,7 +13,6 @@ using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.PostModels;
 using Entities.CoreServicesModels.TripModels;
-using Entities.DBModels.AccountModels;
 using Entities.DBModels.CompanyTripModels;
 using Entities.DBModels.HotelModels;
 using Entities.DBModels.PostModels;
@@ -83,7 +82,7 @@ namespace API.MappingProfileCls
             #endregion
 
             #endregion
-            
+
             #region MainDataModels
 
             _ = CreateMap<CurrencyModel, CurrencyDto>();
@@ -97,7 +96,7 @@ namespace API.MappingProfileCls
             _ = CreateMap<UserAuthenticatedDto, UserDto>();
 
             #endregion
-            
+
             #region CompanyTripModels
 
             #region CompanyTripModels
@@ -124,14 +123,14 @@ namespace API.MappingProfileCls
             #endregion
 
             #endregion
-            
+
             #region TripModels
 
             #region Trip
 
             _ = CreateMap<TripModel, TripDto>();
             _ = CreateMap<TripEditDto, Trip>();
-            _ = CreateMap<TripCreateDto,Trip>();
+            _ = CreateMap<TripCreateDto, Trip>();
 
             #endregion
 
@@ -169,7 +168,7 @@ namespace API.MappingProfileCls
             #endregion
 
             #endregion
-            
+
             #region CarModels
 
             #region CarClassModels

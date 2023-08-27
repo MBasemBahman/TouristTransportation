@@ -1,7 +1,6 @@
 ﻿using API.Areas.TripArea.Models;
 using Entities.CoreServicesModels.TripModels;
 using Entities.DBModels.TripModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.TripArea.Controllers
 {
@@ -30,9 +29,9 @@ namespace API.Areas.TripArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-         
             PagedList<TripLocationModel> tripLocations = await _unitOfWork.Trip.GetTripLocationsPaged(parameters, language);
 
             SetPagination(tripLocations.MetaData, parameters);
@@ -57,12 +56,13 @@ namespace API.Areas.TripArea.Controllers
 
             Trip trip = await _unitOfWork.Trip.FindTripById(model.Fk_Trip, trackChanges: false);
 
-            if (trip.Fk_Client != auth.Fk_Account)
+            if (trip.Fk_Client != auth.Fk_Account &&
+                trip.Fk_Driver != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed");
             }
-            TripLocation tripLocation = _mapper.Map<TripLocation>(model);
 
+            TripLocation tripLocation = _mapper.Map<TripLocation>(model);
 
             _unitOfWork.Trip.CreateTripLocation(tripLocation);
 
@@ -74,7 +74,5 @@ namespace API.Areas.TripArea.Controllers
 
             return tripLocationDto;
         }
-
-     
     }
 }

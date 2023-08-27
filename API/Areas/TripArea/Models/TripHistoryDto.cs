@@ -1,7 +1,6 @@
-﻿using Entities.CoreServicesModels.TripModels;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using API.Areas.AccountArea.Models;
+using Entities.CoreServicesModels.TripModels;
 using System.ComponentModel;
-using API.Areas.AccountArea.Models;
 
 namespace API.Areas.TripArea.Models
 {
@@ -13,7 +12,7 @@ namespace API.Areas.TripArea.Models
 
         [DisplayName(nameof(Trip))]
         public new TripDto Trip { get; set; }
-    
+
         [DisplayName(nameof(Driver))]
         public new AccountDto Driver { get; set; }
 

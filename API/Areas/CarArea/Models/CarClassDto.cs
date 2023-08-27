@@ -1,4 +1,3 @@
-using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CarModels;
 
 namespace API.Areas.CarArea.Models

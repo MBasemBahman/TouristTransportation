@@ -1,6 +1,5 @@
 using API.Areas.MainDataArea.Models;
 using Entities.CoreServicesModels.MainDataModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.MainDataArea.Controllers
 {
@@ -36,7 +35,7 @@ namespace API.Areas.MainDataArea.Controllers
 
             return rowsDto;
         }
-        
+
         [HttpGet]
         [Route(nameof(GetCountries))]
         public async Task<IEnumerable<CountryDto>> GetCountries([FromQuery] CountryParameters parameters)
@@ -51,7 +50,7 @@ namespace API.Areas.MainDataArea.Controllers
 
             return rowsDto;
         }
-        
+
         [HttpGet]
         [Route(nameof(GetAreas))]
         public async Task<IEnumerable<AreaDto>> GetAreas([FromQuery] AreaParameters parameters)

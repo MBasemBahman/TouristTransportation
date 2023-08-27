@@ -1,8 +1,4 @@
-﻿using Entities.Constants;
-using Entities.CoreServicesModels.AccountModels;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Entities.CoreServicesModels.UserModels;
+﻿using Entities.CoreServicesModels.UserModels;
 using Newtonsoft.Json;
 
 namespace API.Models

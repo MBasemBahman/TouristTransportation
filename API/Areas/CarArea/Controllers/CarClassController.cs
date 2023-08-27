@@ -27,7 +27,7 @@ namespace API.Areas.CarArea.Controllers
         public async Task<IEnumerable<CarClassDto>> GetCarClasses([FromQuery] CarClassParameters parameters)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
+
             PagedList<CarClassModel> accounts = await _unitOfWork.Car.GetCarClassesPaged(parameters, language);
 
             SetPagination(accounts.MetaData, parameters);

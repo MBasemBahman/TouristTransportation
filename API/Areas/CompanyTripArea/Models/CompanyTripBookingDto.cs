@@ -1,8 +1,6 @@
 ﻿using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.DBModels.AccountModels;
-using Entities.DBModels.CompanyTripModels;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Areas.CompanyTripArea.Models
 {
@@ -18,7 +16,7 @@ namespace API.Areas.CompanyTripArea.Models
 
         [DisplayName(nameof(Notes))]
         [DataType(DataType.MultilineText)]
-        public string Notes { get; set; }
+        public new string Notes { get; set; }
 
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }

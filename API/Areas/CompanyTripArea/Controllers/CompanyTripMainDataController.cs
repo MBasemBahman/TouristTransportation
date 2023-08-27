@@ -1,7 +1,5 @@
 using API.Areas.CompanyTripArea.Models;
 using Entities.CoreServicesModels.CompanyTripModels;
-using Entities.CoreServicesModels.MainDataModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.CompanyTripArea.Controllers
 {

@@ -1,7 +1,6 @@
 using API.Areas.PostArea.Models;
 using Entities.CoreServicesModels.PostModels;
 using Entities.DBModels.PostModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.PostArea.Controllers
 {
@@ -36,9 +35,9 @@ namespace API.Areas.PostArea.Controllers
                 throw new Exception("Bad Request!");
             }
 
-            if(_unitOfWork.Post.GetPostReactions(new PostReactionParameters
+            if (_unitOfWork.Post.GetPostReactions(new PostReactionParameters
             {
-                Fk_Post =  model.Fk_Post,
+                Fk_Post = model.Fk_Post,
                 Fk_Account = auth.Fk_Account
             }, language: null).Any())
             {
@@ -59,7 +58,7 @@ namespace API.Areas.PostArea.Controllers
             {
                 Fk_Post = model.Fk_Post,
                 Fk_Account = auth.Fk_Account
-            },language).FirstOrDefault();
+            }, language).FirstOrDefault();
 
             PostReactionDto returnData = _mapper.Map<PostReactionDto>(postReaction);
             return returnData;

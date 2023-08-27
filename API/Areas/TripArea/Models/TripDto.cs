@@ -1,8 +1,7 @@
-using Entities.CoreServicesModels.TripModels;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
 using API.Areas.AccountArea.Models;
 using API.Areas.CarArea.Models;
+using Entities.CoreServicesModels.TripModels;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace API.Areas.TripArea.Models
@@ -38,26 +37,12 @@ namespace API.Areas.TripArea.Models
         public List<TripLocationDto> TripLocations { get; set; }
     }
 
-    public class TripEditDto 
+    public class TripEditDto
     {
-        
-        public int? Fk_Supplier { get; set; }
-
-        [DisplayName(nameof(Fk_Driver))]
-        [ForeignKey(nameof(Fk_Driver))]
-        public int? Fk_Driver { get; set; }
-
-      
         public int? Fk_CarClass { get; set; }
 
         [DisplayName(nameof(TripAt))]
         public DateTime? TripAt { get; set; }
-
-        [DisplayName(nameof(Price))]
-        public double Price { get; set; }
-
-        [DisplayName(nameof(WaitingPrice))]
-        public double WaitingPrice { get; set; }
 
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }
@@ -72,6 +57,4 @@ namespace API.Areas.TripArea.Models
     {
         public List<TripPointCreateDto> TripPoints { get; set; }
     }
-
-
 }

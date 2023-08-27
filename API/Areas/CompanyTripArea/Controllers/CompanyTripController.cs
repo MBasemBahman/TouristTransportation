@@ -26,7 +26,7 @@ namespace API.Areas.CompanyTripArea.Controllers
         [Route(nameof(GetCompanyTrips))]
         public async Task<IEnumerable<CompanyTripDto>> GetCompanyTrips([FromQuery] CompanyTripParameters parameters)
         {
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 

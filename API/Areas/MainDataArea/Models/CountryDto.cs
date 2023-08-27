@@ -1,4 +1,3 @@
-using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.MainDataModels;
 
 namespace API.Areas.MainDataArea.Models

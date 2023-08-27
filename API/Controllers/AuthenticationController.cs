@@ -1,6 +1,4 @@
-﻿using API.Models;
-using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.UserModels;
+﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
 
@@ -39,23 +37,23 @@ namespace API.Controllers
 
             return auth;
         }
-        
+
         [HttpPost]
         [Route(nameof(RegisterUserWithAccount))]
         [AllowAnonymous]
         public async Task<UserAuthenticatedDto> RegisterUserWithAccount([FromBody] UserForRegistrationDto model)
         {
             if (model.EmailAddress.IsExisting() && _unitOfWork.Account.GetAccounts(new AccountParameters
-                {
-                    EmailAddress = model.EmailAddress
-                }, LanguageEnum.en).Any())
+            {
+                EmailAddress = model.EmailAddress
+            }, LanguageEnum.en).Any())
             {
                 throw new Exception("Email Address already registered!");
             }
 
             model.UserName = RegexService.GetUserName(model.UserName);
 
-            User user = new User
+            User user = new()
             {
                 Name = $"{model.FirstName} {model.LastName}",
                 UserName = model.UserName,

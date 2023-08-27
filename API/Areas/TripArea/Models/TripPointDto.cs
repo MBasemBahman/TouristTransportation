@@ -1,5 +1,4 @@
 ﻿using Entities.CoreServicesModels.TripModels;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 namespace API.Areas.TripArea.Models
 {
@@ -21,11 +20,9 @@ namespace API.Areas.TripArea.Models
     public class TripPointCreateDto : TripPointEditDto
     {
         public int Fk_Trip { get; set; }
-
-    
     }
 
-    public class TripPointEditDto 
+    public class TripPointEditDto
     {
         [DisplayName(nameof(FromLatitude))]
         public double? FromLatitude { get; set; }
@@ -39,20 +36,10 @@ namespace API.Areas.TripArea.Models
         [DisplayName(nameof(ToLongitude))]
         public double? ToLongitude { get; set; }
 
-        [DisplayName(nameof(Price))]
-        public double Price { get; set; }
-
         [DisplayName(nameof(TripAt))]
         public DateTime? TripAt { get; set; }
 
         [DisplayName(nameof(LeaveAt))]
         public DateTime? LeaveAt { get; set; }
-
-        [DisplayName(nameof(WaitingTime))]
-        public double WaitingTime { get; set; }
-
-        [DisplayName(nameof(WaitingTimeCost))]
-        public double WaitingTimeCost { get; set; }
-
     }
 }

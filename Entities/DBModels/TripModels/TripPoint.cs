@@ -1,6 +1,6 @@
 namespace Entities.DBModels.TripModels;
 
-public class TripPoint : BaseEntity
+public class TripPoint : AuditEntity
 {
     [DisplayName(nameof(Trip))]
     [ForeignKey(nameof(Trip))]

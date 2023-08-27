@@ -1,6 +1,5 @@
 using API.Areas.AccountArea.Models;
 using Entities.CoreServicesModels.AccountModels;
-using Entities.DBModels.AccountModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.AccountArea.Controllers
@@ -30,7 +29,7 @@ namespace API.Areas.AccountArea.Controllers
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             parameters.Fk_AccountType = (int)AccountTypeEnum.Driver;
-            
+
             PagedList<AccountModel> accounts = await _unitOfWork.Account.GetAccountsPaged(parameters, language);
 
             SetPagination(accounts.MetaData, parameters);

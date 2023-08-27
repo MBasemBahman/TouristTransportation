@@ -190,6 +190,7 @@ namespace CoreServices.Logic
                 Fk_Driver = entity.Fk_Driver,
                 Fk_Supplier = entity.Fk_Supplier,
                 Fk_TripState = entity.Fk_TripState,
+                CreatedBy = entity.CreatedBy
             }};
             _repository.Trip.Create(entity);
         }
@@ -200,7 +201,7 @@ namespace CoreServices.Logic
         }
 
 
-        public void UpdateTripHistory(Trip trip,string notes)
+        public void UpdateTripHistory(Trip trip, string notes)
         {
             TripHistory tripHistory = _repository.TripHistory.FindAll(new TripHistoryParameters
             {
@@ -208,7 +209,7 @@ namespace CoreServices.Logic
             }, trackChanges: false).OrderByDescending(a => a.Id).FirstOrDefault();
 
 
-            if(tripHistory.Fk_Driver!=trip.Fk_Driver ||
+            if (tripHistory.Fk_Driver != trip.Fk_Driver ||
                 tripHistory.Fk_TripState != trip.Fk_TripState ||
                 tripHistory.Fk_Supplier != trip.Fk_Supplier)
             {
