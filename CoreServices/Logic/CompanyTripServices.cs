@@ -424,6 +424,12 @@ namespace CoreServices.Logic
                                   Id = a.Id,
                                   Fk_CompanyTripBooking = a.Fk_CompanyTripBooking,
                                   Fk_CompanyTripBookingState = a.Fk_CompanyTripBookingState,
+                                  CompanyTripBookingState = new CompanyTripBookingStateModel
+                                  {
+                                      Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.CompanyTripBookingState.Name,
+                                  },
                                   Notes = a.Notes,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
@@ -450,6 +456,22 @@ namespace CoreServices.Logic
         public async Task<CompanyTripBookingHistory> FindCompanyTripBookingHistoryById(int id, bool trackChanges)
         {
             return await _repository.CompanyTripBookingHistory.FindById(id, trackChanges);
+        }
+
+        public void UpdateCompanyTripBookingHistory(int fk_CompanyTripBooking, 
+            int fk_OldCompanyTripBookingState,
+            int fk_NewCompanyTripBookingState, 
+            string notes)
+        {
+            if (fk_OldCompanyTripBookingState != fk_NewCompanyTripBookingState)
+            {
+                CreateCompanyTripBookingHistory(new CompanyTripBookingHistory
+                {
+                    Fk_CompanyTripBooking = fk_CompanyTripBooking,
+                    Fk_CompanyTripBookingState = fk_OldCompanyTripBookingState,
+                    Notes = notes
+                });
+            }
         }
         
         public CompanyTripBookingHistoryModel GetCompanyTripBookingHistoryById(int id, DBModelsEnum.LanguageEnum? language)

@@ -105,6 +105,7 @@
                                             <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
                                             <th>@Html.DisplayNameFor(model => row.CompanyTripBookingState)</th>
                                             <th>@Html.DisplayNameFor(model => row.Date)</th>
+                                            <th>@Localizer.Get("Histories")</th>
                                             <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                             <th>
                                                 @Html.DisplayNameFor(model => row.Id)
@@ -190,6 +191,7 @@ else
                                 <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
                                 <th>@Html.DisplayNameFor(model => row.CompanyTripBookingState)</th>
                                 <th>@Html.DisplayNameFor(model => row.Date)</th>
+                                <th>@Localizer.Get("Histories")</th>
                                 <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
                                 <th>
                                     @Html.DisplayNameFor(model => row.Id)
@@ -204,6 +206,8 @@ else
     </section>
 
 }
+
+<partial name="_historyModal" />
 
 @section scripts{
     <script>
@@ -260,6 +264,11 @@ else
                         { data: "membersCount" },
                         { data: "companyTripBookingState.name" },
                         { data: "date" },
+                        { data: "id", render: function (data) {
+                          return `<button type="button" class="btn btn-info open_history_modal" data-id="${data}">
+                                    @Localizer.Get("Click To See")
+                                  </button>`;
+                        } },
                         { data: "createdAt" },
                         { data: "id" },
                     ]
@@ -287,7 +296,43 @@ else
                     $("#ajax-datatable").css('display', 'none');
                 }
             });
-
+            
         });
+    
+        $(document).on("click", ".open_history_modal", function() {
+          $('.history_modal').modal('show');
+          
+          let fk_CompanyTripBooking = $(this).data('id');
+          
+          $.ajax({
+            url: '@Url.ActionLink("GetCompanyTripBookingHistoriesByFilters", "Services", new { area = "Dashboard" })',
+            method: 'post',
+            data: {
+                id: fk_CompanyTripBooking
+            },
+            success: function(data) {
+              let rows = '';
+              
+              if (data.length > 0) {
+                  data.forEach(row => {
+                        rows += `<tr>                           
+                                      <td>${row.id}</td>
+                                      <td>${row.companyTripBookingState.name}</td>
+                                      <td>${row.notes ?? "@Localizer.Get("Not Found")"}</td>
+                                 </tr>`;
+                    });
+              } else {
+                  rows = `<tr>
+                              <td class="text-center" colspan="3">
+                                <h2>@Localizer.Get("Not Found")</h2>
+                              </td>
+                            </tr>`;
+              }
+                
+              $('.history_table_body').html(rows);
+            }
+          });
+        });
+       
 </script>
 }

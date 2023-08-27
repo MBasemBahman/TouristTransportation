@@ -1177,4 +1177,10 @@
   <data name="CompanyTripAttachment" xml:space="preserve">
     <value>CompanyTrip Attachment</value>
   </data>
+  <data name="Histories" xml:space="preserve">
+    <value>Histories</value>
+  </data>
+  <data name="Booking History Table" xml:space="preserve">
+    <value>Booking History Table</value>
+  </data>
 </root>

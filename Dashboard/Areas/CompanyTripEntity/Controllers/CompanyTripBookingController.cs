@@ -128,6 +128,12 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
                 {
                     dataDB = await _unitOfWork.CompanyTrip.FindCompanyTripBookingById(id, trackChanges: true);
 
+                    _unitOfWork.CompanyTrip
+                            .UpdateCompanyTripBookingHistory(dataDB.Id, 
+                                dataDB.Fk_CompanyTripBookingState, 
+                                model.Fk_CompanyTripBookingState, 
+                                model.Notes);
+                    
                     _ = _mapper.Map(model, dataDB);
 
                     dataDB.LastModifiedBy = auth.UserName;

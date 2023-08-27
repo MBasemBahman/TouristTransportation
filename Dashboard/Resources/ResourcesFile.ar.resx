@@ -1215,4 +1215,10 @@
   <data name="CompanyTripAttachment" xml:space="preserve">
     <value>مرفقات الرحلة</value>
   </data>
+  <data name="Histories" xml:space="preserve">
+    <value>السجلات</value>
+  </data>
+  <data name="Booking History Table" xml:space="preserve">
+    <value>جدول سجلات الحجز</value>
+  </data>
 </root>

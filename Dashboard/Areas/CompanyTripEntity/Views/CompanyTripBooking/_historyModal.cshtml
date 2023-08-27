@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = Localizer.Get("History Modal");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.emptyLayout = true;
+
+}
+
+<div class="modal history_modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer.Get("Booking History Table")</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">@Localizer.Get("CompanyTripBookingState")</th>
+                      <th scope="col">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody class="history_table_body">
+                  </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Localizer.Get("Close")</button>
+            </div>
+        </div>
+    </div>
+</div>
