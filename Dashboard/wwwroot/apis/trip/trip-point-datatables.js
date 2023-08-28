@@ -377,7 +377,7 @@ let from_marker = new google.maps.Marker({
 
 // Update the latitude and longitude inputs when the marker is dragged
 google.maps.event.addListener(from_marker, 'dragend', function (event) {
-    var position = from_marker.getPosition();
+    let position = from_marker.getPosition();
     $('input[name=trip_point_from_latitude]').val(position.lat());
     $('input[name=trip_point_from_longitude]').val(position.lng());
 });
@@ -454,28 +454,28 @@ from_searchBox.addListener("places_changed", () => {
             from_bounds.extend(place.geometry.location);
         }
     });
-    map.fitBounds(from_bounds);
+    from_map.fitBounds(from_bounds);
 });
 // End::ADD Search Box
 
 /// to map
 
 // Initialize the map
-let map = new google.maps.Map(document.getElementById('to_map'), {
+let to_map = new google.maps.Map(document.getElementById('to_map'), {
     center: { lat: 31.189944140292372, lng: 31.189944140292372 }, // Set the initial center of the map
     zoom: 12 // Set the initial zoom level
 });
 
 // Add a marker to the map
-let marker = new google.maps.Marker({
-    map: map,
+let to_marker = new google.maps.Marker({
+    map: to_map,
     position: { lat: 31.189944140292372, lng: 31.189944140292372 }, // Set the initial position of the marker
     draggable: true // Allow the marker to be dragged
 });
 
 // Update the latitude and longitude inputs when the marker is dragged
-google.maps.event.addListener(marker, 'dragend', function (event) {
-    var position = marker.getPosition();
+google.maps.event.addListener(to_marker, 'dragend', function (event) {
+    let position = to_marker.getPosition();
     $('input[name=trip_point_to_latitude]').val(position.lat());
     $('input[name=trip_point_to_longitude]').val(position.lng());
 });
@@ -486,14 +486,14 @@ $('input[name=trip_point_to_latitude], input[name=trip_point_to_longitude]').on(
     let lng = parseFloat($('input[name=trip_point_to_longitude]').val()) || 0;
     let newPosition = new google.maps.LatLng(lat, lng);
 
-    marker.setPosition(newPosition);
-    map.panTo(newPosition);
+    to_marker.setPosition(newPosition);
+    to_map.panTo(newPosition);
 });
 
 
 // Start::ADD Search Box
-const input = document.getElementById("to_searchmapmodal");
-const searchBox = new google.maps.places.SearchBox(input);
+const to_input = document.getElementById("to_searchmapmodal");
+const to_searchBox = new google.maps.places.SearchBox(to_input);
 
 // Delay to wait for the search box container element to become available
 setTimeout(() => {
@@ -503,28 +503,28 @@ setTimeout(() => {
     }
 }, 1000);
 
-map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+to_map.controls[google.maps.ControlPosition.TOP_LEFT].push(to_input);
 // Bias the SearchBox results towards current map's viewport.
-map.addListener("bounds_changed", () => {
-    searchBox.setBounds(map.getBounds());
+to_map.addListener("bounds_changed", () => {
+    to_searchBox.setBounds(to_map.getBounds());
 });
 
-let markers = [];
+let to_markers = [];
 
 // Listen for the event fired when the user selects a prediction and retrieve
 // more details for that place.
-searchBox.addListener("places_changed", () => {
-    const places = searchBox.getPlaces();
+to_searchBox.addListener("places_changed", () => {
+    const places = to_searchBox.getPlaces();
 
     if (places.length == 0) {
         return;
     }
 
     // Clear out the old markers.
-    markers.forEach((marker) => {
+    to_markers.forEach((marker) => {
         marker.setMap(null);
     });
-    markers = [];
+    to_markers = [];
 
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
@@ -552,6 +552,6 @@ searchBox.addListener("places_changed", () => {
             bounds.extend(place.geometry.location);
         }
     });
-    map.fitBounds(bounds);
+    to_map.fitBounds(bounds);
 });
 // End::ADD Search Box
