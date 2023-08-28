@@ -91,41 +91,6 @@ namespace API.Areas.CompanyTripArea.Controllers
             return CompanyTripBookingDto;
         }
 
-        [HttpPut]
-        [Route(nameof(EditCompanyTripBooking))]
-        public async Task<CompanyTripBookingDto> EditCompanyTripBooking([FromQuery, BindRequired] int Id, [FromBody, BindRequired] CompanyTripBookingEditModel model)
-        {
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-
-            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            CompanyTripBooking companyTripBooking = await _unitOfWork.CompanyTrip.FindCompanyTripBookingById(Id, trackChanges: true);
-
-            if (model.Fk_CompanyTripBookingState != (int)CompanyTripBookingStateEnum.Canceled ||
-               auth.Fk_Account != companyTripBooking.Fk_Account)
-            {
-                throw new Exception("Not Allowed!");
-            }
-
-            _unitOfWork.CompanyTrip
-                           .UpdateCompanyTripBookingHistory(companyTripBooking.Id,
-                               companyTripBooking.Fk_CompanyTripBookingState,
-                               model.Fk_CompanyTripBookingState,
-                               model.Notes);
-
-            _ = _mapper.Map(model, companyTripBooking);
-
-            companyTripBooking.LastModifiedBy = auth.Name;
-
-            _unitOfWork.Save().Wait();
-
-            CompanyTripBookingModel CompanyTripBooking = _unitOfWork.CompanyTrip.GetCompanyTripBookingById(Id, language);
-
-            CompanyTripBookingDto CompanyTripBookingDto = _mapper.Map<CompanyTripBookingDto>(CompanyTripBooking);
-
-            return CompanyTripBookingDto;
-        }
-
         [HttpDelete]
         [Route(nameof(CancelCompanyTripBooking))]
         public async Task<CompanyTripBookingDto> CancelCompanyTripBooking([FromQuery, BindRequired] int Id)
