@@ -111,6 +111,7 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.TripState.TripStateLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.TripState.Name,
+                                      ColorCode = a.TripState.ColorCode
                                   },
                                   TripAt = a.TripAt,
                                   WaitingPrice = a.WaitingPrice,

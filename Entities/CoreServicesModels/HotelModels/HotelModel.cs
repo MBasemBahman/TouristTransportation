@@ -15,7 +15,7 @@ namespace Entities.CoreServicesModels.HotelModels
     public class HotelModel : AuditImageEntity
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+        [DisplayName($"{nameof(Name)}")]
         public string Name { get; set; }
 
         [DisplayName(nameof(BookingUrl))]
@@ -47,7 +47,7 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(AttachmentsCount))]
         public int AttachmentsCount { get; set; }
 
-        [DisplayName(nameof(AttachmentsCount))]
+        [DisplayName("HotelFeatures")]
         public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
     }
 

@@ -71,6 +71,12 @@ namespace Dashboard.Areas.PostEntity.Controllers
             PostDto data = _mapper.Map<PostDto>(_unitOfWork.Post
                                                            .GetPostById(id));
 
+            data.PostAttachments = _mapper.Map<List<PostAttachmentDto>>
+                (_unitOfWork.Post.GetPostAttachments(new PostAttachmentParameters
+                {
+                    Fk_Post = id
+                }).ToList());
+
             return View(data);
         }
 

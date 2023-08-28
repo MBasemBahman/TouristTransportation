@@ -20,4 +20,7 @@ public class HotelDto : HotelModel
 
     [DisplayName(nameof(LastModifiedAt))]
     public new string LastModifiedAt { get; set; }
+
+    [DisplayName(nameof(HotelAttachments))]
+    public List<HotelAttachmentDto> HotelAttachments { get; set; }
 }

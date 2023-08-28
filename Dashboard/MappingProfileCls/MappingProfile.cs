@@ -234,13 +234,17 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<CompanyTripLangModel, CompanyTripLang>();
 
             #endregion
-            
+
+            #region Company Trip Attachment
+            CreateMap<CompanyTripAttachmentModel, CompanyTripAttachmentDto>();
             #endregion
-            
+
+            #endregion
+
             #region Post Models
 
             #region Post
-            
+
             _ = CreateMap<Post, PostCreateOrEditModel>();
 
             _ = CreateMap<PostCreateOrEditModel, Post>();
@@ -482,6 +486,11 @@ namespace Dashboard.MappingProfileCls
             _ = CreateMap<HotelFeatureCategoryLang, HotelFeatureCategoryLangModel>();
 
             _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
+
+            #endregion
+
+            #region Hotel Attachment
+            _ = CreateMap<HotelAttachmentModel, HotelAttachmentDto>();
 
             #endregion
 

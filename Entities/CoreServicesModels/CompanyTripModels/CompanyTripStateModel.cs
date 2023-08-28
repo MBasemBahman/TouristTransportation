@@ -20,6 +20,10 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DisplayName(nameof(Name))]
         public string Name { get; set; }
 
+        [DisplayName(nameof(ColorCode))]
+        public string ColorCode { get; set; }
+
+
         public List<CompanyTripStateLangModel> CompanyTripStateLangs { get; set; }
     }
 

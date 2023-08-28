@@ -23,7 +23,7 @@
                         <label asp-for="Fk_Country" class="form-label"></label>
                         <select asp-for="Fk_Country" class="select2 form-select"
                                 asp-items="@(new SelectList(ViewData["Countries"] as Dictionary<string, string>, "Key", "Value"))">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("All")</option>
                         </select>
                         <span asp-validation-for="Fk_Country" class="text-danger"></span>
                     </div>
@@ -34,7 +34,7 @@
                         <label asp-for="Fk_Area" class="form-label"></label>
                         <select asp-for="Fk_Area" class="select2 form-select"
                                 asp-items="@(new SelectList(ViewData["Areas"] as Dictionary<string, string>, "Key", "Value"))">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("All")</option>
                         </select>
                         <span asp-validation-for="Fk_Area" class="text-danger"></span>
                     </div>

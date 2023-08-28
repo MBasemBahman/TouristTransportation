@@ -14,5 +14,8 @@ namespace Dashboard.Areas.PostEntity.Models
 
         [DisplayName(nameof(LastModifiedAt))]
         public new string LastModifiedAt { get; set; }
+
+        [DisplayName(nameof(PostAttachments))]
+        public new List<PostAttachmentDto> PostAttachments { get; set; }
     }
 }

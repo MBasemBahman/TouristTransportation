@@ -20,4 +20,7 @@ public class CompanyTripDto : CompanyTripModel
 
     [DisplayName(nameof(LastModifiedAt))]
     public new string LastModifiedAt { get; set; }
+
+    [DisplayName(nameof(CompanyTripAttachments))]
+    public List<CompanyTripAttachmentDto> CompanyTripAttachments { get; set; }
 }

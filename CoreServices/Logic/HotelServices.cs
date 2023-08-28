@@ -51,7 +51,13 @@ namespace CoreServices.Logic
                                   {
                                       Name = language != null ? a.Area.AreaLangs
                                           .Where(b => b.Language == language)
-                                          .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                          .Select(b => b.Name).FirstOrDefault() : a.Area.Name,
+                                      Country = new CountryModel
+                                      {
+                                          Name = language != null ? a.Area.Country.CountryLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.Area.Country.Name,
+                                      }
                                   } : null,
                                   
                                   HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures

@@ -3,29 +3,182 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.emptyLayout = true;
-    
+
 }
 
-<div class="card">
-    <div class="card-body">
-        <div class="info-container">
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("Post Details")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab-fill" data-bs-toggle="tab" href="#home-fill" role="tab" aria-controls="home-fill" aria-selected="true">
+                @Localizer.Get("Post Information")
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab-fill" data-bs-toggle="tab" href="#profile-fill" role="tab" aria-controls="profile-fill" aria-selected="false">
+                @Localizer.Get("Post Attachments Information")
+
+            </a>
+        </li>
+       
+    </ul>
+
+    <div class="tab-content pt-1">
+        <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill">
+            <div class="">
+                <img class="card-img-top" height="10" src="~/coverImg.png" alt="cover">
+                <!--/ profile cover photo -->
+                <div class="position-relative">
+                    <!-- profile picture -->
+                    <div class="profile-img-container d-flex align-items-center">
+                        <div class="profile-img border">
+                            <img height="150" width="100" src="@($"{(!string.IsNullOrEmpty(Model.Account.ImageUrl) ? Model.Account.ImageUrl : "/userImg.png")}")" class="rounded img-fluid" alt="">
+                        </div>
+                        <!-- profile title -->
+                        <div class="profile-title ms-3">
+                            <h2 class="text-dark">@Model.Account.User.Name</h2>
+                         
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr />
+
+    
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <span class="badge bg-success">@Html.DisplayNameFor(model => model.Content) </span>
+                </div>
+                <br />
+                @if (!string.IsNullOrEmpty(Model.Content))
+                {
+                    @Html.Raw(Model.Content)
+                }
+                else
+                {
+                    <p>@Localizer.Get("Not Found")</p>
+                }
+
+            </div>
             <div class="row">
-                
-                 <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
-                <div class="col-xl-6 col-12">
+                <div class="col-xl-12 col-12">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Content):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.Content</dd>
+
+
+
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.ReactionCount):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.ReactionCount</dd>
+
+
                     </dl>
                 </div>
 
-                <div class="col-xl-6 col-12">
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xl-7 col-12">
                     <dl class="row mb-0">
-                        @* <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.PostType):</dt> *@
-                        @* <dd class="col-sm-8 mb-1">@Model.PostType.Name</dd> *@
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
                     </dl>
                 </div>
+
+                <div class="col-xl-5 col-12">
+                    <dl class="row mb-0">
+
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedBy):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CreatedBy</dd>
+
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedBy):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.LastModifiedBy</dd>
+                    </dl>
+                </div>
+
             </div>
+
         </div>
+        <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
+
+            <div class="">
+                <div class="added-cards">
+                    @if (Model.PostAttachments != null && Model.PostAttachments.Any())
+                    {
+                        <div class="row">
+
+                            @foreach (var item in Model.PostAttachments)
+                            {
+                                <div class="col-md-6 col-xl-4" id="@item.Id">
+                                    <div class="mb-3">
+                                        <div style="height:50%">
+                                            @if (item.FileType.Contains("image"))
+                                            {
+                                                <img style="width:50%" class="card-img-top" src="@item.FileUrl" alt="Card image cap">
+                                            }
+                                            else if (item.FileType.Contains("pdf"))
+                                            {
+                                                <img style="width:50%" class="card-img-top" src="~/pdfIcon.png" alt="Card image cap">
+                                            }
+                                            else if (item.FileType.Contains("document"))
+                                            {
+                                                <img style="width:50%" class="card-img-top" src="~/wordIcon.png" alt="Card image cap">
+                                            }
+                                            else if (item.FileType.Contains("video"))
+                                            {
+                                                <img style="width:50%" class="card-img-top" src="~/vidoIcon.png" alt="Card image cap">
+                                            }
+                                            else
+                                            {
+                                                <img style="width:50%" class="card-img-top" src="~/fileIcon.png alt="Card image cap">
+                                            }
+                                        </div>
+                                        <div class="card-body" style="height:50%">
+                                            <h4 class="card-title">@item.CreatedAt</h4>
+                                            <p class="card-text">
+                                                <small class="text-muted">@Localizer.Get("FileName"): @item.FileName</small>
+                                            </p>
+                                            <p class="card-text">
+                                                <a href="@item.FileUrl" target="_blank" class="text-muted me-75">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-middle me-50"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                    <span class="align-middle">@Localizer.Get("Preview")</span>
+                                                </a>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+
+                        </div>
+                    }
+
+                    else
+                    {
+                        <p style="text-align:center">@Localizer.Get("Not Found")</p>
+
+                    }
+                </div>
+
+            </div>
+
+
+        </div>
+       
     </div>
+
+
+
 </div>
+

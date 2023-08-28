@@ -20,6 +20,8 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public string Name { get; set; }
 
+        [DisplayName(nameof(ColorCode))]
+        public string ColorCode { get; set; }
         public List<CompanyTripBookingStateLangModel> CompanyTripBookingStateLangs { get; set; }
     }
 

@@ -85,7 +85,7 @@
             <div class="mb-1">
                 <label class="form-label">@Localizer.Get("Country")</label>
                 <select name="Fk_Country" class="select2 form-select">
-                    <option value="">@Localizer.Get("Not Selected")</option>
+                    <option value="0">@Localizer.Get("Not Selected")</option>
                     @foreach (KeyValuePair<string, string> country in (Dictionary<string, string>)ViewData["Countries"])
                     {
                         <option value="@country.Key" selected="@(fk_Country.ToString() == country.Key)">@country.Value</option>
@@ -99,7 +99,7 @@
                 <label asp-for="Fk_Area" class="form-label"></label>
                 <select asp-for="Fk_Area" class="select2 form-select"
                         asp-items="@(new SelectList(ViewData["Areas"] as Dictionary<string, string>, "Key", "Value"))">
-                    <option value="">@Localizer.Get("Not Selected")</option>
+                    <option value="0">@Localizer.Get("Not Selected")</option>
                 </select>
                 <span asp-validation-for="Fk_Area" class="text-danger"></span>
             </div>
