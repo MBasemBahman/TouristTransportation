@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.AccountModels;
+﻿using System.Dynamic;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.TripModels;
@@ -45,6 +46,21 @@ namespace Dashboard.Areas.Dashboard.Controllers
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             return _unitOfWork.Trip.GetTripPointById(id, language);
+        }
+        
+        [HttpGet]
+        public ActionResult<dynamic> GetTripLocations(TripLocationParameters parameters)
+        {
+            dynamic result = new ExpandoObject();
+            
+            result.Locations = _unitOfWork.Trip.GetTripLocations(parameters, language: null).ToList();
+
+            result.Latest = _unitOfWork.Trip.GetLatestTripLocations(new TripLocationParameters
+            {
+                Fk_Trip = parameters.Fk_Trip
+            });
+
+            return Ok(result);
         }
     }
 }

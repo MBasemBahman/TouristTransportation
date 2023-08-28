@@ -388,6 +388,26 @@ namespace CoreServices.Logic
                               .Sort(parameters.OrderBy);
         }
 
+        public object GetLatestTripLocations(TripLocationParameters parameters)
+        {
+            return _repository.Trip.FindAll(new TripParameters(), trackChanges: false)
+                
+                .Select(a => new LatestTripLocationModel
+                {
+                    TripLocation = a.TripLocations
+                        .OrderByDescending(b => b.CreatedAt).Select(b => new TripLocationModel
+                        {
+                            Trip = new TripModel
+                            {
+                                Fk_TripState = b.Trip.Fk_TripState,
+                            },
+                            Latitude = b.Latitude,
+                            Longitude = b.Longitude,
+                            CreatedAt = b.CreatedAt
+                        }).FirstOrDefault()
+                }).ToList();
+        }
+        
         public async Task<PagedList<TripLocationModel>> GetTripLocationsPaged(
             TripLocationParameters parameters, DBModelsEnum.LanguageEnum? language)
         {

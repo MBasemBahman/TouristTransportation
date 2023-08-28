@@ -20,4 +20,9 @@
         [DisplayName(nameof(Longitude))]
         public decimal Longitude { get; set; }
     }
+    
+    public class LatestTripLocationModel
+    {
+        public TripLocationModel TripLocation { get; set; }
+    }
 }

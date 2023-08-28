@@ -5,69 +5,337 @@
     ViewBag.emptyLayout = true;
 }
 
-<div class="modal-header">
-    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("Trip")</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="card">
+    <div class="card-body">
+        <div class="info-container">
+            
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <input id="searchmap" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box" />
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="row">
+                <div class="col-xl-7 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Client):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Client?.User?.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Driver):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Driver?.User?.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripState):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.TripState.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripAt):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.TripAt</dd>
+                    </dl>
+                </div>
+                
+                <div class="col-xl-5 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Supplier):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Supplier?.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CarClass):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CarClass?.Name</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.Price</dd>
+                    </dl>
+                </div>
+               
+            </div>
+
+            <hr />
+            <div class="row">
+                <div class="col-xl-7 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedBy):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.CreatedBy</dd>
+                    </dl>
+                </div>
+                
+                <div class="col-xl-5 col-12">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
+                        
+                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedBy):</dt>
+                        <dd class="col-sm-8 mb-1">@Model.LastModifiedBy</dd>
+                    </dl>
+                </div>
+            
+            </div>
+            
+        </div>
+    </div>
 </div>
 
-<div class="modal-body">
-
-    <div class="row">
-        <div class="col-xl-7 col-12">
-            <dl class="row mb-0">
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Client):</dt>
-                <dd class="col-sm-8 mb-1">@Model.Client?.User?.Name</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Driver):</dt>
-                <dd class="col-sm-8 mb-1">@Model.Driver?.User?.Name</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripState):</dt>
-                <dd class="col-sm-8 mb-1">@Model.TripState.Name</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripAt):</dt>
-                <dd class="col-sm-8 mb-1">@Model.TripAt</dd>
-            </dl>
-        </div>
-        
-        <div class="col-xl-5 col-12">
-            <dl class="row mb-0">
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Supplier):</dt>
-                <dd class="col-sm-8 mb-1">@Model.Supplier?.Name</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CarClass):</dt>
-                <dd class="col-sm-8 mb-1">@Model.CarClass?.Name</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
-                <dd class="col-sm-8 mb-1">@Model.Price</dd>
-            </dl>
-        </div>
+@section styles
+{
+    @* <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet"> *@
+    @* <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script> *@
+    <style>
+       body { margin: 0; padding: 0; }
+       #map {
+         height: 400px !important;
+         width: 100% !important;
+       }
        
-    </div>
+       #searchmap {
+          background-color: #fff;
+           font-size: 15px;
+           margin-left: 12px;
+           padding: 0 11px 0 13px;
+           text-overflow: ellipsis;
+           width: 400px;
+       }
+       
+       .custom-marker-label {
+           padding-top: 40px; /* Adjust the value as needed */
+       }
+    </style>
+}
 
-    <hr />
-    <div class="row">
-        <div class="col-xl-7 col-12">
-            <dl class="row mb-0">
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
-                <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedBy):</dt>
-                <dd class="col-sm-8 mb-1">@Model.CreatedBy</dd>
-            </dl>
-        </div>
+
+@section scripts
+{
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsslSko4PJRCGEYl_fNYURzb3nMtKUyho&language=ar&callback=initMap&libraries=places&v=weekly">
+    </script>
+
+   <script>
+      let longitude = 31.192821579863768;
+      let latitude = 30.08172887947968;
+      let map;
+      let points = [];
+      let polyline; // Declare the polyline variable
+      let refreshInterval;
+      
+      $(document).on('click', '#searchBtn', function(e) {
+        e.preventDefault();
         
-        <div class="col-xl-5 col-12">
-            <dl class="row mb-0">
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
-                <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
-                
-                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedBy):</dt>
-                <dd class="col-sm-8 mb-1">@Model.LastModifiedBy</dd>
-            </dl>
-        </div>
+        refreshMap();
+        
+        clearInterval(refreshInterval);
+      });
+      
+      async function initMap() {
+        const { Map } = await google.maps.importLibrary("maps");
     
-    </div>
-
-
-</div>
-
+        // Initialize the map
+        map = new Map(document.getElementById("map"), {
+          center: { lat: latitude, lng: longitude },
+          zoom: 8,
+        });
+    
+        // Start::ADD Search Box
+        const input = document.getElementById("searchmap");
+        const searchBox = new google.maps.places.SearchBox(input);
+      
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener("bounds_changed", () => {
+          searchBox.setBounds(map.getBounds());
+        });
+      
+        let markers = [];
+      
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener("places_changed", () => {
+          const places = searchBox.getPlaces();
+      
+          if (places.length == 0) {
+            return;
+          }
+      
+          // Clear out the old markers.
+          markers.forEach((marker) => {
+            marker.setMap(null);
+          });
+          markers = [];
+      
+          // For each place, get the icon, name and location.
+          const bounds = new google.maps.LatLngBounds();
+      
+          places.forEach((place) => {
+            if (!place.geometry || !place.geometry.location) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+      
+            const icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25),
+            };
+      
+            // Create a marker for each place.
+            
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      // End::ADD Search Box
+        
+        // Call the refreshMap function initially to load the map
+        refreshMap();
+    
+        // Set the interval to refresh the map every 30 seconds
+        refreshInterval = setInterval(refreshMap, 30000);
+      }
+    
+      function refreshMap() {
+        // Clear existing points and polyline
+        points = [];
+        if (polyline) {
+          polyline.setMap(null);
+        }
+        
+        $.ajax({
+          url: '@Url.ActionLink("GetTripLocations", "Services", new {area = "Dashboard"})',
+          method: 'get',
+          data: {
+              fk_Trip: '@Model.Id',
+          },
+          success: function(data) {
+            data["Locations"].forEach(function(location) {
+              points.push({
+                lat: location.latitude,
+                lng: location.longitude
+              });
+            });
+    
+            // Connect the points with a polyline along the road
+            connectPoints();
+    
+            // Add a marker to the destination point
+            const lastPoint = points[points.length - 1];
+            
+            const lastPointMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(lastPoint.lat, lastPoint.lng),
+                map: map,
+                optimized: false,
+                label: {
+                    color: 'black',
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    fontFamily: "'Cairo', sans-serif",
+                    text: '@Html.Raw(Localizer.Get("Trip"))',
+                    className: 'custom-marker-label'
+                },
+            });
+          }
+        });
+      }
+    
+      function connectPoints() {
+            if (points.length > 1) {
+                const directionsService = new google.maps.DirectionsService();
+                const directionsRenderer = new google.maps.DirectionsRenderer({
+                    map: map,
+                    suppressMarkers: true,
+                    preserveViewport: true,
+                });
+    
+                const sets = [];
+                let currentSet = [];
+    
+                points.forEach((point, index) => {
+                    if (index > 0 && index < points.length - 1 && currentSet.length < 23) {
+                        currentSet.push({
+                        location: new google.maps.LatLng(point.lat, point.lng),
+                        stopover: false,
+                        });
+                    } else {
+                        sets.push(currentSet);
+                        currentSet = [
+                        {
+                            location: new google.maps.LatLng(point.lat, point.lng),
+                            stopover: false,
+                        },
+                        ];
+                    }
+                });
+    
+                sets.push(currentSet);
+    
+                const routePromises = sets.map((set) => {
+    
+                    if (set.length < 2) {
+                        return Promise.resolve(null);
+                    }
+    
+                    const origin = set[0].location;
+                    const destination = set[set.length - 1].location;
+                
+                    const waypoints = set.slice(1, set.length - 1).map((point) => ({
+                        location: point.location,
+                        stopover: false,
+                    }));
+    
+                    const request = {
+                        origin: origin,
+                        destination: destination,
+                        waypoints: waypoints,
+                        optimizeWaypoints: true,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    };
+    
+                    return new Promise((resolve) => {
+                        directionsService.route(request, function (result, status) {
+                        if (
+                            status === google.maps.DirectionsStatus.OK &&
+                            result.routes &&
+                            result.routes.length > 0
+                        ) {
+                            resolve(result.routes[0]);
+                        } else {
+                            resolve(null);
+                        }
+                        });
+                    });
+                });
+    
+                Promise.all(routePromises).then((routes) => {
+                const validRoutes = routes.filter((route) => route !== null);
+                if (validRoutes.length > 0) {
+                    const combinedPath = validRoutes.reduce(
+                    (path, route) => [...path, ...route.overview_path],
+                    []
+                    );
+                    polyline = new google.maps.Polyline({
+                    path: combinedPath,
+                    geodesic: true,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    });
+                    polyline.setMap(map);
+                }
+                });
+    
+                directionsRenderer.setMap(map);
+            }
+        }
+    
+    </script>
+    
+}
