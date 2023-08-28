@@ -55,8 +55,8 @@ namespace Repository.DBModels.HotelModels
             bool? isActive)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
-                                       (fk_Country == null || a.Area.Fk_Country == fk_Country) &&
-                                       (fk_Area == null || a.Fk_Area == fk_Area) &&
+                                       (fk_Country == null||fk_Country == 0 || a.Area.Fk_Country == fk_Country) &&
+                                       (fk_Area == null||fk_Area == 0 || a.Fk_Area == fk_Area) &&
                                        (isActive == null || a.IsActive == isActive));
         }
     }

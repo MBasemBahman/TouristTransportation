@@ -126,23 +126,23 @@
                             data: "account",
                             render: function (data, type, row) {
                                 console.log(data);
-                                if (row.imageUrl != null && row.imageUrl != '') {
+                                if (data.imageUrl != null && data.imageUrl != '') {
                                         
                                     return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
-                                        + '<img src="' + row.imageUrl + '"  height="32" width="32">'
+                                        + '<img src="' + data.imageUrl + '"  height="32" width="32">'
 
                                         + '</div></div>'
                                         + ' <div class= "d-flex flex-column">'
-                                        + '<a  href="/AccountEntity/Account/Profile/' + row.id + '" class= "user_name text-truncate">'
+                                        + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Account + '" class= "user_name text-truncate">'
                                         + '<span class= "fw-bolder">' + data.user.name + '</span> '
                                         + '<small class= "emp_post text-muted" ></small ></div></div>';
                                 } else {
-                                    return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
-                                        + '<img height="32" width="32">'
-            
+                                     return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                        + '<img src="/userImg.png"  height="32" width="32">'
+
                                         + '</div></div>'
                                         + ' <div class= "d-flex flex-column">'
-                                        + '<a  href="/AccountEntity/Account/Profile/' + row.id + '" class= "user_name text-truncate">'
+                                        + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Account + '" class= "user_name text-truncate">'
                                         + '<span class= "fw-bolder">' + data.user.name + '</span> '
                                         + '<small class= "emp_post text-muted" ></small ></div></div>';
                                 }

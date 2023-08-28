@@ -31,6 +31,7 @@ namespace CoreServices.Logic
                                   Name = language != null ? a.CompanyTripStateLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
@@ -185,6 +186,7 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.CompanyTripState.CompanyTripStateLangs
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripState.Name,
+                                      ColorCode = a.CompanyTripState.ColorCode
                                   },
                                   Price = a.Price,
                                   Notes = a.Notes,
@@ -271,6 +273,7 @@ namespace CoreServices.Logic
                                   Name = language != null ? a.CompanyTripBookingStateLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
+                                  ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
@@ -364,6 +367,7 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripBookingState.Name,
+                                      ColorCode = a.CompanyTripBookingState.ColorCode
                                   },
                                   Date = a.Date,
                                   CreatedAt = a.CreatedAt,
@@ -435,6 +439,7 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripBookingState.Name,
+                                      ColorCode = a.CompanyTripBookingState.ColorCode
                                   },
                                   Notes = a.Notes,
                                   CreatedAt = a.CreatedAt,

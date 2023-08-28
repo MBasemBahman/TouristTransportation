@@ -19,6 +19,8 @@ namespace Entities.CoreServicesModels.TripModels
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public string Name { get; set; }
+        [DisplayName(nameof(ColorCode))]
+        public string ColorCode { get; set; }
 
         public List<TripStateLangModel> TripStateLangs { get; set; }
     }

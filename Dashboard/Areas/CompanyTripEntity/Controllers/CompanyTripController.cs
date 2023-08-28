@@ -43,10 +43,27 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
             SetViewData(id: 0);
-            
+
             return View(filter);
         }
-        
+
+        public IActionResult Details(int id)
+        {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            CompanyTripDto data = _mapper.Map<CompanyTripDto>(_unitOfWork.CompanyTrip
+                .GetCompanyTripById(id, otherLang));
+
+           
+
+            data.CompanyTripAttachments = _mapper.Map<List<CompanyTripAttachmentDto>>
+                (_unitOfWork.CompanyTrip.GetCompanyTripAttachments(new CompanyTripAttachmentParameters
+                {
+                    Fk_CompanyTrip = id
+                }, language: null).ToList());
+            return View(data);
+        }
+
         public IActionResult Profile(int id, int returnItem = (int)CompanyTripProfileItems.Details)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
@@ -57,7 +74,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             ViewData["otherLang"] = otherLang;
 
             ViewData["returnItem"] = returnItem;
-            
+
             return View(data);
         }
 
@@ -84,20 +101,12 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
 
-        public IActionResult Details(int id)
-        {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            CompanyTripDto data = _mapper.Map<CompanyTripDto>(_unitOfWork.CompanyTrip.GetCompanyTripById(id, otherLang));
-
-            return View(data);
-        }
 
         [Authorize(DashboardViewEnum.CompanyTrip, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
+
             CompanyTripCreateOrEditModel model = new();
 
             if (id > 0)
@@ -106,13 +115,13 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
                 model = _mapper.Map<CompanyTripCreateOrEditModel>(dataDB);
 
                 model.ImageUrl = dataDB.StorageUrl + dataDB.ImageUrl;
-                
+
                 #region Check for new Languages
 
                 foreach (LanguageEnum language in Enum.GetValues(typeof(LanguageEnum)))
                 {
                     model.CompanyTripLangs ??= new List<CompanyTripLangModel>();
-                
+
                     if (model.CompanyTripLangs.All(a => a.Language != language))
                     {
                         model.CompanyTripLangs.Add(new CompanyTripLangModel
@@ -168,7 +177,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
                     dataDB.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, imageFile);
                     dataDB.StorageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
                 }
-                
+
                 await _unitOfWork.Save();
 
                 return Ok(new CompanyTripModel
@@ -206,7 +215,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
         private void SetViewData(int id)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-            
+
             ViewData["id"] = id;
             ViewData["CompanyTripStates"] = _unitOfWork.CompanyTrip.GetCompanyTripStatesLookUp(new CompanyTripStateParameters(), otherLang);
         }

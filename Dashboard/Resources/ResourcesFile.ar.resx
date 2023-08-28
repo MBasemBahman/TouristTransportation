@@ -1221,4 +1221,28 @@
   <data name="Booking History Table" xml:space="preserve">
     <value>جدول سجلات الحجز</value>
   </data>
+  <data name="Hotel Details" xml:space="preserve">
+    <value>تفاصيل الفندق</value>
+  </data>
+  <data name="Not Selected" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>نشط</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>غير نشط</value>
+  </data>
+  <data name="Open link" xml:space="preserve">
+    <value>فتح الرابط</value>
+  </data>
+  <data name="Post Details" xml:space="preserve">
+    <value>بيانات المنشور</value>
+  </data>
+  <data name="ReactionCount" xml:space="preserve">
+    <value>عدد التفاعلات</value>
+  </data>
+  <data name="Company Trip Details" xml:space="preserve">
+    <value>تفاصيل الرحلة اليومية</value>
+  </data>
 </root>

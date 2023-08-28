@@ -205,7 +205,7 @@ else
                         {
                             data: "user",
                             render: function (data, type, row) {
-                                if (row.imageUrl != null) {
+                                if (row.imageUrl != null && row.imageUrl != '') {
                                     return '<a href="/AccountEntity/Account/Profile/' + row.id +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
                                         + '<img src="' + row.imageUrl + '"  height="32" width="32">'
                                         
@@ -215,9 +215,10 @@ else
                                         + '<small class= "emp_post text-muted" ></small ></div></div></a>';
                                 }
                                 else {
-                                    return '<a href="/AccountEntity/Account/Profile/' + row.id +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" >'
-                                        + '<div class="avatar  bg-light-dark  me-1"><span class="avatar-content"></span></div>'
-                                        + '</div>'
+                                    return '<a href="/AccountEntity/Account/Profile/' + row.id + '"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                        + '<img src="/userImg.png"  height="32" width="32">'
+
+                                        + '</div></div>'
                                         + ' <div class= "d-flex flex-column">'
                                         + '<span class= "fw-bolder">' + data.name + '</span> '
                                         + '<small class= "emp_post text-muted" ></small ></div></div></a>';

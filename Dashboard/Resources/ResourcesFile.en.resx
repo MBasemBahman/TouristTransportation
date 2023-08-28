@@ -1183,4 +1183,28 @@
   <data name="Booking History Table" xml:space="preserve">
     <value>Booking History Table</value>
   </data>
+  <data name="Hotel Details" xml:space="preserve">
+    <value>Hotel Details</value>
+  </data>
+  <data name="Not Selected" xml:space="preserve">
+    <value>Not Selected</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>InActive</value>
+  </data>
+  <data name="Open link" xml:space="preserve">
+    <value>Open link</value>
+  </data>
+  <data name="Post Details" xml:space="preserve">
+    <value>Post Details</value>
+  </data>
+  <data name="ReactionCount" xml:space="preserve">
+    <value>Reaction Count</value>
+  </data>
+  <data name="Company Trip Details" xml:space="preserve">
+    <value>Company Trip Details</value>
+  </data>
 </root>

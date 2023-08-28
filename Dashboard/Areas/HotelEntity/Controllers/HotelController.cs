@@ -76,6 +76,12 @@ namespace Dashboard.Areas.HotelEntity.Controllers
 
             HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotelById(id, otherLang));
 
+            data.HotelAttachments = _mapper.Map<List<HotelAttachmentDto>>
+                (_unitOfWork.Hotel.GetHotelAttachments(new HotelAttachmentParameters
+                {
+                    Fk_Hotel = id
+                },language:null).ToList());
+
             return View(data);
         }
 
@@ -143,6 +149,7 @@ namespace Dashboard.Areas.HotelEntity.Controllers
             }
             try
             {
+                model.Fk_Area = model.Fk_Area > 0 ? model.Fk_Area : null;
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
                 Hotel dataDB = new();
                 if (id == 0)
