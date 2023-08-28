@@ -1,0 +1,114 @@
+﻿@using Entities.EnumData
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TripCreateOrEditModel
+
+@{
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Trip Information")</h5>
+    <small class="text-muted">@Localizer.Get("Trip Information Description")</small>
+</div>
+
+<form class="trip_form" asp-action="CreateOrEditWizard" asp-controller="Trip" enctype="multipart/form-data">
+    <div class="row">
+        <div class="text-danger trip_error_div"></div>
+        <input type="hidden" asp-for="@id" />
+        <hr />
+        
+        <hr />
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_Supplier" class="form-label"></label>
+                <select asp-for="Fk_Supplier" class="select2 form-select" asp-items="@(new SelectList(ViewData["Suppliers"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_Supplier" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_Driver" class="form-label"></label>
+                <select asp-for="Fk_Driver" class="select2 form-select" asp-items="@(new SelectList(ViewData["Drivers"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_Driver" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_Client" class="form-label"></label>
+                <select asp-for="Fk_Client" class="select2 form-select" asp-items="@(new SelectList(ViewData["Clients"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_Client" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Fk_TripState" class="form-label"></label>
+                <select asp-for="Fk_TripState" class="select2 form-select" asp-items="@(new SelectList(ViewData["TripStates"] as Dictionary<string, string>, "Key", "Value"))">
+                    <option value="">@Localizer.Get("Not Selected")</option>
+                </select>
+                <span asp-validation-for="Fk_TripState" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="TripAt" class="form-label"></label>
+                <input type="date" asp-for="TripAt" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("TripAt")" />
+                <span asp-validation-for="TripAt" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="Price" class="form-label"></label>
+                <input type="text" asp-for="Price" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("Price")" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="WaitingPrice" class="form-label"></label>
+                <input type="text" asp-for="WaitingPrice" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("WaitingPrice")" />
+                <span asp-validation-for="WaitingPrice" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-12">
+            <div class="mb-1">
+                <label asp-for="MembersCount" class="form-label"></label>
+                <input type="text" asp-for="MembersCount" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("MembersCount")" />
+                <span asp-validation-for="MembersCount" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12 col-12">
+            <div class="mb-1">
+                <label asp-for="Notes" class="form-label"></label>
+                <textarea asp-for="Notes" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("Notes")"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="divider"><div class="divider-text"><i data-feather="check"></i></div></div>
+    </div>
+</form>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-outline-secondary btn-prev" disabled>
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button type="button" class="btn btn-primary btn-next trip_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Next")</span>
+        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+    </button>
+</div>

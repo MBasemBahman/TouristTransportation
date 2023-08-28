@@ -1,0 +1,144 @@
+﻿@using Entities.EnumData
+@model TripCreateOrEditModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("Trip")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.useForm = true;
+    ViewBag.useFormRepeater = true;
+    ViewBag.useCustomDatatable = true;
+    ViewBag.useImageUploud = true;
+    ViewBag.useWizard = true;
+    ViewBag.useLoader = true;
+    ViewBag.useModels = true;
+    
+    int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+}
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/TripEntity/Trip/Index">@Localizer.Get("Trips")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+                    <section class="horizontal-wizard">
+                        <div class="bs-stepper horizontal-wizard-example">
+                            <div class="bs-stepper-header" role="tablist">
+                                <div class="step" data-target="#trip-details" role="tab" id="trip-details-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">1</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("Trip Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("Trip Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="line">
+                                    <i data-feather="chevron-right" class="font-medium-2"></i>
+                                </div>
+                                
+                                <div class="step" data-target="#trip-points" role="tab" id="trip-points-trigger">
+                                    <button type="button" class="step-trigger">
+                                        <span class="bs-stepper-box">2</span>
+                                        <span class="bs-stepper-label">
+                                            <span class="bs-stepper-title">@Localizer.Get("Trip Points Information")</span>
+                                            <span class="bs-stepper-subtitle">@Localizer.Get("Trip Points Information Description")</span>
+                                        </span>
+                                    </button>
+                                </div>
+                           
+                                
+                            </div>
+                            <div class="bs-stepper-content">
+                                <div id="trip-details" class="content" role="tabpanel" aria-labelledby="trip-details-trigger">
+                                    @await Html.PartialAsync("TripForm/TripDetails", Model)
+                                </div>
+
+                                <div id="trip-points" class="content" role="tabpanel" aria-labelledby="trip-points-trigger">
+                                    @await Html.PartialAsync("TripForm/TripPoints", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+    </div>
+</div>
+<!-- END: Content-->
+
+@section styles
+{
+    <style>
+        #from_map, #to_map {
+          height: 350px !important;
+          width: 100% !important;
+        }
+        
+        #from_searchmapmodal, #to_searchmapmodal {
+            background-color: #fff;
+             font-size: 15px;
+             margin-left: 12px;
+             padding: 0 11px 0 13px;
+             text-overflow: ellipsis;
+             width: 400px;
+         }
+    </style>
+}
+
+@section scripts
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsslSko4PJRCGEYl_fNYURzb3nMtKUyho&libraries=places"></script>
+    
+    <script src="~/apis/site.js"></script>
+    <script src="~/apis/trip/trip.js"></script>
+    <script src="~/apis/trip/trip-point-datatables.js"></script>
+
+    <script>
+        // First Step
+        $(document).on("click", ".trip_submit_btn", function(e) {
+          e.preventDefault();
+          
+          let tripForm = $('.trip_form')[0];
+          let tripFormData = new FormData(tripForm);
+          
+          setTimeout(function() {
+            $(".dataTables_scrollHeadInner").removeAttr('style');
+            $('.trip-points-datatables').DataTable().draw();
+          }, 500);
+          
+          saveTrip(tripFormData, $(".trip_error_div"));
+        });
+        
+        // First Step
+        $(document).on("click", ".trip_points_submit_btn", function(e) {
+          e.preventDefault();
+          
+          window.location.href = "@Url.ActionLink("Index", "Trip", new { area = "TripEntity" })";
+        });
+        
+        // Other Logic
+        $(document).on('change', '#Fk_Supplier', function() {
+          getAccounts($('#Fk_Driver'), '@((int)DBModelsEnum.AccountTypeEnum.Driver)', false);
+        });
+        
+    </script>
+}

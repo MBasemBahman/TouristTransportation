@@ -1,6 +1,7 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CompanyTripModels;
 using Entities.CoreServicesModels.MainDataModels;
+using Entities.CoreServicesModels.TripModels;
 
 namespace Dashboard.Areas.Dashboard.Controllers
 {
@@ -37,6 +38,13 @@ namespace Dashboard.Areas.Dashboard.Controllers
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             return _unitOfWork.CompanyTrip.GetCompanyTripBookingHistories(parameters, otherLang).ToList();
+        }
+
+        public ActionResult<TripPointModel> GetTripPointById(int id)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
+            return _unitOfWork.Trip.GetTripPointById(id, language);
         }
     }
 }

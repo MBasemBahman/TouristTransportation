@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/vendors@(rtl).min.css">
 <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/font-awesome/css/font-awesome.min.css">
 
-@if (ViewBag.useDatatable != null && ViewBag.useDatatable)
+@if ((ViewBag.useDatatable != null && ViewBag.useDatatable) || (ViewBag.useCustomDatatable != null && ViewBag.useCustomDatatable))
 {
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
@@ -47,7 +47,7 @@
 <link rel="stylesheet" type="text/css" href="~/app-assets/css@(rtl)/themes/bordered-layout.min.css">
 <link rel="stylesheet" type="text/css" href="~/app-assets/css@(rtl)/themes/semi-dark-layout.min.css">
 
-@if (ViewBag.useDatatable != null && ViewBag.useDatatable)
+@if ((ViewBag.useDatatable != null && ViewBag.useDatatable) || (ViewBag.useCustomDatatable != null && ViewBag.useCustomDatatable))
 {
     <link rel="stylesheet" type="text/css" href="~/assets/css/table-datatables.css">
 }

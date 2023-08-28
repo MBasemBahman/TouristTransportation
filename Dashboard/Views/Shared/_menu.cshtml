@@ -93,9 +93,23 @@
                         <a class="d-flex align-items-center"
                    asp-action="Index" asp-area="CompanyTripEntity"
                    asp-controller="CompanyTrip">
-                            <i data-feather='sunrise'></i>
+                            <i data-feather='zap'></i>
                             <span class="menu-title text-truncate">
                                 @Localizer.Get("CompanyTrips")
+                            </span>
+                        </a>
+                    </li>
+                }
+            
+            @if (viewList.Contains((int)DashboardViewEnum.Trip))
+                {
+                    <li class="@(active == DashboardViewEnum.Trip.ToString() ? "active" : "") nav-item">
+                        <a class="d-flex align-items-center"
+                   asp-action="Index" asp-area="TripEntity"
+                   asp-controller="Trip">
+                            <i data-feather='sunrise'></i>
+                            <span class="menu-title text-truncate">
+                                @Localizer.Get("Trips")
                             </span>
                         </a>
                     </li>

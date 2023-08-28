@@ -143,6 +143,34 @@ namespace Dashboard.MappingProfileCls
             #endregion
             #endregion
 
+            #region Trip
+            
+            #region Trip
+            
+            _ = CreateMap<Trip, TripCreateOrEditModel>();
+
+            _ = CreateMap<TripCreateOrEditModel, Trip>();
+
+            _ = CreateMap<TripModel, TripDto>();
+
+            _ = CreateMap<TripFilter, TripParameters>();
+            
+            #endregion
+            
+            #region TripPoint
+            
+            _ = CreateMap<TripPoint, TripPointCreateOrEditModel>();
+
+            _ = CreateMap<TripPointCreateOrEditModel, TripPoint>();
+
+            _ = CreateMap<TripPointModel, TripPointDto>();
+
+            _ = CreateMap<TripPointFilter, TripPointParameters>();
+            
+            #endregion
+            
+            #endregion
+            
             #region CompanyTrip
 
             #region CompanyTripState Models

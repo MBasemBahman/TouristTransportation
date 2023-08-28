@@ -1221,4 +1221,67 @@
   <data name="Booking History Table" xml:space="preserve">
     <value>جدول سجلات الحجز</value>
   </data>
+  <data name="Not Selected" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+  <data name="Add New Trip Point" xml:space="preserve">
+    <value>اضف نقطة رحلة جديدة</value>
+  </data>
+  <data name="Trips" xml:space="preserve">
+    <value>الرحلات</value>
+  </data>
+  <data name="Trip" xml:space="preserve">
+    <value>رحلة</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>سائق</value>
+  </data>
+  <data name="TripAt" xml:space="preserve">
+    <value>تاريخ الرحلة</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>العميل</value>
+  </data>
+  <data name="Trip Information" xml:space="preserve">
+    <value>بيانات الرحلة</value>
+  </data>
+  <data name="Trip Information Description" xml:space="preserve">
+    <value>البيانات الاساسية للرحلة</value>
+  </data>
+  <data name="Fk_Client" xml:space="preserve">
+    <value>العميل</value>
+  </data>
+  <data name="WaitingPrice" xml:space="preserve">
+    <value>سعر الانتظار</value>
+  </data>
+  <data name="Fk_Driver" xml:space="preserve">
+    <value>السائق</value>
+  </data>
+  <data name="Trip Points Information" xml:space="preserve">
+    <value>بيانات نقاط الرحلة</value>
+  </data>
+  <data name="Trip Points Information Description" xml:space="preserve">
+    <value>البيانات الاساسية لنقاط الرحلة</value>
+  </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>وقت الانتظار</value>
+  </data>
+  <data name="TripPoint" xml:space="preserve">
+    <value>نقطة رحلة</value>
+  </data>
+  <data name="LeaveAt" xml:space="preserve">
+    <value>تاريخ الرحيل</value>
+  </data>
+  <data name="In Minutes" xml:space="preserve">
+    <value>بالدقائق</value>
+  </data>
+  <data name="Trip Point Info" xml:space="preserve">
+    <value>بيانات نقطة الرحلة</value>
+  </data>
+  <data name="Save changes" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="Trip Points" xml:space="preserve">
+    <value>نقاط الرحلة</value>
+  </data>
 </root>

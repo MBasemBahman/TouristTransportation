@@ -165,6 +165,11 @@ namespace CoreServices.Logic
             return await PagedList<TripModel>.ToPagedList(GetTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public Dictionary<string, string> GetTripStatesLookUp(TripStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetTripStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+        
         public async Task<PagedList<TripModel>> GetTripsPaged(
           IQueryable<TripModel> data,
          TripParameters parameters)

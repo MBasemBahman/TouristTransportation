@@ -1,0 +1,60 @@
+﻿@model TripPointDto
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.emptyLayout = true;
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalScrollableTitle">@Localizer.Get("TripPoint")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.WaitingTime):</dt>
+                <dd class="col-sm-8 mb-1">@Model.WaitingTime</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.FromLatitude):</dt>
+                <dd class="col-sm-8 mb-1">@Model.FromLatitude</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.FromLongitude):</dt>
+                <dd class="col-sm-8 mb-1">@Model.FromLongitude</dd>
+
+            </dl>
+        </div>
+        
+        <div class="col-xl-5 col-12">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
+                <dd class="col-sm-8 mb-1">@Model.Price</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.ToLatitude):</dt>
+                <dd class="col-sm-8 mb-1">@Model.ToLatitude</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.ToLongitude):</dt>
+                <dd class="col-sm-8 mb-1">@Model.ToLongitude</dd>
+            </dl>
+        </div>
+       
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-xl-7 col-12">
+            <dl class="row mb-0">
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+                <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+                
+                <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.LastModifiedAt):</dt>
+                <dd class="col-sm-8 mb-1">@Model.LastModifiedAt</dd>
+            </dl>
+        </div>
+    
+    </div>
+
+
+</div>
+

@@ -121,6 +121,11 @@ namespace CoreServices.Logic
             return await PagedList<CarClassModel>.ToPagedList(GetCarClasses(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public Dictionary<string, string> GetCarClassesLookUp(CarClassParameters parameters, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetCarClasses(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
+        }
+        
         public async Task<PagedList<CarClassModel>> GetCarClassesPaged(
           IQueryable<CarClassModel> data,
          CarClassParameters parameters)

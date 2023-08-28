@@ -1,0 +1,157 @@
+﻿@using Dashboard.Areas.AccountEntity.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TripCreateOrEditModel
+
+@{
+    var row = new TripPointDto();
+}
+
+<div class="content-header">
+    <h5 class="mb-0">@Localizer.Get("Trip Points Information")</h5>
+    <small>@Localizer.Get("Trip Points Information Description")</small>
+    <hr/>
+    
+    <a href="#" target="_blank" class="btn btn-primary add_trip_point_btn" data-bs-toggle="modal" data-bs-target="#add-new-trip-point-modal">
+        <i class="fa fa-plus"></i> 
+        @Localizer.Get("Add New Trip Point")
+    </a>
+    
+    <hr/>
+
+</div>
+<hr/>
+<section id="trip-points-ajax-datatable">
+    <table class="trip-points-datatables datatables-ajax table table-responsive table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => row.Id)
+                    
+                    <a id="details-trip-point" asp-action="Details" asp-controller="TripPoint" asp-area="TripEntity">
+                    </a>
+
+                    <a id="edit-trip-point" href="#">
+                    </a>
+
+                    <a id="delete-trip-point" asp-action="Delete" asp-controller="TripPoint" asp-area="TripEntity">
+                    </a>
+
+                </th>
+                <th>@Html.DisplayNameFor(model => row.Price)</th>
+                <th>@Html.DisplayNameFor(model => row.WaitingTime)</th>
+                <th>@Html.DisplayNameFor(model => row.TripAt)</th>
+                <th>@Html.DisplayNameFor(model => row.LeaveAt)</th>
+                <th>
+                    @Html.DisplayNameFor(model => row.Id)
+                </th>
+            </tr>
+        </thead>
+    </table>
+</section>
+
+
+<!-- add new trip_point -->
+<div class="modal fade text-start" id="add-new-trip-point-modal" tabindex="-1" aria-labelledby="add-new-trip_point-modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel110">@Localizer.Get("Trip Point Info") </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="trip_point_form" action="#" method="post">
+                    <div class="row">
+                        <div class="text-danger trip_point_error_div"></div>
+
+                        <input type="hidden" name="trip_point_id" value="0" />
+
+                        <div class="col-md-6 col-12 trip_point_from_latitude_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("FromLatitude")</label>
+                                <input name="trip_point_from_latitude" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("FromLatitude"))" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12 trip_point_from_longitude_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("FromLongitude")</label>
+                                <input name="trip_point_from_longitude" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("FromLongitude"))" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-12">
+                            <input id="from_searchmapmodal" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box" />
+                            <div id="from_map"></div>
+                        </div>
+                        
+                        <br/>
+                        <hr/>
+                        
+                        <div class="col-md-6 col-12 trip_point_to_latitude_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ToLatitude")</label>
+                                <input name="trip_point_to_latitude" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ToLatitude"))" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12 trip_point_to_longitude_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ToLongitude")</label>
+                                <input name="trip_point_to_longitude" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ToLongitude"))" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-12">
+                            <input id="to_searchmapmodal" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box" />
+                            <div id="to_map"></div>
+                        </div>
+
+                        <div class="col-md-6 col-12 trip_point_price_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("Price")</label>
+                                <input name="trip_point_price" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Price"))" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12 trip_point_trip_at_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("TripAt")</label>
+                                <input type="date" name="trip_point_trip_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TripAt"))" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12 trip_point_leave_at_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("LeaveAt")</label>
+                                <input type="date" name="trip_point_leave_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LeaveAt"))" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12 trip_point_waiting_time_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("WaitingTime") @Localizer.Get("In Minutes")</label>
+                                <input type="text" name="trip_point_waiting_time" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WaitingTime"))" />
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submit_trip_point_modal">@Localizer.Get("Save changes")</button>
+                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">@Localizer.Get("Close")</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add new trip_point end -->
+
+<div class="d-flex justify-content-between">
+    <button class="btn btn-primary btn-prev">
+        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Previous")</span>
+    </button>
+    <button class="btn btn-success btn-next trip_points_submit_btn">
+        <span class="align-middle d-sm-inline-block d-none">@Localizer.Get("Submit")</span>
+    </button>
+</div>

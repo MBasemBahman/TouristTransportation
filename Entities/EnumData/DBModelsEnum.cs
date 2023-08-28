@@ -49,7 +49,9 @@
             CompanyTrip = 30,
             CompanyTripAttachment = 31,
             CompanyTripBooking = 32,
-            CompanyTripBookingState = 33
+            CompanyTripBookingState = 33,
+            Trip = 34,
+            TripPoint = 35
         }
 
         public enum AccountProfileItems
@@ -62,6 +64,12 @@
             Details = 1,
             Attachments = 2,
             CompanyTripBooking = 3
+        }
+        
+        public enum TripProfileItems
+        {
+            Details = 1,
+            TripPoints = 2,
         }
 
         public enum ReactionEnum
@@ -109,6 +117,8 @@
             Booked = 3,
             Canceled = 4,
         }
+        
+        
 
         public enum TripStateEnum
         {

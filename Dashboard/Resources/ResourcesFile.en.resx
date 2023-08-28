@@ -1183,4 +1183,67 @@
   <data name="Booking History Table" xml:space="preserve">
     <value>Booking History Table</value>
   </data>
+  <data name="Not Selected" xml:space="preserve">
+    <value>Not Selected</value>
+  </data>
+  <data name="Add New Trip Point" xml:space="preserve">
+    <value>Add New Trip Point</value>
+  </data>
+  <data name="Trips" xml:space="preserve">
+    <value>Trips</value>
+  </data>
+  <data name="Trip" xml:space="preserve">
+    <value>Trip</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>Driver</value>
+  </data>
+  <data name="TripAt" xml:space="preserve">
+    <value>Trip At</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Trip Information" xml:space="preserve">
+    <value>Trip Information</value>
+  </data>
+  <data name="Trip Information Description" xml:space="preserve">
+    <value>Trip Information Description</value>
+  </data>
+  <data name="Fk_Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="WaitingPrice" xml:space="preserve">
+    <value>Waiting Price</value>
+  </data>
+  <data name="Fk_Driver" xml:space="preserve">
+    <value>Driver</value>
+  </data>
+  <data name="Trip Points Information" xml:space="preserve">
+    <value>Trip Points Information</value>
+  </data>
+  <data name="Trip Points Information Description" xml:space="preserve">
+    <value>Trip Points Information Description</value>
+  </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>Waiting Time</value>
+  </data>
+  <data name="TripPoint" xml:space="preserve">
+    <value>Trip Point</value>
+  </data>
+  <data name="LeaveAt" xml:space="preserve">
+    <value>Leave At</value>
+  </data>
+  <data name="In Minutes" xml:space="preserve">
+    <value>In Minutes</value>
+  </data>
+  <data name="Trip Point Info" xml:space="preserve">
+    <value>Trip Point Info</value>
+  </data>
+  <data name="Save changes" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Trip Points" xml:space="preserve">
+    <value>Trip Points</value>
+  </data>
 </root>
