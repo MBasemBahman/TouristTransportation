@@ -8,15 +8,15 @@ namespace Dashboard.Areas.TripEntity.Models
         public int Id { get; set; }
         
         public int Fk_Account { get; set; }
-        [DisplayName(nameof(Fk_Client))]
+        [DisplayName("Client")]
         public int Fk_Client { get; set; }
-        [DisplayName(nameof(Fk_Supplier))]
+        [DisplayName("Supplier")]
         public int? Fk_Supplier { get; set; }
-        [DisplayName(nameof(Fk_Driver))]
+        [DisplayName("Driver")]
         public int? Fk_Driver { get; set; }
-        [DisplayName(nameof(Fk_CarClass))]
+        [DisplayName("CarClass")]
         public int? Fk_CarClass { get; set; }
-        [DisplayName(nameof(Fk_TripState))]
+        [DisplayName("TripState")]
         public int? Fk_TripState { get; set; }
     }
 

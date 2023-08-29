@@ -47,10 +47,10 @@ namespace Repository.DBModels.TripModels
             return accounts.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_Account == 0 || a.Fk_Client == fk_Account || a.Fk_Driver == fk_Account) &&
                                        (fk_Client == 0 || a.Fk_Client == fk_Client) &&
-                                       (fk_Supplier == null || a.Fk_Supplier == fk_Supplier) &&
-                                       (fk_Driver == null || a.Fk_Driver == fk_Driver) &&
-                                       (fk_CarClass == null || a.Fk_CarClass == fk_CarClass) &&
-                                       (fk_TripState == null || a.Fk_TripState == fk_TripState));
+                                       (fk_Supplier == null||fk_Supplier == 0 || a.Fk_Supplier == fk_Supplier) &&
+                                       (fk_Driver == null||fk_Driver == 0 || a.Fk_Driver == fk_Driver) &&
+                                       (fk_CarClass == null||fk_CarClass == 0 || a.Fk_CarClass == fk_CarClass) &&
+                                       (fk_TripState == null||fk_TripState == 0 || a.Fk_TripState == fk_TripState));
         }
     }
 }

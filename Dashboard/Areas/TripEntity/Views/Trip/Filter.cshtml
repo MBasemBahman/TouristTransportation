@@ -22,7 +22,7 @@
                         <label asp-for="Fk_Supplier" class="form-label"></label>
                         <select asp-for="Fk_Supplier" class="select2 form-select"
                                 asp-items="@(new SelectList(ViewData["Suppliers"] as Dictionary<string, string>, "Key", "Value"))">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("Not Selected")</option>
                         </select>
                         <span asp-validation-for="Fk_Supplier" class="text-danger"></span>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="mb-1">
                         <label asp-for="Fk_Driver" class="form-label"></label>
                         <select asp-for="Fk_Driver" class="select2 form-select">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("Not Selected")</option>
                         </select>
                         <span asp-validation-for="Fk_Driver" class="text-danger"></span>
                     </div>
@@ -43,7 +43,7 @@
                         <label asp-for="Fk_CarClass" class="form-label"></label>
                         <select asp-for="Fk_CarClass" class="select2 form-select"
                                 asp-items="@(new SelectList(ViewData["CarClasses"] as Dictionary<string, string>, "Key", "Value"))">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("Not Selected")</option>
                         </select>
                         <span asp-validation-for="Fk_CarClass" class="text-danger"></span>
                     </div>
@@ -54,7 +54,7 @@
                         <label asp-for="Fk_TripState" class="form-label"></label>
                         <select asp-for="Fk_TripState" class="select2 form-select"
                                 asp-items="@(new SelectList(ViewData["TripStates"] as Dictionary<string, string>, "Key", "Value"))">
-                            <option value="">@Localizer.Get("Not Selected")</option>
+                            <option value="0">@Localizer.Get("Not Selected")</option>
                         </select>
                         <span asp-validation-for="Fk_TripState" class="text-danger"></span>
                     </div>
