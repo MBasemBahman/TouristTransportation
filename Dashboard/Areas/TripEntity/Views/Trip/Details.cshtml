@@ -47,7 +47,16 @@
                 <div class="col-xl-5 col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Supplier):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.Supplier?.Name</dd>
+                        <dd class="col-sm-8 mb-1">
+                            @if (Model.Supplier != null)
+                            {
+                                <span>@Model.Supplier.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Localizer.Get("Not Found")</span>
+                            }
+                        </dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CarClass):</dt>
                         <dd class="col-sm-8 mb-1">@Model.CarClass?.Name</dd>
