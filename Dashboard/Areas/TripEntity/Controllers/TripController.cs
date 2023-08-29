@@ -44,7 +44,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
-            SetViewData(id: 0);
+            SetViewData(id: 0,IsProfile:false);
             
             return View(filter);
         }
@@ -96,7 +96,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
         }
 
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id = 0)
+        public async Task<IActionResult> CreateOrEdit(int id = 0,bool IsProfile = false)
         {
             TripCreateOrEditModel model = new();
 
@@ -106,7 +106,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
                 model = _mapper.Map<TripCreateOrEditModel>(dataDB);
             }
 
-            SetViewData(id);
+            SetViewData(id, IsProfile);
 
             return View(model);
         }
@@ -114,7 +114,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model)
+        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model,bool IsProfile)
         {
             if (!ModelState.IsValid)
             {
@@ -179,8 +179,9 @@ namespace Dashboard.Areas.TripEntity.Controllers
         }
 
         //helper method
-        private void SetViewData(int id)
+        private void SetViewData(int id,bool IsProfile)
         {
+            ViewData["IsProfile"] = IsProfile;
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             ViewData["id"] = id;
