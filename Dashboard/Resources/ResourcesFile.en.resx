@@ -1273,8 +1273,7 @@
   <data name="Fk_CarClass" xml:space="preserve">
     <value>Car Class</value>
   </data>
-  <data name="Fk_Supplier" xml:space="preserve">
-    <value>Supplier</value>
+  
   <data name="FromLatitude" xml:space="preserve">
     <value>From Latitude</value>
   </data>
