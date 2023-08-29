@@ -77,7 +77,7 @@
         public enum TripReturnItems
         {
             Index = 1,
-            AccountProfile = 2
+            AccountProfile = 2,
         }
         
         public enum CompanyTripBookingCreateOrEditTargetProfile

@@ -32,7 +32,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id, int fk_Account, int returnItem = (int)TripReturnItems.Index ,bool ProfileLayOut = false)
+        public IActionResult Index(int id, int fk_Account, int returnItem = (int)TripReturnItems.Index, bool ProfileLayOut = false)
         {
             TripFilter filter = new()
             {
@@ -43,8 +43,8 @@ namespace Dashboard.Areas.TripEntity.Controllers
             ViewData["ProfileLayOut"] = ProfileLayOut;
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
-
-            SetViewData(id: 0, returnItem);
+            
+            SetViewData(id: 0, IsProfile: false, returnItem);
             
             return View(filter);
         }
@@ -98,6 +98,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
         public async Task<IActionResult> CreateOrEdit(int id = 0, 
             int fk_Account = 0, 
+            bool IsProfile = false,
             int returnItem = (int)TripReturnItems.Index)
         {
             TripCreateOrEditModel model = new();
@@ -108,7 +109,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
                 model = _mapper.Map<TripCreateOrEditModel>(dataDB);
             }
 
-            SetViewData(id, returnItem, model.Fk_Supplier);
+            SetViewData(id, IsProfile, returnItem, model.Fk_Supplier);
             ViewData["fk_Account"] = fk_Account;
 
             return View(model);
@@ -117,7 +118,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model, int tripReturnItems = (int)TripReturnItems.Index)
+        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -182,11 +183,12 @@ namespace Dashboard.Areas.TripEntity.Controllers
         }
 
         //helper method
-        private void SetViewData(int id , int? returnItem = (int)TripReturnItems.Index, int? fk_Supplier = 0)
+        private void SetViewData(int id, bool IsProfile , int? returnItem = (int)TripReturnItems.Index, int? fk_Supplier = 0)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             ViewData["id"] = id;
+            ViewData["IsProfile"] = IsProfile;
             ViewData["returnItem"] = returnItem;
             ViewData["Suppliers"] = _unitOfWork.MainData.GetSuppliersLookUp(new SupplierParameters(), language);
             ViewData["CarClasses"] = _unitOfWork.Car.GetCarClassesLookUp(new CarClassParameters(), language);

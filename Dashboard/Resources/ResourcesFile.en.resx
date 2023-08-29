@@ -1275,6 +1275,7 @@
   </data>
   <data name="Fk_Supplier" xml:space="preserve">
     <value>Supplier</value>
+  </data>
   <data name="FromLatitude" xml:space="preserve">
     <value>From Latitude</value>
   </data>

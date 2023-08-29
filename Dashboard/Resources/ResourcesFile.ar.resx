@@ -1313,6 +1313,7 @@
   </data>
   <data name="Fk_Supplier" xml:space="preserve">
     <value>الموردين</value>
+  </data>
   <data name="FromLatitude" xml:space="preserve">
     <value>خط العرض من</value>
   </data>
