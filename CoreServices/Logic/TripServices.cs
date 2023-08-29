@@ -133,6 +133,7 @@ namespace CoreServices.Logic
                                   new AccountModel
                                   {
                                       Fk_User = a.Driver.Fk_User,
+                                      ImageUrl = a.Driver.StorageUrl + a.Driver.ImageUrl,
                                       User = a.Driver.Fk_User != null ? new UserModel
                                       {
                                           Name = a.Driver.User.Name
@@ -145,10 +146,12 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.Supplier.SupplierLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Supplier.Name,
+                                      
                                   } : null,
                                   Client = new AccountModel
                                   {
                                       Fk_User = a.Client.Fk_User,
+                                      ImageUrl = a.Client.StorageUrl + a.Client.ImageUrl,
                                       User = a.Client.Fk_User != null ? new UserModel
                                       {
                                           Name = a.Client.User.Name

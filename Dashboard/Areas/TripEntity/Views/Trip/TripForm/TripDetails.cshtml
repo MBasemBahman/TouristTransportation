@@ -6,18 +6,12 @@
     int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
 }
 
-<div class="content-header">
-    <h5 class="mb-0">@Localizer.Get("Trip Information")</h5>
-    <small class="text-muted">@Localizer.Get("Trip Information Description")</small>
-</div>
 
 <form class="trip_form" asp-action="CreateOrEditWizard" asp-controller="Trip" enctype="multipart/form-data">
     <div class="row">
         <div class="text-danger trip_error_div"></div>
         <input type="hidden" asp-for="@id" />
-        <hr />
-        
-        <hr />
+      
         
         <div class="col-md-6 col-12">
             <div class="mb-1">

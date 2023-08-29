@@ -1283,12 +1283,9 @@
   </data>
   <data name="Trip Points" xml:space="preserve">
     <value>نقاط الرحلة</value>
-	  </data>
+  </data>
   <data name="Hotel Details" xml:space="preserve">
     <value>تفاصيل الفندق</value>
-  </data>
-  <data name="Not Selected" xml:space="preserve">
-    <value>غير محدد</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>نشط</value>
@@ -1316,5 +1313,19 @@
   </data>
   <data name="Fk_Supplier" xml:space="preserve">
     <value>الموردين</value>
+  <data name="FromLatitude" xml:space="preserve">
+    <value>خط العرض من</value>
+  </data>
+  <data name="FromLongitude" xml:space="preserve">
+    <value>خط الطول من</value>
+  </data>
+  <data name="ToLatitude" xml:space="preserve">
+    <value>خط العرض الى</value>
+  </data>
+  <data name="ToLongitude" xml:space="preserve">
+    <value>خط الطول الى</value>
+  </data>
+  <data name="Trip Profile" xml:space="preserve">
+    <value>ملف الرحلة</value>
   </data>
 </root>
