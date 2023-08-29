@@ -56,7 +56,9 @@
 
         public enum AccountProfileItems
         {
-            Details = 1
+            Details = 1,
+            Trips = 2,
+            CompanyTripBooking = 3
         }
 
         public enum CompanyTripProfileItems
@@ -70,6 +72,18 @@
         {
             Details = 1,
             TripPoints = 2,
+        }
+
+        public enum TripReturnItems
+        {
+            Index = 1,
+            AccountProfile = 2
+        }
+        
+        public enum CompanyTripBookingCreateOrEditTargetProfile
+        {
+            Account = 1,
+            CompanyTrip = 2
         }
 
         public enum ReactionEnum

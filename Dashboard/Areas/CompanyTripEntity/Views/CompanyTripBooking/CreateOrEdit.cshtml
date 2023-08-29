@@ -12,6 +12,7 @@
     ViewBag.formRepeater = true;
     
     int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
+    int targetProfile = ViewData["targetProfile"] != null ? (int)ViewData["targetProfile"] : (int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip;
 }
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -49,16 +50,34 @@
                                 <form class="form invoice-repeater" asp-action="CreateOrEdit" enctype="multipart/form-data">
                                     <div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
                                     <div class="row">
-                                        
-                                        <div class="col-md-12 col-12">
-                                            <div class="mb-1">
-                                                <label asp-for="Fk_CompanyTrip" class="form-label"></label>
-                                                <select asp-for="Fk_CompanyTrip" class="select2 form-select"
-                                                        asp-items="@(new SelectList(ViewData["CompanyTrip"] as Dictionary<string, string>, "Key", "Value"))">
-                                                </select>
-                                                <span asp-validation-for="Fk_CompanyTrip" class="text-danger"></span>
+                                        <input type="hidden" asp-for="@targetProfile" />
+                                       
+                                        @if (targetProfile == (int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
+                                        {
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label asp-for="Fk_CompanyTrip" class="form-label"></label>
+                                                    <select asp-for="Fk_CompanyTrip" class="select2 form-select" disabled
+                                                            asp-items="@(new SelectList(ViewData["CompanyTrip"] as Dictionary<string, string>, "Key", "Value"))">
+                                                    </select>
+                                                    <input type="hidden" asp-for="Fk_CompanyTrip"/>
+                                                    <span asp-validation-for="Fk_CompanyTrip" class="text-danger"></span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label asp-for="Fk_CompanyTrip" class="form-label"></label>
+                                                    <select asp-for="Fk_CompanyTrip" class="select2 form-select"
+                                                            asp-items="@(new SelectList(ViewData["CompanyTrip"] as Dictionary<string, string>, "Key", "Value"))">
+                                                    </select>
+                                                    <span asp-validation-for="Fk_CompanyTrip" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        }
+                                       
                                         
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
@@ -80,7 +99,7 @@
                                             </div>
                                         </div>
                                         
-                                        @if (Model.Fk_Account > 0)
+                                        @if (Model.Fk_Account > 0 || targetProfile == (int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.Account)
                                         {
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">

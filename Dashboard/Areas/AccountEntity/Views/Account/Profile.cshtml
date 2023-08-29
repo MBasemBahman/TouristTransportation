@@ -60,6 +60,18 @@
                                                         <span class="fw-bold">@Localizer.Get("Account Details")</span>
                                                     </a>
                                                 </li>
+                                                
+                                                <li class="nav-item ">
+                                                    <a id="/TripEntity/Trip/Index?Fk_Account=@Model.Id&ProfileLayOut=true&returnItem=@((int)DBModelsEnum.TripReturnItems.AccountProfile)" class="nav-link tab-item  @(returnItem == (int)DBModelsEnum.AccountProfileItems.Trips ? "active" : "")">
+                                                        <span class="fw-bold">@Localizer.Get("Trips")</span>
+                                                    </a>
+                                                </li>
+                                                
+                                                <li class="nav-item ">
+                                                    <a id="/CompanyTripEntity/CompanyTripBooking/Index?Fk_Account=@Model.Id&ProfileLayout=true&targetProfile=@((int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.Account)" class="nav-link tab-item  @(returnItem == (int)DBModelsEnum.AccountProfileItems.CompanyTripBooking ? "active" : "")">
+                                                        <span class="fw-bold">@Localizer.Get("CompanyTrip Booking")</span>
+                                                    </a>
+                                                </li>
 
                                             </ul>
 

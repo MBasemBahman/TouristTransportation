@@ -9,6 +9,7 @@ namespace Entities.CoreServicesModels.TripModels
 {
     public class TripParameters : RequestParameters
     {
+        public int Fk_Account { get; set; }
         public int Fk_Client { get; set; }
         public int? Fk_Supplier { get; set; }
         public int? Fk_Driver { get; set; }

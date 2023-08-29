@@ -13,6 +13,7 @@ namespace Repository.DBModels.TripModels
         {
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
+                       parameters.Fk_Account,
                        parameters.Fk_Client,
                        parameters.Fk_Supplier,
                        parameters.Fk_Driver,
@@ -36,6 +37,7 @@ namespace Repository.DBModels.TripModels
         public static IQueryable<Trip> Filter(
             this IQueryable<Trip> accounts,
             int id,
+            int fk_Account,
             int fk_Client,
             int? fk_Supplier,
             int? fk_Driver,
@@ -43,6 +45,7 @@ namespace Repository.DBModels.TripModels
             int? fk_TripState)
         {
             return accounts.Where(a => (id == 0 || a.Id == id) &&
+                                       (fk_Account == 0 || a.Fk_Client == fk_Account || a.Fk_Driver == fk_Account) &&
                                        (fk_Client == 0 || a.Fk_Client == fk_Client) &&
                                        (fk_Supplier == null || a.Fk_Supplier == fk_Supplier) &&
                                        (fk_Driver == null || a.Fk_Driver == fk_Driver) &&

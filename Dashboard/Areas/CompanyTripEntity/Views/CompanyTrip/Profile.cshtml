@@ -62,7 +62,7 @@
                                                 </li>
                                                 
                                                 <li class="nav-item ">
-                                                    <a id="/CompanyTripEntity/CompanyTripBooking/Index?Fk_CompanyTrip=@Model.Id&ProfileLayout=true" class="nav-link tab-item  @(returnItem == (int)DBModelsEnum.CompanyTripProfileItems.CompanyTripBooking ? "active" : "")">
+                                                    <a id="/CompanyTripEntity/CompanyTripBooking/Index?Fk_CompanyTrip=@Model.Id&ProfileLayout=true&targetProfile=@((int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)" class="nav-link tab-item  @(returnItem == (int)DBModelsEnum.CompanyTripProfileItems.CompanyTripBooking ? "active" : "")">
                                                         <span class="fw-bold">@Localizer.Get("CompanyTrip Booking")</span>
                                                     </a>
                                                 </li>

@@ -30,20 +30,25 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id, int fk_CompanyTrip = 0, bool ProfileLayOut = false)
+        public IActionResult Index(int id, 
+            int fk_CompanyTrip = 0, 
+            int fk_Account = 0, 
+            bool ProfileLayOut = false,
+            int targetProfile = (int)CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
         {
 
             CompanyTripBookingFilter filter = new()
             {
                 Id = id,
-                Fk_CompanyTrip = fk_CompanyTrip
+                Fk_CompanyTrip = fk_CompanyTrip,
+                Fk_Account = fk_Account
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
-            SetViewData(id: 0);
+            SetViewData(id: 0, targetProfile);
             
             return View(filter);
         }
@@ -81,11 +86,13 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
         }
 
         [Authorize(DashboardViewEnum.CompanyTripBooking, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id = 0, int fk_CompanyTrip = 0)
+        public async Task<IActionResult> CreateOrEdit(int id = 0, int fk_Account = 0, int fk_CompanyTrip = 0,
+            int targetProfile = (int)CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
         {
             CompanyTripBookingCreateOrEditModel model = new()
             {
                 Fk_CompanyTrip = fk_CompanyTrip,
+                Fk_Account = fk_Account,
                 Date = DateTime.Today
             };
 
@@ -95,7 +102,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
                 model = _mapper.Map<CompanyTripBookingCreateOrEditModel>(dataDB);
             }
 
-            SetViewData(id);
+            SetViewData(id, targetProfile);
 
             return View(model);
         }
@@ -103,11 +110,12 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(DashboardViewEnum.CompanyTripBooking, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id, CompanyTripBookingCreateOrEditModel model)
+        public async Task<IActionResult> CreateOrEdit(int id, CompanyTripBookingCreateOrEditModel model,
+            int targetProfile = (int)CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
         {
             if (!ModelState.IsValid)
             {
-                SetViewData(id);
+                SetViewData(id, targetProfile);
 
                 return View(model);
             }
@@ -141,8 +149,19 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
                 await _unitOfWork.Save();
 
+                if (targetProfile == (int)CompanyTripBookingCreateOrEditTargetProfile.Account)
+                {
+                    return RedirectToAction("Profile", "Account", new
+                    {
+                        area = "AccountEntity",
+                        Id = dataDB.Fk_Account,
+                        returnItem = (int)AccountProfileItems.CompanyTripBooking
+                    });
+                }
+                
                 return RedirectToAction("Profile", "CompanyTrip", new
                 {
+                    area = "CompanyTripEntity",
                     Id = dataDB.Fk_CompanyTrip,
                     returnItem = (int)CompanyTripProfileItems.CompanyTripBooking
                 });
@@ -151,7 +170,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             {
                 ViewData[ViewDataConstants.Error] = _logger.LogError(HttpContext.Request, ex).ErrorMessage;
             }
-            SetViewData(id);
+            SetViewData(id, targetProfile);
             return View(model);
         }
 
@@ -174,18 +193,23 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
         }
 
         //helper method
-        private void SetViewData(int id)
+        private void SetViewData(int id, int targetProfile = (int)CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             ViewData["id"] = id;
 
-            ViewData["CompanyTrip"] = _unitOfWork.CompanyTrip.GetCompanyTripStatesLookUp(new CompanyTripStateParameters(), otherLang);
+            ViewData["CompanyTrip"] = _unitOfWork.CompanyTrip.GetCompanyTripsLookUp(new CompanyTripParameters
+            {
+                Fk_CompanyTripState = (int)CompanyTripStateEnum.Active
+            }, otherLang);
             
             ViewData["Currency"] = _unitOfWork.MainData.GetCurrenciesLookUp(new CurrencyParameters(), otherLang);
             
             ViewData["CompanyTripBookingState"] = _unitOfWork.CompanyTrip
                 .GetCompanyTripBookingStatesLookUp(new CompanyTripBookingStateParameters(), otherLang);
+
+            ViewData["targetProfile"] = targetProfile;
         }
 
     }

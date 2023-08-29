@@ -32,19 +32,19 @@ namespace Dashboard.Areas.TripEntity.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id, bool ProfileLayOut = false)
+        public IActionResult Index(int id, int fk_Account, int returnItem = (int)TripReturnItems.Index ,bool ProfileLayOut = false)
         {
-
             TripFilter filter = new()
             {
-                Id = id
+                Id = id,
+                Fk_Account = fk_Account
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
-            SetViewData(id: 0);
+            SetViewData(id: 0, returnItem);
             
             return View(filter);
         }
@@ -96,7 +96,9 @@ namespace Dashboard.Areas.TripEntity.Controllers
         }
 
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEdit(int id = 0)
+        public async Task<IActionResult> CreateOrEdit(int id = 0, 
+            int fk_Account = 0, 
+            int returnItem = (int)TripReturnItems.Index)
         {
             TripCreateOrEditModel model = new();
 
@@ -106,7 +108,8 @@ namespace Dashboard.Areas.TripEntity.Controllers
                 model = _mapper.Map<TripCreateOrEditModel>(dataDB);
             }
 
-            SetViewData(id);
+            SetViewData(id, returnItem, model.Fk_Supplier);
+            ViewData["fk_Account"] = fk_Account;
 
             return View(model);
         }
@@ -114,7 +117,7 @@ namespace Dashboard.Areas.TripEntity.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(DashboardViewEnum.Trip, AccessLevelEnum.CreateOrEdit)]
-        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model)
+        public async Task<IActionResult> CreateOrEditWizard(int id, TripCreateOrEditModel model, int tripReturnItems = (int)TripReturnItems.Index)
         {
             if (!ModelState.IsValid)
             {
@@ -179,21 +182,19 @@ namespace Dashboard.Areas.TripEntity.Controllers
         }
 
         //helper method
-        private void SetViewData(int id)
+        private void SetViewData(int id , int? returnItem = (int)TripReturnItems.Index, int? fk_Supplier = 0)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
             ViewData["id"] = id;
+            ViewData["returnItem"] = returnItem;
             ViewData["Suppliers"] = _unitOfWork.MainData.GetSuppliersLookUp(new SupplierParameters(), language);
-            ViewData["Clients"] = _unitOfWork.Account.GetAccountsLookUp(new AccountParameters
-            {
-                Fk_AccountType = (int)AccountTypeEnum.Client
-            }, language);
             ViewData["CarClasses"] = _unitOfWork.Car.GetCarClassesLookUp(new CarClassParameters(), language);
             ViewData["TripStates"] = _unitOfWork.Trip.GetTripStatesLookUp(new TripStateParameters(), language);
             ViewData["Drivers"] = _unitOfWork.Account.GetAccountsLookUp(new AccountParameters
             {
-                Fk_AccountType = (int)AccountTypeEnum.Driver
+                Fk_AccountType = (int)AccountTypeEnum.Driver,
+                Fk_Supplier = fk_Supplier ?? 0
             }, language);
         }
 

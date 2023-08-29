@@ -1,4 +1,5 @@
-﻿@model TripFilter
+﻿@using Entities.EnumData
+@model TripFilter
 @{
     ViewData["Title"] = Localizer.Get("Trips");
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,100 +11,191 @@
     var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
 
     var row = new TripDto();
+    int returnItem = ViewData["returnItem"] != null ? (int)ViewData["returnItem"] : (int)DBModelsEnum.TripReturnItems.Index;
+    
+    ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null && (bool)ViewData["ProfileLayOut"];
 }
 
-<!-- BEGIN: Content-->
-<div class="app-content content ">
-    <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper container-xxl p-0">
-        <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
-                        <div class="breadcrumb-wrapper">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="#">@Localizer.Get("Dashboard")</a>
-                                </li>
-                                <li class="breadcrumb-item active">
-                                    @ViewData["Title"]
-                                </li>
-                            </ol>
+@if (!ViewBag.emptyLayout)
+{
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                            <div class="breadcrumb-wrapper">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="#">@Localizer.Get("Dashboard")</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        @ViewData["Title"]
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="content-body">
-            <section id="ajax-datatable">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header border-bottom">
-                                <h4 class="card-title"> @ViewData["Title"]</h4>
-                            </div>
-                            <div class="card-datatable">
-                                <table class="datatables datatables-ajax table table-responsive table">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayNameFor(model => row.Id)
+            <div class="content-body">
+                <section id="ajax-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-title"> @ViewData["Title"]</h4>
+                                </div>
+                                <p class="m-2 demo-inline-spacing">
+                                    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
+                                        <i data-feather='filter'></i>
+                                        @Localizer.Get("Advanced Search")
+                                    </a>
 
-                                                @if (accessLevel.ViewAccess)
-                                                {
-                                                    <a id="profile" asp-action="Profile">
-                                                    </a>
-                                                }
-                                                
-                                                @if (accessLevel.ExportAccess)
-                                                {
-                                                    <a id="export" href="export">
-                                                    </a>
-                                                }
+                                </p>
+                                @{
+                                    await Html.RenderPartialAsync("../Trip/Filter", Model, ViewData);
+                                }
+                                <div class="card-datatable">
+                                    <table class="datatables datatables-ajax table table-responsive table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => row.Id)
 
-                                                @if (accessLevel.EditAccess)
-                                                {
-                                                    <a id="edit" asp-action="CreateOrEdit">
-                                                    </a>
-                                                }
-                                                @if (accessLevel.DeleteAccess)
-                                                {
-                                                    <a id="delete" asp-action="Delete">
-                                                    </a>
-                                                }
+                                                    @if (accessLevel.ViewAccess)
+                                                    {
+                                                        <a id="profile" asp-action="Profile">
+                                                        </a>
+                                                    }
+                                                    
+                                                    @if (accessLevel.ExportAccess)
+                                                    {
+                                                        <a id="export" href="export">
+                                                        </a>
+                                                    }
 
-                                            </th>
-                                            <th>@Html.DisplayNameFor(model => row.Client)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Driver)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Supplier)</th>
-                                            <th>@Html.DisplayNameFor(model => row.TripState)</th>
-                                            <th>@Html.DisplayNameFor(model => row.Price)</th>
-                                            <th>@Html.DisplayNameFor(model => row.CarClass)</th>
-                                            <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
-                                            <th>@Html.DisplayNameFor(model => row.TripAt)</th>
-                                            <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => row.Id)
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                                    @if (accessLevel.EditAccess)
+                                                    {
+                                                        <a id="edit" asp-action="CreateOrEdit">
+                                                        </a>
+                                                    }
+                                                    @if (accessLevel.DeleteAccess)
+                                                    {
+                                                        <a id="delete" asp-action="Delete">
+                                                        </a>
+                                                    }
+
+                                                </th>
+                                                <th>@Html.DisplayNameFor(model => row.Client)</th>
+                                                <th>@Html.DisplayNameFor(model => row.Driver)</th>
+                                                <th>@Html.DisplayNameFor(model => row.Supplier)</th>
+                                                <th>@Html.DisplayNameFor(model => row.TripState)</th>
+                                                <th>@Html.DisplayNameFor(model => row.Price)</th>
+                                                <th>@Html.DisplayNameFor(model => row.CarClass)</th>
+                                                <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
+                                                <th>@Html.DisplayNameFor(model => row.TripAt)</th>
+                                                <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => row.Id)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
 
+        </div>
     </div>
-</div>
-<!-- END: Content-->
-@section scripts{
+    <!-- END: Content-->
+}
+else
+{
+    <section id="ajax-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header border-bottom">
+                        <h4 class="card-title"> @ViewData["Title"]</h4>
+                    </div>
+                    <p class="m-2 demo-inline-spacing">
+                        <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
+                            <i data-feather='filter'></i>
+                            @Localizer.Get("Advanced Search")
+                        </a>
+
+                    </p>
+                    @{
+                        await Html.RenderPartialAsync("../Trip/Filter", Model, ViewData);
+                    }
+                    <div class="card-datatable">
+                        <table class="datatables datatables-ajax table table-responsive table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => row.Id)
+
+                                    @if (accessLevel.ViewAccess)
+                                    {
+                                        <a id="profile" asp-action="Profile">
+                                        </a>
+                                    }
+                                                    
+                                    @if (accessLevel.ExportAccess)
+                                    {
+                                        <a id="export" href="export">
+                                        </a>
+                                    }
+
+                                    @if (accessLevel.EditAccess)
+                                    {
+                                        <input type="hidden" id="routeData" value="?fk_Account=@Model.Fk_Account&returnItem=@returnItem" />
+                                        <a id="edit" asp-action="CreateOrEdit">
+                                        </a>
+                                    }
+                                    @if (accessLevel.DeleteAccess)
+                                    {
+                                        <a id="delete" asp-action="Delete">
+                                        </a>
+                                    }
+
+                                </th>
+                                <th>@Html.DisplayNameFor(model => row.Client)</th>
+                                <th>@Html.DisplayNameFor(model => row.Driver)</th>
+                                <th>@Html.DisplayNameFor(model => row.Supplier)</th>
+                                <th>@Html.DisplayNameFor(model => row.TripState)</th>
+                                <th>@Html.DisplayNameFor(model => row.Price)</th>
+                                <th>@Html.DisplayNameFor(model => row.CarClass)</th>
+                                <th>@Html.DisplayNameFor(model => row.MembersCount)</th>
+                                <th>@Html.DisplayNameFor(model => row.TripAt)</th>
+                                <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => row.Id)
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section scripts {
+    <script src="~/apis/site.js"></script>
+    
     <script>
-    function LoadTable(){
+        function LoadTable() {
             var dt_ajax_table = $('.datatables');
             if (dt_ajax_table.length) {
                 var dt_ajax = dt_ajax_table.dataTable({
@@ -115,6 +207,12 @@
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
+                            data.Fk_Account = @Model.Fk_Account;
+                            data.Fk_Client = $("#Fk_Client").length > 0 ? $("#Fk_Client").val() : '@Model.Fk_Client';
+                            data.Fk_CarClass = $("#Fk_CarClass").length > 0 ? $("#Fk_CarClass").val() : '@Model.Fk_CarClass';
+                            data.Fk_Driver = $("#Fk_Driver").length > 0 ? $("#Fk_Driver").val() : '@Model.Fk_Driver';
+                            data.Fk_Supplier = $("#Fk_Supplier").length > 0 ? $("#Fk_Supplier").val() : '@Model.Fk_Supplier';
+                            data.Fk_TripState = $("#Fk_TripState").length > 0 ? $("#Fk_TripState").val() : '@Model.Fk_TripState';
 
                             return JSON.stringify(data);
                         }
@@ -186,6 +284,11 @@
                 }
             });
 
+        });
+    
+        // Other Logic
+        $(document).on('change', '#Fk_Supplier', function() {
+          getAccounts($('#Fk_Driver'), '@((int)DBModelsEnum.AccountTypeEnum.Driver)', false);
         });
 </script>
 }

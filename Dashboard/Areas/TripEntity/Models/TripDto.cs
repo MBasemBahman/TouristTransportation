@@ -6,6 +6,18 @@ namespace Dashboard.Areas.TripEntity.Models
     public class TripFilter : DtParameters
     {
         public int Id { get; set; }
+        
+        public int Fk_Account { get; set; }
+        [DisplayName(nameof(Fk_Client))]
+        public int Fk_Client { get; set; }
+        [DisplayName(nameof(Fk_Supplier))]
+        public int? Fk_Supplier { get; set; }
+        [DisplayName(nameof(Fk_Driver))]
+        public int? Fk_Driver { get; set; }
+        [DisplayName(nameof(Fk_CarClass))]
+        public int? Fk_CarClass { get; set; }
+        [DisplayName(nameof(Fk_TripState))]
+        public int? Fk_TripState { get; set; }
     }
 
     public class TripDto : TripModel

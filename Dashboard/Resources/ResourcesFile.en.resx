@@ -1270,4 +1270,13 @@
   <data name="Company Trip Details" xml:space="preserve">
     <value>Company Trip Details</value>
   </data>
+  <data name="Fk_TripState" xml:space="preserve">
+    <value>Trip State</value>
+  </data>
+  <data name="Fk_CarClass" xml:space="preserve">
+    <value>Car Class</value>
+  </data>
+  <data name="Fk_Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
 </root>

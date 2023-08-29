@@ -1,4 +1,5 @@
-﻿@model CompanyTripBookingFilter
+﻿@using Entities.EnumData
+@model CompanyTripBookingFilter
 @{
     ViewData["Title"] = Localizer.Get("CompanyTripBooking");
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,6 +13,7 @@
     var row = new CompanyTripBookingDto();
     ViewBag.emptyLayout = ViewData["ProfileLayOut"] != null && (bool)ViewData["ProfileLayOut"];
 
+    int targetProfile = ViewData["targetProfile"] != null ? (int)ViewData["targetProfile"] : 0;
 }
 
 @if (!ViewBag.emptyLayout)
@@ -167,16 +169,27 @@ else
 
                                     @if (accessLevel.CreateAccess)
                                     {
-                                        <a id="create" asp-action="CreateOrEdit" asp-route-fk_CompanyTrip="@Model.Fk_CompanyTrip">
+                                        <a id="create" asp-action="CreateOrEdit" 
+                                           asp-route-fk_CompanyTrip="@Model.Fk_CompanyTrip"
+                                           asp-route-fk_Account="@Model.Fk_Account"
+                                           asp-route-targetProfile="@targetProfile">
                                         </a>
                                     }
 
                                     @if (accessLevel.EditAccess)
                                     {
-                                        <input type="hidden" value="?fk_CompanyTrip=@Model.Fk_CompanyTrip" />
+                                        if (targetProfile == (int)DBModelsEnum.CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
+                                        {
+                                            <input type="hidden" id="routeData" value="?fk_CompanyTrip=@Model.Fk_CompanyTrip&targetProfile=@targetProfile" />
+                                        }
+                                        else
+                                        {
+                                            <input type="hidden" id="routeData" value="?fk_Account=@Model.Fk_Account&targetProfile=@targetProfile" />
+                                        }
                                         <a id="edit" asp-action="CreateOrEdit">
                                         </a>
                                     }
+
                                     @if (accessLevel.DeleteAccess)
                                     {
                                         <a id="delete" asp-action="Delete">
@@ -223,6 +236,7 @@ else
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
+                            data.fk_Account = @Model.Fk_Account;
                             data.fk_CompanyTrip = @Model.Fk_CompanyTrip;
                             data.Fk_Currency = $("#Fk_Currency").length > 0 ? $("#Fk_Currency").val() : '@Model.Fk_Currency';
                             data.Fk_CompanyTripBookingState = $("#Fk_CompanyTripBookingState").length > 0 ? $("#Fk_CompanyTripBookingState").val() : '@Model.Fk_CompanyTripBookingState';

@@ -1308,4 +1308,13 @@
   <data name="Company Trip Details" xml:space="preserve">
     <value>تفاصيل الرحلة اليومية</value>
   </data>
+  <data name="Fk_TripState" xml:space="preserve">
+    <value>حالة الرحلة</value>
+  </data>
+  <data name="Fk_CarClass" xml:space="preserve">
+    <value>تصنيف السيارة</value>
+  </data>
+  <data name="Fk_Supplier" xml:space="preserve">
+    <value>الموردين</value>
+  </data>
 </root>

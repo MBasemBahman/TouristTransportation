@@ -42,9 +42,10 @@
         <div class="col-md-6 col-12">
             <div class="mb-1">
                 <label asp-for="Fk_Client" class="form-label"></label>
-                <select asp-for="Fk_Client" class="select2 form-select" asp-items="@(new SelectList(ViewData["Clients"] as Dictionary<string, string>, "Key", "Value"))">
+                <select asp-for="Fk_Client" class="select2 form-select" disabled>
                     <option value="">@Localizer.Get("Not Selected")</option>
                 </select>
+                <input type="hidden" asp-for="Fk_Client" />
                 <span asp-validation-for="Fk_Client" class="text-danger"></span>
             </div>
         </div>

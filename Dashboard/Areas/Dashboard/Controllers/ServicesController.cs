@@ -62,5 +62,13 @@ namespace Dashboard.Areas.Dashboard.Controllers
 
             return Ok(result);
         }
+        
+        public ActionResult<AccountModel> GetAccountById(int id)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
+            return _unitOfWork.Account.GetAccountById(id, language);
+        }
+
     }
 }
