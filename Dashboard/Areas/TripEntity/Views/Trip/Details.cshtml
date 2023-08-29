@@ -25,7 +25,16 @@
                     <dl class="row mb-0">
                      
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Driver):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.Driver?.User?.Name</dd>
+                        <dd class="col-sm-8 mb-1">
+                            @if (Model.Driver != null)
+                            {
+                                <span>@Model.Driver.User.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Localizer.Get("Not Found")</span>
+                            }
+                        </dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripState):</dt>
                         <dd class="col-sm-8 mb-1">
@@ -59,7 +68,16 @@
                         </dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CarClass):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.CarClass?.Name</dd>
+                        <dd class="col-sm-8 mb-1">
+                            @if (Model.CarClass != null)
+                            {
+                                <span>@Model.CarClass.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Localizer.Get("Not Found")</span>
+                            }
+                        </dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
                         <dd class="col-sm-8 mb-1">@Model.Price</dd>
