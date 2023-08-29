@@ -14,6 +14,8 @@
     int id = ViewData["id"] != null ? (int)ViewData["id"] : 0;
     int returnItem = ViewData["returnItem"] != null ? (int)ViewData["returnItem"] : (int)DBModelsEnum.TripReturnItems.Index;
     int fk_Account = ViewData["fk_Account"] != null ? (int)ViewData["fk_Account"] : 0;
+    
+    bool IsProfile = ViewData["IsProfile"] != null && (bool)ViewData["IsProfile"];
 }
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -154,6 +156,8 @@
                 id = fk_Account,
                 area = "AccountEntity",
             })?returnItem=@((int)DBModelsEnum.AccountProfileItems.Trips)";
+          } else if ('@IsProfile' == 'True') {
+            window.location.href = "@Url.ActionLink("Profile", "Trip", new { area = "TripEntity", id = id })";
           } else {
             window.location.href = "@Url.ActionLink("Index", "Trip", new { area = "TripEntity" })";
           } 
