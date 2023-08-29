@@ -1245,12 +1245,9 @@
   </data>
   <data name="Trip Points" xml:space="preserve">
     <value>Trip Points</value>
-	  </data>
+  </data>
   <data name="Hotel Details" xml:space="preserve">
     <value>Hotel Details</value>
-  </data>
-  <data name="Not Selected" xml:space="preserve">
-    <value>Not Selected</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>Active</value>
@@ -1269,5 +1266,20 @@
   </data>
   <data name="Company Trip Details" xml:space="preserve">
     <value>Company Trip Details</value>
+  </data>
+  <data name="FromLatitude" xml:space="preserve">
+    <value>From Latitude</value>
+  </data>
+  <data name="FromLongitude" xml:space="preserve">
+    <value>From Longitude</value>
+  </data>
+  <data name="ToLatitude" xml:space="preserve">
+    <value>To Latitude</value>
+  </data>
+  <data name="ToLongitude" xml:space="preserve">
+    <value>To Longitude</value>
+  </data>
+  <data name="Trip Profile" xml:space="preserve">
+    <value>Trip Profile</value>
   </data>
 </root>

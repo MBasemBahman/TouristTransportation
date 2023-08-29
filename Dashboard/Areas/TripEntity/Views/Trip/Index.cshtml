@@ -122,16 +122,56 @@
                     // Columns Setups
                     columns: [
                         { data: "id" },
-                        { data: "client", render: function(data) {
+                        { data: "client", render: function(data,type,row) {
                           if (data != null && data.user != null) {
-                            return data.user.name;
+                                    if (data.imageUrl != null && data.imageUrl != '') {
+
+                                        return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                            + '<img src="' + data.imageUrl + '"  height="32" width="32">'
+
+                                            + '</div></div>'
+                                            + ' <div class= "d-flex flex-column">'
+                                            + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Client + '" class= "user_name text-truncate">'
+                                            + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                            + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                    }
+                                    else {
+                                        return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                            + '<img src="/userImg.png"  height="32" width="32">'
+
+                                            + '</div></div>'
+                                            + ' <div class= "d-flex flex-column">'
+                                            + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Client + '" class= "user_name text-truncate">'
+                                            + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                            + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                    }
                           } 
                           
                           return '@Localizer.Get("Not Found")';
                         } },
-                        { data: "driver", render: function(data) {
+                        { data: "driver", render: function(data,type,row) {
                           if (data != null && data.user != null) {
-                            return data.user.name;
+                               if (data.imageUrl != null && data.imageUrl != '') {
+
+                                        return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                            + '<img src="' + data.imageUrl + '"  height="32" width="32">'
+
+                                            + '</div></div>'
+                                            + ' <div class= "d-flex flex-column">'
+                                            + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Driver + '" class= "user_name text-truncate">'
+                                            + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                            + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                    }
+                                    else {
+                                        return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                            + '<img src="/userImg.png"  height="32" width="32">'
+
+                                            + '</div></div>'
+                                            + ' <div class= "d-flex flex-column">'
+                                            + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Driver + '" class= "user_name text-truncate">'
+                                            + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                            + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                    }
                           } 
                           
                           return '@Localizer.Get("Not Found")';
@@ -143,9 +183,21 @@
                           
                           return '@Localizer.Get("Not Found")';
                         } },
-                        { data: "tripState", render: function(data) {
-                            return data.name;
-                        } },
+                        {
+                            data: "tripState",
+                            orderable: false,
+                            render: function (data) {
+                                if (data.colorCode == "#fff"
+                                    || data.colorCode == "#ffff"
+                                    || data.colorCode == ""
+                                    || data.colorCode == null) {
+                                    return data.name;
+                                }
+                                else {
+                                    return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                                }
+                            }
+                        },
                         { data: "price", render: function(data) {
                             return data.toFixed(2);
                         } },

@@ -23,14 +23,21 @@
             <div class="row">
                 <div class="col-xl-7 col-12">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Client):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.Client?.User?.Name</dd>
-                        
+                     
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Driver):</dt>
                         <dd class="col-sm-8 mb-1">@Model.Driver?.User?.Name</dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripState):</dt>
-                        <dd class="col-sm-8 mb-1">@Model.TripState.Name</dd>
+                        <dd class="col-sm-8 mb-1">
+                            @if (Model.TripState.ColorCode != "#fff" && Model.TripState.ColorCode != "#ffff" && !string.IsNullOrEmpty(Model.TripState.ColorCode))
+                            {
+                                <span class="badge px-2 text-center" style="background-color:@Model.TripState.ColorCode;color:white">@Model.TripState.Name</span>
+                            }
+                            else
+                            {
+                                <span>@Model.TripState.Name</span>
+                            }
+                        </dd>
                         
                         <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TripAt):</dt>
                         <dd class="col-sm-8 mb-1">@Model.TripAt</dd>

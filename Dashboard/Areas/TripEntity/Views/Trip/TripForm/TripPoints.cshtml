@@ -7,10 +7,7 @@
 }
 
 <div class="content-header">
-    <h5 class="mb-0">@Localizer.Get("Trip Points Information")</h5>
-    <small>@Localizer.Get("Trip Points Information Description")</small>
-    <hr/>
-    
+   
     <a href="#" target="_blank" class="btn btn-primary add_trip_point_btn" data-bs-toggle="modal" data-bs-target="#add-new-trip-point-modal">
         <i class="fa fa-plus"></i> 
         @Localizer.Get("Add New Trip Point")
@@ -19,7 +16,6 @@
     <hr/>
 
 </div>
-<hr/>
 <section id="trip-points-ajax-datatable">
     <table class="trip-points-datatables datatables-ajax table table-responsive table">
         <thead>
@@ -106,33 +102,35 @@
                             <div id="to_map"></div>
                         </div>
 
-                        <div class="col-md-6 col-12 trip_point_price_div">
-                            <div class="mb-1">
-                                <label class="form-label">@Localizer.Get("Price")</label>
-                                <input name="trip_point_price" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Price"))" />
+                  <div class="row mt-2">
+                            <div class="col-md-6 col-12 trip_point_price_div ">
+                                <div class="mb-1">
+                                    <label class="form-label">@Localizer.Get("Price")</label>
+                                    <input name="trip_point_price" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Price"))" />
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-6 col-12 trip_point_trip_at_div">
-                            <div class="mb-1">
-                                <label class="form-label">@Localizer.Get("TripAt")</label>
-                                <input type="date" name="trip_point_trip_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TripAt"))" />
+
+                            <div class="col-md-6 col-12 trip_point_trip_at_div">
+                                <div class="mb-1">
+                                    <label class="form-label">@Localizer.Get("TripAt")</label>
+                                    <input type="date" name="trip_point_trip_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TripAt"))" />
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-6 col-12 trip_point_leave_at_div">
-                            <div class="mb-1">
-                                <label class="form-label">@Localizer.Get("LeaveAt")</label>
-                                <input type="date" name="trip_point_leave_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LeaveAt"))" />
+
+                            <div class="col-md-6 col-12 trip_point_leave_at_div">
+                                <div class="mb-1">
+                                    <label class="form-label">@Localizer.Get("LeaveAt")</label>
+                                    <input type="date" name="trip_point_leave_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LeaveAt"))" />
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-6 col-12 trip_point_waiting_time_div">
-                            <div class="mb-1">
-                                <label class="form-label">@Localizer.Get("WaitingTime") @Localizer.Get("In Minutes")</label>
-                                <input type="text" name="trip_point_waiting_time" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WaitingTime"))" />
+
+                            <div class="col-md-6 col-12 trip_point_waiting_time_div">
+                                <div class="mb-1">
+                                    <label class="form-label">@Localizer.Get("WaitingTime") @Localizer.Get("In Minutes")</label>
+                                    <input type="text" name="trip_point_waiting_time" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WaitingTime"))" />
+                                </div>
                             </div>
-                        </div>
+                  </div>
 
                     </div>
                 </form>

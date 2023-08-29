@@ -47,7 +47,7 @@
 
                 @if (viewList.Contains((int)DashboardViewEnum.Account))
                 {
-                    <li class="@(active == DashboardViewEnum.Account.ToString() ? "active" : "") nav-item">
+                    <li id="AccountList" class="@(active == DashboardViewEnum.Account.ToString() ? "active" : "") nav-item">
                         <a class="d-flex align-items-center"
                    asp-action="Index" asp-area="AccountEntity"
                    asp-controller="Account">
@@ -103,7 +103,7 @@
             
             @if (viewList.Contains((int)DashboardViewEnum.Trip))
                 {
-                    <li class="@(active == DashboardViewEnum.Trip.ToString() ? "active" : "") nav-item">
+                <li id="TripList" class="@(active == DashboardViewEnum.Trip.ToString() ? "active" : "") nav-item">
                         <a class="d-flex align-items-center"
                    asp-action="Index" asp-area="TripEntity"
                    asp-controller="Trip">

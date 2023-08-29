@@ -326,7 +326,6 @@
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Delete.cshtml" />
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Details.cshtml" />
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Index.cshtml" />
-    <AdditionalFiles Include="Areas\TripEntity\Views\TripPoint\CreateOrEdit.cshtml" />
     <AdditionalFiles Include="Areas\TripEntity\Views\TripPoint\Delete.cshtml" />
     <AdditionalFiles Include="Areas\TripEntity\Views\TripPoint\Details.cshtml" />
     <AdditionalFiles Include="Areas\TripEntity\Views\TripPoint\Index.cshtml" />
