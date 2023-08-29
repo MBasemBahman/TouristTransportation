@@ -47,20 +47,21 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             return View(filter);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, bool ProfileLayOut = false)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             CompanyTripDto data = _mapper.Map<CompanyTripDto>(_unitOfWork.CompanyTrip
                 .GetCompanyTripById(id, otherLang));
 
-           
-
             data.CompanyTripAttachments = _mapper.Map<List<CompanyTripAttachmentDto>>
                 (_unitOfWork.CompanyTrip.GetCompanyTripAttachments(new CompanyTripAttachmentParameters
                 {
                     Fk_CompanyTrip = id
                 }, language: null).ToList());
+
+            ViewData["ProfileLayOut"] = ProfileLayOut;
+            
             return View(data);
         }
 

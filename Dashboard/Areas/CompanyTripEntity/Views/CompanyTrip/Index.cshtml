@@ -135,7 +135,7 @@ else
 
                                     @if (accessLevel.ViewAccess)
                                     {
-                                        <a id="profile" asp-action="Profile">
+                                        <a id="details" asp-action="Details">
                                         </a>
                                     }
 
@@ -199,7 +199,7 @@ else
                         { data: "title", render: function(data, type, row) {
 
                                 if (row.imageUrl != null && row.imageUrl != '') {
-                                    return '<a href="#"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                    return '<a href="/CompanyTripEntity/CompanyTrip/Profile/'+row.id+'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
                                         + '<img src="' + row.imageUrl + '"  height="32" width="32">'
 
                                         + '</div></div>'
@@ -208,7 +208,7 @@ else
                                         + '<small class= "emp_post text-muted" ></small ></div></div></a>';
                                 }
                                 else {
-                                    return '<a href="#"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                    return '<a href="/CompanyTripEntity/CompanyTrip/Profile/'+row.id+'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
                                         + '<img src="/trip.png"  height="32" width="32">'
 
                                         + '</div></div>'
