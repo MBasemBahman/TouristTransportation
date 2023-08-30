@@ -342,7 +342,8 @@ namespace CoreServices.Logic
                                       ImageUrl = a.Account.StorageUrl + a.Account.ImageUrl,
                                       User = new UserModel
                                       {
-                                          Name = $"{a.Account.User.Name} | {a.Account.Phone}"
+                                          Name = $"{a.Account.User.Name} | {a.Account.Phone}",
+                                          
                                       }
                                   },
                                   Fk_CompanyTrip = a.Fk_CompanyTrip,

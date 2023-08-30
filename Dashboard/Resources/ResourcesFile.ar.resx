@@ -1204,7 +1204,7 @@
     <value>حجز الرحلات اليومية</value>
   </data>
   <data name="CompanyTrip Profile" xml:space="preserve">
-    <value>الملف الشخصي للرحلة اليومية</value>
+    <value>ملف الرحلة اليومية</value>
   </data>
   <data name="CompanyTripBookingStates" xml:space="preserve">
     <value>حالات حجز الرحلات اليومية</value>
@@ -1311,7 +1311,6 @@
   <data name="Fk_CarClass" xml:space="preserve">
     <value>تصنيف السيارة</value>
   </data>
-  
   <data name="FromLatitude" xml:space="preserve">
     <value>خط العرض من</value>
   </data>
@@ -1326,5 +1325,8 @@
   </data>
   <data name="Trip Profile" xml:space="preserve">
     <value>ملف الرحلة</value>
+  </data>
+  <data name="Account Profile" xml:space="preserve">
+    <value>ملف الحساب</value>
   </data>
 </root>

@@ -136,17 +136,7 @@ else
                         <h4 class="card-title"> @ViewData["Title"]</h4>
                     </div>
                     
-                    <p class="m-2 demo-inline-spacing">
-                        <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#AdvancedFilter" role="button" aria-expanded="false" aria-controls="AdvancedFilter">
-                            <i data-feather='filter'></i>
-                            @Localizer.Get("Advanced Search")
-                        </a>
-
-                    </p>
-                    @{
-                        await Html.RenderPartialAsync("../CompanyTripBooking/Filter", Model, ViewData);
-                    }
-
+                  
                     
                     <div class="card-datatable">
                         <table class="datatables datatables-ajax table table-responsive table">
@@ -236,8 +226,8 @@ else
                         dataType: "json",
                         data: function (data) {
                             data.Id = @Model.Id;
-                            data.fk_Account = @Model.Fk_Account;
-                            data.fk_CompanyTrip = @Model.Fk_CompanyTrip;
+                            data.Fk_Account = @Model.Fk_Account;
+                            data.Fk_CompanyTrip = @Model.Fk_CompanyTrip;
                             data.Fk_Currency = $("#Fk_Currency").length > 0 ? $("#Fk_Currency").val() : '@Model.Fk_Currency';
                             data.Fk_CompanyTripBookingState = $("#Fk_CompanyTripBookingState").length > 0 ? $("#Fk_CompanyTripBookingState").val() : '@Model.Fk_CompanyTripBookingState';
                             data.DateFrom = $("#DateFrom").length > 0 ? $("#DateFrom").val() : '@Model.DateFrom';
@@ -250,38 +240,57 @@ else
                     columns: [
                         { data: "id" },
                         {
-                        data: "account.user",
-                        render: function (data, type, row) {
-                            if (row.account.imageUrl != null) {
-                                return '<a href="/AccountEntity/Account/Profile/' + row.fk_Account +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
-                                    + '<img src="' + row.account.imageUrl + '"  height="32" width="32">'
-                                    
-                                    + '</div></div>'
-                                    + ' <div class= "d-flex flex-column">'
-                                    + '<span class= "fw-bolder">' + data.name + '</span> '
-                                    + '<small class= "emp_post text-muted" ></small ></div></div></a>';
-                            }
-                            else {
-                                return '<a href="/AccountEntity/Account/Profile/' + row.fk_Account +'"><div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" >'
-                                    + '<div class="avatar  bg-light-dark  me-1"><span class="avatar-content"></span></div>'
-                                    + '</div>'
-                                    + ' <div class= "d-flex flex-column">'
-                                    + '<span class= "fw-bolder">' + data.name + '</span> '
-                                    + '<small class= "emp_post text-muted" ></small ></div></div></a>';
+                            data: "account",
+                            render: function (data, type, row) {
+                                if (data.imageUrl != null && data.imageUrl != '') {
+
+                                    return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                        + '<img src="' + data.imageUrl + '"  height="32" width="32">'
+
+                                        + '</div></div>'
+                                        + ' <div class= "d-flex flex-column">'
+                                        + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Account + '" class= "user_name text-truncate">'
+                                        + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                        + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                }
+                                else {
+                                    return '<div class="d-flex justify-content-left align-items-center"><div class= "avatar-wrapper" ><div class="avatar me-1">'
+                                        + '<img src="/userImg.png"  height="32" width="32">'
+
+                                        + '</div></div>'
+                                        + ' <div class= "d-flex flex-column">'
+                                        + '<a  href="/AccountEntity/Account/Profile/' + row.fk_Account + '" class= "user_name text-truncate">'
+                                        + '<span class= "fw-bolder">' + data.user.name + '</span> '
+                                        + '<small class= "emp_post text-muted" ></small ></div></div>';
+                                }
+
+
                             }
                         },
-                        orderable: false
-                    },
                         { data: "currency.name" },
                         { data: "price" },
                         { data: "currencyRate" },
                         { data: "membersCount" },
-                        { data: "companyTripBookingState.name" },
+                              {
+                            data: "companyTripBookingState",
+                            orderable: false,
+                            render: function (data) {
+                                if (data.colorCode == "#fff"
+                                    || data.colorCode == "#ffff"
+                                    || data.colorCode == ""
+                                    || data.colorCode == null) {
+                                    return data.name;
+                                }
+                                else {
+                                    return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                                }
+                            }
+                        },
                         { data: "date" },
                         { data: "id", render: function (data, type, row) {
-                          return `<button type="button" class="btn btn-info open_history_modal" data-id="${data}">
+                                return `<span type="button" class="badge badge-glow bg-success w-100 text-center open_history_modal" data-id="${data}">
                                     ${row.historiesCount}
-                                  </button>`;
+                                  </span>`;
                         } },
                         { data: "createdAt" },
                         { data: "id" },

@@ -23,7 +23,16 @@
                 <dd class="col-sm-8 mb-1">@Model.CurrencyRate</dd>
             
                 <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CompanyTripBookingState):</dt>
-                <dd class="col-sm-8 mb-1">@Model.CompanyTripBookingState.Name</dd>
+                <dd class="col-sm-8 mb-1">
+                    @if (Model.CompanyTripBookingState.ColorCode != "#fff" && Model.CompanyTripBookingState.ColorCode != "#ffff" && !string.IsNullOrEmpty(Model.CompanyTripBookingState.ColorCode))
+                    {
+                        <span class="badge px-2 text-center" style="background-color:@Model.CompanyTripBookingState.ColorCode;color:white">@Model.CompanyTripBookingState.Name</span>
+                    }
+                    else
+                    {
+                        <span>@Model.CompanyTripBookingState.Name</span>
+                    }
+                </dd>
             
             </dl>
         </div>
@@ -45,6 +54,21 @@
         </div>
        
     </div>
+                <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <span class="badge bg-success">@Html.DisplayNameFor(model => model.Notes) </span>
+                </div>
+                <br />
+        @if (!string.IsNullOrEmpty(Model.Notes))
+        {
+            @Html.Raw(Model.Notes)
+        }
+        else
+        {
+                    <p>@Localizer.Get("Not Found")</p>
+        }
+
+            </div>
 
     <hr />
     <div class="row">

@@ -32,7 +32,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
 
         public IActionResult Index(int id, 
             int fk_CompanyTrip = 0, 
-            int fk_Account = 0, 
+            int Fk_Account = 0, 
             bool ProfileLayOut = false,
             int targetProfile = (int)CompanyTripBookingCreateOrEditTargetProfile.CompanyTrip)
         {
@@ -41,7 +41,7 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             {
                 Id = id,
                 Fk_CompanyTrip = fk_CompanyTrip,
-                Fk_Account = fk_Account
+                Fk_Account = Fk_Account
             };
 
             ViewData["ProfileLayOut"] = ProfileLayOut;
@@ -64,6 +64,8 @@ namespace Dashboard.Areas.CompanyTripEntity.Controllers
             };
 
             _ = _mapper.Map(dtParameters, parameters);
+
+            parameters.Fk_AccountForBooking = dtParameters.Fk_Account;
 
             PagedList<CompanyTripBookingModel> data = await _unitOfWork.CompanyTrip.GetCompanyTripBookingsPaged(parameters, otherLang);
 

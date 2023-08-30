@@ -1273,7 +1273,6 @@
   <data name="Fk_CarClass" xml:space="preserve">
     <value>Car Class</value>
   </data>
-  
   <data name="FromLatitude" xml:space="preserve">
     <value>From Latitude</value>
   </data>
@@ -1288,5 +1287,8 @@
   </data>
   <data name="Trip Profile" xml:space="preserve">
     <value>Trip Profile</value>
+  </data>
+  <data name="Account Profile" xml:space="preserve">
+    <value>Account Profile</value>
   </data>
 </root>
