@@ -177,6 +177,12 @@ namespace API.MappingProfileCls
 
             #endregion
 
+            #region CarCategoryModels
+
+            _ = CreateMap<CarCategoryModel, CarCategoryDto>();
+
+            #endregion
+
             #endregion
         }
 
