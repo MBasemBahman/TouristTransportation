@@ -39,6 +39,8 @@
                 <th>@Html.DisplayNameFor(model => row.WaitingTime)</th>
                 <th>@Html.DisplayNameFor(model => row.TripAt)</th>
                 <th>@Html.DisplayNameFor(model => row.LeaveAt)</th>
+                <th>@Html.DisplayNameFor(model => row.FromAddress)</th>
+                <th>@Html.DisplayNameFor(model => row.ToAddress)</th>
                 <th>
                     @Html.DisplayNameFor(model => row.Id)
                 </th>
@@ -77,6 +79,13 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12 col-12 trip_point_from_address_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("FromAddress")</label>
+                                <input type="text" name="trip_point_from_address" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("FromAddress"))" />
+                            </div>
+                        </div>
+                        
                         <div class="col-md-12 col-12">
                             @* <input id="from_searchmapmodal" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box" /> *@
                             <div id="from_map"></div>
@@ -99,40 +108,48 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12 col-12 trip_point_to_address_div">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ToAddress")</label>
+                                <input type="text" name="trip_point_to_address" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ToAddress"))" />
+                            </div>
+                        </div>
+                        
                         <div class="col-md-12 col-12">
                             @* <input id="to_searchmapmodal" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box" /> *@
                             <div id="to_map"></div>
                         </div>
 
-                  <div class="row mt-2">
+                        <div class="row mt-2">
+                            
                             <div class="col-md-6 col-12 trip_point_price_div ">
                                 <div class="mb-1">
                                     <label class="form-label">@Localizer.Get("Price")</label>
-                                    <input name="trip_point_price" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Price"))" />
+                                    <input name="trip_point_price" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Price"))"/>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-12 trip_point_trip_at_div">
                                 <div class="mb-1">
                                     <label class="form-label">@Localizer.Get("TripAt")</label>
-                                    <input type="date" name="trip_point_trip_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TripAt"))" />
+                                    <input type="date" name="trip_point_trip_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TripAt"))"/>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-12 trip_point_leave_at_div">
                                 <div class="mb-1">
                                     <label class="form-label">@Localizer.Get("LeaveAt")</label>
-                                    <input type="date" name="trip_point_leave_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LeaveAt"))" />
+                                    <input type="date" name="trip_point_leave_at" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LeaveAt"))"/>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-12 trip_point_waiting_time_div">
                                 <div class="mb-1">
                                     <label class="form-label">@Localizer.Get("WaitingTime") @Localizer.Get("In Minutes")</label>
-                                    <input type="text" name="trip_point_waiting_time" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WaitingTime"))" />
+                                    <input type="text" name="trip_point_waiting_time" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WaitingTime"))"/>
                                 </div>
                             </div>
-                  </div>
+                        </div>
 
                     </div>
                 </form>

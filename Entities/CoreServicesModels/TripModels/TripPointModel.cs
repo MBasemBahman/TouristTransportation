@@ -79,6 +79,12 @@ namespace Entities.CoreServicesModels.TripModels
 
         [DisplayName(nameof(WaitingTime))]
         public double WaitingTime { get; set; } // In Minutes
+        
+        [DisplayName(nameof(FromAddress))] 
+        public string FromAddress { get; set; }
+        
+        [DisplayName(nameof(ToAddress))] 
+        public string ToAddress { get; set; }
     }
 
 }

@@ -171,6 +171,8 @@ $(function () {
                     { data: "waitingTime" },
                     { data: "tripAt" },
                     { data: "leaveAt" },
+                    { data: "fromAddress" },
+                    { data: "toAddress" },
                     { data: "id" },
                 ]
             });
@@ -243,14 +245,14 @@ $(function () {
     $(document).on('click', '.submit_trip_point_modal', function (e) {
         e.preventDefault();
 
-        let tripPoitForm = $('.trip_point_form')[0];
-        let tripPoitFormData = prepareTripPointForm(new FormData(tripPoitForm));
-        tripPoitFormData.append('fk_Trip', $("#id").length > 0 ? $("#id").val() : 0);
+        let tripPointForm = $('.trip_point_form')[0];
+        let tripPointFormData = prepareTripPointForm(new FormData(tripPointForm));
+        tripPointFormData.append('fk_Trip', $("#id").length > 0 ? $("#id").val() : 0);
 
         $.ajax({
             url: `/TripEntity/TripPoint/CreateOrEditWizard`,
             method: 'post',
-            data: tripPoitFormData,
+            data: tripPointFormData,
             cache: false,
             contentType: false,
             processData: false,
@@ -298,6 +300,9 @@ $(function () {
         $("input[name=trip_point_leave_at]").val("");
         
         $("input[name=trip_point_waiting_time]").val("");
+        
+        $("input[name=trip_point_from_address]").val("");
+        $("input[name=trip_point_to_address]").val("");
 
         $('.trip_point_error_div').html('');
     }
@@ -326,6 +331,9 @@ $(function () {
         const leaveAtFormattedDate = leaveAt.toISOString().split("T")[0];
         
         $('input[name=trip_point_leave_at]').val(leaveAtFormattedDate);
+        
+        $('input[name=trip_point_from_address]').val(data.fromAddress);
+        $('input[name=trip_point_to_address]').val(data.toAddress);
     }
 
     function prepareTripPointForm(form) {
@@ -341,6 +349,9 @@ $(function () {
         changeKeyName('trip_point_trip_at', 'tripAt', form);
         changeKeyName('trip_point_leave_at', 'leaveAt', form);
         changeKeyName('trip_point_waiting_time', 'waitingTime', form);
+        
+        changeKeyName('trip_point_from_address', 'fromAddress', form);
+        changeKeyName('trip_point_to_address', 'toAddress', form);
 
         return form;
     }
@@ -380,6 +391,8 @@ google.maps.event.addListener(from_marker, 'dragend', function (event) {
     let position = from_marker.getPosition();
     $('input[name=trip_point_from_latitude]').val(position.lat());
     $('input[name=trip_point_from_longitude]').val(position.lng());
+
+    changeAddress($('input[name=trip_point_from_address]'), position.lat(), position.lng());
 });
 
 // Update the marker position when the latitude or longitude inputs change
@@ -390,6 +403,8 @@ $('input[name=trip_point_from_latitude], input[name=trip_point_from_longitude]')
 
     from_marker.setPosition(newPosition);
     from_map.panTo(newPosition);
+
+    changeAddress($('input[name=trip_point_from_address]'), lat, lng);
 });
 
 /// to map
@@ -412,6 +427,8 @@ google.maps.event.addListener(to_marker, 'dragend', function (event) {
     let position = to_marker.getPosition();
     $('input[name=trip_point_to_latitude]').val(position.lat());
     $('input[name=trip_point_to_longitude]').val(position.lng());
+
+    changeAddress($('input[name=trip_point_from_address]'), position.lat(), position.lng());
 });
 
 // Update the marker position when the latitude or longitude inputs change
@@ -422,4 +439,24 @@ $('input[name=trip_point_to_latitude], input[name=trip_point_to_longitude]').on(
 
     to_marker.setPosition(newPosition);
     to_map.panTo(newPosition);
+
+    changeAddress($('input[name=trip_point_to_address]'), lat, lng);
 });
+
+function changeAddress(element, lat, lng) {
+    // Get location string (address) using Geocoding
+    const geocoder = new google.maps.Geocoder();
+    const latLng = new google.maps.LatLng(lat, lng);
+    
+    geocoder.geocode({ location: latLng }, (results, status) => {
+        if (status === "OK" && results[0]) {
+            let locationString = results[0].formatted_address;
+
+            if (locationString) {
+                element.val(locationString);
+            }
+        } else {
+            console.log("Geocoder failed due to: " + status);
+        }
+    });
+}

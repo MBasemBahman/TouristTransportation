@@ -1291,4 +1291,10 @@
   <data name="Account Profile" xml:space="preserve">
     <value>Account Profile</value>
   </data>
+  <data name="ToAddress" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="FromAddress" xml:space="preserve">
+    <value>From Address</value>
+  </data>
 </root>

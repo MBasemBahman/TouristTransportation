@@ -1329,4 +1329,10 @@
   <data name="Account Profile" xml:space="preserve">
     <value>ملف الحساب</value>
   </data>
+  <data name="ToAddress" xml:space="preserve">
+    <value>الى</value>
+  </data>
+  <data name="FromAddress" xml:space="preserve">
+    <value>من العنوان</value>
+  </data>
 </root>
