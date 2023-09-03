@@ -115,6 +115,7 @@ namespace CoreServices.Logic
                                   },
                                   TripAt = a.TripAt,
                                   WaitingPrice = a.WaitingPrice,
+                                  TotalPrice = a.TotalPrice,
                                   CarClass = a.Fk_CarClass != null ? new CarClassModel
                                   {
                                       Name = language != null ? a.CarClass.CarClassLangs

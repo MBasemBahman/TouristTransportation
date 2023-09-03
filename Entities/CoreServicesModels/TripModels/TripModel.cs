@@ -66,6 +66,9 @@ namespace Entities.CoreServicesModels.TripModels
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }
 
+        [DisplayName(nameof(TotalPrice))]
+        public double TotalPrice { get; set; }
+        
         [DisplayName(nameof(Notes))]
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }

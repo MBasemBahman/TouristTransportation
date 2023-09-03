@@ -50,6 +50,9 @@ public class Trip : AuditEntity
     [DisplayName(nameof(WaitingPrice))]
     public double WaitingPrice { get; set; }
 
+    [DisplayName(nameof(TotalPrice))]
+    public double TotalPrice => WaitingPrice + Price;
+
     [DisplayName(nameof(MembersCount))]
     public int MembersCount { get; set; }
 
