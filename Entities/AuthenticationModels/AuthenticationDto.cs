@@ -36,14 +36,10 @@
     public class UserForEditDto
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
-
+        public string FirstName { get; set; }
+        
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string UserName { get; set; }
-
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        public string LastName { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Phone]

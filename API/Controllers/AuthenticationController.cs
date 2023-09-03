@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.AccountModels;
+﻿using API.Areas.AccountArea.Models;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
 
@@ -87,6 +88,28 @@ namespace API.Controllers
             return auth;
         }
 
+        [HttpPut]
+        [Route(nameof(EditAccount))]
+        public async Task<AccountDto> EditAccount([FromBody] UserForEditDto model)
+        {
+            UserAuthenticatedDto auth = await _authManager.GetById((int)Request.HttpContext.Items[ApiConstants.User]);
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            Account account = await _unitOfWork.Account.FindAccountById(auth.Id, trackChanges: true);
+
+            if (account.Fk_AccountType == (int)AccountTypeEnum.Client)
+            {
+                account.FirstName = model.FirstName;
+                account.LastName = model.LastName;
+                account.User.Name = $"{model.FirstName} {model.LastName}";
+                account.User.PhoneNumber = model.PhoneNumber;
+
+                await _unitOfWork.Save();
+            }
+
+            return _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(auth.Id, language));
+        } 
+        
         [HttpPut]
         [Route(nameof(ChangePassword))]
         public async Task<bool> ChangePassword(

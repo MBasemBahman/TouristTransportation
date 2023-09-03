@@ -73,7 +73,7 @@ namespace CoreServices.Logic
         {
             return await PagedList<AccountModel>.ToPagedList(GetAccounts(parameters,language), parameters.PageNumber, parameters.PageSize);
         }
-
+        
         public async Task<PagedList<AccountModel>> GetAccountsPaged(
           IQueryable<AccountModel> data,
          AccountParameters parameters)
