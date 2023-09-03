@@ -252,8 +252,10 @@ namespace CoreServices.Logic
                               {
                                   Id = a.Id,
                                   Fk_Trip = a.Fk_Trip,
+                                  FromAddress = a.FromAddress,
                                   FromLatitude = a.FromLatitude,
                                   FromLongitude = a.FromLongitude,
+                                  ToAddress = a.ToAddress,
                                   ToLatitude = a.ToLatitude,
                                   ToLongitude = a.ToLongitude,
                                   Price = a.Price,
