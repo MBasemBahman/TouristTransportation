@@ -20,9 +20,9 @@ namespace Entities.CoreServicesModels.AccountModels
         [DisplayName(nameof(ImageUrl))]
         public new string ImageUrl { get; set; }
 
-        [DisplayName(nameof(Phone))]
-        [Phone]
-        public string Phone { get; set; }
+        // [DisplayName(nameof(Phone))]
+        // [Phone]
+        // public string Phone { get; set; }
 
         [DisplayName(nameof(AccountType))]
         [ForeignKey(nameof(AccountType))]
@@ -38,9 +38,9 @@ namespace Entities.CoreServicesModels.AccountModels
         [DisplayName(nameof(AccountState))]
         public AccountStateModel AccountState { get; set; }
 
-        [DisplayName(nameof(EmailAddress))]
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        // [DisplayName(nameof(EmailAddress))]
+        // [EmailAddress]
+        // public string EmailAddress { get; set; }
 
         [DisplayName(nameof(User))]
         public int? Fk_User { get; set; }
@@ -85,13 +85,13 @@ namespace Entities.CoreServicesModels.AccountModels
         [ForeignKey(nameof(Supplier))]
         public int? Fk_Supplier { get; set; }
 
-        [DisplayName(nameof(Phone))]
-        [Phone]
-        public string Phone { get; set; }
-
-        [DisplayName(nameof(EmailAddress))]
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        // [DisplayName(nameof(Phone))]
+        // [Phone]
+        // public string Phone { get; set; }
+        //
+        // [DisplayName(nameof(EmailAddress))]
+        // [EmailAddress]
+        // public string EmailAddress { get; set; }
     }
 
     public class AccountCreateModel
@@ -99,12 +99,12 @@ namespace Entities.CoreServicesModels.AccountModels
         [DisplayName(nameof(User))]
         public UserCreateModel User { get; set; }
 
-        [DisplayName(nameof(Phone))]
-        [Phone]
-        public string Phone { get; set; }
-
-        [DisplayName(nameof(EmailAddress))]
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        // [DisplayName(nameof(Phone))]
+        // [Phone]
+        // public string Phone { get; set; }
+        //
+        // [DisplayName(nameof(EmailAddress))]
+        // [EmailAddress]
+        // public string EmailAddress { get; set; }
     }
 }

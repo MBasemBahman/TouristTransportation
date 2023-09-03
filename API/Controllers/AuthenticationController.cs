@@ -65,10 +65,8 @@ namespace API.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    EmailAddress = model.EmailAddress,
                     Fk_AccountState = (int)AccountStateEnum.Active,
                     Fk_AccountType = (int)AccountTypeEnum.Client,
-                    Phone = model.PhoneNumber,
                 },
                 Culture = model.Culture
             };
@@ -100,11 +98,12 @@ namespace API.Controllers
 
             if (account.Fk_AccountType == (int)AccountTypeEnum.Client)
             {
-                account.FirstName = model.FirstName;
-                account.LastName = model.LastName;
                 account.User.Name = $"{model.FirstName} {model.LastName}";
                 account.User.PhoneNumber = model.PhoneNumber;
-
+                
+                account.FirstName = model.FirstName;
+                account.LastName = model.LastName;
+                
                 await _unitOfWork.Save();
             }
 

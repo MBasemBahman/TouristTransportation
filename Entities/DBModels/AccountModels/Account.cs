@@ -16,10 +16,6 @@ public class Account : AuditImageEntity
     [ForeignKey(nameof(User))]
     public int? Fk_User { get; set; }
 
-    [DisplayName(nameof(Phone))]
-    [Phone]
-    public string Phone { get; set; }
-
     [DisplayName(nameof(AccountType))]
     [ForeignKey(nameof(AccountType))]
     public int Fk_AccountType { get; set; }
@@ -33,10 +29,6 @@ public class Account : AuditImageEntity
 
     [DisplayName(nameof(AccountState))]
     public AccountState AccountState { get; set; }
-
-    [DisplayName(nameof(EmailAddress))]
-    [EmailAddress]
-    public string EmailAddress { get; set; }
 
     [DisplayName(nameof(User))]
     public User User { get; set; }

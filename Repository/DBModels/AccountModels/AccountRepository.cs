@@ -54,10 +54,10 @@ namespace Repository.DBModels.AccountModels
                                                                    || a.LastName.Contains(name)
                                                                    || a.User.Name.Contains(name)
                                                                    || a.User.UserName.Contains(name)
-                                                                   || a.Phone.Contains(name)
-                                                                   || a.EmailAddress.Contains(name)) &&
+                                                                   || a.User.PhoneNumber.Contains(name)
+                                                                   || a.User.EmailAddress.Contains(name)) &&
                                        
-                                       (string.IsNullOrEmpty(emailAddress) || a.EmailAddress == emailAddress) &&
+                                       (string.IsNullOrEmpty(emailAddress) || a.User.EmailAddress == emailAddress) &&
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_Supplier == 0 || a.Fk_Supplier == fk_Supplier) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) &&

@@ -92,8 +92,8 @@
 
                                                 </th>
                                                 <th>@Html.DisplayNameFor(model => row.User.Name)</th>
-                                                <th>@Html.DisplayNameFor(model => row.Phone)</th>
-                                                <th>@Html.DisplayNameFor(model => row.EmailAddress)</th>
+                                                <th>@Html.DisplayNameFor(model => row.User.PhoneNumber)</th>
+                                                <th>@Html.DisplayNameFor(model => row.User.EmailAddress)</th>
                                                 <th>@Html.DisplayNameFor(model => row.AccountType)</th>
                                                 <th>@Html.DisplayNameFor(model => row.AccountState)</th>
                                                 <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
@@ -162,8 +162,8 @@ else
 
                                     </th>
                                     <th>@Html.DisplayNameFor(model => row.User.Name)</th>
-                                    <th>@Html.DisplayNameFor(model => row.Phone)</th>
-                                    <th>@Html.DisplayNameFor(model => row.EmailAddress)</th>
+                                    <th>@Html.DisplayNameFor(model => row.User.PhoneNumber)</th>
+                                    <th>@Html.DisplayNameFor(model => row.User.EmailAddress)</th>
                                     <th>@Html.DisplayNameFor(model => row.AccountType)</th>
                                     <th>@Html.DisplayNameFor(model => row.AccountState)</th>
                                     <th>@Html.DisplayNameFor(model => row.CreatedAt)</th>
@@ -226,8 +226,8 @@ else
                             },
                             orderable: false
                         },
-                        { data: "phone" },
-                        { data: "emailAddress" },
+                        { data: "user.phoneNumber" },
+                        { data: "user.emailAddress" },
                         {
                             data: "accountType",
                             orderable: false,

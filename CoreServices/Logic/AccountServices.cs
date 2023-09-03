@@ -32,10 +32,12 @@ namespace CoreServices.Logic
                                   Fk_User = a.Fk_User,
                                   User = a.Fk_User != null ? new UserModel
                                   {
-                                      Name = a.User.Name
+                                      Name = a.User.Name,
+                                      PhoneNumber = a.User.PhoneNumber,
+                                      EmailAddress = a.User.EmailAddress
                                   } : null,
-                                  Phone = a.Phone,
-                                  EmailAddress = a.EmailAddress,
+                                  // Phone = a.Phone,
+                                  // EmailAddress = a.EmailAddress,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/userImg.png",
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
