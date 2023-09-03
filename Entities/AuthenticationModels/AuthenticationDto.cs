@@ -1,7 +1,4 @@
-﻿using Entities.Constants;
-using Entities.ResponseFeatures;
-
-namespace Entities.AuthenticationModels
+﻿namespace Entities.AuthenticationModels
 {
     public class UserForRegistrationDto
     {
