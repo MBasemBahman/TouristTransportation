@@ -92,7 +92,8 @@ namespace API.Controllers
         [Route(nameof(EditAccount))]
         public async Task<AccountDto> EditAccount([FromBody] UserForEditDto model)
         {
-            UserAuthenticatedDto auth = await _authManager.GetById((int)Request.HttpContext.Items[ApiConstants.User]);
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             Account account = await _unitOfWork.Account.FindAccountById(auth.Id, trackChanges: true);
