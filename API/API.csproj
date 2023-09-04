@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Upload\Account\" />
     <Folder Include="wwwroot\Uploud\Account\" />
     <Folder Include="wwwroot\Uploud\Organization\" />
     <Folder Include="wwwroot\Uploud\Request\" />
