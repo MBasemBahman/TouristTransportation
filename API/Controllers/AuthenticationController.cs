@@ -1,4 +1,5 @@
 ﻿using API.Areas.AccountArea.Models;
+using API.Models;
 using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
@@ -88,7 +89,7 @@ namespace API.Controllers
 
         [HttpPut]
         [Route(nameof(EditAccount))]
-        public async Task<AccountDto> EditAccount([FromBody] UserForEditDto model)
+        public async Task<AccountDto> EditAccount([FromBody] AuthForEditDto model)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
             
@@ -103,6 +104,12 @@ namespace API.Controllers
                 
                 account.FirstName = model.FirstName;
                 account.LastName = model.LastName;
+                
+                if (model.ImageFile != null)
+                {
+                    account.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, model.ImageFile);
+                    account.StorageUrl = GetBaseUri();
+                }
                 
                 await _unitOfWork.Save();
             }

@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.UserModels;
+﻿using System.ComponentModel;
+using Entities.CoreServicesModels.UserModels;
 using Newtonsoft.Json;
 
 namespace API.Models
@@ -21,5 +22,11 @@ namespace API.Models
 
         [JsonIgnore]
         public new string CreatedAt { get; set; }
+    }
+
+    public class AuthForEditDto : UserForEditDto
+    {
+        [DisplayName(nameof(ImageFile))] 
+        public IFormFile ImageFile { get; set; }
     }
 }
