@@ -39,7 +39,9 @@
 
         protected string GetBaseUri()
         {
-            return _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
+            var areaVal = HttpContext.Request.RouteValues["area"];
+            string area = HttpContext.Request.RouteValues["area"].ToString();
+            return _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(area);
         }
 
         protected void SetToken(TokenResponse token)

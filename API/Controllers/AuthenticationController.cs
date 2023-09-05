@@ -95,7 +95,7 @@ namespace API.Controllers
             
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            Account account = await _unitOfWork.Account.FindAccountById(auth.Id, trackChanges: true);
+            Account account = await _unitOfWork.Account.FindAccountById(auth.Fk_Account, trackChanges: true);
 
             if (account.Fk_AccountType == (int)AccountTypeEnum.Client)
             {
@@ -108,13 +108,13 @@ namespace API.Controllers
                 if (model.ImageFile != null)
                 {
                     account.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, model.ImageFile);
-                    account.StorageUrl = GetBaseUri();
+                    account.StorageUrl = _linkGenerator.GetUriByAction(HttpContext);
                 }
                 
                 await _unitOfWork.Save();
             }
 
-            return _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(auth.Id, language));
+            return _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(auth.Fk_Account, language));
         } 
         
         [HttpPut]
