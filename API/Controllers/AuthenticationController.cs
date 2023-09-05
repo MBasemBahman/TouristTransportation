@@ -89,7 +89,7 @@ namespace API.Controllers
 
         [HttpPut]
         [Route(nameof(EditAccount))]
-        public async Task<AccountDto> EditAccount([FromBody] AuthForEditDto model)
+        public async Task<AccountDto> EditAccount([FromForm] AuthForEditDto model)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
             
