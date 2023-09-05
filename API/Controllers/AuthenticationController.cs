@@ -92,7 +92,7 @@ namespace API.Controllers
         public async Task<AccountDto> EditAccount([FromForm] AuthForEditDto model)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
-            
+
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             Account account = await _unitOfWork.Account.FindAccountById(auth.Fk_Account, trackChanges: true);
@@ -101,22 +101,22 @@ namespace API.Controllers
             {
                 account.User.Name = $"{model.FirstName} {model.LastName}";
                 account.User.PhoneNumber = model.PhoneNumber;
-                
+
                 account.FirstName = model.FirstName;
                 account.LastName = model.LastName;
-                
+
                 if (model.ImageFile != null)
                 {
                     account.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, model.ImageFile);
-                    account.StorageUrl = _linkGenerator.GetUriByAction(HttpContext);
+                    account.StorageUrl = GetBaseUri();
                 }
-                
+
                 await _unitOfWork.Save();
             }
 
             return _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(auth.Fk_Account, language));
-        } 
-        
+        }
+
         [HttpPut]
         [Route(nameof(ChangePassword))]
         public async Task<bool> ChangePassword(

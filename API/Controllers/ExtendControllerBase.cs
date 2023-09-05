@@ -39,9 +39,15 @@
 
         protected string GetBaseUri()
         {
-            var areaVal = HttpContext.Request.RouteValues["area"];
-            string area = HttpContext.Request.RouteValues["area"].ToString();
-            return _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(area);
+            if (HttpContext.Request.RouteValues["area"] != null)
+            {
+                return _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
+            }
+            else if (HttpContext.Request.RouteValues["version"] != null)
+            {
+                return _linkGenerator.GetUriByAction(HttpContext).GetBaseUri("v" + HttpContext.Request.RouteValues["version"].ToString());
+            }
+            return _linkGenerator.GetUriByAction(HttpContext);
         }
 
         protected void SetToken(TokenResponse token)
