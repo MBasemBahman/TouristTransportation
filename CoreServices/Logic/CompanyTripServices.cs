@@ -188,7 +188,7 @@ namespace CoreServices.Logic
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripState.Name,
                                       ColorCode = a.CompanyTripState.ColorCode
                                   },
-                                  Price = a.Price,
+                                  Price = a.Price / parameters.RateInPounds,
                                   Notes = a.Notes,
                                   Description = a.Description,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/trip.png",

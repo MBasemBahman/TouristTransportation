@@ -54,6 +54,13 @@ namespace Entities.CoreServicesModels.AccountModels
 
         [DisplayName(nameof(Supplier))]
         public SupplierModel Supplier { get; set; }
+        
+        [DisplayName(nameof(Currency))]
+        [ForeignKey(nameof(Currency))]
+        public int? Fk_Currency { get; set; }
+
+        [DisplayName(nameof(Currency))]
+        public CurrencyModel Currency { get; set; }
 
     }
 
@@ -84,6 +91,10 @@ namespace Entities.CoreServicesModels.AccountModels
         [DisplayName(nameof(Supplier))]
         [ForeignKey(nameof(Supplier))]
         public int? Fk_Supplier { get; set; }
+        
+        [DisplayName(nameof(Currency))]
+        [ForeignKey(nameof(Currency))]
+        public int? Fk_Currency { get; set; }
 
         // [DisplayName(nameof(Phone))]
         // [Phone]

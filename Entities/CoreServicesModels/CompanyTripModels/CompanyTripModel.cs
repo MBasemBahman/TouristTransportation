@@ -7,6 +7,7 @@ namespace Entities.CoreServicesModels.CompanyTripModels
     {
         public int Fk_CompanyTripState { get; set; }
         public int Fk_Account { get; set; }
+        public double RateInPounds { get; set; } = 1;
     }
 
     public class CompanyTripModel : AuditImageEntity

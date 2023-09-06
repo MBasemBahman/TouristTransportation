@@ -145,6 +145,22 @@ namespace API.Controllers
 
             return true;
         }
+        
+        [HttpPut]
+        [Route(nameof(SetCurrency))]
+        public async Task<bool> SetCurrency(
+           [FromBody] UserForEditCurrencyDto model)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            Account account = await _unitOfWork.Account.FindAccountById(auth.Fk_Account, trackChanges: true);
+
+            account.Fk_Currency = model.Fk_Currency;
+
+            await _unitOfWork.Save();
+
+            return true;
+        }
 
         [HttpPost]
         [Route(nameof(RefreshToken))]

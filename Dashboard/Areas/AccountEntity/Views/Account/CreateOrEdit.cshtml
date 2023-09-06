@@ -139,6 +139,16 @@
                                             </div>
                                         </div>
                                         
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Fk_Currency" class="form-label"></label>
+                                                <select asp-for="Fk_Currency" class="select2 form-select" asp-items="@(new SelectList(ViewData["Currency"] as Dictionary<string,string>,"Key","Value"))">
+                                                    <option value="0">@Localizer.Get("Not Found")</option>
+                                                </select>
+                                                <span asp-validation-for="Fk_Currency" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
                                         <hr/>
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">@Localizer.Get("Submit")</button>

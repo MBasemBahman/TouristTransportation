@@ -32,6 +32,12 @@
         [DisplayName(nameof(Culture))]
         public string Culture { get; set; }
     }
+    
+    public class UserForEditCurrencyDto
+    {
+        [DisplayName(nameof(Fk_Currency))]
+        public int? Fk_Currency { get; set; }
+    }
 
     public class UserForEditDto
     {
@@ -107,6 +113,7 @@
         public int Fk_Account { get; set; }
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }
+        public double RateInPounds { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
 

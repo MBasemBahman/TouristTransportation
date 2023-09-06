@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.MainDataModels;
 using Entities.DBModels.UserModels;
 
 namespace API.Utility
@@ -142,10 +143,18 @@ namespace API.Utility
             AccountModel account = _unitOfWork.Account.GetByUserId(user.Id, language: null);
             if (account != null)
             {
+                double rateInPounds = 1;
+
+                if (account.Fk_Currency != null)
+                {
+                    rateInPounds = _unitOfWork.MainData.GetCurrencyById((int)account.Fk_Currency, language: null).RateInPounds;
+                }
+                
                 userAuthenticated.ImageUrl = account.ImageUrl;
                 userAuthenticated.Fk_Account = account.Id;
                 userAuthenticated.Fk_AccountType = account.Fk_AccountType;
                 userAuthenticated.Fk_AccountState = account.Fk_AccountState;
+                userAuthenticated.RateInPounds = rateInPounds;
             }
             return userAuthenticated;
         }

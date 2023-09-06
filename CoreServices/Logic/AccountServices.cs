@@ -64,6 +64,13 @@ namespace CoreServices.Logic
                                       Name = language != null ? a.Supplier.SupplierLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Supplier.Name,
+                                  }:null,
+                                  Fk_Currency = a.Fk_Currency,
+                                  Currency =a.Currency != null ? new CurrencyModel
+                                  {
+                                      Name = language != null ? a.Currency.CurrencyLangs
+                                      .Where(b => b.Language == language)
+                                      .Select(b => b.Name).FirstOrDefault() : a.Currency.Name,
                                   }:null
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)

@@ -40,6 +40,13 @@ public class Account : AuditImageEntity
     [DisplayName(nameof(Supplier))]
     public Supplier Supplier { get; set; }
 
+    [DisplayName(nameof(Currency))]
+    [ForeignKey(nameof(Currency))]
+    public int? Fk_Currency { get; set; }
+
+    [DisplayName(nameof(Currency))]
+    public Currency Currency { get; set; }
+    
     [DisplayName(nameof(Posts))]
     public List<Post> Posts { get; set; }
 }

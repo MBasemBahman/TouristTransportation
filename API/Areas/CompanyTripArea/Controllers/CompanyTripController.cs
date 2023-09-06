@@ -26,11 +26,12 @@ namespace API.Areas.CompanyTripArea.Controllers
         [Route(nameof(GetCompanyTrips))]
         public async Task<IEnumerable<CompanyTripDto>> GetCompanyTrips([FromQuery] CompanyTripParameters parameters)
         {
-            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             parameters.Fk_Account = parameters.Fk_Account;
+            parameters.RateInPounds = auth.RateInPounds;
 
             PagedList<CompanyTripModel> companyTrips = await _unitOfWork.CompanyTrip.GetCompanyTripsPaged(parameters, language);
 
@@ -58,7 +59,8 @@ namespace API.Areas.CompanyTripArea.Controllers
             CompanyTripModel companyTrip = _unitOfWork.CompanyTrip.GetCompanyTrips(new CompanyTripParameters
             {
                 Id = id,
-                Fk_Account = auth.Fk_Account
+                Fk_Account = auth.Fk_Account,
+                RateInPounds = auth.RateInPounds
             }, language).FirstOrDefault();
 
             CompanyTripDto companyTripDto = _mapper.Map<CompanyTripDto>(companyTrip);

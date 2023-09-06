@@ -214,6 +214,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             ViewData["AccountType"] = _unitOfWork.Account.GetAccountTypesLookUp(new AccountTypeParameters(), otherLang);
             ViewData["AccountState"] = _unitOfWork.Account.GetAccountStatesLookUp(new AccountStateParameters(), otherLang);
             ViewData["Supplier"] = _unitOfWork.MainData.GetSuppliersLookUp(new SupplierParameters(), otherLang);
+            ViewData["Currency"] = _unitOfWork.MainData.GetCurrenciesLookUp(new CurrencyParameters(), otherLang);
 
         }
 
