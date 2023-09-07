@@ -30,16 +30,4 @@
     <ProjectReference Include="..\TenantConfiguration\TenantConfiguration.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Areas\ServiceTypeEntity\Views\ServiceType\CreateOrEdit.cshtml" />
-    <_ContentIncludedByDefault Remove="Areas\ServiceTypeEntity\Views\ServiceType\Delete.cshtml" />
-    <_ContentIncludedByDefault Remove="Areas\ServiceTypeEntity\Views\ServiceType\Details.cshtml" />
-    <_ContentIncludedByDefault Remove="Areas\ServiceTypeEntity\Views\ServiceType\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Areas\ServiceTypeEntity\Views\_ViewImports.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Upload\Account\" />
-  </ItemGroup>
-
 </Project>
