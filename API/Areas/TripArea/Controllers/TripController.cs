@@ -31,6 +31,7 @@ namespace API.Areas.TripArea.Controllers
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             parameters.Fk_Client = auth.Fk_Account;
+            parameters.RateInPounds = auth.RateInPounds;
 
             PagedList<TripModel> trips = await _unitOfWork.Trip.GetTripsPaged(parameters, language);
 
@@ -53,7 +54,13 @@ namespace API.Areas.TripArea.Controllers
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            TripModel trip = _unitOfWork.Trip.GetTripById(id, language);
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            
+            TripModel trip = _unitOfWork.Trip.GetTrips(new TripParameters
+            {
+                Id = id,
+                RateInPounds = auth.RateInPounds
+            }, language).FirstOrDefault();
 
             TripDto tripDto = _mapper.Map<TripDto>(trip);
 
@@ -61,7 +68,8 @@ namespace API.Areas.TripArea.Controllers
                 (
                 _unitOfWork.Trip.GetTripPoints(new TripPointParameters
                 {
-                    Fk_Trip = id
+                    Fk_Trip = id,
+                    RateInPounds = auth.RateInPounds
                 }, language).ToList()
                 );
 
@@ -106,7 +114,11 @@ namespace API.Areas.TripArea.Controllers
 
             await _unitOfWork.Save();
 
-            TripModel tripModel = _unitOfWork.Trip.GetTripById(trip.Id, language);
+            TripModel tripModel = _unitOfWork.Trip.GetTrips(new TripParameters
+            {
+                Id = trip.Id,
+                RateInPounds = auth.RateInPounds
+            }, language).FirstOrDefault();
 
             TripDto tripDto = _mapper.Map<TripDto>(tripModel);
 
@@ -114,7 +126,8 @@ namespace API.Areas.TripArea.Controllers
                 (
                 _unitOfWork.Trip.GetTripPoints(new TripPointParameters
                 {
-                    Fk_Trip = trip.Id
+                    Fk_Trip = trip.Id,
+                    RateInPounds = auth.RateInPounds
                 }, language).ToList()
                 );
 
@@ -154,7 +167,11 @@ namespace API.Areas.TripArea.Controllers
             await _unitOfWork.Save();
 
 
-            TripModel tripModel = _unitOfWork.Trip.GetTripById(trip.Id, language);
+            TripModel tripModel = _unitOfWork.Trip.GetTrips(new TripParameters
+            {
+                Id = trip.Id,
+                RateInPounds = auth.RateInPounds
+            }, language).FirstOrDefault();
 
             TripDto tripDto = _mapper.Map<TripDto>(tripModel);
 
@@ -162,7 +179,8 @@ namespace API.Areas.TripArea.Controllers
                 (
                 _unitOfWork.Trip.GetTripPoints(new TripPointParameters
                 {
-                    Fk_Trip = trip.Id
+                    Fk_Trip = trip.Id,
+                    RateInPounds = auth.RateInPounds
                 }, language).ToList()
                 );
             tripDto.TripLocations = _mapper.Map<List<TripLocationDto>>
@@ -217,7 +235,11 @@ namespace API.Areas.TripArea.Controllers
             await _unitOfWork.Save();
 
 
-            TripModel tripModel = _unitOfWork.Trip.GetTripById(trip.Id, language);
+            TripModel tripModel = _unitOfWork.Trip.GetTrips(new TripParameters
+            {
+                Id = trip.Id,
+                RateInPounds = auth.RateInPounds
+            }, language).FirstOrDefault();
 
             TripDto tripDto = _mapper.Map<TripDto>(tripModel);
 
@@ -225,7 +247,8 @@ namespace API.Areas.TripArea.Controllers
                 (
                 _unitOfWork.Trip.GetTripPoints(new TripPointParameters
                 {
-                    Fk_Trip = trip.Id
+                    Fk_Trip = trip.Id,
+                    RateInPounds = auth.RateInPounds
                 }, language).ToList()
                 );
             tripDto.TripLocations = _mapper.Map<List<TripLocationDto>>

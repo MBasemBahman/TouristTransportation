@@ -15,6 +15,7 @@ namespace Entities.CoreServicesModels.TripModels
         public int? Fk_Driver { get; set; }
         public int? Fk_CarClass { get; set; }
         public int? Fk_TripState { get; set; }
+        public double RateInPounds { get; set; }
     }
 
     public class TripModel : AuditEntity

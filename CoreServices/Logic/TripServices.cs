@@ -102,7 +102,7 @@ namespace CoreServices.Logic
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
                                   LastModifiedBy = a.LastModifiedBy,
-                                  Price = a.Price,
+                                  Price = parameters.RateInPounds > 0 ? a.Price / parameters.RateInPounds : a.Price,
                                   MembersCount = a.MembersCount,
                                   Notes = a.Notes,
                                   TripState = new TripStateModel
@@ -114,8 +114,8 @@ namespace CoreServices.Logic
                                       ColorCode = a.TripState.ColorCode
                                   },
                                   TripAt = a.TripAt,
-                                  WaitingPrice = a.WaitingPrice,
-                                  TotalPrice = a.TotalPrice,
+                                  WaitingPrice = parameters.RateInPounds > 0 ? a.WaitingPrice / parameters.RateInPounds : a.WaitingPrice,
+                                  TotalPrice = parameters.RateInPounds > 0 ? a.TotalPrice / parameters.RateInPounds : a.TotalPrice,
                                   CarClass = a.Fk_CarClass != null ? new CarClassModel
                                   {
                                       Name = language != null ? a.CarClass.CarClassLangs
@@ -259,11 +259,11 @@ namespace CoreServices.Logic
                                   ToAddress = a.ToAddress,
                                   ToLatitude = a.ToLatitude,
                                   ToLongitude = a.ToLongitude,
-                                  Price = a.Price,
+                                  Price = parameters.RateInPounds > 0 ? a.Price / parameters.RateInPounds : a.Price,
                                   TripAt = a.TripAt,
                                   LeaveAt = a.LeaveAt,
                                   WaitingTime = a.WaitingTime,
-                                  WaitingTimeCost = a.WaitingTimeCost,
+                                  WaitingTimeCost = parameters.RateInPounds > 0 ? a.WaitingTimeCost / parameters.RateInPounds : a.WaitingTimeCost,
                                   CreatedAt = a.CreatedAt,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)

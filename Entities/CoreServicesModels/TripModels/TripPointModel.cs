@@ -5,6 +5,7 @@ namespace Entities.CoreServicesModels.TripModels
     public class TripPointParameters : RequestParameters
     {
         public int Fk_Trip { get; set; }
+        public double RateInPounds { get; set; }
     }
 
     public class TripPointModel : BaseEntity
