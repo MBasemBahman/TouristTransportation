@@ -21,17 +21,6 @@ namespace CoreServices.Logic
         public IQueryable<HotelModel> GetHotels(
             HotelParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
-            List<HotelFeatureCategoryModel> categories = new List<HotelFeatureCategoryModel>();
-            if (parameters.IncludeSelectedFeature == true)
-            {
-                categories = GetHotelFeatureCategories(new HotelFeatureCategoryParameters(), language)
-                    .Select(a => new HotelFeatureCategoryModel
-                    {
-                        Id = a.Id,
-                        Name = a.Name
-                    }).ToList();   
-            }
-
             return _repository.Hotel
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new HotelModel
@@ -79,6 +68,18 @@ namespace CoreServices.Logic
                                                   .Where(c => c.Language == language)
                                                   .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
                                           }).ToList()
+                                      }).ToList() : null,
+                                  
+                                  HotelSelectedFeatureWithoutCategory = parameters.IncludeSelectedFeatureWithoutCategory == true ? a.HotelSelectedFeatures
+                                      .Select(feature => new HotelSelectedFeaturesModel
+                                      {
+                                          Fk_HotelFeature = feature.Fk_HotelFeature,
+                                          HotelFeature = new HotelFeatureModel
+                                          {
+                                              Name = language != null ? feature.HotelFeature.HotelFeatureLangs
+                                                  .Where(c => c.Language == language)
+                                                  .Select(d => d.Name).FirstOrDefault() : feature.HotelFeature.Name,
+                                          }
                                       }).ToList() : null,
                                   
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/hotel.png",
@@ -130,7 +131,6 @@ namespace CoreServices.Logic
             return GetHotels(new HotelParameters
             {
                 Id = id,
-                IncludeSelectedFeature = true
             }, language).SingleOrDefault();
         }
         

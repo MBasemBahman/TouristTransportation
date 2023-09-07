@@ -35,7 +35,7 @@ namespace API.Areas.HotelArea.Controllers
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            parameters.IncludeSelectedFeature = true;
+            // parameters.IncludeSelectedFeature = true;
             parameters.IsActive = true;
 
             PagedList<HotelModel> hotels = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
@@ -62,7 +62,11 @@ namespace API.Areas.HotelArea.Controllers
             //For My Reaction
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelModel hotel = _unitOfWork.Hotel.GetHotelById(id, language);
+            HotelModel hotel = _unitOfWork.Hotel.GetHotels(new HotelParameters
+            {
+                Id = id,
+                IncludeSelectedFeatureWithoutCategory = true
+            }, language).FirstOrDefault();
 
             HotelDto hotelDto = _mapper.Map<HotelDto>(hotel);
 

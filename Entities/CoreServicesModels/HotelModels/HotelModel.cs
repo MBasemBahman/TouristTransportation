@@ -10,6 +10,7 @@ namespace Entities.CoreServicesModels.HotelModels
         public int? Fk_Country { get; set; }
         public bool? IsActive { get; set; }
         public bool? IncludeSelectedFeature { get; set; }
+        public bool? IncludeSelectedFeatureWithoutCategory { get; set; }
     }
 
     public class HotelModel : AuditImageEntity
@@ -49,6 +50,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName("HotelFeatures")]
         public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
+        
+        [DisplayName("HotelFeatures")]
+        public List<HotelSelectedFeaturesModel> HotelSelectedFeatureWithoutCategory { get; set; }
     }
 
     public class HotelCreateOrEditModel
