@@ -59,19 +59,20 @@ namespace CoreServices.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.AccountType.Name,
                                       ColorCode = a.AccountType.ColorCode
                                   },
-                                  Supplier =a.Supplier!=null? new SupplierModel
+                                  Supplier = a.Supplier != null ? new SupplierModel
                                   {
                                       Name = language != null ? a.Supplier.SupplierLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Supplier.Name,
-                                  }:null,
+                                  } : null,
                                   Fk_Currency = a.Fk_Currency,
-                                  Currency =a.Currency != null ? new CurrencyModel
+                                  Currency = a.Currency != null ? new CurrencyModel
                                   {
+                                     RateInPounds = a.Currency.RateInPounds,
                                       Name = language != null ? a.Currency.CurrencyLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Currency.Name,
-                                  }:null
+                                  } : null
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -80,9 +81,9 @@ namespace CoreServices.Logic
         public async Task<PagedList<AccountModel>> GetAccountsPaged(
             AccountParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
-            return await PagedList<AccountModel>.ToPagedList(GetAccounts(parameters,language), parameters.PageNumber, parameters.PageSize);
+            return await PagedList<AccountModel>.ToPagedList(GetAccounts(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
-        
+
         public async Task<PagedList<AccountModel>> GetAccountsPaged(
           IQueryable<AccountModel> data,
          AccountParameters parameters)
@@ -108,18 +109,18 @@ namespace CoreServices.Logic
 
         public AccountModel GetAccountById(int id, DBModelsEnum.LanguageEnum? language)
         {
-            return GetAccounts(new AccountParameters { Id = id },language).SingleOrDefault();
+            return GetAccounts(new AccountParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
         public AccountModel GetByUserId(int fk_User, DBModelsEnum.LanguageEnum? language)
         {
-            return GetAccounts(new AccountParameters { Fk_User = fk_User },language).SingleOrDefault();
+            return GetAccounts(new AccountParameters { Fk_User = fk_User }, language).SingleOrDefault();
         }
 
         public AccountModel GetAccountByEmailAddress(string emailAddress)
         {
             return !string.IsNullOrEmpty(emailAddress) ?
-                GetAccounts(new AccountParameters { EmailAddress = emailAddress },language:null).SingleOrDefault() : null;
+                GetAccounts(new AccountParameters { EmailAddress = emailAddress }, language: null).SingleOrDefault() : null;
         }
 
         public void CreateAccount(Account entity)
@@ -145,7 +146,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region AccountType Services
 
         public IQueryable<AccountTypeModel> GetAccountTypes(
@@ -167,7 +168,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<AccountTypeModel>> GetAccountTypesPaged(
-            AccountTypeParameters parameters , DBModelsEnum.LanguageEnum? language)
+            AccountTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<AccountTypeModel>.ToPagedList(GetAccountTypes(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -183,7 +184,7 @@ namespace CoreServices.Logic
         {
             return await _repository.AccountType.FindById(id, trackChanges);
         }
-        
+
         public Dictionary<string, string> GetAccountTypesLookUp(AccountTypeParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
         {
             return GetAccountTypes(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
@@ -193,7 +194,7 @@ namespace CoreServices.Logic
         {
             return GetAccountTypes(new AccountTypeParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateAccountType(AccountType entity)
         {
@@ -213,7 +214,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region AccountState Services
 
         public IQueryable<AccountStateModel> GetAccountStates(
@@ -235,7 +236,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<AccountStateModel>> GetAccountStatesPaged(
-            AccountStateParameters parameters , DBModelsEnum.LanguageEnum? language)
+            AccountStateParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<AccountStateModel>.ToPagedList(GetAccountStates(parameters, language), parameters.PageNumber, parameters.PageSize);
         }

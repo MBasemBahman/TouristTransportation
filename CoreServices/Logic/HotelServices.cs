@@ -48,7 +48,7 @@ namespace CoreServices.Logic
                                           .Select(b => b.Name).FirstOrDefault() : a.Area.Country.Name,
                                       }
                                   } : null,
-                                  
+
                                   HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
                                       .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
                                       .Select(group => new HotelSelectedFeaturesWithCategoryModel
@@ -69,7 +69,7 @@ namespace CoreServices.Logic
                                                   .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
                                           }).ToList()
                                       }).ToList() : null,
-                                  
+
                                   HotelSelectedFeatureWithoutCategory = parameters.IncludeSelectedFeatureWithoutCategory == true ? a.HotelSelectedFeatures
                                       .Select(feature => new HotelSelectedFeaturesModel
                                       {
@@ -81,7 +81,7 @@ namespace CoreServices.Logic
                                                   .Select(d => d.Name).FirstOrDefault() : feature.HotelFeature.Name,
                                           }
                                       }).ToList() : null,
-                                  
+
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/hotel.png",
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,
@@ -94,7 +94,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<HotelModel>> GetHotelsPaged(
-            HotelParameters parameters , DBModelsEnum.LanguageEnum? language)
+            HotelParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<HotelModel>.ToPagedList(GetHotels(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -133,7 +133,7 @@ namespace CoreServices.Logic
                 Id = id,
             }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateHotel(Hotel entity)
         {
@@ -153,7 +153,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region Hotel Attachment Services
 
         public IQueryable<HotelAttachmentModel> GetHotelAttachments(
@@ -169,7 +169,7 @@ namespace CoreServices.Logic
                                   {
                                       Name = language != null ? a.Hotel.HotelLangs
                                           .Where(b => b.Language == language)
-                                          .Select(b => b.Name).FirstOrDefault() : a.Hotel.Name, 
+                                          .Select(b => b.Name).FirstOrDefault() : a.Hotel.Name,
                                   },
                                   FileUrl = a.StorageUrl + a.FileUrl,
                                   FileLength = a.FileLength,
@@ -185,7 +185,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<HotelAttachmentModel>> GetHotelAttachmentsPaged(
-            HotelAttachmentParameters parameters , DBModelsEnum.LanguageEnum? language)
+            HotelAttachmentParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<HotelAttachmentModel>.ToPagedList(GetHotelAttachments(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -201,7 +201,7 @@ namespace CoreServices.Logic
         {
             return await _repository.HotelAttachment.FindById(id, trackChanges);
         }
-        
+
         public async Task<string> UploadHotelAttachment(string rootPath, IFormFile file)
         {
             FileUploader uploader = new(rootPath);
@@ -212,7 +212,7 @@ namespace CoreServices.Logic
         {
             return GetHotelAttachments(new HotelAttachmentParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateHotelAttachment(HotelAttachment entity)
         {
@@ -232,7 +232,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region HotelFeature Services
 
         public IQueryable<HotelFeatureModel> GetHotelFeatures(
@@ -264,7 +264,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<HotelFeatureModel>> GetHotelFeaturesPaged(
-            HotelFeatureParameters parameters , DBModelsEnum.LanguageEnum? language)
+            HotelFeatureParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<HotelFeatureModel>.ToPagedList(GetHotelFeatures(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -275,7 +275,7 @@ namespace CoreServices.Logic
         {
             return await PagedList<HotelFeatureModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
         }
-        
+
         public void UpdateHotelFeatures(int fk_Hotel, List<int> hotelFeatures)
         {
             if (!hotelFeatures.Any()) return;
@@ -295,9 +295,9 @@ namespace CoreServices.Logic
                     Fk_HotelFeature = fk_HotelFeature,
                 });
             }
-            
+
             List<int> removedIds = oldIds.Except(hotelFeatures).ToList();
-            
+
             foreach (int fk_HotelFeature in removedIds)
             {
                 HotelSelectedFeatures entity = _repository.HotelSelectedFeatures
@@ -307,11 +307,11 @@ namespace CoreServices.Logic
                         Fk_HotelFeature = fk_HotelFeature
                     }, trackChanges: false)
                     .FirstOrDefault();
-                
+
                 _repository.HotelSelectedFeatures.Delete(entity);
             }
         }
-        
+
         public async Task<HotelFeature> FindHotelFeatureById(int id, bool trackChanges)
         {
             return await _repository.HotelFeature.FindById(id, trackChanges);
@@ -321,7 +321,7 @@ namespace CoreServices.Logic
         {
             return GetHotelFeatures(new HotelFeatureParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateHotelFeature(HotelFeature entity)
         {
@@ -341,7 +341,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region HotelFeatureCategory Services
 
         public IQueryable<HotelFeatureCategoryModel> GetHotelFeatureCategories(
@@ -357,7 +357,7 @@ namespace CoreServices.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   ColorCode = a.ColorCode,
                                   HotelFeaturesCount = a.HotelFeatures.Count,
-                                  HotelFeatures = parameters.IncludeHotelFeatures == true ? 
+                                  HotelFeatures = parameters.IncludeHotelFeatures == true ?
                                       a.HotelFeatures.Select(b => new HotelFeatureModel
                                       {
                                           Id = b.Id,
@@ -375,7 +375,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<HotelFeatureCategoryModel>> GetHotelFeatureCategoriesPaged(
-            HotelFeatureCategoryParameters parameters , DBModelsEnum.LanguageEnum? language)
+            HotelFeatureCategoryParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<HotelFeatureCategoryModel>.ToPagedList(GetHotelFeatureCategories(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -396,7 +396,7 @@ namespace CoreServices.Logic
         {
             return GetHotelFeatureCategories(new HotelFeatureCategoryParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateHotelFeatureCategory(HotelFeatureCategory entity)
         {
@@ -416,7 +416,7 @@ namespace CoreServices.Logic
         }
 
         #endregion
-        
+
         #region HotelSelectedFeatures Services
 
         public IQueryable<HotelSelectedFeaturesModel> GetHotelSelectedFeatures(
@@ -439,7 +439,7 @@ namespace CoreServices.Logic
         }
 
         public async Task<PagedList<HotelSelectedFeaturesModel>> GetHotelSelectedFeaturesPaged(
-            HotelSelectedFeaturesParameters parameters , DBModelsEnum.LanguageEnum? language)
+            HotelSelectedFeaturesParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return await PagedList<HotelSelectedFeaturesModel>.ToPagedList(GetHotelSelectedFeatures(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -460,7 +460,7 @@ namespace CoreServices.Logic
         {
             return GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters { Id = id }, language).SingleOrDefault();
         }
-        
+
 
         public void CreateHotelSelectedFeatures(HotelSelectedFeatures entity)
         {

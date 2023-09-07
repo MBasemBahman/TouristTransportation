@@ -188,7 +188,7 @@ namespace CoreServices.Logic
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripState.Name,
                                       ColorCode = a.CompanyTripState.ColorCode
                                   },
-                                  Price = a.Price / parameters.RateInPounds,
+                                  Price = parameters.RateInPounds > 0 ? a.Price / parameters.RateInPounds : a.Price,
                                   Notes = a.Notes,
                                   Description = a.Description,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/trip.png",
@@ -343,7 +343,7 @@ namespace CoreServices.Logic
                                       User = new UserModel
                                       {
                                           Name = $"{a.Account.User.Name} | {a.Account.User.PhoneNumber}",
-                                          
+
                                       }
                                   },
                                   Fk_CompanyTrip = a.Fk_CompanyTrip,
@@ -470,9 +470,9 @@ namespace CoreServices.Logic
             return await _repository.CompanyTripBookingHistory.FindById(id, trackChanges);
         }
 
-        public void UpdateCompanyTripBookingHistory(int fk_CompanyTripBooking, 
+        public void UpdateCompanyTripBookingHistory(int fk_CompanyTripBooking,
             int fk_OldCompanyTripBookingState,
-            int fk_NewCompanyTripBookingState, 
+            int fk_NewCompanyTripBookingState,
             string notes)
         {
             if (fk_OldCompanyTripBookingState != fk_NewCompanyTripBookingState)
@@ -485,7 +485,7 @@ namespace CoreServices.Logic
                 });
             }
         }
-        
+
         public CompanyTripBookingHistoryModel GetCompanyTripBookingHistoryById(int id, DBModelsEnum.LanguageEnum? language)
         {
             return GetCompanyTripBookingHistories(new CompanyTripBookingHistoryParameters { Id = id }, language).SingleOrDefault();
