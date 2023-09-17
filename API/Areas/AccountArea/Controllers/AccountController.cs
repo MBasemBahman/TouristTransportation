@@ -61,5 +61,25 @@ namespace API.Areas.AccountArea.Controllers
 
             return accountDto;
         }
+        
+        [HttpGet]
+        [Route(nameof(GetAccount))]
+        public AccountDto GetAccount([FromQuery, BindRequired] int id)
+        {
+            if (id == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            AccountModel account = _unitOfWork.Account.GetAccountById(id, language);
+
+            AccountDto accountDto = _mapper.Map<AccountDto>(account);
+
+            return accountDto;
+        }
     }
+    
 }
+
