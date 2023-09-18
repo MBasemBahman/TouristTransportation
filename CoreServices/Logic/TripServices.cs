@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.AccountModels;
+﻿using Entities.AuthenticationModels;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.CarModels;
 using Entities.CoreServicesModels.MainDataModels;
 using Entities.CoreServicesModels.TripModels;
@@ -45,7 +46,7 @@ namespace CoreServices.Logic
         {
             return await PagedList<TripStateModel>.ToPagedList(GetTripStates(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
-
+        
         public async Task<PagedList<TripStateModel>> GetTripStatesPaged(
           IQueryable<TripStateModel> data,
          TripStateParameters parameters)
@@ -170,6 +171,43 @@ namespace CoreServices.Logic
             return await PagedList<TripModel>.ToPagedList(GetTrips(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
 
+        public void ChangeTripState(Trip trip, int fk_NewTripState, UserAuthenticatedDto auth)
+        {
+            if (trip.Fk_TripState == (int)DBModelsEnum.TripStateEnum.Booked)
+            {
+                if (auth.Fk_AccountType == (int)DBModelsEnum.AccountTypeEnum.Client && fk_NewTripState == (int)DBModelsEnum.TripStateEnum.Canceled)
+                {
+                    trip.Fk_TripState = fk_NewTripState;
+                    trip.LastModifiedBy = auth.Name;
+                }
+                else if (auth.Fk_AccountType == (int)DBModelsEnum.AccountTypeEnum.Driver && fk_NewTripState is (int)DBModelsEnum.TripStateEnum.Canceled or (int)DBModelsEnum.TripStateEnum.Done)
+                {
+                    trip.Fk_TripState = fk_NewTripState;
+                    trip.LastModifiedBy = auth.Name;
+                }
+            }
+        }
+        
+        public List<int> GetNextTripStates(int fk_TripState, UserAuthenticatedDto auth)
+        {
+            List<int> nextTripStates = new List<int>();
+             
+            if (fk_TripState == (int)DBModelsEnum.TripStateEnum.Booked)
+            {
+                if (auth.Fk_AccountType == (int)DBModelsEnum.AccountTypeEnum.Client)
+                {
+                    nextTripStates.Add((int)DBModelsEnum.TripStateEnum.Canceled);   
+                }
+                else if (auth.Fk_AccountType == (int)DBModelsEnum.AccountTypeEnum.Driver)
+                {
+                    nextTripStates.Add((int)DBModelsEnum.TripStateEnum.Done);   
+                    nextTripStates.Add((int)DBModelsEnum.TripStateEnum.Canceled);
+                }
+            }
+
+            return nextTripStates;
+        }
+        
         public Dictionary<string, string> GetTripStatesLookUp(TripStateParameters parameters, DBModelsEnum.LanguageEnum? language)
         {
             return GetTripStates(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
@@ -457,6 +495,5 @@ namespace CoreServices.Logic
         }
 
         #endregion
-
     }
 }

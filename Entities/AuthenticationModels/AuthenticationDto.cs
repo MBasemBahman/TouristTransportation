@@ -1,4 +1,6 @@
-﻿namespace Entities.AuthenticationModels
+﻿using Entities.EnumData;
+
+namespace Entities.AuthenticationModels
 {
     public class UserForRegistrationDto
     {
@@ -75,6 +77,8 @@
         [DataType(DataType.Password)]
         [DisplayName(nameof(Password))]
         public string Password { get; set; }
+
+        public DBModelsEnum.AccountTypeEnum AccountType { get; set; }
     }
 
     public class UserForTokenDto

@@ -34,7 +34,8 @@ namespace CoreServices.Logic
                                   {
                                       Name = a.User.Name,
                                       PhoneNumber = a.User.PhoneNumber,
-                                      EmailAddress = a.User.EmailAddress
+                                      EmailAddress = a.User.EmailAddress,
+                                      UserName = a.User.UserName
                                   } : null,
                                   // Phone = a.Phone,
                                   // EmailAddress = a.EmailAddress,

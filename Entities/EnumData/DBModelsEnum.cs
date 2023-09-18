@@ -131,8 +131,8 @@
             Booked = 3,
             Canceled = 4,
         }
-        
-        
+
+
 
         public enum TripStateEnum
         {
@@ -140,7 +140,7 @@
             PendingOnPayment = 2,
             Booked = 3,
             Done = 4,
-            Canceled = 5,
+            Canceled = 5
         }
     }
 }

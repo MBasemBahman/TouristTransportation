@@ -34,31 +34,21 @@ namespace API.Areas.PostArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
-
-            if (_unitOfWork.Post.GetPostReactions(new PostReactionParameters
+            
+            _unitOfWork.Post.CreatePostReaction(new PostReaction
             {
+                Fk_Account = auth.Fk_Account,
                 Fk_Post = model.Fk_Post,
-                Fk_Account = auth.Fk_Account
-            }, language: null).Any())
-            {
-                _unitOfWork.Post.DeletePostReaction(model.Fk_Post, auth.Fk_Account);
-            }
-            else
-            {
-                _unitOfWork.Post.CreatePostReaction(new PostReaction
-                {
-                    Fk_Account = auth.Fk_Account,
-                    Fk_Post = model.Fk_Post,
-                    Reaction = model.ReactionEnum
-                });
-            }
+                Reaction = model.ReactionEnum
+            });
+            
             await _unitOfWork.Save();
 
             PostReactionModel postReaction = _unitOfWork.Post.GetPostReactions(new PostReactionParameters
             {
                 Fk_Post = model.Fk_Post,
                 Fk_Account = auth.Fk_Account
-            }, language).FirstOrDefault();
+            }, language).OrderByDescending(a => a.Id).FirstOrDefault();
 
             PostReactionDto returnData = _mapper.Map<PostReactionDto>(postReaction);
             return returnData;
