@@ -147,6 +147,7 @@ namespace API.Utility
                 userAuthenticated.Fk_Account = account.Id;
                 userAuthenticated.Fk_AccountType = account.Fk_AccountType;
                 userAuthenticated.Fk_AccountState = account.Fk_AccountState;
+                userAuthenticated.Fk_Currency = account.Fk_Currency;
                 userAuthenticated.RateInPounds = account.Currency?.RateInPounds ?? 1.0;
             }
             return userAuthenticated;
