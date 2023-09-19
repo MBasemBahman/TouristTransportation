@@ -1,4 +1,5 @@
-﻿using Entities.EnumData;
+using Entities.EnumData;
+using Entities.CoreServicesModels.MainDataModels;
 
 namespace Entities.AuthenticationModels
 {
@@ -115,6 +116,9 @@ namespace Entities.AuthenticationModels
         public int Fk_Account { get; set; }
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }
+
+        public int? Fk_Currency { get; set; }
+        public CurrencyModel Currency { get; set; }
         public double RateInPounds { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
