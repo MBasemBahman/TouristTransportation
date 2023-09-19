@@ -89,8 +89,6 @@
         public enum ReactionEnum
         {
             Like = 1,
-            Dislike = 2,
-            Love = 3
         }
 
         public enum AccountStateEnum

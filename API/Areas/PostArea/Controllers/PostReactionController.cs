@@ -24,7 +24,7 @@ namespace API.Areas.PostArea.Controllers
 
         [HttpPost]
         [Route(nameof(EditPostReaction))]
-        public async Task<PostReactionDto> EditPostReaction([FromBody] PostReactioEditDto model)
+        public async Task<int> EditPostReaction([FromBody] PostReactionEditDto model)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
@@ -39,19 +39,19 @@ namespace API.Areas.PostArea.Controllers
             {
                 Fk_Account = auth.Fk_Account,
                 Fk_Post = model.Fk_Post,
-                Reaction = model.ReactionEnum
+                Reaction = ReactionEnum.Like
             });
             
             await _unitOfWork.Save();
 
-            PostReactionModel postReaction = _unitOfWork.Post.GetPostReactions(new PostReactionParameters
+            int postReactionCount = _unitOfWork.Post.GetPostReactions(new PostReactionParameters
             {
                 Fk_Post = model.Fk_Post,
-                Fk_Account = auth.Fk_Account
-            }, language).OrderByDescending(a => a.Id).FirstOrDefault();
+            }, language).Count();
 
-            PostReactionDto returnData = _mapper.Map<PostReactionDto>(postReaction);
-            return returnData;
+            
+            
+            return postReactionCount;
         }
 
     }

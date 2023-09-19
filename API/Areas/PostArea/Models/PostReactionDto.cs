@@ -21,14 +21,11 @@ namespace API.Areas.PostArea.Models
 
     }
 
-    public class PostReactioEditDto
+    public class PostReactionEditDto
     {
         [DisplayName(nameof(Post))]
         [ForeignKey(nameof(Post))]
         public int Fk_Post { get; set; }
-
-        [DisplayName(nameof(ReactionEnum))]
-        public DBModelsEnum.ReactionEnum ReactionEnum { get; set; }
     }
 
 }
