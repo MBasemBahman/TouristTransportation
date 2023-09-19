@@ -77,8 +77,6 @@ namespace Entities.AuthenticationModels
         [DataType(DataType.Password)]
         [DisplayName(nameof(Password))]
         public string Password { get; set; }
-
-        public DBModelsEnum.AccountTypeEnum AccountType { get; set; }
     }
 
     public class UserForTokenDto

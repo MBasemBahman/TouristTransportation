@@ -34,11 +34,6 @@ namespace API.Controllers
 
             UserAuthenticatedDto auth = await _authManager.Authenticate(model, IpAddress());
 
-            if (auth.Fk_AccountType != (int)model.AccountType)
-            {
-                throw new Exception("You Are Not Allowed To Use This App, Invalid Account Type");
-            }
-
             SetToken(auth.TokenResponse);
             SetRefresh(auth.RefreshTokenResponse);
 
