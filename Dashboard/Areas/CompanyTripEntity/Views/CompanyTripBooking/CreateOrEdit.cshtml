@@ -239,7 +239,7 @@
                 success: function (data) {
                     let item = data[0];
                     
-                    $("select#Fk_Account").html(`<option selected value="${item.id}">${item.user.name} | ${item.phone}</option>`);
+                    $("select#Fk_Account").html(`<option selected value="${item.id}">${item.user.name}</option>`);
                 }
               });
         </script>

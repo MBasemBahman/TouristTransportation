@@ -127,6 +127,7 @@ namespace Dashboard.Areas.AccountEntity.Controllers
             try
             {
                 model.Fk_Supplier = model.Fk_Supplier > 0 ? model.Fk_Supplier : null;
+                model.Fk_Currency = model.Fk_Currency > 0 ? model.Fk_Currency : null;
                 model.User.Name = $"{model.FirstName} {model.LastName}";
                 
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
