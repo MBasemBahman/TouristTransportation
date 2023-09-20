@@ -26,52 +26,6 @@ namespace Dashboard.Areas.Dashboard.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login()
         {
-            //VCardManager vCardManager = new(_environment.WebRootPath);
-
-            //var url = vCardManager.SaveContact("MohamedBasem", "Export/vCards", new Contact
-            //{
-            //    DisplayName = "John Doe",
-            //    Person = new Person
-            //    {
-            //        Name = new Name
-            //        {
-            //            FirstName = "John",
-            //            MiddleName = "William",
-            //            LastName = "Doe",
-            //            Suffix = "jr."
-            //        },
-
-            //        BirthDay = new DateTime(1972, 1, 3),
-            //        Spouse = "Jane Doe",
-            //        Anniversary = new DateTime(2001, 6, 15)
-            //    },
-
-            //    Work = new Work
-            //    {
-            //        JobTitle = "Facility Manager",
-            //        Company = "Does Company"
-            //    },
-
-            //    PhoneNumbers = new PhoneNumber[]
-            //        {
-            //            new PhoneNumber
-            //            {
-            //                Value = "876-54321",
-            //                IsMobile = true
-            //            },
-            //            new PhoneNumber
-            //            {
-            //                Value = "123-45678",
-            //                IsWork = true,
-            //            }
-            //        },
-
-            //    EmailAddresses = new string[]
-            //        {
-            //            "john.doe@internet.com"
-            //        }
-            //});
-
             string refreshToken = Request.Cookies[HeadersConstants.SetRefresh];
 
             try
