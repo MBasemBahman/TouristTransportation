@@ -1,4 +1,5 @@
 ﻿using DevelopmentDAL;
+using Entities.ServicesModels;
 
 namespace API.Extensions
 {
@@ -73,6 +74,14 @@ namespace API.Extensions
             _ = services.AddScoped<UnitOfWork>();
         }
 
+        public static void ConfigureEmailSender(this IServiceCollection services, IConfiguration configuration)
+        {
+            EmailConfiguration emailConfig = configuration.GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            _ = services.AddSingleton(emailConfig);
+            _ = services.AddScoped<EmailSender>();
+        }
+        
         public static void ConfigureVersioning(this IServiceCollection services)
         {
             _ = services.AddVersionedApiExplorer(options =>

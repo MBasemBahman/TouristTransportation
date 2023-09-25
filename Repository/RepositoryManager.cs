@@ -56,6 +56,7 @@ namespace Repository
         private CurrencyRepository _currencyRepository;
         private AreaRepository _areaRepository;
         private SupplierRepository _supplierRepository;
+        private AppAboutRepository _appAboutRepository;
 
         #endregion
 
@@ -296,6 +297,15 @@ namespace Repository
             {
                 _supplierRepository ??= new SupplierRepository(_dBContext);
                 return _supplierRepository;
+            }
+        }
+        
+        public AppAboutRepository AppAbout
+        {
+            get
+            {
+                _appAboutRepository ??= new AppAboutRepository(_dBContext);
+                return _appAboutRepository;
             }
         }
 

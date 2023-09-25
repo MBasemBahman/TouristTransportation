@@ -12,6 +12,7 @@ namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
 
         public void Configure(EntityTypeBuilder<DashboardView> builder)
         {
+            return;
             foreach (DashboardViewEnum value in _dashboardViews)
             {
                 _ = builder.HasData(new DashboardView

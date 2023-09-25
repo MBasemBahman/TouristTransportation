@@ -66,8 +66,7 @@ namespace Dashboard.Extensions
         {
             _ = services.AddResponseCaching();
         }
-
-
+        
         public static void ConfigureLocalization(this IServiceCollection services)
         {
             _ = services.AddLocalization(options => options.ResourcesPath = "Resources");

@@ -1,0 +1,261 @@
+﻿@using Entities.EnumData
+@model AppAboutCreateOrEditModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("AppAbout")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.useForm = true;
+    ViewBag.useSummernote = true;
+
+}
+
+
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">@ViewData["Title"]</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/AppInfoEntity/AppAbout/Details">@Localizer.Get("AppAbout")</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    @ViewData["Title"]
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section id="multiple-column-form">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form" asp-action="CreateOrEdit">
+                                    <div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label">@($"{Localizer.Get("AboutCompany")} {Localizer.Get("InArabic")}")</label>
+                                                <textarea rows="5" asp-for="AboutCompany" class="form-control summernote"></textarea>
+                                                <span asp-validation-for="AboutCompany" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        @{ int i = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@($"{Localizer.Get("AboutCompany")}  {Localizer.Get("In" + language)} ")</label>
+                                                    
+                                                    <textarea rows="5" asp-for="AppAboutLangs[i].AboutCompany" class="form-control summernote"></textarea>
+                                                    <span asp-validation-for="AppAboutLangs[i].AboutCompany" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="AppAboutLangs[i].Language" value="@language" />
+                                                </div>
+                                            </div>
+                                            i++;
+                                        }
+
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label">@($"{Localizer.Get("AboutApp")}  {Localizer.Get("InArabic")} ")</label>
+                                                <textarea rows="5" asp-for="AboutApp" class="form-control summernote"></textarea>
+                                                <span asp-validation-for="AboutApp" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        @{ int j = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@($"{Localizer.Get("AboutApp")}  {Localizer.Get("In" + language)} ")</label>
+                                                    
+                                                    <textarea rows="5" asp-for="AppAboutLangs[j].AboutApp" class="form-control summernote"></textarea>
+                                                    <span asp-validation-for="AppAboutLangs[j].AboutApp" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="AppAboutLangs[j].Language" value="@language" />
+                                                </div>
+                                            </div>
+                                            j++;
+                                        }
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label">@($"{Localizer.Get("TermsAndConditions")} {Localizer.Get("InArabic")} ")</label>
+                                                <textarea rows="5" asp-for="TermsAndConditions" class="form-control summernote"></textarea>
+                                                <span asp-validation-for="TermsAndConditions" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        @{ int k = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@($"{Localizer.Get("TermsAndConditions")}  {Localizer.Get("In" + language)} ")</label>
+                                                    
+                                                    <textarea rows="5" asp-for="AppAboutLangs[k].TermsAndConditions" class="form-control summernote"></textarea>
+                                                    <span asp-validation-for="AppAboutLangs[k].TermsAndConditions" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="AppAboutLangs[k].Language" value="@language" />
+                                                </div>
+                                            </div>
+                                            k++;
+                                        }
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label">@($"{Localizer.Get("QuestionsAndAnswer")} {Localizer.Get("InArabic")} ")</label>
+                                                <textarea rows="5" asp-for="QuestionsAndAnswer" class="form-control summernote"></textarea>
+                                                <span asp-validation-for="QuestionsAndAnswer" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        @{ int l = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@($"{Localizer.Get("QuestionsAndAnswer")}  {Localizer.Get("In" + language)} ")</label>
+                                                    
+                                                    <textarea rows="5" asp-for="AppAboutLangs[l].QuestionsAndAnswer" class="form-control summernote"></textarea>
+                                                    <span asp-validation-for="AppAboutLangs[l].QuestionsAndAnswer" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="AppAboutLangs[l].Language" value="@language" />
+                                                </div>
+                                            </div>
+                                            l++;
+                                        }
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="Phone" class="form-label"></label>
+                                                <input asp-for="Phone" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Phone"))" />
+                                                <span asp-validation-for="Phone" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="WhatsApp" class="form-label"></label>
+                                                <input asp-for="WhatsApp" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("WhatsApp"))" />
+                                                <span asp-validation-for="WhatsApp" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="EmailAddress" class="form-label"></label>
+                                                <input asp-for="EmailAddress" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("EmailAddress"))" />
+                                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="TwitterUrl" class="form-label"></label>
+                                                <input asp-for="TwitterUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TwitterUrl"))" />
+                                                <span asp-validation-for="TwitterUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="FacebookUrl" class="form-label"></label>
+                                                <input asp-for="FacebookUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("FacebookUrl"))" />
+                                                <span asp-validation-for="FacebookUrl" class="text-danger"></span>
+                                            </div>
+                                        </div> <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="InstagramUrl" class="form-label"></label>
+                                                <input asp-for="InstagramUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("InstagramUrl"))" />
+                                                <span asp-validation-for="InstagramUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="SnapChatUrl" class="form-label"></label>
+                                                <input asp-for="SnapChatUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("SnapChatUrl"))" />
+                                                <span asp-validation-for="SnapChatUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="TiktokUrl" class="form-label"></label>
+                                                <input asp-for="TiktokUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("TiktokUrl"))" />
+                                                <span asp-validation-for="TiktokUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="YoutubeUrl" class="form-label"></label>
+                                                <input asp-for="YoutubeUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("YoutubeUrl"))" />
+                                                <span asp-validation-for="YoutubeUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <hr />
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary me-1">@Localizer.Get("Submit")</button>
+                                            <button type="reset" class="btn btn-outline-secondary me-1">@Localizer.Get("Reset")</button>
+                                            <a asp-action="Details" class="btn btn-warning"> @Localizer.Get("Back") </a>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+    </div>
+</div>
+<!-- END: Content-->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.summernote-dark').each(function () {
+                var elem_id = $(this).attr('id');
+                $(this).summernote({
+                    tabsize: 2,
+                    height: 120,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                    ],
+                    callbacks: {
+                        onChange: function (e) {
+                            setTimeout(function () {
+                                $("#" + elem_id + "InDark").summernote('code', $("#" + elem_id).val());
+                            }, 200);
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}

@@ -1335,4 +1335,34 @@
   <data name="FromAddress" xml:space="preserve">
     <value>من العنوان</value>
   </data>
+  <data name="AppAbout" xml:space="preserve">
+    <value>معلومات التطبيق</value>
+  </data>
+  <data name="AboutCompany" xml:space="preserve">
+    <value>معلومات عن الشركة</value>
+  </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>معلومات عن التطبيق</value>
+  </data>
+  <data name="TermsAndConditions" xml:space="preserve">
+    <value>الشروط والاحكام</value>
+  </data>
+  <data name="QuestionsAndAnswer" xml:space="preserve">
+    <value>اسألة واجوبة</value>
+  </data>
+  <data name="Inen" xml:space="preserve">
+    <value>بالانجليزية</value>
+  </data>
+  <data name="Infr" xml:space="preserve">
+    <value>بالفرنسية</value>
+  </data>
+  <data name="Inde" xml:space="preserve">
+    <value>بالالمانية</value>
+  </data>
+  <data name="Inru" xml:space="preserve">
+    <value>بالروسية</value>
+  </data>
+  <data name="Intl" xml:space="preserve">
+    <value>بالايطالية</value>
+  </data>
 </root>

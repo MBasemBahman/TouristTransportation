@@ -85,6 +85,7 @@ namespace BaseDB
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<AppAbout> AppAbouts { get; set; }
         #endregion
 
         #region Trip Model

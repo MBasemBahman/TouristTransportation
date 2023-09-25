@@ -415,6 +415,19 @@ namespace Dashboard.MappingProfileCls
 
             #endregion
 
+            #region AppAbout
+
+            _ = CreateMap<AppAboutModel, AppAboutDto>();
+
+            _ = CreateMap<AppAbout, AppAboutCreateOrEditModel>();
+
+            _ = CreateMap<AppAboutLang, AppAboutLangModel>();
+
+            _ = CreateMap<AppAboutCreateOrEditModel, AppAbout>();
+
+            _ = CreateMap<AppAboutLangModel, AppAboutLang>();
+            #endregion
+            
             #endregion
 
             #region Car Models

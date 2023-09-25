@@ -1297,4 +1297,34 @@
   <data name="FromAddress" xml:space="preserve">
     <value>From Address</value>
   </data>
+  <data name="AppAbout" xml:space="preserve">
+    <value>App About</value>
+  </data>
+  <data name="AboutCompany" xml:space="preserve">
+    <value>About Company</value>
+  </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About App</value>
+  </data>
+  <data name="TermsAndConditions" xml:space="preserve">
+    <value>Terms And Conditions</value>
+  </data>
+  <data name="QuestionsAndAnswer" xml:space="preserve">
+    <value>Questions And Answer</value>
+  </data>
+  <data name="Inen" xml:space="preserve">
+    <value>In English</value>
+  </data>
+  <data name="Infr" xml:space="preserve">
+    <value>In French</value>
+  </data>
+  <data name="Inde" xml:space="preserve">
+    <value>In Duetsch</value>
+  </data>
+  <data name="Inru" xml:space="preserve">
+    <value>In Russian</value>
+  </data>
+  <data name="Intl" xml:space="preserve">
+    <value>In Italy</value>
+  </data>
 </root>

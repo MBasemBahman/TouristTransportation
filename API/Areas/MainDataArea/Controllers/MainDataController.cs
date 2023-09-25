@@ -65,5 +65,17 @@ namespace API.Areas.MainDataArea.Controllers
 
             return rowsDto;
         }
+        
+        [HttpGet]
+        [Route(nameof(GetAppAbout))]
+        [AllowAll]
+        public async Task<AppAboutModel> GetAppAbout()
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            AppAboutModel data = await _unitOfWork.MainData.GetAppAbouts(new RequestParameters(), language).FirstOrDefaultAsync();
+
+            return data;
+        }
     }
 }

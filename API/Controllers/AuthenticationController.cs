@@ -3,6 +3,7 @@ using API.Models;
 using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
+using Entities.ServicesModels;
 
 namespace API.Controllers
 {
@@ -12,6 +13,7 @@ namespace API.Controllers
     public class AuthenticationController : ExtendControllerBase
     {
         private readonly IAuthenticationManager _authManager;
+        private readonly EmailSender _emailSender;
 
         public AuthenticationController(
         ILoggerManager logger,
@@ -20,9 +22,11 @@ namespace API.Controllers
         LinkGenerator linkGenerator,
         IWebHostEnvironment environment,
         IAuthenticationManager authManager,
+        EmailSender emailSender,
         IOptions<AppSettings> appSettings) : base(logger, mapper, unitOfWork, linkGenerator, environment, appSettings)
         {
             _authManager = authManager;
+            _emailSender = emailSender;
         }
 
         [HttpPost]
@@ -129,6 +133,57 @@ namespace API.Controllers
 
             return true;
         }
+        
+        [HttpPost]
+        [Route(nameof(ForgetPassword))]
+        [AllowAnonymous]
+        public async Task<bool> ForgetPassword([FromBody] UserForResetDto model)
+        {
+            model.UserName = RegexService.GetUserName(model.UserName);
+            
+            User user = await _unitOfWork.User.FindByUserName(model.UserName, trackChanges: true);
+
+            if (user == null)
+            {
+                throw new Exception("Not Found!");
+            }
+
+            user.Verifications = new List<Verification>
+            {
+                _unitOfWork.User.GenerateVerification(IpAddress(),_appSettings.VerificationTTL)
+            };
+
+            await SendVerification(user.EmailAddress, user.Verifications.Single().Code);
+
+            await _unitOfWork.Save();
+
+            return true;
+        }
+        
+        [HttpPost]
+        [Route(nameof(VerifiedCode))]
+        [AllowAnonymous]
+        public async Task<bool> VerifiedCode(
+            [FromBody] VerificationDto model)
+        {
+            User user = await _unitOfWork.User.Verificate(model, _appSettings.VerificationTTL);
+
+            return user == null ? throw new Exception("Invalid code") : true;
+        }
+
+        [HttpPost]
+        [Route(nameof(VerifiedUser))]
+        [AllowAnonymous]
+        public async Task<bool> VerifiedUser([FromBody] UserForVerificationDto model)
+        {
+            User user = await _unitOfWork.User.Verificate(model, _appSettings.VerificationTTL);
+
+            user.Password = _unitOfWork.User.ChangePassword(model.Password);
+
+            await _unitOfWork.Save();
+            
+            return true;
+        }
 
         [HttpPut]
         [Route(nameof(SetCulture))]
@@ -190,6 +245,22 @@ namespace API.Controllers
             await _authManager.RevokeToken(model.Token, IpAddress());
 
             return true;
+        }
+        
+        // helpers
+        private async Task SendVerification(string emailAddress, string code)
+        {
+            if (!string.IsNullOrWhiteSpace(emailAddress))
+            {
+                LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+                string template = language != null ? "email" : "email-rtl";
+
+                string templatePath = $"/Templates/EmailTemplateV2/Verify/{template}.html";
+
+                EmailMessage message = new(new string[] { emailAddress }, "Verification", code, _environment.WebRootPath, templatePath);
+                await _emailSender.SendHtmlEmail(message);
+            }
         }
     }
 }

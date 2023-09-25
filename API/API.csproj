@@ -29,5 +29,5 @@
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
     <ProjectReference Include="..\TenantConfiguration\TenantConfiguration.csproj" />
   </ItemGroup>
-
+  
 </Project>

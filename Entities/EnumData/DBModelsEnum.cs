@@ -51,7 +51,8 @@
             CompanyTripBooking = 32,
             CompanyTripBookingState = 33,
             Trip = 34,
-            TripPoint = 35
+            TripPoint = 35,
+            AppAbout = 36
         }
 
         public enum AccountProfileItems

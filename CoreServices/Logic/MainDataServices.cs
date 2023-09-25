@@ -303,5 +303,84 @@ namespace CoreServices.Logic
         }
 
         #endregion
+        
+        #region AppAbout Services
+        public IQueryable<AppAboutModel> GetAppAbouts(RequestParameters parameters,
+            DBModelsEnum.LanguageEnum? language)
+        {
+            return _repository.AppAbout
+                       .FindAll(parameters, trackChanges: false)
+                       .Select(a => new AppAboutModel
+                       {
+                           AboutCompany = language != null ? a.AppAboutLangs
+                               .Where(b => b.Language == language)
+                               .Select(b => b.AboutCompany).FirstOrDefault() : a.AboutCompany,
+                           AboutApp = language != null ? a.AppAboutLangs
+                               .Where(b => b.Language == language)
+                               .Select(b => b.AboutApp).FirstOrDefault() : a.AboutApp,
+                           TermsAndConditions = language != null ? a.AppAboutLangs
+                               .Where(b => b.Language == language)
+                               .Select(b => b.TermsAndConditions).FirstOrDefault() : a.TermsAndConditions,
+                           QuestionsAndAnswer = language != null ? a.AppAboutLangs
+                               .Where(b => b.Language == language)
+                               .Select(b => b.QuestionsAndAnswer).FirstOrDefault() : a.QuestionsAndAnswer,
+                           Phone = a.Phone,
+                           WhatsApp = a.WhatsApp,
+                           EmailAddress = a.EmailAddress,
+                           TwitterUrl = a.TwitterUrl,
+                           FacebookUrl = a.FacebookUrl,
+                           InstagramUrl = a.InstagramUrl,
+                           SnapChatUrl = a.SnapChatUrl,
+                           YoutubeUrl = a.YoutubeUrl,
+                           TiktokUrl = a.TiktokUrl,
+                           Id = a.Id,
+                           CreatedAt = a.CreatedAt,
+                           CreatedBy = a.CreatedBy,
+                           LastModifiedAt = a.LastModifiedAt,
+                           LastModifiedBy = a.LastModifiedBy,
+                       })
+                       .Search(parameters.SearchColumns, parameters.SearchTerm)
+                       .Sort(parameters.OrderBy);
+        }
+
+
+        public async Task<PagedList<AppAboutModel>> GetAppAboutsPaged(
+                  RequestParameters parameters,
+                  DBModelsEnum.LanguageEnum? language)
+        {
+            return await PagedList<AppAboutModel>.ToPagedList(GetAppAbouts(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<AppAbout> FindAppAboutById(int id, bool trackChanges)
+        {
+            return await _repository.AppAbout.FindById(id, trackChanges);
+        }
+
+        public async Task<AppAbout> FindAppAbout(bool trackChanges)
+        {
+            return await _repository.AppAbout.Find(trackChanges);
+        }
+
+        public void CreateAppAbout(AppAbout appAbout)
+        {
+            _repository.AppAbout.Create(appAbout);
+        }
+
+        public async Task DeleteAppAbout(int id)
+        {
+            AppAbout appAbout = await FindAppAboutById(id, trackChanges: true);
+            _repository.AppAbout.Delete(appAbout);
+        }
+
+        public AppAboutModel GetAppAboutById(int id, DBModelsEnum.LanguageEnum? language)
+        {
+            return GetAppAbouts(new RequestParameters { Id = id }, language).FirstOrDefault();
+        }
+
+        public int GetAppAboutCount()
+        {
+            return _repository.AppAbout.Count();
+        }
+        #endregion
     }
 }
