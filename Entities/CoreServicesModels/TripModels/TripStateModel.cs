@@ -4,7 +4,7 @@ namespace Entities.CoreServicesModels.TripModels
 {
     public class TripStateParameters : RequestParameters
     {
-
+        public List<int> Ids { get; set; }
     }
 
     public class TripStateModel : AuditLookUpEntity

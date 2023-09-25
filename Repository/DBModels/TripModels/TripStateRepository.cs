@@ -12,7 +12,8 @@ namespace Repository.DBModels.TripModels
         public IQueryable<TripState> FindAll(TripStateParameters parameters, bool trackChanges)
         {
             return FindByCondition(a => true, trackChanges)
-                   .Filter(parameters.Id);
+                   .Filter(parameters.Id,
+                       parameters.Ids);
         }
 
         public async Task<TripState> FindById(int id, bool trackChanges)
@@ -45,9 +46,11 @@ namespace Repository.DBModels.TripModels
     {
         public static IQueryable<TripState> Filter(
             this IQueryable<TripState> accounts,
-            int id)
+            int id,
+            List<int> ids)
         {
-            return accounts.Where(a => id == 0 || a.Id == id);
+            return accounts.Where(a => (id == 0 || a.Id == id) &&
+                                       (ids == null || !ids.Any() || ids.Contains(a.Id)));
         }
     }
 }

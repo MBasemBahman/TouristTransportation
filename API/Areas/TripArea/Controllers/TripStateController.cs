@@ -40,17 +40,22 @@ namespace API.Areas.TripArea.Controllers
                 Id = id,
                 RateInPounds = auth.RateInPounds
             }, language).FirstOrDefault();
+
+            List<int> fk_NextTripStates = _unitOfWork.Trip.GetNextTripStates(trip.Fk_TripState, auth);
             
             return new TripCurrentStateDto
             {
-                Fk_CurrentTripState = trip.Fk_TripState,
-                Fk_NextTripStates = _unitOfWork.Trip.GetNextTripStates(trip.Fk_TripState, auth)
+                CurrentTripState = _mapper.Map<TripStateDto>(trip.TripState),
+                NextTripStates = fk_NextTripStates.Any() ? _mapper.Map<List<TripStateDto>>(_unitOfWork.Trip.GetTripStates(new TripStateParameters
+                {
+                    Ids = fk_NextTripStates 
+                }, language).ToList()) : new List<TripStateDto>()
             };
         }
     
         [HttpPut]
         [Route(nameof(EditTripState))]
-        public async Task<TripDto> EditTripState([FromQuery, BindRequired] int id, [FromBody] int fk_TripState)
+        public async Task<TripDto> EditTripState([FromQuery, BindRequired] int id, [FromBody] EditTripStateDto model)
         {
             if (id == 0)
             {
@@ -68,7 +73,7 @@ namespace API.Areas.TripArea.Controllers
                 throw new Exception("Access Denied!");
             }
 
-            _unitOfWork.Trip.ChangeTripState(trip, fk_TripState, auth);
+            _unitOfWork.Trip.ChangeTripState(trip, model.Fk_TripState, auth);
 
             await _unitOfWork.Save();
 

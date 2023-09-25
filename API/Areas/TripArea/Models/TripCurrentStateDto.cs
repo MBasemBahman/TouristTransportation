@@ -8,7 +8,7 @@ namespace API.Areas.TripArea.Models
 {
     public class TripCurrentStateDto
     {
-        public int Fk_CurrentTripState { get; set; }
-        public List<int> Fk_NextTripStates { get; set; }
+        public TripStateDto CurrentTripState { get; set; }
+        public List<TripStateDto> NextTripStates { get; set; }
     }
 }
