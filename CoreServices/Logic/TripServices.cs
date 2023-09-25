@@ -159,7 +159,7 @@ namespace CoreServices.Logic
                                           Name = a.Client.User.Name
 
                                       } : null
-                                  }
+                                  },
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
