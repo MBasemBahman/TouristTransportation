@@ -163,8 +163,7 @@ namespace API.Controllers
         [HttpPost]
         [Route(nameof(VerifiedCode))]
         [AllowAnonymous]
-        public async Task<bool> VerifiedCode(
-            [FromBody] VerificationDto model)
+        public async Task<bool> VerifiedCode([FromBody] VerificationDto model)
         {
             User user = await _unitOfWork.User.Verificate(model, _appSettings.VerificationTTL);
 
