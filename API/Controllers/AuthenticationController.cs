@@ -168,7 +168,7 @@ namespace API.Controllers
             User user = await _unitOfWork.User.Verificate(model, _appSettings.VerificationTTL);
 
             return user == null ? throw new Exception("Invalid code") : true;
-        }
+        }   
 
         [HttpPost]
         [Route(nameof(VerifiedUser))]

@@ -96,7 +96,8 @@
         {
             Active = 1,
             Pending = 2,
-            Pan = 3
+            Ban = 3,
+            RequestToBeSeller = 4
         }
 
         public enum AccountTypeEnum
