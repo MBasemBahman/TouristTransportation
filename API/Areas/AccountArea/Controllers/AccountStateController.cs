@@ -22,7 +22,7 @@ namespace API.Areas.AccountArea.Controllers
         {
 
         }
-
+        
         [HttpPost]
         [Route(nameof(ChangeClientToSeller))]
         public async Task<bool> ChangeClientToSeller()
