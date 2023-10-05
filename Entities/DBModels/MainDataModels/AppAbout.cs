@@ -19,6 +19,10 @@ namespace Entities.DBModels.MainDataModels
         [DisplayName(nameof(QuestionsAndAnswer))]
         [DataType(DataType.MultilineText)]
         public string QuestionsAndAnswer { get; set; }
+        
+        [DisplayName(nameof(EarningMoney))]
+        [DataType(DataType.MultilineText)]
+        public string EarningMoney { get; set; }
 
         [DisplayName(nameof(Phone))]
         [DataType(DataType.PhoneNumber)]
@@ -85,6 +89,10 @@ namespace Entities.DBModels.MainDataModels
         [DisplayName(nameof(QuestionsAndAnswer))]
         [DataType(DataType.MultilineText)]
         public string QuestionsAndAnswer { get; set; }
+        
+        [DisplayName(nameof(EarningMoney))]
+        [DataType(DataType.MultilineText)]
+        public string EarningMoney { get; set; }
 
         [DisplayName(nameof(Language))]
         public DBModelsEnum.LanguageEnum Language { get; set; }

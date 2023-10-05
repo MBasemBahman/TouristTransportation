@@ -140,6 +140,30 @@
                                             </div>
                                             l++;
                                         }
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label">@($"{Localizer.Get("EarningMoney")} {Localizer.Get("InArabic")} ")</label>
+                                                <textarea rows="5" asp-for="EarningMoney" class="form-control summernote"></textarea>
+                                                <span asp-validation-for="EarningMoney" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        @{ int m = 0;}
+                                        @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                                        {
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">@($"{Localizer.Get("EarningMoney")}  {Localizer.Get("In" + language)} ")</label>
+                                                    
+                                                    <textarea rows="5" asp-for="AppAboutLangs[m].EarningMoney" class="form-control summernote"></textarea>
+                                                    <span asp-validation-for="AppAboutLangs[m].EarningMoney" class="text-danger"></span>
+                                                    
+                                                    <input type="hidden" asp-for="AppAboutLangs[m].Language" value="@language" />
+                                                </div>
+                                            </div>
+                                            m++;
+                                        }
 
                                         <div class="col-md-4 col-12">
                                             <div class="mb-1">

@@ -321,6 +321,9 @@ namespace CoreServices.Logic
                            TermsAndConditions = language != null ? a.AppAboutLangs
                                .Where(b => b.Language == language)
                                .Select(b => b.TermsAndConditions).FirstOrDefault() : a.TermsAndConditions,
+                           EarningMoney = language != null ? a.AppAboutLangs
+                               .Where(b => b.Language == language)
+                               .Select(b => b.EarningMoney).FirstOrDefault() : a.EarningMoney,
                            QuestionsAndAnswer = language != null ? a.AppAboutLangs
                                .Where(b => b.Language == language)
                                .Select(b => b.QuestionsAndAnswer).FirstOrDefault() : a.QuestionsAndAnswer,

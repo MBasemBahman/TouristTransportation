@@ -1365,4 +1365,7 @@
   <data name="Intl" xml:space="preserve">
     <value>بالايطالية</value>
   </data>
+  <data name="EarningMoney" xml:space="preserve">
+    <value>ربح الاموال</value>
+  </data>
 </root>

@@ -19,6 +19,10 @@ namespace Entities.CoreServicesModels.MainDataModels
         [DisplayName(nameof(QuestionsAndAnswer))]
         [DataType(DataType.MultilineText)]
         public string QuestionsAndAnswer { get; set; }
+        
+        [DisplayName(nameof(EarningMoney))]
+        [DataType(DataType.MultilineText)]
+        public string EarningMoney { get; set; }
 
         [DisplayName(nameof(Phone))]
         [DataType(DataType.PhoneNumber)]
@@ -83,6 +87,10 @@ namespace Entities.CoreServicesModels.MainDataModels
         [DisplayName(nameof(QuestionsAndAnswer))]
         [DataType(DataType.MultilineText)]
         public string QuestionsAndAnswer { get; set; }
+        
+        [DisplayName(nameof(EarningMoney))]
+        [DataType(DataType.MultilineText)]
+        public string EarningMoney { get; set; }
 
         [DisplayName(nameof(Phone))]
         [DataType(DataType.PhoneNumber)]
@@ -145,6 +153,10 @@ namespace Entities.CoreServicesModels.MainDataModels
         [DisplayName(nameof(TermsAndConditions))]
         [DataType(DataType.MultilineText)]
         public string TermsAndConditions { get; set; }
+        
+        [DisplayName(nameof(EarningMoney))]
+        [DataType(DataType.MultilineText)]
+        public string EarningMoney { get; set; }
 
         [DisplayName(nameof(QuestionsAndAnswer))]
         [DataType(DataType.MultilineText)]

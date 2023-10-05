@@ -1327,4 +1327,7 @@
   <data name="Intl" xml:space="preserve">
     <value>In Italy</value>
   </data>
+  <data name="EarningMoney" xml:space="preserve">
+    <value>Earning Money</value>
+  </data>
 </root>
