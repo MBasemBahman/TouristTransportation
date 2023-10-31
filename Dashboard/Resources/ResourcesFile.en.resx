@@ -1330,4 +1330,7 @@
   <data name="EarningMoney" xml:space="preserve">
     <value>Earning Money</value>
   </data>
+  <data name="MembersDiscount" xml:space="preserve">
+    <value>Members Discount</value>
+  </data>
 </root>

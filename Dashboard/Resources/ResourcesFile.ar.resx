@@ -1368,4 +1368,7 @@
   <data name="EarningMoney" xml:space="preserve">
     <value>ربح الاموال</value>
   </data>
+  <data name="MembersDiscount" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
 </root>

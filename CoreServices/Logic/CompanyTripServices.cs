@@ -353,6 +353,7 @@ namespace CoreServices.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Title).FirstOrDefault() : a.CompanyTrip.Title,
                                   },
+                                  Fk_Currency = a.Fk_Currency,
                                   Currency = new CurrencyModel
                                   {
                                       Name = language != null ? a.Currency.CurrencyLangs
@@ -363,6 +364,7 @@ namespace CoreServices.Logic
                                   CurrencyRate = a.CurrencyRate,
                                   MembersCount = a.MembersCount,
                                   HistoriesCount = a.CompanyTripBookingHistories.Count,
+                                  Fk_CompanyTripBookingState = a.Fk_CompanyTripBookingState,
                                   CompanyTripBookingState = new CompanyTripBookingStateModel
                                   {
                                       Name = language != null ? a.CompanyTripBookingState.CompanyTripBookingStateLangs
@@ -370,7 +372,9 @@ namespace CoreServices.Logic
                                           .Select(b => b.Name).FirstOrDefault() : a.CompanyTripBookingState.Name,
                                       ColorCode = a.CompanyTripBookingState.ColorCode
                                   },
+                                  MembersDiscount = a.MembersDiscount,
                                   Date = a.Date,
+                                  Notes = a.Notes,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

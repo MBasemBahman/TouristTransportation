@@ -46,6 +46,9 @@ public class CompanyTripBooking : AuditEntity
     [DisplayName(nameof(MembersCount))]
     public int MembersCount { get; set; }
 
+    [DisplayName(nameof(MembersDiscount))]
+    public double MembersDiscount { get; set; }
+
     [DisplayName(nameof(Date))]
     public DateTime Date { get; set; }
 

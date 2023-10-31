@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="CurrencyRate" class="form-label"></label>
                                                 <input type="number" asp-for="CurrencyRate" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("CurrencyRate")" />
@@ -138,11 +138,19 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="mb-1">
                                                 <label asp-for="MembersCount" class="form-label"></label>
                                                 <input type="number" asp-for="MembersCount" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("MembersCount")" />
                                                 <span asp-validation-for="MembersCount" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <label asp-for="MembersDiscount" class="form-label"></label>
+                                                <input asp-for="MembersDiscount" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("MembersDiscount")" />
+                                                <span asp-validation-for="MembersDiscount" class="text-danger"></span>
                                             </div>
                                         </div>
                                         

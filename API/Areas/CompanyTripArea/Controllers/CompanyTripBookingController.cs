@@ -75,10 +75,14 @@ namespace API.Areas.CompanyTripArea.Controllers
                 companyTripBooking.MembersCount = 1;
             }
 
+            double priceAfterDiscount = companyTripBooking.MembersCount > 1
+                ? (companyTrip.Price - companyTripBooking.MembersDiscount) * companyTripBooking.MembersCount
+                : companyTrip.Price;
+            
             companyTripBooking.Fk_Account = auth.Fk_Account;
             companyTripBooking.Fk_CompanyTripBookingState = (int)CompanyTripBookingStateEnum.Pending;
             companyTripBooking.CurrencyRate = currency.RateInPounds;
-            companyTripBooking.Price = companyTrip.Price * companyTripBooking.MembersCount;
+            companyTripBooking.Price = priceAfterDiscount;
             companyTripBooking.CreatedBy = auth.Name;
 
             _unitOfWork.CompanyTrip.CreateCompanyTripBooking(companyTripBooking);

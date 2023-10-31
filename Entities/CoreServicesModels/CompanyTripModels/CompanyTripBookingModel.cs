@@ -61,6 +61,9 @@ namespace Entities.CoreServicesModels.CompanyTripModels
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }
         
+        [DisplayName(nameof(MembersDiscount))]
+        public double MembersDiscount { get; set; }
+        
         [DisplayName(nameof(HistoriesCount))]
         public int HistoriesCount { get; set; }
 
@@ -101,6 +104,9 @@ namespace Entities.CoreServicesModels.CompanyTripModels
 
         [DisplayName(nameof(MembersCount))]
         public int MembersCount { get; set; }
+        
+        [DisplayName(nameof(MembersDiscount))]
+        public double MembersDiscount { get; set; }
 
         [DisplayName(nameof(Date))]
         public DateTime Date { get; set; }
