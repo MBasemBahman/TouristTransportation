@@ -30,7 +30,15 @@ namespace API.Areas.TripArea.Controllers
 
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
-            parameters.Fk_Client = auth.Fk_Account;
+            if (auth.Fk_AccountType == (int)AccountTypeEnum.Client)
+            {
+                parameters.Fk_Client = auth.Fk_Account;
+            }
+            else if (auth.Fk_AccountType == (int)AccountTypeEnum.Driver)
+            {
+                parameters.Fk_Driver = auth.Fk_Account;
+            }
+            
             parameters.RateInPounds = auth.RateInPounds;
 
             PagedList<TripModel> trips = await _unitOfWork.Trip.GetTripsPaged(parameters, language);
